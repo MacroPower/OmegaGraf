@@ -5,5 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Docker.DotNet" Version="3.125.2"/>
+    <PackageReference Include="Docker.DotNet.X509" Version="3.125.2"/>
+    <PackageReference Include="Docker.DotNet.BasicAuth" Version="3.125.2"/>
   </ItemGroup>
 </Project>
