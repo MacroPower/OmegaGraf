@@ -1,29 +1,27 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using Docker.DotNet;
 using Docker.DotNet.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace OmegaGraf.Compose
 {
     public class Docker
     {
         public DockerClient DockerClient { get; }
-        private string hostBind;
         private string dockerURI
         {
             get
             {
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 {
-                    this.hostBind = "/var/docker/telegraf";
                     return "unix:/var/run/docker.sock";
                 }
 
                 if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    this.hostBind = "C:/docker/telegraf";
                     return "npipe://./pipe/docker_engine";
                 }
 
@@ -31,9 +29,11 @@ namespace OmegaGraf.Compose
             }
         }
 
-        public Docker() => this.DockerClient =
-            new DockerClientConfiguration(new Uri(this.dockerURI))
-                .CreateClient();
+        public Docker()
+        {
+            this.DockerClient = new DockerClientConfiguration(new Uri(this.dockerURI))
+                                .CreateClient();
+        }
 
         public async Task PullImage(string image, string tag) =>
             await this.DockerClient.Images.CreateImageAsync(
@@ -46,44 +46,60 @@ namespace OmegaGraf.Compose
                 new Progress<JSONMessage>()
             );
 
-        public async Task<string> CreateContainer(string image)
+        /// <summary>
+        /// Create the container and return the ID.
+        /// Container will be STOPPED.
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="ports">host = container</param>
+        /// <param name="binds">host : container</param>
+        /// <returns>Container UUID</returns>
+        public async Task<string> CreateContainer(string image, List<int> ports, Dictionary<string, string> binds, List<string> cmd)
         {
-            var response = await this.DockerClient.Containers.CreateContainerAsync(
-                new CreateContainerParameters
-                {
-                    Image = image,
-                    ExposedPorts = new Dictionary<string, EmptyStruct>
+            foreach (var b in binds)
+            {
+                System.IO.Directory.CreateDirectory(b.Key);
+            }
+
+            var exposedPorts = ports.ToDictionary(x => x.ToString(), x => default(EmptyStruct));
+
+            var portBinds = new Dictionary<string, IList<PortBinding>>();
+
+            foreach (var (port, protocol) in from port in ports
+                     from protocol in new string[] { "tcp", "udp" }
+                     select (port, protocol))
+            {
+                portBinds.Add(
+                    port + "/" + protocol,
+                    new List<PortBinding>
                     {
-                        { "8083", default(EmptyStruct) },
-                        { "8086", default(EmptyStruct) }
-                    },
-                    HostConfig = new HostConfig
-                    {
-                        Binds = new List<string>()
+                        new PortBinding
                         {
-                            this.hostBind + ":/etc/telegraf"
-                        },
-                        PortBindings = new Dictionary<string, IList<PortBinding> >
-                        {
-                            {
-                                "8083",
-                                new List<PortBinding>
-                                {
-                                    new PortBinding { HostPort = "8083" }
-                                }
-                            },
-                            {
-                                "8086",
-                                new List<PortBinding>
-                                {
-                                    new PortBinding { HostPort = "8086" }
-                                }
-                            }
-                        },
-                        PublishAllPorts = true
+                            HostIP = "0.0.0.0",
+                            HostPort = port.ToString()
+                        }
                     }
+                );
+            }
+
+            var parameters = new CreateContainerParameters
+            {
+                Image = image,
+                ExposedPorts = exposedPorts,
+                HostConfig = new HostConfig
+                {
+                    Binds = binds.Select(x => x.Key + ":" + x.Value).ToList(),
+                    PortBindings = portBinds,
+                    PublishAllPorts = false
                 }
-            );
+            };
+
+            if (cmd.Count > 0)
+            {
+                parameters.Cmd = cmd;
+            }
+
+            var response = await this.DockerClient.Containers.CreateContainerAsync(parameters);
 
             return response.ID;
         }
@@ -94,7 +110,7 @@ namespace OmegaGraf.Compose
                 new ContainerStartParameters()
             );
 
-        public async Task DisposeAsync(string id)
+        public async Task DisposeContainer(string id)
         {
             if (id != null)
             {

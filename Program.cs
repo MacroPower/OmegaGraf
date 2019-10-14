@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace OmegaGraf.Compose
@@ -15,10 +16,22 @@ namespace OmegaGraf.Compose
             var t = Task.Run(
                 async () =>
                 {
-                    await x.PullImage("telegraf", "latest");
+                    await x.PullImage("prom/prometheus", "latest");
 
-                    // TODO: Pass ports, binds, and other settings
-                    var id = await x.CreateContainer("telegraf");
+                    var id = await x.CreateContainer(
+                        "prom/prometheus",
+                        new List<int>(){ 9090 },
+                        new Dictionary<string, string>()
+                        {
+                            { "C:/docker/prometheus/config", "/etc/prometheus" },
+                            { "C:/docker/prometheus/data",   "/prometheus"     }
+                        },
+                        new List<string>()
+                        {
+                            "--config.file=/etc/prometheus/prometheus.yml",
+                            "--storage.tsdb.path=/prometheus"
+                        }
+                    );
 
                     await x.StartContainer(id);
 
@@ -33,7 +46,12 @@ namespace OmegaGraf.Compose
                 }
             );
 
-            Console.WriteLine(t.Result);
+            var uuid = t.Result;
+
+            Console.WriteLine("docker container logs " + uuid);
+            Console.WriteLine("docker container inspect " + uuid);
+            Console.WriteLine("docker container stop " + uuid);
+            Console.WriteLine("docker container rm " + uuid);
         }
     }
 }
