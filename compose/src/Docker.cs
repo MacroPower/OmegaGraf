@@ -54,8 +54,12 @@ namespace OmegaGraf.Compose
         /// <param name="ports">host = container</param>
         /// <param name="binds">host : container</param>
         /// <returns>Container UUID</returns>
-        public async Task<string> CreateContainer(string image, List<int> ports, Dictionary<string, string> binds, List<string> cmd = null)
-        {
+        public async Task<string> CreateContainer(
+            string image,
+            List<int> ports,
+            Dictionary<string, string> binds,
+            List<string> cmd = null
+        ){
             foreach (var b in binds)
             {
                 System.IO.Directory.CreateDirectory(b.Key);
