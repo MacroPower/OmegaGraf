@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace OmegaGraf.Compose
 {
-    public class Docker
+    public class Docker : IDisposable
     {
         public DockerClient DockerClient { get; }
-        private string dockerURI
+        private string DockerURI
         {
             get
             {
@@ -25,13 +25,13 @@ namespace OmegaGraf.Compose
                     return "npipe://./pipe/docker_engine";
                 }
 
-                throw new System.NotSupportedException();
+                throw new NotSupportedException();
             }
         }
 
         public Docker()
         {
-            this.DockerClient = new DockerClientConfiguration(new Uri(this.dockerURI))
+            this.DockerClient = new DockerClientConfiguration(new Uri(this.DockerURI))
                                 .CreateClient();
         }
 
@@ -54,22 +54,20 @@ namespace OmegaGraf.Compose
         /// <param name="ports">host = container</param>
         /// <param name="binds">host : container</param>
         /// <returns>Container UUID</returns>
-        public async Task<string> CreateContainer(string image, List<int> ports, Dictionary<string, string> binds, List<string> cmd)
+        public async Task<string> CreateContainer(string image, List<int> ports, Dictionary<string, string> binds, List<string> cmd = null)
         {
             foreach (var b in binds)
             {
                 System.IO.Directory.CreateDirectory(b.Key);
             }
 
-            var exposedPorts = ports.ToDictionary(x => x.ToString(), x => default(EmptyStruct));
-
-            var portBinds = new Dictionary<string, IList<PortBinding>>();
-
-            foreach (var (port, protocol) in from port in ports
-                     from protocol in new string[] { "tcp", "udp" }
-                     select (port, protocol))
-            {
-                portBinds.Add(
+            Dictionary<string, IList<PortBinding>> portBinds = (
+                from port in ports
+                from protocol in new string[] {
+                    "tcp", "udp"
+                }
+                select new KeyValuePair<string, IList<PortBinding>>
+                (
                     port + "/" + protocol,
                     new List<PortBinding>
                     {
@@ -79,13 +77,12 @@ namespace OmegaGraf.Compose
                             HostPort = port.ToString()
                         }
                     }
-                );
-            }
+                )).ToDictionary(i => i.Key, i => i.Value);
 
             var parameters = new CreateContainerParameters
             {
                 Image = image,
-                ExposedPorts = exposedPorts,
+                ExposedPorts = ports.ToDictionary(x => x.ToString(), x => default(EmptyStruct)),
                 HostConfig = new HostConfig
                 {
                     Binds = binds.Select(x => x.Key + ":" + x.Value).ToList(),
@@ -94,7 +91,7 @@ namespace OmegaGraf.Compose
                 }
             };
 
-            if (cmd.Count > 0)
+            if (cmd != null && cmd.Count > 0)
             {
                 parameters.Cmd = cmd;
             }
@@ -110,7 +107,7 @@ namespace OmegaGraf.Compose
                 new ContainerStartParameters()
             );
 
-        public async Task DisposeContainer(string id)
+        public async Task KillContainer(string id)
         {
             if (id != null)
             {
@@ -119,6 +116,26 @@ namespace OmegaGraf.Compose
                     new ContainerKillParameters()
                 );
             }
+        }
+
+        bool disposed = false;
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposed)
+                return;
+
+            if (disposing)
+            {
+                this.DockerClient.Dispose();
+            }
+
+            this.disposed = true;
         }
     }
 }

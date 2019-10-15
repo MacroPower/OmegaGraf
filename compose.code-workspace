@@ -1,0 +1,16 @@
+{
+  "folders": [
+    {
+      "name": "compose",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "cSpell.allowCompoundWords": true,
+    "omnisharp.enableRoslynAnalyzers": true,
+    "files.exclude": {
+      "**/obj/**": true
+    },
+    "cSpell.words": ["omnisharp", "owin", "nett", "npipe", "tsdb"]
+  }
+}

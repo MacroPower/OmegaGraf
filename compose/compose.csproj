@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Docker.DotNet" Version="3.125.2"/>
+    <PackageReference Include="Docker.DotNet.X509" Version="3.125.2"/>
+    <PackageReference Include="Docker.DotNet.BasicAuth" Version="3.125.2"/>
+    <PackageReference Include="SharpYaml" Version="1.6.5"/>
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7"/>
+    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0"/>
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0"/>
+    <PackageReference Include="Nancy" Version="2.0.0"/>
+    <PackageReference Include="Nancy.Hosting.Self" Version="2.0.0">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+    <PackageReference Include="Nancy.Owin" Version="2.0.0">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+    <PackageReference Include="Nancy.Serialization.JsonNet" Version="2.0.0-clinteastwood">
+      <NoWarn>NU1701</NoWarn>
+    </PackageReference>
+    <PackageReference Include="Nett" Version="0.13.0"/>
+  </ItemGroup>
+</Project>
