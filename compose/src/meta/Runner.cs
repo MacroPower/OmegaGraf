@@ -53,29 +53,27 @@ namespace OmegaGraf.Compose.MetaData
 
         public string Build(BuildConfiguration config)
         {
-            using (var docker = new Docker())
-            {
-                var buildTask = Task.Run(
-                    async () =>
-                    {
-                        await docker.PullImage(config.Image, config.Tag);
+            var buildTask = Task.Run(
+                async () =>
+                {
+                    var docker = new Docker();
+                    await docker.PullImage(config.Image, config.Tag);
 
-                        var id = await docker.CreateContainer(
-                            config.Image, config.Ports, config.Binds, config.Parameters
-                        );
+                    var id = await docker.CreateContainer(
+                        config.Image, config.Ports, config.Binds, config.Parameters
+                    );
 
-                        this.WriteConfig();
+                    this.WriteConfig();
 
-                        await docker.StartContainer(id);
+                    await docker.StartContainer(id);
 
-                        return id;
-                    }
-                );
+                    return id;
+                }
+            );
 
-                var uuid = buildTask.Result;
+            var uuid = buildTask.Result;
 
-                return uuid;
-            }
+            return uuid;
         }
     }
 }

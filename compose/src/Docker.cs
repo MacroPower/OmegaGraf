@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OmegaGraf.Compose
 {
-    public class Docker : IDisposable
+    public class Docker
     {
         public DockerClient DockerClient { get; }
         private string DockerURI
@@ -31,8 +31,12 @@ namespace OmegaGraf.Compose
 
         public Docker()
         {
-            this.DockerClient = new DockerClientConfiguration(new Uri(this.DockerURI))
-                                .CreateClient();
+            var uri = new Uri(this.DockerURI);
+
+            using (var config = new DockerClientConfiguration(uri))
+            {
+                this.DockerClient = config.CreateClient();
+            }
         }
 
         public async Task PullImage(string image, string tag) =>
@@ -122,24 +126,9 @@ namespace OmegaGraf.Compose
             }
         }
 
-        bool disposed = false;
-        public void Dispose()
+        ~Docker()
         {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (this.disposed)
-                return;
-
-            if (disposing)
-            {
-                this.DockerClient.Dispose();
-            }
-
-            this.disposed = true;
+            this.DockerClient.Dispose();
         }
     }
 }
