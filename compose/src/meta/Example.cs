@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using OmegaGraf.Compose.Config.Prometheus;
+using OmegaGraf.Compose.Config.Telegraf;
 
 namespace OmegaGraf.Compose.MetaData
 {
@@ -54,6 +55,47 @@ namespace OmegaGraf.Compose.MetaData
                                             "localhost:9090"
                                         }
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        public static Input<Telegraf> Telegraf = new Input<Telegraf>()
+        {
+            BuildConfiguration = new BuildConfiguration()
+            {
+                Image = "telegraf",
+                Tag   = "latest",
+                Ports = new List<int>(){
+                    8125, 8092, 8094
+                },
+                Binds = new Dictionary<string, string>()
+                {
+                    {
+                        "C:/docker/telegraf", "/etc/telegraf"
+                    }
+                }
+            },
+            Config = new Config<Telegraf>[]
+            {
+                new Config<Telegraf>()
+                {
+                    Path = "C:/docker/telegraf/telegraf.conf",
+                    Data = new Telegraf(){
+                        Inputs = new Inputs()
+                        {
+                            VSphere = new List<VSphere>()
+                            {
+                                new VSphere()
+                                {
+                                    VCenters = new List<string>(){
+                                        "localhost:10000"
+                                    },
+                                    Username = "test",
+                                    Password = "password"
                                 }
                             }
                         }
