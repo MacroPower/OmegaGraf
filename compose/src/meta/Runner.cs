@@ -43,11 +43,30 @@ namespace OmegaGraf.Compose.MetaData
             return this;
         }
 
-        public Runner AddTomlConfig<T>(T config, string path)
+        public Runner AddTomlConfig<T>(params Config<T>[] config)
         {
-            var text = Toml.WriteString(config);
+            foreach (var c in config)
+            {
+                var text = Toml.WriteString(c.Data);
 
-            this.configFile.Add(path, text);
+                this.configFile.Add(c.Path, text);
+            }
+
+            return this;
+        }
+
+        public Runner AddTomlConfig<T>(System.Func<KeyGenerators, IKeyGenerator> keyGenerator, params Config<T>[] config)
+        {
+            var tomlSettings = TomlSettings.Create(
+                s => s.ConfigurePropertyMapping(
+                    m => m.UseKeyGenerator(keyGenerator)));
+
+            foreach (var c in config)
+            {
+                var text = Toml.WriteString(c.Data, tomlSettings);
+
+                this.configFile.Add(c.Path, text);
+            }
 
             return this;
         }
