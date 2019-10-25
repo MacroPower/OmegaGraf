@@ -5,6 +5,12 @@ using System.Threading.Tasks;
 
 namespace OmegaGraf.Compose.MetaData
 {
+    public class Input<T>
+    {
+        public BuildConfiguration BuildConfiguration { get; set; }
+        public Config.Config<T>[] Config { get; set; }
+    }
+
     public class BuildConfiguration
     {
         public string Image { get; set; }
@@ -18,18 +24,21 @@ namespace OmegaGraf.Compose.MetaData
     {
         private readonly Dictionary<string, string> configFile = new Dictionary<string, string>();
 
-        public Runner AddYamlConfig<T>(T config, string path)
+        public Runner AddYamlConfig<T>(params Config.Config<T>[] config)
         {
-            var text =
-                new Serializer(
-                    new SerializerSettings()
-                    {
-                        SortKeyForMapping = false,
-                        EmitAlias = false
-                    }
-                ).Serialize(config, typeof(T));
-
-            this.configFile.Add(path, text);
+            foreach (var c in config)
+            {
+                this.configFile.Add(
+                    c.Path,
+                    new Serializer(
+                        new SerializerSettings()
+                        {
+                            SortKeyForMapping = false,
+                            EmitAlias = false
+                        }
+                    ).Serialize(config, typeof(T))
+                );
+            }
 
             return this;
         }
