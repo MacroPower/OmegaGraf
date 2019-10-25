@@ -3,9 +3,8 @@ using Nancy.Metadata.Modules;
 using Nancy.ModelBinding;
 using Nancy.Responses.Negotiation;
 using Nancy.Swagger;
-using OmegaGraf.Compose.Config;
+using OmegaGraf.Compose.Config.Prometheus;
 using Swagger.ObjectModel;
-using System.Collections.Generic;
 
 namespace OmegaGraf.Compose.MetaData
 {

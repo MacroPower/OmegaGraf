@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using System;
-using OmegaGraf.Compose.Config;
 using OmegaGraf.Compose.MetaData;
 
 namespace OmegaGraf.Compose.Tests
@@ -12,7 +11,7 @@ namespace OmegaGraf.Compose.Tests
         {
             var runner = new Runner();
 
-            var config = new Config<Config.Prometheus>()
+            var config = new Config<Config.Prometheus.Prometheus>()
             {
                 Path = @"C:/docker/prometheus/config/prometheus.yml",
                 Data = Example.Prometheus.Config[0].Data

@@ -8,7 +8,7 @@ namespace OmegaGraf.Compose.MetaData
     public class Input<T>
     {
         public BuildConfiguration BuildConfiguration { get; set; }
-        public Config.Config<T>[] Config { get; set; }
+        public Config<T>[] Config { get; set; }
     }
 
     public class BuildConfiguration
@@ -24,7 +24,7 @@ namespace OmegaGraf.Compose.MetaData
     {
         private readonly Dictionary<string, string> configFile = new Dictionary<string, string>();
 
-        public Runner AddYamlConfig<T>(params Config.Config<T>[] config)
+        public Runner AddYamlConfig<T>(params Config<T>[] config)
         {
             foreach (var c in config)
             {

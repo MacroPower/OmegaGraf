@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using OmegaGraf.Compose.Config;
+using OmegaGraf.Compose.Config.Prometheus;
 
 namespace OmegaGraf.Compose.MetaData
 {

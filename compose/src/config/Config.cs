@@ -1,4 +1,4 @@
-namespace OmegaGraf.Compose.Config
+namespace OmegaGraf.Compose
 {
     public class Config<T>
     {
