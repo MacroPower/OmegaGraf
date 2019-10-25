@@ -1,16 +1,23 @@
 using Nancy;
+using Nancy.Metadata.Modules;
+using Nancy.ModelBinding;
+using Nancy.Responses.Negotiation;
+using Nancy.Swagger;
+using OmegaGraf.Compose.Config;
+using Swagger.ObjectModel;
+using System.Collections.Generic;
 
 namespace OmegaGraf.Compose.MetaData
 {
     public class PrometheusModule : NancyModule
     {
-        public PrometheusModule() : base("/prom")
+        public PrometheusModule() : base("/prometheus")
         {
             Get(
                 "/{id}",
                 args =>
                 {
-                    return Nancy.HttpStatusCode.OK;
+                    return HttpStatusCode.OK;
                 }, null, "Info"
             );
 
@@ -18,11 +25,56 @@ namespace OmegaGraf.Compose.MetaData
                 "/",
                 args =>
                 {
-                    // bind and execute runner
+                    Input<Prometheus> bind = (this).Bind<Input<Prometheus>>();
 
-                    return Nancy.HttpStatusCode.OK;
-                }, null, "Deploy"
+                    var uuid = new Runner().AddYamlConfig(bind.Config).Build(bind.BuildConfiguration);
+
+                    return Negotiate.WithMediaRangeModel(
+                        new MediaRange("application/json"),
+                        new
+                        {
+                            Container = uuid
+                        }
+                    );
+                }, null, "DeployPrometheus"
             );
+        }
+    }
+
+    public class PrometheusMetadataModule : MetadataModule<PathItem>
+    {
+        public PrometheusMetadataModule(ISwaggerModelCatalog modelCatalog)
+        {
+            modelCatalog.AddModels(
+                typeof(Prometheus),
+                typeof(ScrapeConfigs),
+                typeof(Global),
+                typeof(StaticConfigs),
+                typeof(BuildConfiguration),
+                typeof(Config<Prometheus>),
+                typeof(Input<Prometheus>)
+            );
+
+            Describe["DeployPrometheus"] =
+                desc => desc.AsSwagger(
+                    with => with.Operation(
+                        op => op.OperationId("DeployPrometheus")
+                        .Tag("Deploy")
+                        .Summary("Deploy Prometheus")
+                        .ConsumeMimeType("application/json")
+                        .ProduceMimeType("application/json")
+                        .BodyParameter(
+                            para =>
+                                para.Name("Build")
+                                    .Schema(
+                                        new Schema()
+                                        {
+                                            Example = Example.Prometheus
+                                        }
+                                    )
+                                    .Build()
+                        ).Response(x => x.Description("Container UUID").Build()))
+                );
         }
     }
 }
