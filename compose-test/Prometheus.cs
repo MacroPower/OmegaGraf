@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
+using OmegaGraf.Compose.Config;
+using OmegaGraf.Compose.MetaData;
 
 namespace OmegaGraf.Compose.Tests
 {
@@ -9,52 +10,15 @@ namespace OmegaGraf.Compose.Tests
         [Test]
         public void Deploy()
         {
-            var jsonString = @"
-                {
-                    ""global"": {
-                        ""scrapeInterval"": ""15s""
-                    },
-                    ""scrapeConfigs"": [
-                        {
-                            ""jobName"": ""prometheus"",
-                            ""scrapeInterval"": ""5s"",
-                            ""staticConfigs"": [{
-                                ""targets"": [""localhost:9090""]
-                            }]
-                        }
-                    ]
-                }
-            ";
+            var runner = new Runner();
 
-            var dynamic = Newtonsoft.Json.JsonConvert
-                          .DeserializeObject<Config.Prometheus>(jsonString);
+            var config = new Config<Config.Prometheus>()
+            {
+                Path = @"C:/docker/prometheus/config/prometheus.yml",
+                Data = Example.Prometheus.Config[0].Data
+            };
 
-            var x = new MetaData.Runner();
-
-            var uuid =
-                x.AddYamlConfig<Config.Prometheus>(
-                    dynamic, @"C:/docker/prometheus/config/prometheus.yml"
-                )
-                    .Build(
-                        new MetaData.BuildConfiguration()
-                        {
-                            Image = "prom/prometheus",
-                            Tag = "latest",
-                            Ports = new List<int>(){
-                                9090
-                            },
-                            Binds = new Dictionary<string, string>()
-                            {
-                                { "C:/docker/prometheus/config", "/etc/prometheus" },
-                                { "C:/docker/prometheus/data",   "/prometheus"     }
-                            },
-                            Parameters = new List<string>()
-                            {
-                                "--config.file=/etc/prometheus/prometheus.yml",
-                                "--storage.tsdb.path=/prometheus"
-                            }
-                        }
-                    );
+            var uuid = runner.AddYamlConfig(config).Build(Example.Prometheus.BuildConfiguration);
 
             Console.WriteLine("docker container logs " + uuid);
             Console.WriteLine("docker container inspect " + uuid);
