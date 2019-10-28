@@ -87,13 +87,16 @@ namespace OmegaGraf.Compose
                     }
                 )).ToDictionary(i => i.Key, i => i.Value);
 
+            var exposedPorts = portBinds.ToDictionary(x => x.Key, x => default(EmptyStruct));
+            var hostBinds    = binds.Select(x => x.Key + ":" + x.Value).ToList();
+
             var parameters = new CreateContainerParameters
             {
                 Image = image,
-                ExposedPorts = ports.ToDictionary(x => x.ToString(), x => default(EmptyStruct)),
+                ExposedPorts = exposedPorts,
                 HostConfig = new HostConfig
                 {
-                    Binds = binds.Select(x => x.Key + ":" + x.Value).ToList(),
+                    Binds = hostBinds,
                     PortBindings = portBinds,
                     PublishAllPorts = false
                 }
