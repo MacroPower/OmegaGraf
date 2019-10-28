@@ -11,6 +11,11 @@ namespace OmegaGraf.Compose.MetaData
         public Config<T>[] Config { get; set; }
     }
 
+    public class Input
+    {
+        public BuildConfiguration BuildConfiguration { get; set; }
+    }
+
     public class BuildConfiguration
     {
         public string Image { get; set; }

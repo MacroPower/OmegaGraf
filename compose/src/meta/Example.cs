@@ -172,23 +172,12 @@ namespace OmegaGraf.Compose.MetaData
             BuildConfiguration = new BuildConfiguration()
             {
                 Image = "grafana/grafana",
-                Tag   = "latest",
-                Ports = new List<int>(){
-                    3000
-                },
+                Tag   = "6.4.3",
+                Ports = new List<int>(){ 3000 },
                 Binds = new Dictionary<string, string>()
                 {
                     {
-                        "C:/docker/grafana/config", "/etc/grafana"
-                    },
-                    {
                         "C:/docker/grafana/lib", "/var/lib/grafana"
-                    },
-                    {
-                        "C:/docker/grafana/share", "/usr/share/grafana"
-                    },
-                    {
-                        "C:/docker/grafana/provisioning", "/etc/grafana/provisioning"
                     }
                 }
             }
