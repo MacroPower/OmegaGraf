@@ -36,7 +36,7 @@ namespace OmegaGraf.Compose.MetaData
                             SortKeyForMapping = false,
                             EmitAlias = false
                         }
-                    ).Serialize(config, typeof(T))
+                    ).Serialize(c.Data, typeof(T))
                 );
             }
 
