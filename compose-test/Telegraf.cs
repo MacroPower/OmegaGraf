@@ -1,8 +1,6 @@
 using NUnit.Framework;
-using OmegaGraf.Compose.Config.Telegraf;
 using OmegaGraf.Compose.MetaData;
 using System;
-using System.Collections.Generic;
 
 namespace OmegaGraf.Compose.Tests
 {
@@ -11,29 +9,13 @@ namespace OmegaGraf.Compose.Tests
         [Test]
         public void Deploy()
         {
-            var conf = new Config.Telegraf.Telegraf()
-            {
-                Inputs = new Inputs()
-                {
-                    VSphere = new List<VSphere>()
-                    {
-                        new VSphere()
-                        {
-                            VCenters = new List<string>(){ "localhost:10000" },
-                            Username = "test",
-                            Password = "password"
-                        }
-                    }
-                }
-            };
+            var runner = new Runner();
 
             var config = new Config<Config.Telegraf.Telegraf>()
             {
-                Path = @"C:\docker\telegraf\test.conf",
-                Data = conf
+                Path = @"C:\docker\telegraf\telegraf.conf",
+                Data = Example.Telegraf.Config[0].Data
             };
-
-            var runner = new Runner();
 
             var uuid = runner.AddTomlConfig(x => x.LowerCase, config).Build(Example.Telegraf.BuildConfiguration);
 

@@ -56,6 +56,20 @@ namespace OmegaGraf.Compose.MetaData
                                         }
                                     }
                                 }
+                            },
+                            new ScrapeConfigs()
+                            {
+                                JobName        = "telegraf",
+                                ScrapeInterval = "5s",
+                                StaticConfigs  = new List<StaticConfigs>()
+                                {
+                                    new StaticConfigs()
+                                    {
+                                        Targets = new string[] {
+                                            "localhost:8899"
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -69,9 +83,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 Image = "telegraf",
                 Tag   = "latest",
-                Ports = new List<int>(){
-                    8125, 8092, 8094
-                },
+                Ports = new List<int>(){ 8899 },
                 Binds = new Dictionary<string, string>()
                 {
                     {
@@ -85,20 +97,98 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     Path = "C:/docker/telegraf/telegraf.conf",
                     Data = new Telegraf(){
+                        Agent = new Agent()
+                        {
+                            Interval = "10s",
+                            RoundInterval = true,
+                            MetricBatchSize = 1000,
+                            MetricBufferLimit = 10000,
+                            CollectionJitter = "0s",
+                            FlushInterval = "10s",
+                            FlushJitter = "0s",
+                            Precision = "",
+                            Hostname = "OmegaGraf/Telegraf",
+                            OmitHostname = false
+                        },
                         Inputs = new Inputs()
                         {
                             VSphere = new List<VSphere>()
                             {
                                 new VSphere()
                                 {
-                                    VCenters = new List<string>(){
-                                        "localhost:10000"
-                                    },
-                                    Username = "test",
-                                    Password = "password"
+                                    Interval = "60s",
+                                    VCenters = new List<string>(){ "https://vcenter.macro/sdk" },
+                                    Username = "monitor@vsphere.macro",
+                                    Password = "cP9P7qFPsk5HeRj6CP!",
+                                    IPAddresses = new List<string>(){ "ipv4" },
+                                    IntSamples = true,
+                                    InsecureSkipVerify = true,
+                                    ForceDiscover = true,
+                                    DatacenterMetricExclude = new List<string> { "*" },
+                                    ClusterMetricExclude = new List<string> { "*" },
+                                    DatastoreMetricExclude = new List<string> { "*" },
+                                    CollectConcurrency = 1,
+                                    DiscoverConcurrency = 1,
+                                    MaxQueryMetrics = 64
+                                },
+                                new VSphere()
+                                {
+                                    Interval = "300s",
+                                    VCenters = new List<string>(){ "https://vcenter.macro/sdk" },
+                                    Username = "monitor@vsphere.macro",
+                                    Password = "cP9P7qFPsk5HeRj6CP!",
+                                    IPAddresses = new List<string>(){ "ipv4" },
+                                    IntSamples = true,
+                                    InsecureSkipVerify = true,
+                                    ForceDiscover = true,
+                                    VMMetricExclude = new List<string> { "*" },
+                                    HostMetricExclude = new List<string> { "*" },
+                                    CollectConcurrency = 1,
+                                    DiscoverConcurrency = 1,
+                                    MaxQueryMetrics = 256
+                                }
+                            }
+                        },
+                        Outputs = new Outputs()
+                        {
+                            PrometheusClient = new List<PrometheusClient>()
+                            {
+                                new PrometheusClient()
+                                {
+                                    Listen = ":8899",
+                                    Path = "/metrics",
+                                    StringAsLabel = true,
+                                    ExpirationInterval = "600s"
                                 }
                             }
                         }
+                    }
+                }
+            }
+        };
+
+        public static Input Grafana = new Input()
+        {
+            BuildConfiguration = new BuildConfiguration()
+            {
+                Image = "grafana/grafana",
+                Tag   = "latest",
+                Ports = new List<int>(){
+                    3000
+                },
+                Binds = new Dictionary<string, string>()
+                {
+                    {
+                        "C:/docker/grafana/config", "/etc/grafana"
+                    },
+                    {
+                        "C:/docker/grafana/lib", "/var/lib/grafana"
+                    },
+                    {
+                        "C:/docker/grafana/share", "/usr/share/grafana"
+                    },
+                    {
+                        "C:/docker/grafana/provisioning", "/etc/grafana/provisioning"
                     }
                 }
             }
