@@ -51,7 +51,8 @@ namespace OmegaGraf.Compose.MetaData
                                 {
                                     new StaticConfigs()
                                     {
-                                        Targets = new string[] {
+                                        Targets = new string[]
+                                        {
                                             "localhost:9090"
                                         }
                                     }
@@ -65,8 +66,9 @@ namespace OmegaGraf.Compose.MetaData
                                 {
                                     new StaticConfigs()
                                     {
-                                        Targets = new string[] {
-                                            "localhost:8899"
+                                        Targets = new string[]
+                                        {
+                                            "og-telegraf:8899"
                                         }
                                     }
                                 }
