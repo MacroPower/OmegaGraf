@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace OmegaGraf.Compose
@@ -39,8 +40,8 @@ namespace OmegaGraf.Compose
             }
         }
 
-        public async Task PullImage(string image, string tag) =>
-            await this.DockerClient.Images.CreateImageAsync(
+        public Task PullImage(string image, string tag) =>
+            this.DockerClient.Images.CreateImageAsync(
                 new ImagesCreateParameters
                 {
                     FromImage = image,
@@ -62,6 +63,7 @@ namespace OmegaGraf.Compose
             string image,
             List<int> ports,
             Dictionary<string, string> binds,
+            string tag = "latest",
             List<string> cmd = null
         ){
             foreach (var b in binds)
@@ -89,10 +91,30 @@ namespace OmegaGraf.Compose
 
             var exposedPorts = portBinds.ToDictionary(x => x.Key, x => default(EmptyStruct));
             var hostBinds    = binds.Select(x => x.Key + ":" + x.Value).ToList();
+            var hostname     = "og-" + Regex.Replace(image, @"^.*/", "");
 
             var parameters = new CreateContainerParameters
             {
-                Image = image,
+                Name = hostname,
+                Hostname = hostname,
+                NetworkingConfig = new NetworkingConfig()
+                {
+                    EndpointsConfig = new Dictionary<string, EndpointSettings>()
+                    {
+                        {
+                            "og-network",
+                            new EndpointSettings()
+                            {
+                                NetworkID = "og-network",
+                                Aliases = new string[]
+                                {
+                                    hostname
+                                }
+                            }
+                        }
+                    }
+                },
+                Image = image + ":" + tag,
                 ExposedPorts = exposedPorts,
                 HostConfig = new HostConfig
                 {
@@ -112,22 +134,47 @@ namespace OmegaGraf.Compose
             return response.ID;
         }
 
-        public async Task StartContainer(string id) =>
-            await this.DockerClient.Containers.StartContainerAsync(
+        public Task StartContainer(string id) =>
+            this.DockerClient.Containers.StartContainerAsync(
                 id,
                 new ContainerStartParameters()
             );
 
-        public async Task KillContainer(string id)
+        public Task KillContainer(string id)
         {
-            if (id != null)
+            if (string.IsNullOrWhiteSpace(id))
             {
-                await this.DockerClient.Containers.KillContainerAsync(
-                    id,
-                    new ContainerKillParameters()
-                );
+                throw new NotImplementedException();
             }
+
+            return this.DockerClient.Containers.KillContainerAsync(
+                id,
+                new ContainerKillParameters()
+            );
         }
+
+        public Task CreateNetwork() =>
+            this.DockerClient.Networks.CreateNetworkAsync(
+                new NetworksCreateParameters()
+                {
+                    Name = "og-network",
+                    Driver = "bridge",
+                    CheckDuplicate = true,
+                    IPAM = new IPAM()
+                    {
+                        Driver = "default",
+                        Config = new List<IPAMConfig>()
+                        {
+                            new IPAMConfig()
+                            {
+                                Subnet = "172.20.0.0/16",
+                                IPRange = "172.20.10.0/24",
+                                Gateway = "172.20.10.11"
+                            }
+                        }
+                    }
+                }
+            );
 
         ~Docker()
         {

@@ -93,7 +93,7 @@ namespace OmegaGraf.Compose.MetaData
                     await docker.PullImage(config.Image, config.Tag);
 
                     var id = await docker.CreateContainer(
-                        config.Image, config.Ports, config.Binds, config.Parameters
+                        config.Image, config.Ports, config.Binds, config.Tag, config.Parameters
                     );
 
                     this.WriteConfig();
