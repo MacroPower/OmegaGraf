@@ -119,9 +119,9 @@ namespace OmegaGraf.Compose.MetaData
                                 new VSphere()
                                 {
                                     Interval = "60s",
-                                    VCenters = new List<string>(){ "https://vcenter.macro/sdk" },
-                                    Username = "monitor@vsphere.macro",
-                                    Password = "cP9P7qFPsk5HeRj6CP!",
+                                    VCenters = new List<string>(){ "https://og-vcsim:8989/sdk" },
+                                    Username = "user",
+                                    Password = "pass",
                                     IPAddresses = new List<string>(){ "ipv4" },
                                     IntSamples = true,
                                     InsecureSkipVerify = true,
@@ -136,9 +136,9 @@ namespace OmegaGraf.Compose.MetaData
                                 new VSphere()
                                 {
                                     Interval = "300s",
-                                    VCenters = new List<string>(){ "https://vcenter.macro/sdk" },
-                                    Username = "monitor@vsphere.macro",
-                                    Password = "cP9P7qFPsk5HeRj6CP!",
+                                    VCenters = new List<string>(){ "https://og-vcsim:8989/sdk" },
+                                    Username = "user",
+                                    Password = "pass",
                                     IPAddresses = new List<string>(){ "ipv4" },
                                     IntSamples = true,
                                     InsecureSkipVerify = true,
