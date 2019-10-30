@@ -15,10 +15,20 @@ namespace OmegaGraf.Compose.Tests
             var uuid = runner.Build(
                 new BuildConfiguration()
                 {
-                    Image = "m451/vcsim",
+                    Image = "macropower/vcsim",
                     Tag = "latest",
                     Ports = new List<int>(){ 8989 },
-                    Binds = new Dictionary<string, string>(){ }
+                    Binds = new Dictionary<string, string>(){ },
+                    Parameters = new List<string>()
+                    {
+                        "--clusters", "2",
+                        "--data-centers", "1",
+                        "--data-stores", "2",
+                        "--hosts", "5",
+                        "--resource-pools", "1",
+                        "--standalone-host", "10",
+                        "--virtual-machines", "20",
+                    }
                 });
 
             Console.WriteLine("docker container logs " + uuid);

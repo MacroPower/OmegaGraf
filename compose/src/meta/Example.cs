@@ -39,14 +39,14 @@ namespace OmegaGraf.Compose.MetaData
                     {
                         Global = new Global()
                         {
-                            ScrapeInterval = "5s"
+                            ScrapeInterval = "30s"
                         },
                         ScrapeConfigs = new List<ScrapeConfigs>()
                         {
                             new ScrapeConfigs()
                             {
                                 JobName        = "prometheus",
-                                ScrapeInterval = "5s",
+                                ScrapeInterval = "30s",
                                 StaticConfigs  = new List<StaticConfigs>()
                                 {
                                     new StaticConfigs()
@@ -61,7 +61,7 @@ namespace OmegaGraf.Compose.MetaData
                             new ScrapeConfigs()
                             {
                                 JobName        = "telegraf",
-                                ScrapeInterval = "5s",
+                                ScrapeInterval = "60s",
                                 StaticConfigs  = new List<StaticConfigs>()
                                 {
                                     new StaticConfigs()
