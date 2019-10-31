@@ -4,6 +4,8 @@ namespace OmegaGraf.Compose.Config.Grafana
 {
     public class Token
     {
+        [JsonProperty("id")]
+        public int? ID { get; set; }
         public string Name { get; set; }
         public string Key { get; set; }
     }

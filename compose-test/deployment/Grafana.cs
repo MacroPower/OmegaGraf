@@ -4,14 +4,15 @@ using OmegaGraf.Compose.Config.Grafana;
 using System;
 using System.IO;
 using Newtonsoft.Json;
+using System.Threading;
 
 namespace OmegaGraf.Compose.Tests.Builder
 {
-    [TestFixture]
+    [TestFixture, NonParallelizable]
     [Category("Deployment")]
     public class Grafana : DeployTests
     {
-        [Test]
+        [Test, Order(1)]
         public void Deploy()
         {
             var runner = new Runner();
@@ -23,16 +24,19 @@ namespace OmegaGraf.Compose.Tests.Builder
             Console.WriteLine("docker container stop " + uuid);
             Console.WriteLine("docker container rm " + uuid);
 
+            Thread.Sleep(15000); //lazy way to make sure the API is online
+
             Assert.Pass();
         }
 
-        [Test]
-        public void Config()
+        [Test, Order(2)]
+        public void CreateDataSource()
         {
             var g = new Compose.Grafana();
 
-            g.AddDataSource(
-                new DataSource()
+            try
+            {
+                var dataSource = new DataSource()
                 {
                     ID = 1,
                     OrgID = 1,
@@ -48,11 +52,43 @@ namespace OmegaGraf.Compose.Tests.Builder
                     BasicAuthPassword = "",
                     IsDefault = true,
                     JsonData = null
-                }).Wait();
+                };
 
-            var dash = JsonConvert.DeserializeObject(File.ReadAllText("assets\\Dashboard.json"));
+                g.AddDataSource(dataSource).Wait();
 
-            g.AddDashboard(dash).Wait();
+                g.Dispose();
+            }
+            catch (Exception e)
+            {
+                TestContext.Out.WriteLine("Error - disposing objects.");
+                g.Dispose();
+                throw e;
+            }
+
+            Assert.Pass();
+        }
+
+        [Test, Order(2)]
+        public void CreateDashboard()
+        {
+            var g = new Compose.Grafana();
+
+            try
+            {
+                var dash = JsonConvert.DeserializeObject(File.ReadAllText("assets\\Dashboard.json"));
+
+                g.AddDashboard(dash).Wait();
+
+                g.Dispose();
+            }
+            catch (Exception e)
+            {
+                TestContext.Out.WriteLine("Error - disposing objects.");
+                g.Dispose();
+                throw e;
+            }
+
+            Assert.Pass();
         }
     }
 }

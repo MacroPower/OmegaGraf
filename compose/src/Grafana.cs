@@ -1,22 +1,25 @@
 using Flurl;
 using Flurl.Http;
 using OmegaGraf.Compose.Config.Grafana;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
+using System;
 
 namespace OmegaGraf.Compose
 {
-    public class Grafana
+    public class Grafana : IDisposable
     {
-        private Token token;
+        private readonly Token token;
 
         public Grafana()
         {
             this.token = GetToken().Result;
         }
 
-        ~Grafana()
+        public void Dispose()
         {
-            // remove token
+            RemoveToken().Wait();
         }
 
         public Task<Token> GetToken()
@@ -33,20 +36,64 @@ namespace OmegaGraf.Compose
                    ).ReceiveJson<Token>();
         }
 
-        public Task AddDataSource(DataSource dataSource)
+        public Task<IEnumerable<Token>> ListTokens()
         {
             return "http://localhost:3000"
-                   .AppendPathSegments("api", "datasources")
+                   .AppendPathSegments("api", "auth", "keys")
                    .WithOAuthBearerToken(this.token.Key)
-                   .PostJsonAsync(dataSource);
+                   .GetJsonAsync<IEnumerable<Token>>();
         }
 
-        public Task AddDashboard(object jsonModel)
+        public async Task<System.Net.Http.HttpResponseMessage> RemoveToken()
         {
-            return "http://localhost:3000"
-                   .AppendPathSegments("api", "dashboards", "db")
+            var tokens = await ListTokens();
+
+            var toDelete = tokens.First(t => t.Name == this.token.Name);
+
+            return await "http://localhost:3000"
+                   .AppendPathSegments("api", "auth", "keys", toDelete.ID)
                    .WithOAuthBearerToken(this.token.Key)
-                   .PostJsonAsync(jsonModel);
+                   .DeleteAsync();
+        }
+
+        public async Task<System.Net.Http.HttpResponseMessage> AddDataSource(DataSource dataSource)
+        {
+            try
+            {
+                return await "http://localhost:3000"
+                       .AppendPathSegments("api", "datasources")
+                       .WithOAuthBearerToken(this.token.Key)
+                       .PostJsonAsync(dataSource);
+            }
+            catch (FlurlHttpException e)
+            {
+                if (e.Call.HttpStatus.ToString() == "Conflict")
+                {
+                    return e.Call.Response;
+                }
+
+                throw e;
+            }
+        }
+
+        public async Task<System.Net.Http.HttpResponseMessage> AddDashboard(object jsonModel)
+        {
+            try
+            {
+                return await "http://localhost:3000"
+                       .AppendPathSegments("api", "dashboards", "db")
+                       .WithOAuthBearerToken(this.token.Key)
+                       .PostJsonAsync(jsonModel);
+            }
+            catch (FlurlHttpException e)
+            {
+                if (e.Call.HttpStatus.ToString() == "PreconditionFailed")
+                {
+                    return e.Call.Response;
+                }
+
+                throw e;
+            }
         }
     }
 }
