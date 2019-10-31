@@ -16,4 +16,8 @@
     <ProjectReference Include="..\compose\compose.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="assets\Dashboard.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

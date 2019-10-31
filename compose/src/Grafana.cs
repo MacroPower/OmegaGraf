@@ -14,6 +14,11 @@ namespace OmegaGraf.Compose
             this.token = GetToken().Result;
         }
 
+        ~Grafana()
+        {
+            // remove token
+        }
+
         public Task<Token> GetToken()
         {
             return "http://localhost:3000"
@@ -34,6 +39,14 @@ namespace OmegaGraf.Compose
                    .AppendPathSegments("api", "datasources")
                    .WithOAuthBearerToken(this.token.Key)
                    .PostJsonAsync(dataSource);
+        }
+
+        public Task AddDashboard(object jsonModel)
+        {
+            return "http://localhost:3000"
+                   .AppendPathSegments("api", "dashboards", "db")
+                   .WithOAuthBearerToken(this.token.Key)
+                   .PostJsonAsync(jsonModel);
         }
     }
 }

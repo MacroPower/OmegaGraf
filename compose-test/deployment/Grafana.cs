@@ -2,6 +2,8 @@ using NUnit.Framework;
 using OmegaGraf.Compose.MetaData;
 using OmegaGraf.Compose.Config.Grafana;
 using System;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace OmegaGraf.Compose.Tests.Builder
 {
@@ -47,6 +49,10 @@ namespace OmegaGraf.Compose.Tests.Builder
                     IsDefault = true,
                     JsonData = null
                 }).Wait();
+
+            var dash = JsonConvert.DeserializeObject(File.ReadAllText("assets\\Dashboard.json"));
+
+            g.AddDashboard(dash).Wait();
         }
     }
 }
