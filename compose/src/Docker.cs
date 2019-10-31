@@ -140,24 +140,45 @@ namespace OmegaGraf.Compose
                 new ContainerStartParameters()
             );
 
-        public Task KillContainer(string id)
-        {
-            if (string.IsNullOrWhiteSpace(id))
-            {
-                throw new NotImplementedException();
-            }
-
-            return this.DockerClient.Containers.KillContainerAsync(
-                id,
-                new ContainerKillParameters()
+        public Task<IList<ContainerListResponse>> ListContainers() =>
+            this.DockerClient.Containers.ListContainersAsync(
+                new ContainersListParameters()
+                {
+                    All = true
+                }
             );
-        }
 
-        public Task CreateNetwork() =>
-            this.DockerClient.Networks.CreateNetworkAsync(
+        public Task StopContainer(string id) =>
+            this.DockerClient.Containers
+                .StopContainerAsync(
+                    id,
+                    new ContainerStopParameters()
+                );
+
+        public Task RemoveContainer(string id) =>
+            this.DockerClient.Containers
+                .RemoveContainerAsync(
+                    id,
+                    new ContainerRemoveParameters()
+                    {
+                        RemoveVolumes = false,
+                        RemoveLinks = false,
+                        Force = false
+                    }
+                );
+
+        public async Task<NetworksCreateResponse> CreateNetwork()
+        {
+            var name = "og-network";
+            var networks = await this.DockerClient.Networks.ListNetworksAsync();
+
+            if (networks.Any(x => x.Name == name))
+                return null;
+
+            return await this.DockerClient.Networks.CreateNetworkAsync(
                 new NetworksCreateParameters()
                 {
-                    Name = "og-network",
+                    Name = name,
                     Driver = "bridge",
                     CheckDuplicate = true,
                     IPAM = new IPAM()
@@ -175,6 +196,7 @@ namespace OmegaGraf.Compose
                     }
                 }
             );
+        }
 
         ~Docker()
         {

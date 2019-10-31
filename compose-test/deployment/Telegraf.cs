@@ -2,9 +2,11 @@ using NUnit.Framework;
 using OmegaGraf.Compose.MetaData;
 using System;
 
-namespace OmegaGraf.Compose.Tests
+namespace OmegaGraf.Compose.Tests.Builder
 {
-    public class Telegraf
+    [TestFixture]
+    [Category("Deployment")]
+    public class Telegraf : DeployTests
     {
         [Test]
         public void Deploy()

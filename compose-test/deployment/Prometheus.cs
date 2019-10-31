@@ -2,9 +2,11 @@ using NUnit.Framework;
 using System;
 using OmegaGraf.Compose.MetaData;
 
-namespace OmegaGraf.Compose.Tests
+namespace OmegaGraf.Compose.Tests.Builder
 {
-    public class Prometheus
+    [TestFixture]
+    [Category("Deployment")]
+    public class Prometheus : DeployTests
     {
         [Test]
         public void Deploy()

@@ -3,9 +3,11 @@ using OmegaGraf.Compose.MetaData;
 using OmegaGraf.Compose.Config.Grafana;
 using System;
 
-namespace OmegaGraf.Compose.Tests
+namespace OmegaGraf.Compose.Tests.Builder
 {
-    public class Grafana
+    [TestFixture]
+    [Category("Deployment")]
+    public class Grafana : DeployTests
     {
         [Test]
         public void Deploy()
