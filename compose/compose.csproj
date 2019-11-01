@@ -2,6 +2,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <ProjectGuid>{93B317D7-8CAF-4CAD-BD25-D327B77CA6BA}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Docker.DotNet" Version="3.125.2"/>
