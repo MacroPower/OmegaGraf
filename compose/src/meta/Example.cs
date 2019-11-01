@@ -119,7 +119,7 @@ namespace OmegaGraf.Compose.MetaData
                                 new VSphere()
                                 {
                                     Interval = "60s",
-                                    VCenters = new List<string>(){ "https://og-vcsim:8989/sdk" },
+                                    VCenters = new List<string>(){ "https://og-vcsim:8989/sdk", "https://og-vcsim2:8989/sdk" },
                                     Username = "user",
                                     Password = "pass",
                                     IPAddresses = new List<string>(){ "ipv4" },
@@ -136,7 +136,7 @@ namespace OmegaGraf.Compose.MetaData
                                 new VSphere()
                                 {
                                     Interval = "300s",
-                                    VCenters = new List<string>(){ "https://og-vcsim:8989/sdk" },
+                                    VCenters = new List<string>(){ "https://og-vcsim:8989/sdk", "https://og-vcsim2:8989/sdk" },
                                     Username = "user",
                                     Password = "pass",
                                     IPAddresses = new List<string>(){ "ipv4" },
