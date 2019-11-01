@@ -18,6 +18,7 @@ namespace OmegaGraf.Compose.MetaData
 
     public class BuildConfiguration
     {
+        public string Name { get; set; }
         public string Image { get; set; }
         public string Tag { get; set; }
         public List<int> Ports  { get; set; }
@@ -93,7 +94,7 @@ namespace OmegaGraf.Compose.MetaData
                     await docker.PullImage(config.Image, config.Tag);
 
                     var id = await docker.CreateContainer(
-                        config.Image, config.Ports, config.Binds, config.Tag, config.Parameters
+                        config.Image, config.Ports, config.Binds, config.Name, config.Tag, config.Parameters
                     );
 
                     this.WriteConfig();

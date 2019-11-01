@@ -63,6 +63,7 @@ namespace OmegaGraf.Compose
             string image,
             List<int> ports,
             Dictionary<string, string> binds,
+            string name = "",
             string tag = "latest",
             List<string> cmd = null
         ){
@@ -91,7 +92,7 @@ namespace OmegaGraf.Compose
 
             var exposedPorts = portBinds.ToDictionary(x => x.Key, x => default(EmptyStruct));
             var hostBinds    = binds.Select(x => x.Key + ":" + x.Value).ToList();
-            var hostname     = "og-" + Regex.Replace(image, @"^.*/", "");
+            var hostname     = "og-" + (string.IsNullOrWhiteSpace(name) ? Regex.Replace(image, @"^.*/", "") : name);
 
             var parameters = new CreateContainerParameters
             {
