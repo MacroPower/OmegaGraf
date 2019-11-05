@@ -20,7 +20,11 @@
       "args": [
         "publish",
         "${workspaceFolder}/compose/compose.csproj",
+        "-c=Release",
+        "-r=linux-x64",
         "/property:GenerateFullPaths=true",
+        "/property:PublishSingleFile=true",
+        "/property:PublishTrimmed=true",
         "/consoleloggerparameters:NoSummary"
       ],
       "problemMatcher": "$msCompile"

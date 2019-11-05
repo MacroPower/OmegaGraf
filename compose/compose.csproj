@@ -1,18 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <ProjectGuid>{93B317D7-8CAF-4CAD-BD25-D327B77CA6BA}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Docker.DotNet" Version="3.125.2"/>
-    <PackageReference Include="Docker.DotNet.X509" Version="3.125.2"/>
-    <PackageReference Include="Docker.DotNet.BasicAuth" Version="3.125.2"/>
-    <PackageReference Include="SharpYaml" Version="1.6.5"/>
-    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7"/>
-    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0"/>
-    <PackageReference Include="Nancy" Version="2.0.0"/>
+    <PackageReference Include="Docker.DotNet" Version="3.125.2" />
+    <PackageReference Include="Docker.DotNet.X509" Version="3.125.2" />
+    <PackageReference Include="Docker.DotNet.BasicAuth" Version="3.125.2" />
+    <PackageReference Include="Figgle" Version="0.3.0" />
+    <PackageReference Include="SharpYaml" Version="1.6.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.2.0" />
+    <PackageReference Include="Nancy" Version="2.0.0" />
     <PackageReference Include="Nancy.Hosting.Self" Version="2.0.0">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
@@ -22,10 +23,11 @@
     <PackageReference Include="Nancy.Serialization.JsonNet" Version="2.0.0-clinteastwood">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
-    <PackageReference Include="Nett" Version="0.13.0"/>
-    <PackageReference Include="Nancy.Swagger" Version="2.2.56-alpha"/>
-    <PackageReference Include="Swagger.ObjectModel" Version="2.2.56-alpha"/>
-    <PackageReference Include="Flurl" Version="2.8.2"/>
-    <PackageReference Include="Flurl.Http" Version="2.4.2"/>
+    <PackageReference Include="Nett" Version="0.13.0" />
+    <PackageReference Include="Nancy.Swagger" Version="2.2.56-alpha" />
+    <PackageReference Include="Swagger.ObjectModel" Version="2.2.56-alpha" />
+    <PackageReference Include="Flurl" Version="2.8.2" />
+    <PackageReference Include="Flurl.Http" Version="2.4.2" />
+  </ItemGroup>
   </ItemGroup>
 </Project>

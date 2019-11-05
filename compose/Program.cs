@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using System;
+using Microsoft.AspNetCore.Hosting;
 
 namespace OmegaGraf.Compose
 {
@@ -6,12 +7,11 @@ namespace OmegaGraf.Compose
     {
         static void Main()
         {
-            var uri = "http://localhost:8888";
+            Console.WriteLine(Figgle.FiggleFonts.Standard.Render("OmegaGraf"));
 
             var host = new WebHostBuilder()
                        .UseKestrel()
                        .UseStartup<Startup>()
-                       .UseUrls(uri)
                        .Build();
 
             host.Run();
