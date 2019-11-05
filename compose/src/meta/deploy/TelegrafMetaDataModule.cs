@@ -38,6 +38,24 @@ namespace OmegaGraf.Compose.MetaData
                     );
                 }, null, "DeployTelegraf"
             );
+
+            Post(
+                "/sim",
+                args =>
+                {
+                    Input bind = (this).Bind<Input>();
+
+                    var uuid = new Runner().Build(bind.BuildConfiguration);
+
+                    return Negotiate.WithMediaRangeModel(
+                        new MediaRange("application/json"),
+                        new
+                        {
+                            Container = uuid
+                        }
+                    );
+                }, null, "DeployVCSim"
+            );
         }
     }
 
@@ -72,6 +90,27 @@ namespace OmegaGraf.Compose.MetaData
                                         new Schema()
                                         {
                                             Example = Example.Telegraf
+                                        }
+                                    )
+                                    .Build()
+                        ).Response(x => x.Description("Container UUID").Build()))
+                );
+
+            Describe["DeployVCSim"] =
+                desc => desc.AsSwagger(
+                    with => with.Operation(
+                        op => op.OperationId("DeployVCSim")
+                        .Tag("Deploy")
+                        .Summary("Deploy VC Simulator")
+                        .ConsumeMimeType("application/json")
+                        .ProduceMimeType("application/json")
+                        .BodyParameter(
+                            para =>
+                                para.Name("Build")
+                                    .Schema(
+                                        new Schema()
+                                        {
+                                            Example = Example.VCSim
                                         }
                                     )
                                     .Build()
