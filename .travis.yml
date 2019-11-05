@@ -1,0 +1,27 @@
+language: csharp
+dist: xenial
+sudo: required
+mono: none
+dotnet: 2.2
+
+addons:
+  sonarcloud:
+    organization: "omegagraf"
+    token:
+      secure: iVY3yjGjnp9Gke8Y87zMQ8/WDxWjqVwLUggwfYfJvbs6tsz8r5v2fCNKvLVQ5ogopCSch1LuSs+T5fa0mbzvX7sfKkq3Loe1/+BAwqmiDALTcyALiY6W57GjiZbFwWuIBN807jqFbXPRmtGuYgwdLcy84L6j7fAYjtbZZMzKjz9POi+bHoHuBy3CQUzGBy2sSOytgBOxlJV62syIlnhHKHsHMGjZfrJl37psEjsBpNgR2SmlE+f02//KHZ3bIb1nR62xGzqONfzpuQEIbFiu+nNseXB2/s70G6XQqIHOdtcHPf5MuT6INp/Z4Cdj/1LL3/uVNVFqHCrwVFkE2ySrNuz2Kmukn/57fqqLyeNiIpnSoRtYQAOqimxUiSiyxTAgeAhfQOv/fhb9GKXJgdTtiaevRLNmkjh92c3XPWMfMdT24PW621rijFpuKfMbnry/4fP1aW9OGmvmRhpNroy4eHFuxBjFrYESc27jKoe6fuxWTewlxcmLRBFhAXz6RIkZuEtmYorJOZUJoKyJeLCRFYdh54qOIUrpQh6wPr9UBosYtLzFZLUhsE6hzhHulhTNEGr+m8xqbCuKD6mMM0udg5d0LX3szoC/M9qk2uvoTQmkHNvl4ynYRA1mU96Qh7ImhJSim3n2D09QTf9ei56sh5kI+S6rQvCVPcxr5se1s7c=
+
+branches:
+  only:
+    - master
+
+install:
+  - dotnet tool install --global dotnet-sonarscanner
+
+before_script:
+  - export PATH="$PATH:$HOME/.dotnet/tools"
+
+script:
+  - dotnet sonarscanner begin /d:sonar.login="$SONAR_TOKEN" /d:project.home=. /d:sonar.host.url=https://sonarcloud.io /k:OmegaGraf_compose /n:"OmegaGraf Compose" || true
+  - dotnet restore
+  - dotnet build
+  - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN" || true
