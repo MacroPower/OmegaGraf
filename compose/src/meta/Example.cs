@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.IO;
+using OmegaGraf.Compose.Config.Grafana;
 using OmegaGraf.Compose.Config.Prometheus;
 using OmegaGraf.Compose.Config.Telegraf;
 
@@ -6,22 +8,21 @@ namespace OmegaGraf.Compose.MetaData
 {
     public static class Example
     {
+        private static readonly string root = "C:/docker/";
         public static Input<Prometheus> Prometheus = new Input<Prometheus>()
         {
             BuildConfiguration = new BuildConfiguration()
             {
                 Image = "prom/prometheus",
                 Tag   = "latest",
-                Ports = new List<int>(){
-                    9090
-                },
+                Ports = new List<int>(){ 9090 },
                 Binds = new Dictionary<string, string>()
                 {
                     {
-                        "C:/docker/prometheus/config", "/etc/prometheus"
+                        Path.Join(root, "prometheus/config"), "/etc/prometheus"
                     },
                     {
-                        "C:/docker/prometheus/data",   "/prometheus"
+                        Path.Join(root, "prometheus/data"),   "/prometheus"
                     }
                 },
                 Parameters = new List<string>()
@@ -34,7 +35,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 new Config<Prometheus>()
                 {
-                    Path = "C:/docker/prometheus/config/prometheus.yml",
+                    Path = Path.Join(root, "prometheus/config", "/prometheus.yml"),
                     Data = new Prometheus()
                     {
                         Global = new Global()
@@ -89,7 +90,7 @@ namespace OmegaGraf.Compose.MetaData
                 Binds = new Dictionary<string, string>()
                 {
                     {
-                        "C:/docker/telegraf", "/etc/telegraf"
+                        Path.Join(root, "telegraf"), "/etc/telegraf"
                     }
                 }
             },
@@ -97,7 +98,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 new Config<Telegraf>()
                 {
-                    Path = "C:/docker/telegraf/telegraf.conf",
+                    Path = Path.Join(root, "telegraf", "/telegraf.conf"),
                     Data = new Telegraf(){
                         Agent = new Agent()
                         {
@@ -179,8 +180,48 @@ namespace OmegaGraf.Compose.MetaData
                 Binds = new Dictionary<string, string>()
                 {
                     {
-                        "C:/docker/grafana/lib", "/var/lib/grafana"
+                        Path.Join(root, "grafana/lib"), "/var/lib/grafana"
                     }
+                }
+            }
+        };
+
+        public static DataSource GrafanaDataSource = new DataSource()
+        {
+            ID = 1,
+            OrgID = 1,
+            Name = "og-prometheus",
+            Type = "prometheus",
+            Access = "proxy",
+            URL = "http://og-prometheus:9090",
+            Password = "",
+            User = "",
+            Database = "",
+            BasicAuth = false,
+            BasicAuthUser = "",
+            BasicAuthPassword = "",
+            IsDefault = true,
+            JsonData = null
+        };
+
+        public static Input VCSim = new Input()
+        {
+            BuildConfiguration = new BuildConfiguration()
+            {
+                Name  = "vcsim",
+                Image = "macropower/vcsim",
+                Tag   = "latest",
+                Ports = new List<int>(){ },
+                Binds = new Dictionary<string, string>(){ },
+                Parameters = new List<string>()
+                {
+                    "--clusters", "2",
+                    "--data-centers", "1",
+                    "--data-stores", "2",
+                    "--hosts", "5",
+                    "--resource-pools", "1",
+                    "--standalone-host", "0",
+                    "--virtual-machines", "20",
                 }
             }
         };
