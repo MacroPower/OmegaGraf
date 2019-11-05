@@ -4,47 +4,29 @@ This web service builds and configures docker containers.
 
 Currently supported containers:
 - Prometheus
+- Telegraf
+- Grafana
+- [VCSim](https://github.com/OmegaGraf/docker-vcsim)
 
-For example, see the following example request body:
+Requests tend to consist of two parts, a `BuildConfiguration` and a `Config`.
+
+`BuildConfiguration` sets container parameters, such as name, image, bindings, etc.
+`Config` is a combination of data to serialize, and the path where the data should be written.
+There are a few additional calls for configuration, and they do not follow any standards.
 
 ```
 {
   "BuildConfiguration": {
-    "Image": "prom/prometheus",
+    "Image": "macropower/name",
     "Tag": "latest",
-    "Ports": [
-      9090
-    ],
-    "Binds": {
-      "C:/docker/prometheus/config": "/etc/prometheus",
-      "C:/docker/prometheus/data": "/prometheus"
-    },
-    "Parameters": [
-      "--config.file=/etc/prometheus/prometheus.yml",
-      "--storage.tsdb.path=/prometheus"
-    ]
+    "Ports": [],
+    "Binds": {},
+    "Parameters": []
   },
   "Config": [
     {
-      "Path": "C:/docker/prometheus/config/prometheus.yml",
-      "Data": {
-        "Global": {
-          "ScrapeInterval": "5s"
-        },
-        "ScrapeConfigs": [
-          {
-            "JobName": "prometheus",
-            "ScrapeInterval": "5s",
-            "StaticConfigs": [
-              {
-                "Targets": [
-                  "localhost:9090"
-                ]
-              }
-            ]
-          }
-        ]
-      }
+      "Path": "C:/docker/...",
+      "Data": { }
     }
   ]
 }
