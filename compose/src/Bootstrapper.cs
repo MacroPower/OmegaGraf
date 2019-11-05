@@ -1,6 +1,7 @@
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Configuration;
+using Nancy.Conventions;
 using Nancy.Diagnostics;
 using Nancy.Swagger.Services;
 using Nancy.TinyIoc;
@@ -16,6 +17,12 @@ namespace ShopAutomation.API
             environment.Diagnostics(true, "password");
             environment.Tracing(enabled: true, displayErrorTraces: true);
             base.Configure(environment);
+        }
+
+        protected override void ConfigureConventions(NancyConventions nancyConventions)
+        {
+            base.ConfigureConventions(nancyConventions);
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("ui"));
         }
 
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)

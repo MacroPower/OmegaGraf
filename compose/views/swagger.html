@@ -1,0 +1,70 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Swagger UI</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.23.11/swagger-ui.css">
+  <style>
+    html {
+      box-sizing: border-box;
+      overflow: -moz-scrollbars-vertical;
+      overflow-y: scroll;
+    }
+
+    *,
+    *:before,
+    *:after {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+      background: #fafafa;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="swagger-ui"></div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.23.11/swagger-ui-bundle.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/3.23.11/swagger-ui-standalone-preset.js"> </script>
+  <script>
+    var hidefunction = function() {
+      $(".curl:contains(Password=)").remove();
+    };
+
+    window.onload = function () {
+      // Build a system  
+      const ui = SwaggerUIBundle({
+        url: "@Model", //replace the default url to our demo's url  
+        dom_id: '#swagger-ui',
+        tagsSorter: 'alpha',
+        operationsSorter: (a, b) => {
+          var methodsOrder = ["get", "post", "put", "delete", "patch", "options", "trace"];
+          var result = methodsOrder.indexOf(a.get("method")) - methodsOrder.indexOf(b.get("method"));
+          if (result === 0) {
+            result = a.get("path").localeCompare(b.get("path"));
+          }
+
+          return result;
+        },
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout"
+      })
+      window.ui = ui;
+
+      var t = setInterval(hidefunction,100);
+    }  
+  </script>
+</body>
+
+</html>
