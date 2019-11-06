@@ -49,6 +49,7 @@ script:
     /n:"OmegaGraf Compose" 
     /d:project.home=. 
     /d:sonar.language=cs
+    /d:sonar.coverage.exclusions=**/*MetaDataModule.cs,**/Bootstrapper.cs,**/HomeModule.cs,**/Startup.cs,**/Program.cs
     /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
     /d:sonar.cs.vstest.reportsPaths=**/TestResults/*.trx 
   - dotnet restore
