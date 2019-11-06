@@ -34,4 +34,4 @@ There are a few additional calls for configuration, and they do not follow any s
 }
 ```
 
-Comprehensive documentation can be found at `/api-docs`.
+**Comprehensive documentation can be found at `/swagger-ui`.**
