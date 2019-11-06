@@ -11,9 +11,11 @@ namespace OmegaGraf.Compose
     public class Grafana : IDisposable
     {
         private readonly Token token;
+        private readonly string uri;
 
-        public Grafana()
+        public Grafana(string uri)
         {
+            this.uri   = uri;
             this.token = GetToken().Result;
         }
 
@@ -24,7 +26,7 @@ namespace OmegaGraf.Compose
 
         public Task<Token> GetToken()
         {
-            return "http://localhost:3000"
+            return this.uri
                    .AppendPathSegments("api", "auth", "keys")
                    .WithBasicAuth("admin", "admin")
                    .PostJsonAsync(
@@ -38,7 +40,7 @@ namespace OmegaGraf.Compose
 
         public Task<IEnumerable<Token>> ListTokens()
         {
-            return "http://localhost:3000"
+            return this.uri
                    .AppendPathSegments("api", "auth", "keys")
                    .WithOAuthBearerToken(this.token.Key)
                    .GetJsonAsync<IEnumerable<Token>>();
@@ -50,7 +52,7 @@ namespace OmegaGraf.Compose
 
             var toDelete = tokens.First(t => t.Name == this.token.Name);
 
-            return await "http://localhost:3000"
+            return await this.uri
                    .AppendPathSegments("api", "auth", "keys", toDelete.ID)
                    .WithOAuthBearerToken(this.token.Key)
                    .DeleteAsync();
@@ -60,7 +62,7 @@ namespace OmegaGraf.Compose
         {
             try
             {
-                return await "http://localhost:3000"
+                return await this.uri
                        .AppendPathSegments("api", "datasources")
                        .WithOAuthBearerToken(this.token.Key)
                        .PostJsonAsync(dataSource);
@@ -80,7 +82,7 @@ namespace OmegaGraf.Compose
         {
             try
             {
-                return await "http://localhost:3000"
+                return await this.uri
                        .AppendPathSegments("api", "dashboards", "db")
                        .WithOAuthBearerToken(this.token.Key)
                        .PostJsonAsync(jsonModel);

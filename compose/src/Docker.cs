@@ -61,7 +61,7 @@ namespace OmegaGraf.Compose
         /// <returns>Container UUID</returns>
         public async Task<string> CreateContainer(
             string image,
-            List<int> ports,
+            Dictionary<int, int> ports,
             Dictionary<string, string> binds,
             string name = "",
             string tag = "latest",
@@ -79,13 +79,13 @@ namespace OmegaGraf.Compose
                 }
                 select new KeyValuePair<string, IList<PortBinding>>
                 (
-                    port + "/" + protocol,
+                    port.Value + "/" + protocol,
                     new List<PortBinding>
                     {
                         new PortBinding
                         {
                             HostIP = "0.0.0.0",
-                            HostPort = port.ToString()
+                            HostPort = port.Key.ToString()
                         }
                     }
                 )).ToDictionary(i => i.Key, i => i.Value);

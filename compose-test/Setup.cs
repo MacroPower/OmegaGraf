@@ -21,6 +21,7 @@ namespace OmegaGraf.Compose.Tests.Builder
             }
         }
 
+        /* 
         [OneTimeTearDown]
         public void KillContainers()
         {
@@ -49,6 +50,6 @@ namespace OmegaGraf.Compose.Tests.Builder
             Task t = Task.WhenAll(tasks);
 
             t.Wait();
-        }
+        }*/
     }
 }

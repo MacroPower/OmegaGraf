@@ -3,8 +3,10 @@ using OmegaGraf.Compose.MetaData;
 using OmegaGraf.Compose.Config.Grafana;
 using System;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
-using System.Threading;
+using Flurl.Http;
+using System.Threading.Tasks;
 
 namespace OmegaGraf.Compose.Tests.Builder
 {
@@ -12,6 +14,22 @@ namespace OmegaGraf.Compose.Tests.Builder
     [Category("Deployment")]
     public class Grafana : DeployTests
     {
+        private static readonly int port = Example.Grafana.BuildConfiguration.Ports.First().Key;
+        private static async Task<bool> IsOnline()
+        {
+            try
+            {
+                var response = await ("http://localhost:" + port)
+                               .GetAsync();
+
+                return response.IsSuccessStatusCode;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         [Test, Order(1)]
         public void Deploy()
         {
@@ -19,20 +37,19 @@ namespace OmegaGraf.Compose.Tests.Builder
 
             var uuid = runner.Build(Example.Grafana.BuildConfiguration);
 
-            Console.WriteLine("docker container logs " + uuid);
-            Console.WriteLine("docker container inspect " + uuid);
-            Console.WriteLine("docker container stop " + uuid);
-            Console.WriteLine("docker container rm " + uuid);
+            TestContext.Out.WriteLine("Container: " + uuid);
+            TestContext.Out.WriteLine("Port: " + port);
+            TestContext.Out.WriteLine("Mode: " + Example.Mode);
 
-            Thread.Sleep(15000); //lazy way to make sure the API is online
+            var wait = Is.True.After(30000, 2000);
 
-            Assert.Pass();
+            Assert.That(() => IsOnline().Result, wait);
         }
 
         [Test, Order(2)]
         public void CreateDataSource()
         {
-            var g = new Compose.Grafana();
+            var g = new Compose.Grafana("http://localhost:" + port);
 
             try
             {
@@ -71,7 +88,7 @@ namespace OmegaGraf.Compose.Tests.Builder
         [Test, Order(2)]
         public void CreateDashboard()
         {
-            var g = new Compose.Grafana();
+            var g = new Compose.Grafana("http://localhost:" + port);
 
             try
             {

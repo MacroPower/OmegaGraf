@@ -52,7 +52,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 Image = "prom/prometheus",
                 Tag   = "latest",
-                Ports = new List<int>(){ 9090 },
+                Ports = new Dictionary<int, int>(){ { 9090, 9090 } },
                 Binds = new Dictionary<string, string>()
                 {
                     {
@@ -123,7 +123,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 Image = "telegraf",
                 Tag   = "latest",
-                Ports = new List<int>(){ 8899 },
+                Ports = new Dictionary<int, int>(){ { 8899, 8899 } },
                 Binds = new Dictionary<string, string>()
                 {
                     {
@@ -213,7 +213,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 Image = "grafana/grafana",
                 Tag   = "6.4.3",
-                Ports = new List<int>(){ 3000 },
+                Ports = new Dictionary<int, int>(){ { 8888, 3000 } },
                 Binds = new Dictionary<string, string>()
                 {
                     {
@@ -248,7 +248,7 @@ namespace OmegaGraf.Compose.MetaData
                 Name  = "vcsim",
                 Image = "macropower/vcsim",
                 Tag   = "latest",
-                Ports = new List<int>(){ },
+                Ports = new Dictionary<int, int>(){ },
                 Binds = new Dictionary<string, string>(){ },
                 Parameters = new List<string>()
                 {

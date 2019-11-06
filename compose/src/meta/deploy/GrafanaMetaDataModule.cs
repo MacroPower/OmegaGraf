@@ -46,7 +46,7 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     DataSource bind = (this).Bind<DataSource>();
 
-                    var g = new Grafana();
+                    var g = new Grafana("http://localhost:3000");
 
                     g.AddDataSource(bind).Wait();
 
@@ -68,7 +68,7 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     string json = this.Request.Body.AsString();
 
-                    var g = new Grafana();
+                    var g = new Grafana("http://localhost:3000");
 
                     var dash = JsonConvert.DeserializeObject(json);
 
