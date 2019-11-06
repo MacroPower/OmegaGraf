@@ -41,15 +41,24 @@ before_script:
   - export PATH="$PATH:$HOME/.dotnet/tools"
 
 script:
-  - dotnet sonarscanner begin /d:sonar.login="$SONAR_TOKEN" || true
+  - >
+    dotnet sonarscanner begin 
+    /key:OmegaGraf_compose 
+    /d:sonar.login="$SONAR_TOKEN" 
+    /o:omegagraf 
+    /n:"OmegaGraf Compose" 
+    /d:project.home=. 
+    /d:sonar.language=cs
+    /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
+    /d:sonar.cs.vstest.reportsPaths=**/TestResults/*.trx 
   - dotnet restore
   - dotnet build
   - netstat -tulnp
-  - dotnet test
+  - dotnet test --logger:trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
   - docker ps -a
   - netstat -tulnp
   - for c in $(docker ps -a --format="{{.Names}}"); do docker container logs $c; done
   - ls -l /docker
   - ls -l /docker/grafana
   - ls -l /docker/prometheus
-  - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN" || true
+  - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"

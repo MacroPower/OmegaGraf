@@ -263,3 +263,6 @@ __pycache__/
 # Cake
 tools/*
 !tools/packages.config
+
+# Opencover
+**/coverage.opencover.xml
