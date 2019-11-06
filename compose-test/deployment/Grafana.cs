@@ -92,7 +92,7 @@ namespace OmegaGraf.Compose.Tests.Builder
 
             try
             {
-                var dash = JsonConvert.DeserializeObject(File.ReadAllText("assets\\Dashboard.json"));
+                var dash = JsonConvert.DeserializeObject(File.ReadAllText("assets/Dashboard.json"));
 
                 g.AddDashboard(dash).Wait();
 
