@@ -59,11 +59,7 @@ namespace OmegaGraf.Compose.Tests.Builder
         {
             var runner = new Runner();
 
-            var config = new Config<Config.Telegraf.Telegraf>()
-            {
-                Path = @"C:\docker\telegraf\telegraf.conf",
-                Data = Example.Telegraf.Config[0].Data
-            };
+            var config = Example.Telegraf.Config[0];
 
             var uuid = runner.AddTomlConfig(x => x.LowerCase, config).Build(Example.Telegraf.BuildConfiguration);
 

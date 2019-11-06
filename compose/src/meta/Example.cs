@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using OmegaGraf.Compose.Config.Grafana;
 using OmegaGraf.Compose.Config.Prometheus;
 using OmegaGraf.Compose.Config.Telegraf;
@@ -8,7 +10,42 @@ namespace OmegaGraf.Compose.MetaData
 {
     public static class Example
     {
-        private static readonly string root = "C:/docker/";
+        public static string Mode
+        {
+            get
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    return ":rw";
+                }
+
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    return "";
+                }
+
+                throw new NotSupportedException();
+            }
+        }
+
+        public static string Root
+        {
+            get
+            {
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    return "/docker/";
+                }
+
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    return "C:/docker/";
+                }
+
+                throw new NotSupportedException();
+            }
+        }
+
         public static Input<Prometheus> Prometheus = new Input<Prometheus>()
         {
             BuildConfiguration = new BuildConfiguration()
@@ -19,10 +56,10 @@ namespace OmegaGraf.Compose.MetaData
                 Binds = new Dictionary<string, string>()
                 {
                     {
-                        Path.Join(root, "prometheus/config"), "/etc/prometheus"
+                        Path.Join(Root, "prometheus/config"), "/etc/prometheus" + Mode
                     },
                     {
-                        Path.Join(root, "prometheus/data"),   "/prometheus"
+                        Path.Join(Root, "prometheus/data"),   "/prometheus" + Mode
                     }
                 },
                 Parameters = new List<string>()
@@ -35,7 +72,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 new Config<Prometheus>()
                 {
-                    Path = Path.Join(root, "prometheus/config", "/prometheus.yml"),
+                    Path = Path.Join(Root, "prometheus/config", "/prometheus.yml"),
                     Data = new Prometheus()
                     {
                         Global = new Global()
@@ -90,7 +127,7 @@ namespace OmegaGraf.Compose.MetaData
                 Binds = new Dictionary<string, string>()
                 {
                     {
-                        Path.Join(root, "telegraf"), "/etc/telegraf"
+                        Path.Join(Root, "telegraf"), "/etc/telegraf" + Mode
                     }
                 }
             },
@@ -98,7 +135,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 new Config<Telegraf>()
                 {
-                    Path = Path.Join(root, "telegraf", "/telegraf.conf"),
+                    Path = Path.Join(Root, "telegraf", "/telegraf.conf"),
                     Data = new Telegraf(){
                         Agent = new Agent()
                         {
@@ -180,7 +217,7 @@ namespace OmegaGraf.Compose.MetaData
                 Binds = new Dictionary<string, string>()
                 {
                     {
-                        Path.Join(root, "grafana/lib"), "/var/lib/grafana"
+                        Path.Join(Root, "grafana/lib"), "/var/lib/grafana" + Mode
                     }
                 }
             }

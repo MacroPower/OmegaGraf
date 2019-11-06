@@ -13,11 +13,7 @@ namespace OmegaGraf.Compose.Tests.Builder
         {
             var runner = new Runner();
 
-            var config = new Config<Config.Prometheus.Prometheus>()
-            {
-                Path = @"C:/docker/prometheus/config/prometheus.yml",
-                Data = Example.Prometheus.Config[0].Data
-            };
+            var config = Example.Prometheus.Config[0];
 
             var uuid = runner.AddYamlConfig(config).Build(Example.Prometheus.BuildConfiguration);
 
