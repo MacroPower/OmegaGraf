@@ -4,6 +4,9 @@ sudo: required
 mono: none
 dotnet: 3.0
 
+services:
+  - docker
+
 addons:
   sonarcloud:
     organization: "omegagraf"
@@ -30,4 +33,5 @@ script:
   - dotnet sonarscanner begin /d:sonar.login="$SONAR_TOKEN" /d:project.home=. /d:sonar.host.url=https://sonarcloud.io /k:OmegaGraf_compose /n:"OmegaGraf Compose" || true
   - dotnet restore
   - dotnet build
+  - dotnet test
   - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN" || true
