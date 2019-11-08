@@ -1,15 +1,16 @@
-import React from "react";
-import AuthContext from "../components/Context";
+import React, { Component } from "react";
+import { Button } from "react-bootstrap";
+import DeployVCSim from "../components/deployment/VCSim";
 
-export default class Home extends React.Component {
-  static contextType = AuthContext;
-
-  render() {
+export default function Home() {
     return (
       <main role="main" className="container">
         <h2>Home</h2>
-        Hello World!
+        <br />
+        <Button variant="primary">
+          Deploy
+        </Button>
+        {DeployVCSim()}
       </main>
     );
-  }
 }

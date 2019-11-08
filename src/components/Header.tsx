@@ -54,7 +54,7 @@ export default class HeaderNav extends Component<{
         <Nav className="mr-auto">{nav}</Nav>
         <Nav>
           <p className="p-2 m-0 text-light">
-            Logged in as: <b>{this.props.session.username}</b>
+            Logged in as: <b>{this.props.session.apiKey}</b>
           </p>
           {logout}
         </Nav>

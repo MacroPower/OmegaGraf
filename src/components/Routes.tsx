@@ -1,12 +1,21 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 
 // eslint-disable-next-line
-import { BrowserRouter as Router, Route, Link, Switch, Redirect, match } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  Redirect,
+  match
+} from "react-router-dom";
 import AuthContext from "./Context";
 
 import Home from "../views/Home";
 import Four04 from "../views/404";
 import About from "../views/About";
+import { useGlobal } from "./Session";
+import Login from "../views/Login";
 
 export enum RouteIdentifiers {
   Login,
@@ -39,29 +48,35 @@ const Routes: Routed[] = [
     hidden: false,
     requiresAuth: true,
     component: About
+  },
+  {
+    id: RouteIdentifiers.Login,
+    path: "/login",
+    label: "Login",
+    exact: false,
+    hidden: true,
+    requiresAuth: false,
+    component: Login
   }
 ];
 
-export class AppliedRoutes extends Component {
-  static contextType = AuthContext;
+export function AppliedRoutes() {
+  const [globalState, globalActions] = useGlobal();
 
-  render() {
-    // Filter if requiresAuth is true and session is invalid
-    const routes = Routes.map(route => (
-      <Route
-        exact={route.exact}
-        path={route.path}
-        component={route.component}
-      />
-    ));
-    return (
-      <Switch>
-        {routes}
-        {!this.context.session.apiKey && <Redirect to="/login" />}
-        <Route component={Four04} />
-      </Switch>
-    );
-  }
+  // Filter if requiresAuth is true and session is invalid
+  const routes = Routes.map(route => {
+    if(globalState.apiKey || !route.requiresAuth) {
+      return <Route exact={route.exact} path={route.path} component={route.component} />
+    }
+  });
+
+  return (
+    <Switch>
+      {routes}
+      {!globalState.apiKey && <Redirect to="/login" />}
+      <Route component={Four04} />
+    </Switch>
+  );
 }
 
 export class RoutedLink extends Component<{
