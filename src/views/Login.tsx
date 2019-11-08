@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useGlobal, setSessionCookie } from "../components/Session";
 import { Redirect } from "react-router";
@@ -7,6 +7,12 @@ export default function Login() {
   const [globalState, globalActions] = useGlobal();
   const [key, setKey] = useState("");
   const [toHome, redirect] = useState(false);
+
+  useEffect(() => {
+    if (globalState.apiKey !== undefined) {
+      redirect(true);
+    }
+  });
 
   const submit = (e: any) => {
     e.preventDefault();
