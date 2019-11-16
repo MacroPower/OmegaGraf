@@ -1,14 +1,19 @@
 import React from "react";
-import { UseGlobalSession } from "../components/Global";
+import { UseGlobalSession, UseGlobalSettings } from "../components/Global";
 
 export default function About() {
-  const [globalState, globalActions] = UseGlobalSession();
+  const [globalSession, globalSessionActions] = UseGlobalSession();
+  const [globalSettings, globalSettingsActions] = UseGlobalSettings();
+
     return (
       <main role="main" className="container">
         <h2>About</h2>
         <hr />
         Your session data:
-        <pre>{JSON.stringify(globalState, null, 1)}</pre>
+        <pre>{JSON.stringify(globalSession, null, 1)}</pre>
+        <hr />
+        Your global data:
+        <pre>{JSON.stringify(globalSettings, null, 1)}</pre>
       </main>
     );
 }
