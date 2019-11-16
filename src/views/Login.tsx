@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useGlobal, setSessionCookie } from "../components/Session";
+import { setSessionCookie } from "../components/Session";
 import { Redirect } from "react-router";
+import { UseGlobalSession } from "../components/Global";
 
 export default function Login() {
-  const [globalState, globalActions] = useGlobal();
+  const [globalState, globalActions] = UseGlobalSession();
   const [key, setKey] = useState("");
   const [toHome, redirect] = useState(false);
 
@@ -25,7 +26,7 @@ export default function Login() {
     // TODO: VALIDATE API KEY HERE
 
     setSessionCookie(session);
-    globalActions.setValue(session);
+    globalActions.setSession(session);
     redirect(true);
   };
 

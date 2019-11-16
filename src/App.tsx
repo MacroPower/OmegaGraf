@@ -7,18 +7,21 @@ import { AppliedRoutes } from "./components/Routes";
 import Footer from "./components/Footer";
 import HeaderNav from "./components/Header";
 import Navbar from "react-bootstrap/Navbar";
-import { useGlobal, getSessionCookie } from "./components/Session";
+import { getSessionCookie } from "./components/Session";
+import { UseGlobalSession } from "./components/Global";
 
 export default function App() {
-  const [globalState, globalActions] = useGlobal();
+  const [globalState, globalActions] = UseGlobalSession();
 
   useEffect(() => {
     const session = getSessionCookie();
 
+    console.log(session);
+
     if(session !== null)
     {
       // TODO: VALIDATE API KEY HERE
-      globalActions.setValue(session);
+      globalActions.setSession(session);
     }
   }, []);
 

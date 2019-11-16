@@ -1,8 +1,8 @@
 import React from "react";
-import { useGlobal } from "../components/Session";
+import { UseGlobalSession } from "../components/Global";
 
 export default function About() {
-  const [globalState, globalActions] = useGlobal();
+  const [globalState, globalActions] = UseGlobalSession();
     return (
       <main role="main" className="container">
         <h2>About</h2>

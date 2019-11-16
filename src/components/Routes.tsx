@@ -14,8 +14,8 @@ import AuthContext from "./Context";
 import Home from "../views/Home";
 import Four04 from "../views/404";
 import About from "../views/About";
-import { useGlobal } from "./Session";
 import Login from "../views/Login";
+import { UseGlobalSession } from "./Global";
 
 export enum RouteIdentifiers {
   Login,
@@ -61,7 +61,7 @@ const Routes: Routed[] = [
 ];
 
 export function AppliedRoutes() {
-  const [globalState, globalActions] = useGlobal();
+  const [globalState, globalActions] = UseGlobalSession();
 
   // Filter if requiresAuth is true and session is invalid
   const routes = Routes.map(route => {
