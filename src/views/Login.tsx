@@ -18,8 +18,11 @@ export default function Login() {
   const submit = (e: any) => {
     e.preventDefault();
 
+    //eslint-disable-next-line
+    const host: string = Object.assign({}, location.host);
+
     const session = {
-      endpoint: "",
+      endpoint: host,
       apiKey: key
     };
 
