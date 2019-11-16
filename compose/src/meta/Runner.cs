@@ -2,6 +2,7 @@ using Nett;
 using SharpYaml.Serialization;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace OmegaGraf.Compose.MetaData
 {
@@ -21,7 +22,7 @@ namespace OmegaGraf.Compose.MetaData
         public string Name { get; set; }
         public string Image { get; set; }
         public string Tag { get; set; }
-        public Dictionary<int, int> Ports { get; set; }
+        public List<int> Ports { get; set; }
         public Dictionary<string, string> Binds { get; set; }
         public List<string> Parameters { get; set; }
     }
@@ -93,9 +94,11 @@ namespace OmegaGraf.Compose.MetaData
                     var docker = new Docker();
                     await docker.PullImage(config.Image, config.Tag);
 
+                    var ports = config.Ports.ToDictionary(x => x, x => x);
+
                     var id = await docker.CreateContainer(
                         image: config.Image,
-                        ports: config.Ports,
+                        ports: ports,
                         binds: config.Binds,
                         name: config.Name,
                         tag: config.Tag,

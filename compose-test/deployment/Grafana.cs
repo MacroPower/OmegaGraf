@@ -14,7 +14,7 @@ namespace OmegaGraf.Compose.Tests.Builder
     [Category("Deployment")]
     public class Grafana : DeployTests
     {
-        private static readonly int port = Example.Grafana.BuildConfiguration.Ports.First().Key;
+        private static readonly int port = Example.Grafana.BuildConfiguration.Ports.First();
         private static async Task<bool> IsOnline()
         {
             try

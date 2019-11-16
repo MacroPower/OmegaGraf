@@ -29,7 +29,7 @@ namespace OmegaGraf.Compose.Tests.Builder
             {
                 Image = "macropower/vcsim",
                 Tag = "latest",
-                Ports = new Dictionary<int, int>(){ },
+                Ports = new List<int>(){ },
                 Binds = new Dictionary<string, string>(){ },
                 Parameters = new List<string>()
                 {
