@@ -1,4 +1,4 @@
-import Cookies from "js-cookie";
+import Cookies from 'js-cookie';
 
 export type Session = {
   endpoint: string | undefined;
@@ -6,10 +6,7 @@ export type Session = {
 };
 
 function IsSession(arg: any): arg is Session {
-  return (
-    arg.endpoint &&
-    arg.apiKey
-  );
+  return arg.endpoint && arg.apiKey;
 }
 
 export const defaultSession: Session = {
@@ -20,16 +17,16 @@ export const defaultSession: Session = {
 //
 
 export const removeSessionCookie = (): void => {
-  Cookies.remove("session");
+  Cookies.remove('session');
 };
 
 export const setSessionCookie = (session: Session): void => {
   removeSessionCookie();
-  Cookies.set("session", session, { expires: 1 });
+  Cookies.set('session', session, { expires: 1 });
 };
 
 export const getSessionCookie = (): Session | null => {
-  const sessionCookie = Cookies.get("session");
+  const sessionCookie = Cookies.get('session');
 
   if (sessionCookie !== undefined) {
     const session = JSON.parse(sessionCookie);
