@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Button, Form } from "react-bootstrap";
-import { setSessionCookie } from "../components/Session";
-import { Redirect } from "react-router";
-import { UseGlobalSession } from "../components/Global";
+import React, { useState, useEffect } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import { setSessionCookie, Session } from '../components/Session';
+import { Redirect } from 'react-router';
+import { UseGlobalSession } from '../components/Global';
 
 export default function Login() {
   const [globalState, globalActions] = UseGlobalSession();
-  const [key, setKey] = useState("");
+  const [key, setKey] = useState('');
   const [toHome, redirect] = useState(false);
 
   useEffect(() => {
@@ -19,9 +19,9 @@ export default function Login() {
     e.preventDefault();
 
     //eslint-disable-next-line
-    const host: string = Object.assign({}, location.host);
+    const host: string = location.host;
 
-    const session = {
+    const session: Session = {
       endpoint: host,
       apiKey: key
     };
