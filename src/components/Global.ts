@@ -1,7 +1,8 @@
-import { Session, defaultSession } from "./Session";
-import globalHook, { Store } from "use-global-hook";
-import React from "react";
-import { Settings, defaultSettings } from "./Settings";
+import { Session, defaultSession } from './Session';
+import globalHook, { Store } from 'use-global-hook';
+import React from 'react';
+import { Settings } from './settings/Settings';
+import { defaultSettings } from './settings/DefaultSettings';
 
 type GlobalSessionActions = {
   setSession: (value: Session) => void;
