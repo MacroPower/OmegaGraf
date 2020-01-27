@@ -1,29 +1,36 @@
-import React, { useState, useReducer, useEffect } from "react";
-import "./App.css";
-import { BrowserRouter as Router } from "react-router-dom";
-import { faReact } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { AppliedRoutes } from "./components/Routes";
-import Footer from "./components/Footer";
-import HeaderNav from "./components/Header";
-import Navbar from "react-bootstrap/Navbar";
-import { getSessionCookie } from "./components/Session";
-import { UseGlobalSession } from "./components/Global";
+import React, { useEffect } from 'react';
+import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { faReact } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AppliedRoutes } from './components/Routes';
+import Footer from './components/Footer';
+import HeaderNav from './components/Header';
+import Navbar from 'react-bootstrap/Navbar';
+import { getSessionCookie } from './components/Session';
+import {
+  UseGlobalSession,
+  getDefaults,
+  UseGlobalSettings
+} from './components/Global';
 
 export default function App() {
   const [globalState, globalActions] = UseGlobalSession();
+  const [globalSettings, globalSettingsActions] = UseGlobalSettings();
 
   useEffect(() => {
     const session = getSessionCookie();
 
     console.log(session);
 
-    if(session !== null)
-    {
+    if (session !== null) {
       // TODO: VALIDATE API KEY HERE
       globalActions.setSession(session);
+      getDefaults(session).then(data =>
+        globalSettingsActions.setSettings(data)
+      );
     }
-  }, []);
+  }, [globalActions, globalSettingsActions]);
 
   return (
     <Router>

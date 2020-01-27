@@ -1,13 +1,20 @@
-import React, { useState, useReducer } from "react";
-import { UseGlobalSession, UseGlobalSettings } from "../Global";
-import { Form, Button } from "react-bootstrap";
-import { Action, SettingsReducer } from "./SettingsReducer";
+import React, { useState, useReducer, useEffect, useLayoutEffect } from 'react';
+import { UseGlobalSession, UseGlobalSettings } from '../Global';
+import { Form, Button } from 'react-bootstrap';
+import { Action, SettingsReducer } from './SettingsReducer';
 
 export default function DeployForm() {
   const [globalSession, globalSessionActions] = UseGlobalSession();
   const [globalSettings, globalSettingsActions] = UseGlobalSettings();
 
   const [state, dispatch] = useReducer(SettingsReducer, globalSettings);
+
+  useEffect(() => {
+    dispatch({
+      type: 'reset',
+      value: globalSettings
+    });
+  }, [globalSettings]);
 
   const submit = (e: any) => {
     e.preventDefault();
@@ -24,7 +31,7 @@ export default function DeployForm() {
             type="text"
             onChange={(e: any) =>
               dispatch({
-                type: "BuildConfiguration.Image",
+                type: 'BuildConfiguration.Image',
                 value: e.target.value
               })
             }
@@ -38,7 +45,7 @@ export default function DeployForm() {
             type="text"
             onChange={(e: any) =>
               dispatch({
-                type: "BuildConfiguration.Tag",
+                type: 'BuildConfiguration.Tag',
                 value: e.target.value
               })
             }

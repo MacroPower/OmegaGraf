@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { setSessionCookie, Session } from '../components/Session';
 import { Redirect } from 'react-router';
-import { UseGlobalSession } from '../components/Global';
+import {
+  UseGlobalSession,
+  UseGlobalSettings,
+  getDefaults
+} from '../components/Global';
 
 export default function Login() {
   const [globalState, globalActions] = UseGlobalSession();
+  const [globalSettings, globalSettingsActions] = UseGlobalSettings();
   const [key, setKey] = useState('');
   const [toHome, redirect] = useState(false);
 
@@ -30,6 +35,9 @@ export default function Login() {
 
     setSessionCookie(session);
     globalActions.setSession(session);
+
+    getDefaults(session).then(data => globalSettingsActions.setSettings(data));
+
     redirect(true);
   };
 

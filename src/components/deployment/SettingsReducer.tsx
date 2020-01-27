@@ -2,7 +2,7 @@ import { Settings } from "../settings/Settings";
 
 export type Action = {
   type: string;
-  value: string;
+  value: any;
 };
 
 export function SettingsReducer(state: Settings, action: Action) {
@@ -29,6 +29,8 @@ export function SettingsReducer(state: Settings, action: Action) {
           Config: state.Prometheus.Config
         }
       };
+    case 'reset':
+      return { ...action.value };
     default:
       throw new Error();
   }

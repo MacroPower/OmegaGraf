@@ -1,4 +1,4 @@
-import { Session, defaultSession } from './Session';
+import { Session, defaultSession, setSessionCookie } from './Session';
 import globalHook, { Store } from 'use-global-hook';
 import React from 'react';
 import { Settings } from './settings/Settings';
@@ -39,3 +39,18 @@ export const UseGlobalSettings = globalHook<Settings, GlobalSettingsActions>(
   defaultSettings,
   { setSettings: setSettings }
 );
+
+//
+
+export function getDefaults(session: Session): Promise<Settings> {
+  return fetch(session.endpoint + '/example', {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .catch(() => {
+      setSessionCookie(defaultSession);
+    });
+}
