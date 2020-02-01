@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import { Action } from './SettingsReducer';
+import { Action } from '../SettingsReducer';
 
 export default function TextField(props: {
   dispatch: React.Dispatch<Action>;

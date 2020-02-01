@@ -1,14 +1,19 @@
 import React, { useState, useReducer, useEffect, useLayoutEffect } from 'react';
 import { UseGlobalSession, UseGlobalSettings } from '../Global';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Action, SettingsReducer } from './SettingsReducer';
-import TextField from './TextField';
+import TextField from './inputs/TextField';
+import SimpleForm from './forms/SimpleForm';
 
 export default function DeployForm() {
   const [globalSession, globalSessionActions] = UseGlobalSession();
   const [globalSettings, globalSettingsActions] = UseGlobalSettings();
 
   const [state, dispatch] = useReducer(SettingsReducer, globalSettings);
+
+  type formLevel = '1' | '2' | '3' | undefined;
+
+  const [form, setForm] = useState<formLevel>(undefined);
 
   useEffect(() => {
     dispatch({
@@ -23,28 +28,46 @@ export default function DeployForm() {
     globalSettingsActions.setSettings(state);
   };
 
+  const renderSwitch = (param: formLevel) => {
+    switch (param) {
+      case '1':
+        return <SimpleForm dispatch={dispatch} state={state} submit={submit} />;
+      case '2':
+        return null;
+      case '3':
+        return null;
+      default:
+        return null;
+    }
+  };
+
+  const changeForm = (form: '1' | '2' | '3') => (e: any) => {
+    setForm(form);
+  };
+
   return (
     <>
-      <Form onSubmit={submit}>
-        <TextField
-          dispatch={dispatch}
-          label="BuildConfiguration.Image"
-          type="BuildConfiguration.Image"
-          value={state.Prometheus.BuildConfiguration.Image}
-        />
+      <Container>
+        <Row>
+          <Col>
+            <Button variant="outline-primary" onClick={changeForm('1')}>
+              I'm New!
+            </Button>
+          </Col>
+          <Col>
+            <Button variant="outline-primary" onClick={changeForm('2')}>
+              Help me out
+            </Button>
+          </Col>
+          <Col>
+            <Button variant="outline-primary" onClick={changeForm('3')}>
+              I know what I'm doing
+            </Button>
+          </Col>
+        </Row>
+      </Container>
 
-        <TextField
-          dispatch={dispatch}
-          label="BuildConfiguration.Tag"
-          type="BuildConfiguration.Tag"
-          value={state.Prometheus.BuildConfiguration.Tag}
-        />
-
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
-      <pre>{JSON.stringify(state, null, 1)}</pre>
+      {renderSwitch(form)}
     </>
   );
 }
