@@ -76,7 +76,7 @@ type PrometheusConfig = {
 
 // END Prometheus //
 
-// Telegraf //
+//
 
 type BuildConfiguration = {
   Name: string | undefined;
@@ -87,10 +87,13 @@ type BuildConfiguration = {
   Parameters: string[];
 };
 
-export type Settings = {
+export type VCSim = {
   VCSim: {
     BuildConfiguration: BuildConfiguration;
   };
+}
+
+export type Settings = {
   Telegraf: {
     BuildConfiguration: BuildConfiguration;
     Config: [

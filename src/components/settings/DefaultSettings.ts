@@ -1,25 +1,21 @@
 import { Settings } from './Settings';
 
+const defaultBuildConfiguration = {
+  BuildConfiguration: {
+    Name: undefined,
+    Image: '',
+    Tag: '',
+    Ports: [],
+    Binds: {},
+    Parameters: []
+  }
+}
+
+
 export const defaultSettings: Settings = {
-  Grafana: {
-    BuildConfiguration: {
-      Name: undefined,
-      Image: '',
-      Tag: '',
-      Ports: [],
-      Binds: {},
-      Parameters: []
-    }
-  },
+  Grafana: defaultBuildConfiguration,
   Telegraf: {
-    BuildConfiguration: {
-      Name: undefined,
-      Image: '',
-      Tag: '',
-      Ports: [],
-      Binds: {},
-      Parameters: []
-    },
+    ...defaultBuildConfiguration,
     Config: [
       {
         Path: '',
@@ -46,25 +42,8 @@ export const defaultSettings: Settings = {
       }
     ]
   },
-  VCSim: {
-    BuildConfiguration: {
-      Name: undefined,
-      Image: '',
-      Tag: '',
-      Ports: [],
-      Binds: {},
-      Parameters: []
-    }
-  },
   Prometheus: {
-    BuildConfiguration: {
-      Name: undefined,
-      Image: '',
-      Tag: '',
-      Ports: [],
-      Binds: {},
-      Parameters: []
-    },
+    ...defaultBuildConfiguration,
     Config: [
       {
         Path: '',
