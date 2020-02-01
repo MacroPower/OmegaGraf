@@ -2,6 +2,7 @@ import React, { useState, useReducer, useEffect, useLayoutEffect } from 'react';
 import { UseGlobalSession, UseGlobalSettings } from '../Global';
 import { Form, Button } from 'react-bootstrap';
 import { Action, SettingsReducer } from './SettingsReducer';
+import TextField from './TextField';
 
 export default function DeployForm() {
   const [globalSession, globalSessionActions] = UseGlobalSession();
@@ -25,33 +26,19 @@ export default function DeployForm() {
   return (
     <>
       <Form onSubmit={submit}>
-        <Form.Group controlId="formField1">
-          <Form.Label>Test1</Form.Label>
-          <Form.Control
-            type="text"
-            onChange={(e: any) =>
-              dispatch({
-                type: 'BuildConfiguration.Image',
-                value: e.target.value
-              })
-            }
-            value={state.Prometheus.BuildConfiguration.Image}
-          />
-        </Form.Group>
+        <TextField
+          dispatch={dispatch}
+          label="BuildConfiguration.Image"
+          type="BuildConfiguration.Image"
+          value={state.Prometheus.BuildConfiguration.Image}
+        />
 
-        <Form.Group controlId="formField2">
-          <Form.Label>Test2</Form.Label>
-          <Form.Control
-            type="text"
-            onChange={(e: any) =>
-              dispatch({
-                type: 'BuildConfiguration.Tag',
-                value: e.target.value
-              })
-            }
-            value={state.Prometheus.BuildConfiguration.Tag}
-          />
-        </Form.Group>
+        <TextField
+          dispatch={dispatch}
+          label="BuildConfiguration.Tag"
+          type="BuildConfiguration.Tag"
+          value={state.Prometheus.BuildConfiguration.Tag}
+        />
 
         <Button variant="primary" type="submit">
           Submit
