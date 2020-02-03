@@ -1,12 +1,10 @@
-import React, { useState, useReducer, useEffect, useLayoutEffect } from 'react';
-import { UseGlobalSession, UseGlobalSettings } from '../Global';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { Action, SettingsReducer } from './SettingsReducer';
-import TextField from './inputs/TextField';
+import React, { useState, useReducer, useEffect } from 'react';
+import { UseGlobalSettings } from '../Global';
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import { SettingsReducer } from './SettingsReducer';
 import SimpleForm from './forms/SimpleForm';
 
 export default function DeployForm() {
-  const [globalSession, globalSessionActions] = UseGlobalSession();
   const [globalSettings, globalSettingsActions] = UseGlobalSettings();
 
   const [state, dispatch] = useReducer(SettingsReducer, globalSettings);

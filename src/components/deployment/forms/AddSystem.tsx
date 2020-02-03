@@ -1,6 +1,6 @@
-import React, { useState, useReducer, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, Button, Form } from 'react-bootstrap';
-import { SettingsReducer, Action } from '../SettingsReducer';
+import { Action } from '../SettingsReducer';
 import { Settings } from '../../settings/Settings';
 
 export default function AddSystem(props: {
