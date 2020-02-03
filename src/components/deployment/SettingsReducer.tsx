@@ -1,4 +1,4 @@
-import { Settings } from '../settings/Settings';
+import { Settings, VSphere } from '../settings/Settings';
 
 export type Action = any;
 
@@ -10,8 +10,27 @@ export type Action = any;
   value: any;
 };
 */
+const newVCenters = (state: Settings, current: VSphere[]): Settings => {
+  return {
+    ...state,
+    Telegraf: {
+      BuildConfiguration: state.Telegraf.BuildConfiguration,
+      Config: [
+        {
+          ...state.Telegraf.Config[0],
+          Data: {
+            ...state.Telegraf.Config[0].Data,
+            Inputs: {
+              VSphere: current
+            }
+          }
+        }
+      ]
+    }
+  };
+};
 
-const newVCenters = (state: Settings, current: string[]): Settings => {
+const newVCenterEndpoints = (state: Settings, current: string[]): Settings => {
   const inputs = state.Telegraf.Config[0].Data.Inputs.VSphere;
 
   const vs1 = {
@@ -24,23 +43,39 @@ const newVCenters = (state: Settings, current: string[]): Settings => {
     VCenters: current
   };
 
-  return {
-    ...state,
-    Telegraf: {
-      BuildConfiguration: state.Telegraf.BuildConfiguration,
-      Config: [
-        {
-          ...state.Telegraf.Config[0],
-          Data: {
-            ...state.Telegraf.Config[0].Data,
-            Inputs: {
-              VSphere: [vs1, vs2]
-            }
-          }
-        }
-      ]
-    }
+  return newVCenters(state, [vs1, vs2]);
+};
+
+const newVCenterUser = (state: Settings, current: string): Settings => {
+  const inputs = state.Telegraf.Config[0].Data.Inputs.VSphere;
+
+  const vs1 = {
+    ...inputs[0],
+    Username: current
   };
+
+  const vs2 = {
+    ...inputs[1],
+    Username: current
+  };
+
+  return newVCenters(state, [vs1, vs2]);
+};
+
+const newVCenterPassword = (state: Settings, current: string): Settings => {
+  const inputs = state.Telegraf.Config[0].Data.Inputs.VSphere;
+
+  const vs1 = {
+    ...inputs[0],
+    Password: current
+  };
+
+  const vs2 = {
+    ...inputs[1],
+    Password: current
+  };
+
+  return newVCenters(state, [vs1, vs2]);
 };
 
 export function SettingsReducer(state: Settings, action: Action) {
@@ -53,55 +88,13 @@ export function SettingsReducer(state: Settings, action: Action) {
       return newVCenters(state, [...ns]);
     case 'Address':
       action.current[action.index] = action.value;
-      return newVCenters(state, [...action.current]);
+      return newVCenterEndpoints(state, [...action.current]);
     case 'Username':
       const username: string = action.value;
-      return {
-        ...state,
-        Telegraf: {
-          BuildConfiguration: state.Telegraf.BuildConfiguration,
-          Config: [
-            {
-              ...state.Telegraf.Config[0],
-              Data: {
-                ...state.Telegraf.Config[0].Data,
-                Inputs: {
-                  VSphere: [
-                    {
-                      ...state.Telegraf.Config[0].Data.Inputs.VSphere[0],
-                      Username: username
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        }
-      };
+      return newVCenterUser(state, username);
     case 'Password':
       const password: string = action.value;
-      return {
-        ...state,
-        Telegraf: {
-          BuildConfiguration: state.Telegraf.BuildConfiguration,
-          Config: [
-            {
-              ...state.Telegraf.Config[0],
-              Data: {
-                ...state.Telegraf.Config[0].Data,
-                Inputs: {
-                  VSphere: [
-                    {
-                      ...state.Telegraf.Config[0].Data.Inputs.VSphere[0],
-                      Password: password
-                    }
-                  ]
-                }
-              }
-            }
-          ]
-        }
-      };
+      return newVCenterPassword(state, password);
     case 'BuildConfiguration.Image':
       return {
         ...state,
