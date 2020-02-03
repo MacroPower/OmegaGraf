@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import AuthContext from "../Context";
 import { Card, ProgressBar, Button } from "react-bootstrap";
 
 function DeployVCSim() {

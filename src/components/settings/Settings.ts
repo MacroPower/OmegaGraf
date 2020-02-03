@@ -10,7 +10,7 @@ type Inputs = {
   VSphere: VSphere[];
 };
 
-type VSphere = {
+export type VSphere = {
   VCenters: string[];
   Username: string;
   Password: string;
