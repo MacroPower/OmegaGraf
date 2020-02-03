@@ -15,7 +15,7 @@ export default function SimpleForm(props: {
   return (
     <>
       <Form onSubmit={submit}>
-        <AddSystem />
+        <AddSystem dispatch={dispatch} state={state} />
 
         <TextField
           dispatch={dispatch}

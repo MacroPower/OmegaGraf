@@ -1,14 +1,13 @@
 import React, { useState, useReducer, useEffect } from 'react';
 import { Card, Button, Form } from 'react-bootstrap';
-import { UseGlobalSession, UseGlobalSettings } from '../../Global';
-import { SettingsReducer } from '../SettingsReducer';
+import { SettingsReducer, Action } from '../SettingsReducer';
 import { Settings } from '../../settings/Settings';
-import { SystemReducer } from './SystemReducer';
 
-export default function AddSystem() {
-  const [globalSettings, globalSettingsActions] = UseGlobalSettings();
-
-  const [state, dispatch] = useReducer(SystemReducer, globalSettings);
+export default function AddSystem(props: {
+    dispatch: React.Dispatch<Action>;
+    state: any;
+}) {
+  const { dispatch, state } = props;
 
   const systemState: Settings = state;
   const vCenters = systemState.Telegraf.Config[0].Data.Inputs.VSphere;
@@ -25,7 +24,7 @@ export default function AddSystem() {
         <Card.Text>
           {systems.map((system: string, i: number) => {
             return (
-              <Form.Group controlId="formBasicSystem">
+              <Form.Group controlId={"formBasicSystem" + i}>
                 <Form.Label>Address</Form.Label>
                 <Form.Control
                   type="text"
