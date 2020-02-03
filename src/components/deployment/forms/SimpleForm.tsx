@@ -3,6 +3,7 @@ import { Form } from 'react-bootstrap';
 import { Action } from '../SettingsReducer';
 import TextField from '../inputs/TextField';
 import { Button } from 'react-bootstrap';
+import AddSystem from './AddSystem'
 
 export default function SimpleForm(props: {
   dispatch: React.Dispatch<Action>;
@@ -14,6 +15,8 @@ export default function SimpleForm(props: {
   return (
     <>
       <Form onSubmit={submit}>
+        <AddSystem />
+
         <TextField
           dispatch={dispatch}
           label="BuildConfiguration.Image"
