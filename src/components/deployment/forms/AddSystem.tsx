@@ -39,7 +39,7 @@ export default function AddSystem(props: {
                   }
                   value={system}
                 />
-                {i > 0 && system !== '' && (
+                {i > 0 && (
                   <Button
                     variant="primary"
                     onClick={() => {

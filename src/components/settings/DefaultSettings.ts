@@ -36,7 +36,39 @@ export const defaultSettings: Settings = {
             PrometheusClient: []
           },
           Inputs: {
-            VSphere: []
+            VSphere: [
+              {
+                VCenters: [''],
+                Username: '',
+                Password: '',
+                IPAddresses: [],
+                IntSamples: false,
+                InsecureSkipVerify: false,
+                ForceDiscover: false,
+                Interval: '',
+                DatastoreMetricExclude: [],
+                ClusterMetricExclude: [],
+                DatacenterMetricExclude: [],
+                MaxQueryMetrics: 0,
+                CollectConcurrency: 0,
+                DiscoverConcurrency: 0
+              },
+              {
+                VCenters: [''],
+                Username: '',
+                Password: '',
+                IPAddresses: [],
+                IntSamples: false,
+                InsecureSkipVerify: false,
+                ForceDiscover: false,
+                Interval: '',
+                HostMetricExclude: [],
+                VMMetricExclude: [],
+                MaxQueryMetrics: 0,
+                CollectConcurrency: 0,
+                DiscoverConcurrency: 0
+              }
+            ]
           }
         }
       }
