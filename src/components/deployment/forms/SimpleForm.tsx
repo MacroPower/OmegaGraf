@@ -1,6 +1,6 @@
 import React from 'react';
 import { Action } from '../SettingsReducer';
-import AddSystem from './AddSystem';
+import AddSystem from '../inputs/AddSystem';
 
 export default function SimpleForm(props: {
   dispatch: React.Dispatch<Action>;

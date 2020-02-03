@@ -1,7 +1,7 @@
 import React from 'react';
 import { Action } from '../SettingsReducer';
 import TextField from '../inputs/TextField';
-import AddSystem from './AddSystem';
+import AddSystem from '../inputs/AddSystem';
 
 export default function AdvancedForm(props: {
   dispatch: React.Dispatch<Action>;
