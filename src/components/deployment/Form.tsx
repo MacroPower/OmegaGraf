@@ -1,8 +1,10 @@
 import React, { useState, useReducer, useEffect } from 'react';
 import { UseGlobalSettings } from '../Global';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Row, Col, Form } from 'react-bootstrap';
 import { SettingsReducer } from './SettingsReducer';
 import SimpleForm from './forms/SimpleForm';
+import NormalForm from './forms/NormalForm';
+import AdvancedForm from './forms/AdvancedForm';
 
 export default function DeployForm() {
   const [globalSettings, globalSettingsActions] = UseGlobalSettings();
@@ -29,7 +31,7 @@ export default function DeployForm() {
   const renderSwitch = (param: formLevel) => {
     switch (param) {
       case '1':
-        return <SimpleForm dispatch={dispatch} state={state} submit={submit} />;
+        return <SimpleForm dispatch={dispatch} state={state} />;
       case '2':
         return null;
       case '3':
@@ -45,27 +47,41 @@ export default function DeployForm() {
 
   return (
     <>
-      <Container>
-        <Row>
-          <Col>
-            <Button variant="outline-primary" onClick={changeForm('1')}>
-              I'm New!
-            </Button>
-          </Col>
-          <Col>
-            <Button variant="outline-primary" onClick={changeForm('2')}>
-              Help me out
-            </Button>
-          </Col>
-          <Col>
-            <Button variant="outline-primary" onClick={changeForm('3')}>
-              I know what I'm doing
-            </Button>
-          </Col>
-        </Row>
-      </Container>
+      <Form onSubmit={submit}>
+        <Container>
+          <Row className="justify-content-md-center">
+            <Col>
+              <Button variant="outline-primary" onClick={changeForm('1')}>
+                I'm New!
+              </Button>
+            </Col>
+            <Col>
+              <Button variant="outline-primary" onClick={changeForm('2')}>
+                Help me out
+              </Button>
+            </Col>
+            <Col>
+              <Button variant="outline-primary" onClick={changeForm('3')}>
+                I know what I'm doing
+              </Button>
+            </Col>
+          </Row>
+          <Row className="mt-3">
+            <Col>{renderSwitch(form)}</Col>
+          </Row>
+          {form && (
+            <Row className="mt-2">
+              <Col>
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Col>
+            </Row>
+          )}
+        </Container>
+      </Form>
 
-      {renderSwitch(form)}
+      <pre>{JSON.stringify(state, null, 1)}</pre>
     </>
   );
 }
