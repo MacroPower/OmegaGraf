@@ -4,8 +4,8 @@ import { Action } from '../SettingsReducer';
 import { Settings } from '../../settings/Settings';
 
 export default function AddSystem(props: {
-    dispatch: React.Dispatch<Action>;
-    state: any;
+  dispatch: React.Dispatch<Action>;
+  state: any;
 }) {
   const { dispatch, state } = props;
 
@@ -13,6 +13,8 @@ export default function AddSystem(props: {
   const vCenters = systemState.Telegraf.Config[0].Data.Inputs.VSphere;
 
   const [systems, setSystems] = useState<string[]>(vCenters[0].VCenters);
+
+  const [sim, setSim] = useState(false);
 
   return (
     <Card style={{ width: '24rem' }}>
@@ -24,10 +26,11 @@ export default function AddSystem(props: {
         <Card.Text>
           {systems.map((system: string, i: number) => {
             return (
-              <Form.Group controlId={"formBasicSystem" + i}>
+              <Form.Group controlId={'formBasicSystem' + i}>
                 <Form.Label>Address</Form.Label>
                 <Form.Control
                   type="text"
+                  disabled={sim}
                   placeholder="vcenter.domain.local"
                   onChange={(e: any) =>
                     dispatch({
@@ -42,6 +45,7 @@ export default function AddSystem(props: {
                 {i > 0 && (
                   <Button
                     variant="primary"
+                    disabled={sim}
                     onClick={() => {
                       dispatch({
                         type: 'Remove',
@@ -62,6 +66,7 @@ export default function AddSystem(props: {
                   systems[systems.length - 1] !== '' && (
                     <Button
                       variant="primary"
+                      disabled={sim}
                       onClick={() => {
                         dispatch({
                           type: 'Add',
@@ -81,15 +86,25 @@ export default function AddSystem(props: {
 
           <Form.Group controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
-            <Form.Control type="text" placeholder="Username" />
+            <Form.Control type="text" disabled={sim} placeholder="Username" />
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control
+              type="password"
+              disabled={sim}
+              placeholder="Password"
+            />
           </Form.Group>
           <Form.Group controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Check me out" />
+            <Form.Check
+              type="checkbox"
+              label="Use simulation"
+              onChange={() => {
+                setSim(!sim);
+              }}
+            />
           </Form.Group>
         </Card.Text>
       </Card.Body>
