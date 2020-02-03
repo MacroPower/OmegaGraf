@@ -33,9 +33,9 @@ export default function DeployForm() {
       case '1':
         return <SimpleForm dispatch={dispatch} state={state} />;
       case '2':
-        return null;
+        return <NormalForm dispatch={dispatch} state={state} />;
       case '3':
-        return null;
+        return <AdvancedForm dispatch={dispatch} state={state} />;
       default:
         return null;
     }
