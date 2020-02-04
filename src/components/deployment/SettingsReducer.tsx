@@ -81,7 +81,8 @@ const newVCenterPassword = (state: Settings, current: string): Settings => {
 export function SettingsReducer(state: Settings, action: Action) {
   switch (action.type) {
     case 'Add':
-      return newVCenters(state, [...action.current, '']);
+      const removedBlanks = action.current.filter((v: string) => v);
+      return newVCenters(state, [...removedBlanks, '']);
     case 'Remove':
       const ns = action.current;
       ns.splice(action.index + 1, 1);
