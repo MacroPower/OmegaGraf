@@ -16,6 +16,7 @@ import Four04 from "../views/404";
 import About from "../views/About";
 import Login from "../views/Login";
 import { UseGlobalSession } from "./Global";
+import Deploy from "../views/Deploy";
 
 export enum RouteIdentifiers {
   Login,
@@ -48,6 +49,14 @@ const Routes: Routed[] = [
     hidden: false,
     requiresAuth: true,
     component: About
+  },
+  {
+    path: "/deploy",
+    label: "Deploy",
+    exact: false,
+    hidden: false,
+    requiresAuth: true,
+    component: Deploy
   },
   {
     id: RouteIdentifiers.Login,
