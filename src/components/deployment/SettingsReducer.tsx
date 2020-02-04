@@ -1,13 +1,11 @@
-import { Settings, VSphere } from '../settings/Settings';
+import { Settings } from '../settings/Settings';
 
-export type Action = any;
+export type ActionTypes = 'vCenter' | 'BuildConfiguration.Image' | 'BuildConfiguration.Tag' | 'reset'
 
-/*{
-  type: 'Address' | 'Username' | 'Password' | 'Add' | 'Remove' | 'BuildConfiguration.Image' | 'BuildConfiguration.Tag' | 'reset';
-  index: number
-  current: string[];
+export type Action = {
+  type: ActionTypes;
   value: any;
-};*/
+};
 
 const newVCenters = (state: Settings, current: any): Settings => {
   return {
