@@ -18,7 +18,7 @@ export default function Login() {
     if (globalState.apiKey !== undefined) {
       redirect(true);
     }
-  });
+  }, [globalState.apiKey]);
 
   const submit = (e: any) => {
     e.preventDefault();
