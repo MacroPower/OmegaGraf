@@ -37,7 +37,6 @@ export default function AddSystem(props: {
         </Card.Subtitle>
         <Card.Text>
           {systems
-            .filter(v => v !== undefined)
             .map((system: string, i: number) => {
               return (
                 <Form.Group controlId={'formBasicSystem' + i}>
@@ -53,7 +52,7 @@ export default function AddSystem(props: {
                         disabled={sim}
                         placeholder="vcenter.domain.local"
                         onChange={(e: any) => {
-                          const ns = systems;
+                          const ns = [...systems];
                           ns[i] = e.target.value;
                           setSystems([...ns]);
                         }}
