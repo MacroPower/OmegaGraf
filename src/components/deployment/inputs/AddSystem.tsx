@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, Button, Form, Row, Col } from 'react-bootstrap';
 import { Action } from '../SettingsReducer';
 import { Settings } from '../../settings/Settings';
@@ -11,11 +11,20 @@ export default function AddSystem(props: {
 
   const vSphere = state.Telegraf.Config[0].Data.Inputs.VSphere[0];
 
-  const vCenters = vSphere.VCenters || [''];
-  const username = vSphere.Username || '';
-  const password = vSphere.Password || '';
+  const [systems, setSystems] = useState<string[]>(vSphere.VCenters || ['']);
+  const [username, setUsername] = useState<string>(vSphere.Username || '');
+  const [password, setPassword] = useState<string>(vSphere.Password || '');
 
-  const [systems, setSystems] = useState<string[]>(vCenters);
+  useEffect(() => {
+    dispatch({
+      type: 'vCenter',
+      value: {
+        systems: systems,
+        username: username,
+        password: password
+      }
+    });
+  }, [dispatch, systems, username, password]);
 
   const [sim, setSim] = useState(false);
 
@@ -43,14 +52,11 @@ export default function AddSystem(props: {
                         type="text"
                         disabled={sim}
                         placeholder="vcenter.domain.local"
-                        onChange={(e: any) =>
-                          dispatch({
-                            type: 'Address',
-                            index: i,
-                            current: systems,
-                            value: e.target.value
-                          })
-                        }
+                        onChange={(e: any) => {
+                          const ns = systems;
+                          ns[i] = e.target.value;
+                          setSystems([...ns]);
+                        }}
                         value={system}
                       />
                     </Col>
@@ -61,13 +67,6 @@ export default function AddSystem(props: {
                           variant="primary"
                           disabled={sim}
                           onClick={() => {
-                            dispatch({
-                              type: 'Remove',
-                              index: i,
-                              current: systems,
-                              value: ''
-                            });
-
                             const ns = systems;
                             ns.splice(i, 1);
                             setSystems([...ns]);
@@ -85,12 +84,6 @@ export default function AddSystem(props: {
                         variant="primary"
                         disabled={sim}
                         onClick={() => {
-                          dispatch({
-                            type: 'Add',
-                            index: i,
-                            current: systems,
-                            value: ''
-                          });
                           const removedBlanks = systems.filter(
                             (v: string) => v
                           );
@@ -110,12 +103,10 @@ export default function AddSystem(props: {
               type="text"
               disabled={sim}
               placeholder="Username"
-              onChange={(e: any) =>
-                dispatch({
-                  type: 'Username',
-                  value: e.target.value
-                })
-              }
+              onChange={(e: any) => {
+                setUsername(e.target.value);
+              }}
+              value={username}
             />
           </Form.Group>
 
@@ -125,12 +116,10 @@ export default function AddSystem(props: {
               type="password"
               disabled={sim}
               placeholder="Password"
-              onChange={(e: any) =>
-                dispatch({
-                  type: 'Password',
-                  value: e.target.value
-                })
-              }
+              onChange={(e: any) => {
+                setPassword(e.target.value);
+              }}
+              value={password}
             />
           </Form.Group>
           <Form.Group controlId="formBasicCheckbox">
