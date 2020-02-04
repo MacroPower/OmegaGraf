@@ -1,15 +1,14 @@
 import { Settings, VSphere } from '../settings/Settings';
 
-export type Action = any;
+export type Action = any
 
-/*
-{
+/*{
   type: 'Address' | 'Username' | 'Password' | 'Add' | 'Remove' | 'BuildConfiguration.Image' | 'BuildConfiguration.Tag' | 'reset';
-  index: number | undefined
-  current: string[] | undefined;
+  index: number
+  current: string[];
   value: any;
-};
-*/
+};*/
+
 const newVCenters = (state: Settings, current: VSphere[]): Settings => {
   return {
     ...state,
@@ -33,12 +32,12 @@ const newVCenters = (state: Settings, current: VSphere[]): Settings => {
 const newVCenterEndpoints = (state: Settings, current: string[]): Settings => {
   const inputs = state.Telegraf.Config[0].Data.Inputs.VSphere;
 
-  const vs1 = {
+  const vs1: VSphere = {
     ...inputs[0],
     VCenters: current
   };
 
-  const vs2 = {
+  const vs2: VSphere = {
     ...inputs[1],
     VCenters: current
   };
@@ -49,12 +48,12 @@ const newVCenterEndpoints = (state: Settings, current: string[]): Settings => {
 const newVCenterUser = (state: Settings, current: string): Settings => {
   const inputs = state.Telegraf.Config[0].Data.Inputs.VSphere;
 
-  const vs1 = {
+  const vs1: VSphere = {
     ...inputs[0],
     Username: current
   };
 
-  const vs2 = {
+  const vs2: VSphere = {
     ...inputs[1],
     Username: current
   };
@@ -65,12 +64,12 @@ const newVCenterUser = (state: Settings, current: string): Settings => {
 const newVCenterPassword = (state: Settings, current: string): Settings => {
   const inputs = state.Telegraf.Config[0].Data.Inputs.VSphere;
 
-  const vs1 = {
+  const vs1: VSphere = {
     ...inputs[0],
     Password: current
   };
 
-  const vs2 = {
+  const vs2: VSphere = {
     ...inputs[1],
     Password: current
   };
@@ -78,18 +77,19 @@ const newVCenterPassword = (state: Settings, current: string): Settings => {
   return newVCenters(state, [vs1, vs2]);
 };
 
-export function SettingsReducer(state: Settings, action: Action) {
+export function SettingsReducer(state: Settings, action: Action): Settings {
   switch (action.type) {
     case 'Add':
       const removedBlanks = action.current.filter((v: string) => v);
-      return newVCenters(state, [...removedBlanks, '']);
+      return newVCenterEndpoints(state, [...removedBlanks, '']);
     case 'Remove':
       const ns = action.current;
       ns.splice(action.index + 1, 1);
-      return newVCenters(state, [...ns]);
+      return newVCenterEndpoints(state, [...ns]);
     case 'Address':
-      action.current[action.index] = action.value;
-      return newVCenterEndpoints(state, [...action.current]);
+      let newAddr: string[] = action.current
+      newAddr[action.index] = action.value;
+      return newVCenterEndpoints(state, [...newAddr]);
     case 'Username':
       const username: string = action.value;
       return newVCenterUser(state, username);
