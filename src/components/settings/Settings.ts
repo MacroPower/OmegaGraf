@@ -87,6 +87,11 @@ type BuildConfiguration = {
   Parameters: string[];
 };
 
+export type Sim = {
+  Active: boolean;
+  Quantity: number;
+};
+
 export type VCSim = {
   VCSim: {
     BuildConfiguration: BuildConfiguration;

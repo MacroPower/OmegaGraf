@@ -42,6 +42,27 @@ export const UseGlobalSettings = globalHook<Settings, GlobalSettingsActions>(
 
 //
 
+export type Sim = {
+  Active: boolean;
+  Quantity: number;
+};
+
+type GlobalSimActions = {
+  setSim: (value: Sim) => void;
+};
+
+const setSim = (store: Store<Sim, GlobalSimActions>, value: Sim) => {
+  store.setState({ ...store.state, ...value });
+};
+
+export const UseGlobalSim = globalHook<Sim, GlobalSimActions>(
+  React,
+  { Active: false, Quantity: 0 },
+  { setSim: setSim }
+);
+
+//
+
 export function getDefaults(session: Session): Promise<Settings> {
   return fetch(session.endpoint + '/example', {
     method: 'GET',

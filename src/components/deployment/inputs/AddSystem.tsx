@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Card, Button, Form, Row, Col } from 'react-bootstrap';
 import { Action } from '../SettingsReducer';
 import { Settings } from '../../settings/Settings';
+import { UseGlobalSim } from '../../Global';
 
 export default function AddSystem(props: {
   dispatch: React.Dispatch<Action>;
   state: Settings;
 }) {
   const { dispatch, state } = props;
+
+  const [globalSim, globalSimActions] = UseGlobalSim();
 
   const vSphere = state.Telegraf.Config[0].Data.Inputs.VSphere[0];
 
@@ -26,7 +29,7 @@ export default function AddSystem(props: {
     });
   }, [dispatch, systems, username, password]);
 
-  const [sim, setSim] = useState(false);
+  const [sim, setSim] = useState(globalSim.Active);
 
   return (
     <Card style={{ width: '24rem' }}>
@@ -126,8 +129,15 @@ export default function AddSystem(props: {
               type="checkbox"
               label="Use simulation"
               onChange={() => {
-                setSim(!sim);
+                const active = !sim;
+
+                setSim(active);
+                globalSimActions.setSim({
+                  Active: active,
+                  Quantity: 1
+                });
               }}
+              checked={sim}
             />
           </Form.Group>
         </Card.Text>
