@@ -156,3 +156,12 @@ body {
   background: rgb(34,193,195);
   background: linear-gradient(50deg, rgba(34,193,195,1) 0%, rgba(41,209,159,1) 100%);
 }
+
+.rc-steps-item-active > .rc-steps-item-container > .rc-steps-item-content {
+  margin-top: 2px;
+  margin-left: 70px;
+}
+
+.rc-steps-item-finish > .rc-steps-item-container > .rc-steps-item-content {
+  margin-top: -1px;
+}
