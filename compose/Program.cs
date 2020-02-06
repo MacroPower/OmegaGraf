@@ -9,6 +9,8 @@ namespace OmegaGraf.Compose
         {
             Console.WriteLine(Figgle.FiggleFonts.Standard.Render("OmegaGraf"));
 
+            Console.WriteLine("Your secure code: " + Guid.NewGuid().ToString());
+
             var host = new WebHostBuilder()
                        .UseKestrel()
                        .UseStartup<Startup>()
