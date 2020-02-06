@@ -68,6 +68,7 @@ namespace ShopAutomation.API
                 x =>
                 {
                     x.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+                    x.Response.Headers.Add("Access-Control-Allow-Headers", "*");
                     x.Response.Headers.Add("Access-Control-Allow-Methods", "POST,GET,OPTIONS");
                 }
             );
