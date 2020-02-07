@@ -26,9 +26,7 @@ export default function App() {
     if (session !== null) {
       // TODO: VALIDATE API KEY HERE
       globalActions.setSession(session);
-      getDefaults(session).then(data =>
-        globalSettingsActions.setSettings(data)
-      );
+      getDefaults(session, globalSettingsActions);
     }
   }, [globalActions, globalSettingsActions]);
 

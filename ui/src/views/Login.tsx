@@ -36,7 +36,7 @@ export default function Login() {
     setSessionCookie(session);
     globalActions.setSession(session);
 
-    getDefaults(session).then(data => globalSettingsActions.setSettings(data));
+    getDefaults(session, globalSettingsActions);
 
     redirect(true);
   };

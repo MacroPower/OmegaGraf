@@ -63,14 +63,21 @@ export const UseGlobalSim = globalHook<Sim, GlobalSimActions>(
 
 //
 
-export function getDefaults(session: Session): Promise<Settings> {
-  return fetch(session.endpoint + '/example', {
+export function getDefaults(
+  session: Session,
+  globalSettingsActions: GlobalSettingsActions
+): void {
+  const url = 'https://' + session.endpoint + '/example';
+  console.log('Get settings from ' + url);
+
+  fetch(url, {
     method: 'GET',
     headers: {
       Accept: 'application/json'
     }
   })
     .then(response => response.json())
+    .then(data => globalSettingsActions.setSettings(data))
     .catch(() => {
       setSessionCookie(defaultSession);
     });
