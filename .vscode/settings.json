@@ -8,6 +8,8 @@
         "omnisharp",
         "owin",
         "tsdb",
-        "vcenter"
+        "vcenter",
+        "scroller",
+        "unmount"
     ]
 }
