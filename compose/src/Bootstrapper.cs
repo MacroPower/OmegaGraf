@@ -21,12 +21,17 @@ namespace ShopAutomation.API
 
         protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("/", "ui"));
             base.ConfigureConventions(nancyConventions);
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("ui"));
         }
 
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
+            this.Conventions.ViewLocationConventions.Add((viewName, model, context) =>
+            {
+                return string.Concat("ui/", viewName);
+            });
+
             SwaggerMetadataProvider.SetInfo(
                 title: "OmegaGraf",
                 version: "alpha",

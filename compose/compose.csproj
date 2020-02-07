@@ -29,15 +29,15 @@
     <PackageReference Include="Flurl" Version="2.8.2" />
     <PackageReference Include="Flurl.Http" Version="2.4.2" />
   </ItemGroup>
-  <Target Name="MakeMyDir" AfterTargets="Build">
-    <MakeDir Directories="$(OutDir)ui" />
-  </Target>
   <ItemGroup>
-    <None Remove="views\swagger.html"/>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="views\swagger.html">
+    <Content Include="views\swagger.html" CopyToPublishDirectory="PreserveNewest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+    <Content Include="..\ui\build\**\*.*" CopyToPublishDirectory="PreserveNewest">
+      <Link>ui\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 </Project>

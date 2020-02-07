@@ -6,7 +6,7 @@ namespace OmegaGraf.Compose.MetaData
     {
         public HomeModule()
         {
-            Get("/", _ =>
+            Get("/ready", _ =>
             {
                 return HttpStatusCode.OK;
             });
@@ -15,6 +15,16 @@ namespace OmegaGraf.Compose.MetaData
             {
                 var url = $"{Request.Url.BasePath}/api-docs";
                 return View["swagger", url];
+            });
+
+            Get("/", _ =>
+            {
+                return View["Index"];
+            });
+
+            Get("/(.*)", _ =>
+            {
+                return View["Index"];
             });
         }
     }
