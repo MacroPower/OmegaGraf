@@ -1,0 +1,207 @@
+$ghost-color: orange;
+$ghosts: blinky, pinky, clyde, inky ;
+$colors: red, pink, orange, cyan ;
+$ghosts-colors: zip($ghosts, $colors);
+$duration: 6s;
+$scale: 2;
+
+@keyframes eyes {
+  0% {
+    top: (14px / $scale);
+  }
+  10% {
+    top: (16px / $scale);
+  }
+  50% {
+    top: (14px / $scale);
+  }
+  70% {
+    top: (16px / $scale);
+  }
+  100% {
+    top: (14px / $scale);
+  }
+}
+@keyframes eyesballs {
+  0% {
+    top: 0;
+    left: (4px / $scale);
+  }
+  10% {
+    top: (8px / $scale);
+    left: 0;
+  }
+  20% {
+    left: (4px / $scale);
+    top: (12px / $scale);
+  }
+  40% {
+    top: (8px / $scale);
+    left: 0;
+  }
+  50% {
+    top: 0;
+    left: (4px / $scale);
+  }
+  70% {
+    top: (8px / $scale);
+    left: (8px / $scale);
+  }
+  90% {
+    left: (4px / $scale);
+    top: (12px / $scale);
+  }
+  100% {
+    top: 0;
+    left: (4px / $scale);
+  }
+}
+
+@keyframes feet {
+  0% {
+    box-shadow:
+        (4px / $scale) 0 $ghost-color,
+        (8px / $scale) 0 $ghost-color,
+        (12px / $scale) 0 $ghost-color,
+        
+        (4px / $scale) (4px / $scale) $ghost-color,
+        (8px / $scale) (4px / $scale) $ghost-color,
+        
+        (20px / $scale) 0 $ghost-color,
+        (24px / $scale) 0 $ghost-color,
+        (28px / $scale) 0 $ghost-color,
+        (32px / $scale) 0 $ghost-color,
+    
+        (24px / $scale) (4px / $scale) $ghost-color,
+        (28px / $scale) (4px / $scale) $ghost-color,
+      
+        (40px / $scale) 0 $ghost-color,
+        (44px / $scale) 0 $ghost-color,
+        (48px / $scale) 0 $ghost-color,
+        (52px / $scale) 0 $ghost-color,
+    
+        (44px / $scale) (4px / $scale) $ghost-color,
+        (48px / $scale) (4px / $scale) $ghost-color
+      ;
+  }
+  50% { 
+    box-shadow:
+        0 (4px / $scale) $ghost-color,
+        (4px / $scale) 0 $ghost-color,
+        
+        (12px / $scale) 0 $ghost-color,
+        (16px / $scale) 0 $ghost-color,
+        (20px / $scale) 0 $ghost-color,
+        (16px / $scale) (4px / $scale) $ghost-color,
+        (20px / $scale) (4px / $scale) $ghost-color,
+      
+        (32px / $scale) 0 $ghost-color,
+        (36px / $scale) 0 $ghost-color,
+        (40px / $scale) 0 $ghost-color,
+        (32px / $scale) (4px / $scale) $ghost-color,
+        (36px / $scale) (4px / $scale) $ghost-color,
+      
+        (48px / $scale) 0 $ghost-color,
+        (52px / $scale) 0 $ghost-color,
+        (52px / $scale) (4px / $scale) $ghost-color
+      ;
+  }
+  100% {
+    box-shadow:
+        (4px / $scale) 0 $ghost-color,
+        (8px / $scale) 0 $ghost-color,
+        (12px / $scale) 0 $ghost-color,
+        
+        (4px / $scale) (4px / $scale) $ghost-color,
+        (8px / $scale) (4px / $scale) $ghost-color,
+        
+        (20px / $scale) 0 $ghost-color,
+        (24px / $scale) 0 $ghost-color,
+        (28px / $scale) 0 $ghost-color,
+        (32px / $scale) 0 $ghost-color,
+    
+        (24px / $scale) (4px / $scale) $ghost-color,
+        (28px / $scale) (4px / $scale) $ghost-color,
+      
+        (40px / $scale) 0 $ghost-color,
+        (44px / $scale) 0 $ghost-color,
+        (48px / $scale) 0 $ghost-color,
+        (52px / $scale) 0 $ghost-color,
+    
+        (44px / $scale) (4px / $scale) $ghost-color,
+        (48px / $scale) (4px / $scale) $ghost-color
+      ;
+  }
+}
+
+.ghost {
+  position: absolute;
+    top: 0;
+    left: 0;
+  width: (56px / $scale);
+  height: (56px / $scale);
+  
+  animation-name: move;
+  animation-duration: $duration;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+} 
+.ghost__feet {
+  animation-name: feet;
+  animation-duration: .4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: steps(1);
+  animation-iteration-count: infinite;
+    
+  background: $ghost-color;
+  content: '';
+  display: block;
+  position: absolute;
+    top: (48px / $scale);
+    left: 0;
+  width: (4px / $scale);
+  height: (4px / $scale);
+  z-index: 1;
+}
+.ghost__body {
+  fill: $ghost-color;
+}
+%ghost__eye {
+  fill: #fff;
+  position: absolute;
+    top: (16px / $scale);
+  width: (16px / $scale);
+  height: (20px / $scale);
+  
+  animation-name: eyes;
+  animation-duration: $duration;
+  animation-fill-mode: forwards;
+  animation-timing-function: steps(1);
+  animation-iteration-count: infinite;
+  
+    &:after {
+    background: blue;
+    content: '';
+    display: block;
+    position: absolute;
+      top: (8px / $scale);
+      left: 0;
+    width: (8px / $scale);
+    height: (8px / $scale);
+    
+    animation-name: eyesballs;
+    animation-duration: $duration;
+    animation-fill-mode: forwards;
+    animation-timing-function: steps(1);
+    animation-iteration-count: infinite;
+  }
+}
+.ghost__eye--left {
+  @extend %ghost__eye;
+    left: (8px / $scale);
+}
+.ghost__eye--right {
+  @extend %ghost__eye;
+    right: (8px / $scale);
+}

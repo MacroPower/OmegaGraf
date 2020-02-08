@@ -165,3 +165,8 @@ body {
 .rc-steps-item-finish > .rc-steps-item-container > .rc-steps-item-content {
   margin-top: -1px;
 }
+
+.rc-steps-item-error > .rc-steps-item-container > .rc-steps-item-content {
+  margin-top: 2px;
+  margin-left: 40px;
+}

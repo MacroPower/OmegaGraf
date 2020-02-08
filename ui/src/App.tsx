@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import './styles/App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { faReact } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

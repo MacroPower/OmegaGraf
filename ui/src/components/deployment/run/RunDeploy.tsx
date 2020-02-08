@@ -4,6 +4,7 @@ import Steps from 'rc-steps';
 import { PacmanLoader } from 'react-spinners';
 import { UseGlobalSettings, UseGlobalSession } from '../../Global';
 import DeployRequest from './DeployRequest';
+import PacmanGhost from '../../Ghost';
 
 type stepStatus = 'working' | 'error';
 
@@ -53,7 +54,7 @@ export default function RunDeploy() {
 
     DeployRequest(endpoint, 'telegraf', state.Telegraf.toString())
       .then(() => addStep('Deploy Telegraf', 'Asking OmegaGraf to create the container'))
-      .catch(() => setLastStep('Deploy Telegraf', 'Error Exception', 'error'));
+      .catch(() => setLastStep('Deploy Telegraf', 'Error creating container, please check server logs', 'error'));
   };
 
   return (
@@ -67,9 +68,11 @@ export default function RunDeploy() {
         <Steps current={steps.length - 1} direction="vertical" size="large">
           {steps.map((step, i) => {
             const isError = step.status === 'error';
-            const iconColor = isError ? '#f50' : '#007bff';
-            const icon = (
-              <PacmanLoader size={15} color={iconColor} loading={true} />
+            
+            const icon = !isError ? (
+              <PacmanLoader size={15} color={'#007bff'} loading={true} />
+            ) : (
+              <PacmanGhost />
             );
             return (
               <Steps.Step
