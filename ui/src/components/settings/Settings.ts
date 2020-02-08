@@ -92,13 +92,10 @@ export type Sim = {
   Quantity: number;
 };
 
-export type VCSim = {
+export type Settings = {
   VCSim: {
     BuildConfiguration: BuildConfiguration;
   };
-}
-
-export type Settings = {
   Telegraf: {
     BuildConfiguration: BuildConfiguration;
     Config: [

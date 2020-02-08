@@ -13,6 +13,7 @@ const defaultBuildConfiguration = {
 
 
 export const defaultSettings: Settings = {
+  VCSim: defaultBuildConfiguration,
   Grafana: defaultBuildConfiguration,
   Telegraf: {
     ...defaultBuildConfiguration,
