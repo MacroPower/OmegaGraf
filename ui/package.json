@@ -31,6 +31,7 @@
     "react-promise-tracker": "^2.0.5",
     "react-router-dom": "^5.1.2",
     "react-spinners": "^0.8.0",
+    "thenfail": "^0.4.13",
     "use-global-hook": "^0.1.12"
   },
   "devDependencies": {

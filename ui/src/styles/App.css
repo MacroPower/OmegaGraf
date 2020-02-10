@@ -153,8 +153,12 @@ body {
 }
 
 .header-gradient {
-  background: rgb(34,193,195);
-  background: linear-gradient(50deg, rgba(34,193,195,1) 0%, rgba(41,209,159,1) 100%);
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    50deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(41, 209, 159, 1) 100%
+  );
 }
 
 .rc-steps-item-active > .rc-steps-item-container > .rc-steps-item-content {
@@ -169,4 +173,22 @@ body {
 .rc-steps-item-error > .rc-steps-item-container > .rc-steps-item-content {
   margin-top: 2px;
   margin-left: 40px;
+}
+
+.rc-steps-item-done > .rc-steps-item-container > .rc-steps-item-content {
+  margin-top: -1px;
+  margin-left: 35px;
+}
+
+.rc-steps-item-done > .rc-steps-item-container > .rc-steps-item-icon {
+  background-color: #fff;
+  border: 1px solid #108ee9;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  border-radius: 26px;
+  font-size: 14px;
+  margin-right: 8px;
+  transition: background-color 0.3s, border-color 0.3s;
 }

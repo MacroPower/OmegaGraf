@@ -1,16 +1,29 @@
 import { UseGlobalSession } from '../../Global';
 
-export default function DeployRequest(endpoint: string, location: string, body: string) {
+export default async function DeployRequest(
+  endpoint: string,
+  location: string,
+  body: any
+) {
   const url = endpoint + '/' + location;
 
-  return fetch(url, {
-    method: 'POST',
-    body: body
-  })
-    .then(x => x.json())
-    .then(x => console.log(x))
-    .catch(x => {
-      console.error(x);
-      throw x;
+  try {
+    const x = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(r => {
+        if (r.ok) {
+            return r.json()
+        }
+
+        throw new Error('API returned not OK')
     });
+    return console.log(x);
+  } catch (e) {
+    console.error(e);
+    throw e;
+  }
 }
