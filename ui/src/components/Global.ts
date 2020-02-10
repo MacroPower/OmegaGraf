@@ -67,7 +67,7 @@ export function getDefaults(
   session: Session,
   globalSettingsActions: GlobalSettingsActions
 ): void {
-  const url = 'https://' + session.endpoint + '/example';
+  const url = session.endpoint + '/example';
   console.log('Get settings from ' + url);
 
   fetch(url, {

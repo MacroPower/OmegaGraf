@@ -24,7 +24,7 @@ export default function Login() {
     e.preventDefault();
 
     //eslint-disable-next-line
-    const host: string = location.host;
+    const host: string = location.protocol + '//' + location.host;
 
     const session: Session = {
       endpoint: host,
