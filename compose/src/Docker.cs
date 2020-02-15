@@ -67,6 +67,8 @@ namespace OmegaGraf.Compose
             string tag = "latest",
             List<string> cmd = null
         ){
+            await CreateNetwork();
+            
             foreach (var b in binds)
             {
                 System.IO.Directory.CreateDirectory(b.Key);
