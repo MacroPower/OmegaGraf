@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import Steps from 'rc-steps';
 import { PacmanLoader } from 'react-spinners';
-import { UseGlobalSettings, UseGlobalSession } from '../../Global';
+import {
+  UseGlobalSettings,
+  UseGlobalSession,
+  UseGlobalSim
+} from '../../Global';
 import DeployRequest from './DeployRequest';
 import PacmanGhost from '../../Ghost';
 import { Settings } from '../../settings/Settings';
@@ -19,6 +23,7 @@ type step = {
 export default function RunDeploy() {
   const [globalState] = UseGlobalSession();
   const [globalSettings] = UseGlobalSettings();
+  const [globalSim] = UseGlobalSim();
 
   const [steps, setSteps] = useState<step>([]);
 
@@ -73,7 +78,26 @@ export default function RunDeploy() {
     try {
       const stepText = 'Asking OmegaGraf to create the container...';
       addStep('Deploy Telegraf', stepText);
-      await DeployRequest(endpoint, 'telegraf', state.Telegraf);
+
+      const conf = { ...state.Telegraf };
+
+      if (globalSim.Active) {
+        conf.Config[0].Data.Inputs.VSphere.forEach(x => {
+          let vcs: string[] = [];
+
+          for (let i = 0; i < globalSim.Quantity; i++) {
+            const iq = i + 1;
+            vcs.push('https://og-vcsim' + iq.toString() + ':8989/sdk');
+          }
+
+          x.VCenters = vcs;
+
+          x.Username = 'user';
+          x.Password = 'pass';
+        });
+      }
+
+      await DeployRequest(endpoint, 'telegraf', conf);
       setLastStep('Deploy Telegraf', stepText + 'Done!', 'finish');
     } catch (e) {
       setLastStep(
@@ -118,18 +142,30 @@ export default function RunDeploy() {
   };
 
   const deploySim = async (endpoint: string, state: Settings) => {
-    try {
-      const stepText = 'Asking OmegaGraf to create the container...';
-      addStep('Deploy VCSim', stepText);
-      await DeployRequest(endpoint, 'telegraf/sim', state.VCSim);
-      setLastStep('Deploy VCSim', stepText + 'Done!', 'finish');
-    } catch (e) {
-      setLastStep(
-        'Deploy VCSim',
-        'Error creating container, please check server logs',
-        'error'
-      );
-      const x = Promise.break;
+    if (globalSim.Active) {
+      try {
+        const stepText = 'Asking OmegaGraf to create the container...';
+
+        for (let i = 0; i < globalSim.Quantity; i++) {
+          const iq = i + 1;
+          const stepTitle =
+            globalSim.Quantity > 1 ? 'Deploy VCSim #' + iq : 'Deploy VCSim';
+          addStep(stepTitle, stepText);
+
+          let conf = { ...state.VCSim };
+          conf.BuildConfiguration.Name = 'vcsim' + iq;
+
+          await DeployRequest(endpoint, 'telegraf/sim', conf);
+          setLastStep(stepTitle, stepText + 'Done!', 'finish');
+        }
+      } catch (e) {
+        setLastStep(
+          'Deploy VCSim',
+          'Error creating container, please check server logs',
+          'error'
+        );
+        const x = Promise.break;
+      }
     }
   };
 

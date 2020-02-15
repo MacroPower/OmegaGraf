@@ -39,65 +39,59 @@ export default function AddSystem(props: {
           Enter your vCenter details
         </Card.Subtitle>
         <Card.Text>
-          {systems
-            .map((system: string, i: number) => {
-              return (
-                <Form.Group controlId={'formBasicSystem' + i}>
-                  <Form.Label>Address</Form.Label>
-                  <Row>
-                    <Col
-                      md={i === 0 ? 12 : 10}
-                      className={i !== 0 ? 'pr-0' : ''}
-                    >
-                      <Form.Control
-                        className="inline"
-                        type="text"
-                        disabled={sim}
-                        placeholder="vcenter.domain.local"
-                        onChange={(e: any) => {
-                          const ns = [...systems];
-                          ns[i] = e.target.value;
-                          setSystems([...ns]);
-                        }}
-                        value={system}
-                      />
-                    </Col>
-                    {i > 0 && (
-                      <Col md={2}>
-                        <Button
-                          className="inline"
-                          variant="primary"
-                          disabled={sim}
-                          onClick={() => {
-                            const ns = systems;
-                            ns.splice(i, 1);
-                            setSystems([...ns]);
-                          }}
-                        >
-                          -
-                        </Button>
-                      </Col>
-                    )}
-                  </Row>
-                  {i === systems.length - 1 &&
-                    systems[systems.length - 1] !== '' && (
+          {systems.map((system: string, i: number) => {
+            return (
+              <Form.Group controlId={'formBasicSystem' + i}>
+                <Form.Label>Address</Form.Label>
+                <Row>
+                  <Col md={i === 0 ? 12 : 10} className={i !== 0 ? 'pr-0' : ''}>
+                    <Form.Control
+                      className="inline"
+                      type="text"
+                      disabled={sim}
+                      placeholder="vcenter.domain.local"
+                      onChange={(e: any) => {
+                        const ns = [...systems];
+                        ns[i] = e.target.value;
+                        setSystems([...ns]);
+                      }}
+                      value={system}
+                    />
+                  </Col>
+                  {i > 0 && (
+                    <Col md={2}>
                       <Button
-                        className="mt-3"
+                        className="inline"
                         variant="primary"
                         disabled={sim}
                         onClick={() => {
-                          const removedBlanks = systems.filter(
-                            (v: string) => v
-                          );
-                          setSystems([...removedBlanks, '']);
+                          const ns = systems;
+                          ns.splice(i, 1);
+                          setSystems([...ns]);
                         }}
                       >
-                        +
+                        -
                       </Button>
-                    )}
-                </Form.Group>
-              );
-            })}
+                    </Col>
+                  )}
+                </Row>
+                {i === systems.length - 1 &&
+                  systems[systems.length - 1] !== '' && (
+                    <Button
+                      className="mt-3"
+                      variant="primary"
+                      disabled={sim}
+                      onClick={() => {
+                        const removedBlanks = systems.filter((v: string) => v);
+                        setSystems([...removedBlanks, '']);
+                      }}
+                    >
+                      +
+                    </Button>
+                  )}
+              </Form.Group>
+            );
+          })}
 
           <Form.Group controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
@@ -139,6 +133,19 @@ export default function AddSystem(props: {
               }}
               checked={sim}
             />
+            {sim && (
+              <Form.Control
+                type="text"
+                placeholder="Username"
+                onChange={(e: any) => {
+                  globalSimActions.setSim({
+                    Active: true,
+                    Quantity: e.target.value
+                  });
+                }}
+                value={globalSim.Quantity.toString()}
+              />
+            )}
           </Form.Group>
         </Card.Text>
       </Card.Body>
