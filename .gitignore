@@ -266,3 +266,5 @@ tools/*
 
 # Opencover
 **/coverage.opencover.xml
+
+build/**

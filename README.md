@@ -28,5 +28,5 @@ OmegaGraf is an entirely open-source and containerized solution, configured and 
 
 ```
 run ./build.ps1
---> compose/bin/Release/netcoreapp3.0/{env}-x64/publish/
+--> build/{env}/
 ```
