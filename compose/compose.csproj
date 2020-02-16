@@ -28,8 +28,13 @@
     <PackageReference Include="Swagger.ObjectModel" Version="2.2.56-alpha" />
     <PackageReference Include="Flurl" Version="2.8.2" />
     <PackageReference Include="Flurl.Http" Version="2.4.2" />
+    <PackageReference Include="NLog" Version="4.6.8"/>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="nlog.config" CopyToPublishDirectory="PreserveNewest">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
     <Content Include="views\swagger.html" CopyToPublishDirectory="PreserveNewest">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
