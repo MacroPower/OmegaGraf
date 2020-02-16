@@ -13,7 +13,7 @@ npm run build
 Set-Location ..
 dotnet build compose/compose.csproj /property:GenerateFullPaths=true /consoleloggerparameters:NoSummary
 
-$v = 'v0.3'
+$v = 'v' + (Get-Content 'VERSION')
 
 $os = 'win'
 $osr = "$os-x64"
