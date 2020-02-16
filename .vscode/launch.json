@@ -9,7 +9,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/compose/bin/Debug/netcoreapp3.0/compose.dll",
+      "program": "${workspaceFolder}/compose/bin/Debug/netcoreapp3.1/compose.dll",
       "args": [],
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",

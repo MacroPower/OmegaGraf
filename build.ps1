@@ -23,7 +23,7 @@ $path = 'build/win'
 if (!(Test-Path $path)) {
     New-Item $path -ItemType Directory
 }
-Copy-Item -Path 'compose/bin/Release/netcoreapp3.0/win-x64/publish/*' -Destination "build/win/" -Recurse
+Copy-Item -Path 'compose/bin/Release/netcoreapp3.1/win-x64/publish/*' -Destination "build/win/" -Recurse
 Move-Item -Path 'build/win/compose.exe' -Destination "build/win/OmegaGraf-$v.exe"
 
 $os = 'linux'
@@ -34,5 +34,5 @@ $path = 'build/lnx'
 if (!(Test-Path $path)) {
     New-Item $path -ItemType Directory
 }
-Copy-Item -Path 'compose/bin/Release/netcoreapp3.0/linux-x64/publish/*' -Destination "build/lnx/" -Recurse
+Copy-Item -Path 'compose/bin/Release/netcoreapp3.1/linux-x64/publish/*' -Destination "build/lnx/" -Recurse
 Move-Item -Path 'build/lnx/compose' -Destination "build/lnx/OmegaGraf-$v.sh"
