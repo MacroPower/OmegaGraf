@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using NLog;
 using OmegaGraf.Compose.Config.Grafana;
 using OmegaGraf.Compose.Config.Prometheus;
 using OmegaGraf.Compose.Config.Telegraf;
@@ -10,6 +11,8 @@ namespace OmegaGraf.Compose.MetaData
 {
     public static class Example
     {
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
+        
         public static string Mode
         {
             get
@@ -24,7 +27,9 @@ namespace OmegaGraf.Compose.MetaData
                     return "";
                 }
 
-                throw new NotSupportedException();
+                var e = new NotSupportedException();
+                logger.Error(e, "OS Platform is not supported");
+                throw e;
             }
         }
 
