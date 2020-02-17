@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using OmegaGraf.Compose.Config.Grafana;
 using OmegaGraf.Compose.Config.Prometheus;
@@ -32,17 +33,15 @@ namespace OmegaGraf.Compose.MetaData
         {
             get
             {
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                try
                 {
-                    return "/docker/";
+                    return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
                 }
-
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                catch (Exception e)
                 {
-                    return "C:/docker/";
+                    logger.Error(e, "Could not determine the current execution path");
+                    throw;
                 }
-
-                throw new NotSupportedException();
             }
         }
 
