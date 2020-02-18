@@ -64,7 +64,7 @@ namespace OmegaGraf.Compose.MetaData
                 BuildConfiguration = new BuildConfiguration()
                 {
                     Image = "prom/prometheus",
-                    Tag   = "latest",
+                    Tag   = "v2.16.0",
                     Ports = new List<int>(){ 9090 },
                     Binds = new Dictionary<string, string>()
                     {
@@ -138,7 +138,7 @@ namespace OmegaGraf.Compose.MetaData
                 BuildConfiguration = new BuildConfiguration()
                 {
                     Image = "telegraf",
-                    Tag   = "latest",
+                    Tag   = "1.13.2",
                     Ports = new List<int>(){ 8899 },
                     Binds = new Dictionary<string, string>()
                     {
@@ -231,7 +231,7 @@ namespace OmegaGraf.Compose.MetaData
                 BuildConfiguration = new BuildConfiguration()
                 {
                     Image = "grafana/grafana",
-                    Tag   = "6.4.3",
+                    Tag   = "6.6.1",
                     Ports = new List<int>(){ 3000 },
                     Binds = new Dictionary<string, string>()
                     {
