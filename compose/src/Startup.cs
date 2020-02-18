@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Flurl.Http;
 using Flurl.Http.Configuration;
 using Microsoft.AspNetCore.Builder;
@@ -24,8 +25,8 @@ namespace OmegaGraf.Compose
         [ArgShortcut("-p"), ArgShortcut("--path"), ArgDescription("Absolute path to store container data. Defaults to current directory."), ArgPosition(1)]
         public string Path { get; set; }
 
-        [ArgShortcut("--host"), ArgDescription("The host to bind to this application. Ports are chosen automatically."), ArgPosition(2), ArgDefaultValue("0.0.0.0")]
-        public string Host { get; set; }
+        [ArgShortcut("--host"), ArgDescription("The listen address for this application."), ArgPosition(2), ArgDefaultValue("https://0.0.0.0:5001")]
+        public string[] Host { get; set; }
     }
 
     public class Startup

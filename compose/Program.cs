@@ -42,6 +42,7 @@ namespace OmegaGraf.Compose
 
                     var host = new WebHostBuilder()
                             .UseKestrel()
+                            .UseUrls(parsed.Host)
                             .UseStartup<Startup>()
                             .Build();
 
