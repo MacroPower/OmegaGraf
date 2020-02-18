@@ -35,14 +35,14 @@ namespace OmegaGraf.Compose.MetaData
             }
         }
 
-        private static string dataPath = "$pwd";
+        private static string dataPath = "";
         public static string Root
         {
             get
             {
                 try
                 {
-                    string dir = dataPath == "$pwd" ? Directory.GetCurrentDirectory() : dataPath;
+                    string dir = dataPath == "" ? Directory.GetCurrentDirectory() : dataPath;
                     dir = Path.Join(dir, "data/");
                     dir = dir.Replace('\\', '/');
                     return dir;

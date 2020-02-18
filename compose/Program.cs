@@ -43,11 +43,15 @@ namespace OmegaGraf.Compose
 
                     Console.WriteLine("Your secure code: " + Guid.NewGuid().ToString());
 
+                    var urls = 
+                        parsed.Host.Length == 0 ? new string[] { "https://0.0.0.0:5001" }
+                                                : parsed.Host;
+
                     var host = new WebHostBuilder()
-                            .UseKestrel()
-                            .UseUrls(parsed.Host)
-                            .UseStartup<Startup>()
-                            .Build();
+                               .UseKestrel()
+                               .UseUrls(urls)
+                               .UseStartup<Startup>()
+                               .Build();
 
                     host.Run();
                 }
