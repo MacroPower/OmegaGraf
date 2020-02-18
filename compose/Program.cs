@@ -38,6 +38,9 @@ namespace OmegaGraf.Compose
                 }
                 else
                 {
+                    MetaData.Example.Root = parsed.Path;
+                    logger.Info("Root: " + MetaData.Example.Root);
+
                     Console.WriteLine("Your secure code: " + Guid.NewGuid().ToString());
 
                     var host = new WebHostBuilder()
