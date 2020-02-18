@@ -10,11 +10,10 @@ namespace OmegaGraf.Compose
             {
                 foreach (var target in rule.Targets)
                 {
-                    if (target.Name == "Console")
+                    if (target.Name == "console")
                     {
                         rule.SetLoggingLevels(newLogLevel, LogLevel.Fatal);
                     }
-
                 }
             }
 
