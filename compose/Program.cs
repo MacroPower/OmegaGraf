@@ -18,6 +18,10 @@ namespace OmegaGraf.Compose
             {
                 var parsed = Args.Parse<MyArgs>(args);
 
+                if (parsed.Verbose)
+                {
+                    Log.SetLogLevel(LogLevel.Info);
+                }
 
                 if (parsed.Log)
                 {

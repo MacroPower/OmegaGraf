@@ -15,6 +15,9 @@ namespace OmegaGraf.Compose
         [ArgShortcut("-h"), ArgShortcut("--help"), ArgDescription("Shows this help")]
         public bool Help { get; set; }
 
+        [ArgShortcut("-v"), ArgShortcut("--verbose"), ArgDescription("Enable verbose logging")]
+        public bool Verbose { get; set; }
+
         [ArgShortcut("-l"), ArgShortcut("--test-logs"), ArgDescription("Test logging")]
         public bool Log { get; set; }
 
