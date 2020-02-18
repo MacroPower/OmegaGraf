@@ -1,5 +1,6 @@
 using Nancy;
 using Nancy.Responses.Negotiation;
+using NLog;
 using OmegaGraf.Compose.Config.Grafana;
 using OmegaGraf.Compose.Config.Prometheus;
 using OmegaGraf.Compose.Config.Telegraf;
@@ -17,12 +18,16 @@ namespace OmegaGraf.Compose.MetaData
 
     public class ExampleModule : NancyModule
     {
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
+
         public ExampleModule() : base("/example")
         {
             Get(
                 "/",
                 args =>
                 {
+                    logger.Info("Collecting and returning default values");
+
                     var examples = new ExampleSettings()
                     {
                         Prometheus = Example.Prometheus,

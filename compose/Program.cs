@@ -1,22 +1,66 @@
 ﻿using System;
 using Microsoft.AspNetCore.Hosting;
+using NLog;
+using PowerArgs;
 
 namespace OmegaGraf.Compose
 {
     class Program
     {
-        static void Main()
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
+
+        static void Main(string[] args)
         {
+            logger.Info("Starting up!");
             Console.WriteLine(Figgle.FiggleFonts.Standard.Render("OmegaGraf"));
 
-            Console.WriteLine("Your secure code: " + Guid.NewGuid().ToString());
+            try
+            {
+                var parsed = Args.Parse<MyArgs>(args);
 
-            var host = new WebHostBuilder()
-                       .UseKestrel()
-                       .UseStartup<Startup>()
-                       .Build();
+                if (parsed.Verbose)
+                {
+                    Log.SetLogLevel(LogLevel.Info);
+                }
 
-            host.Run();
+                if (parsed.Log)
+                {
+                    logger.Trace("Trace Error Example");
+                    logger.Info("Info Error Example");
+                    logger.Warn("Warn Error Example");
+                    logger.Error("Error Error Example");
+                    logger.Fatal("Fatal Error Example");
+                }
+
+                if (parsed.Help)
+                {
+                    ArgUsage.GenerateUsageFromTemplate<MyArgs>().Write();
+                }
+                else
+                {
+                    MetaData.Example.Root = parsed.Path;
+                    logger.Info("Root: " + MetaData.Example.Root);
+
+                    Console.WriteLine("Your secure code: " + Guid.NewGuid().ToString());
+
+                    var urls = 
+                        parsed.Host.Length == 0 ? new string[] { "https://0.0.0.0:5001" }
+                                                : parsed.Host;
+
+                    var host = new WebHostBuilder()
+                               .UseKestrel()
+                               .UseUrls(urls)
+                               .UseStartup<Startup>()
+                               .Build();
+
+                    host.Run();
+                }
+            }
+            catch (ArgException ex)
+            {
+                Console.WriteLine(ex.Message);
+                ArgUsage.GenerateUsageFromTemplate<MyArgs>().Write();
+            }
         }
     }
 }

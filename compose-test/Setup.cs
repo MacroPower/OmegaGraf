@@ -12,6 +12,8 @@ namespace OmegaGraf.Compose.Tests.Builder
         [OneTimeSetUp]
         public void Init()
         {
+            Example.Root = "/docker";
+
             var docker = new Docker();
             var network = docker.CreateNetwork().Result;
 

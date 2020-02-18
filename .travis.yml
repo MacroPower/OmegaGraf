@@ -25,7 +25,7 @@ install:
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$RELEASE_ID $RELEASE_CODE stable"
   - apt-cache policy docker-ce
   - sudo apt-get update
-  - sudo apt-get install dotnet-sdk-2.2 docker-ce
+  - sudo apt-get install dotnet-sdk-3.1 docker-ce
   - dotnet tool install --global dotnet-sonarscanner
   - sudo systemctl status docker
   - sudo usermod -aG docker $USER
@@ -60,6 +60,4 @@ script:
   - netstat -tulnp
   - for c in $(docker ps -a --format="{{.Names}}"); do docker container logs $c; done
   - ls -l /docker
-  - ls -l /docker/grafana
-  - ls -l /docker/prometheus
   - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
