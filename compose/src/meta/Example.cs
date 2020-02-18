@@ -28,7 +28,6 @@ namespace OmegaGraf.Compose.MetaData
                 }
 
                 var e = new NotSupportedException();
-
                 logger.Error(e, "OS Platform is not supported");
                 throw e;
             }
