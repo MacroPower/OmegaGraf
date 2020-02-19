@@ -88,21 +88,23 @@ namespace OmegaGraf.Compose.Tests.Builder
         [Test, Order(2)]
         public void CreateDashboard()
         {
+            var d = File.ReadAllText("grafana/dashboards/_Example.json");
+
             var g = new Compose.Grafana("http://localhost:" + port);
 
             try
             {
-                var dash = JsonConvert.DeserializeObject(File.ReadAllText("assets/Dashboard.json"));
+                var dash = JsonConvert.DeserializeObject(d);
 
                 g.AddDashboard(dash).Wait();
 
                 g.Dispose();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 TestContext.Out.WriteLine("Error - disposing objects.");
                 g.Dispose();
-                throw e;
+                throw;
             }
 
             Assert.Pass();
