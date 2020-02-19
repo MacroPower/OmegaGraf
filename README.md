@@ -9,7 +9,6 @@ OmegaGraf is an entirely open-source and containerized solution, configured and 
 - Linux (prod/dev) or Windows OS (dev)
 - Docker (prod/dev) or Docker Desktop (dev)
 - OpenSSL (prod)
-- /docker (prod/dev) or C:/docker (dev) directory
 
 ## Using OmegaGraf
 
@@ -17,12 +16,11 @@ OmegaGraf is an entirely open-source and containerized solution, configured and 
 2. Visit printed URL and enter secure code
 3. Click any option
 4. Check 'Use simulation' and enter desired # of sims
-5. Click 'Submit'
-6. Click 'Deploy' (header)
-7. Click 'Confirm'
-8. Wait for deployment to complete
-9. Visit {hostname}:3000, enter admin/admin
-10. Done!
+5. Click 'Deploy'
+6. Click 'Confirm'
+7. Wait for deployment to complete
+8. Visit {hostname}:3000, enter admin/admin
+9. Done!
 
 ## Create a release
 
