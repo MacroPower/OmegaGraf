@@ -5,6 +5,7 @@ import { SettingsReducer } from './SettingsReducer';
 import SimpleForm from './forms/SimpleForm';
 import NormalForm from './forms/NormalForm';
 import AdvancedForm from './forms/AdvancedForm';
+import { Redirect } from 'react-router-dom';
 
 export default function DeployForm() {
   const [globalSettings, globalSettingsActions] = UseGlobalSettings();
@@ -14,6 +15,8 @@ export default function DeployForm() {
   type formLevel = '1' | '2' | '3' | undefined;
 
   const [form, setForm] = useState<formLevel>(undefined);
+
+  const [toDeploy, redirect] = useState(false);
 
   useEffect(() => {
     dispatch({
@@ -48,6 +51,7 @@ export default function DeployForm() {
   return (
     <>
       <Form onSubmit={submit}>
+        {toDeploy && <Redirect to="/deploy" />}
         <Container>
           <Row className="justify-content-md-center">
             <Col>
@@ -73,7 +77,17 @@ export default function DeployForm() {
             <Row className="mt-2">
               <Col>
                 <Button variant="primary" type="submit">
-                  Submit
+                  Save
+                </Button>
+                <Button
+                  className="ml-2"
+                  variant="success"
+                  onClick={() => {
+                    globalSettingsActions.setSettings(state);
+                    redirect(true);
+                  }}
+                >
+                  Deploy
                 </Button>
               </Col>
             </Row>

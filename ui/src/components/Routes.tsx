@@ -54,7 +54,7 @@ const Routes: Routed[] = [
     path: "/deploy",
     label: "Deploy",
     exact: false,
-    hidden: false,
+    hidden: true,
     requiresAuth: true,
     component: Deploy
   },
