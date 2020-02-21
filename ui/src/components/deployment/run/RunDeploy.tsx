@@ -63,11 +63,13 @@ export default function RunDeploy() {
       deploySim(endpoint, state).then(() =>
         deployGrafana(endpoint, state).then(() =>
           deployTelegraf(endpoint, state).then(() =>
-            deployPrometheus(endpoint, state).then(() => {
-              const stepText = 'Cleaning up our mess...';
-              addStep('Finishing up', stepText);
-              setLastStep('Done', 'You can start using OmegaGraf!', 'done');
-            })
+            deployPrometheus(endpoint, state).then(() =>
+              deployGrafanaConfig(endpoint).then(() => {
+                const stepText = 'Cleaning up our mess...';
+                addStep('Finishing up', stepText);
+                setLastStep('Done', 'You can start using OmegaGraf!', 'done');
+              })
+            )
           )
         )
       )
@@ -169,6 +171,23 @@ export default function RunDeploy() {
     }
   };
 
+  const deployGrafanaConfig = async (endpoint: string) => {
+    try {
+      const stepText = 'Asking OmegaGraf to update Grafana...';
+      addStep('Deploy Grafana Config', stepText);
+      await DeployRequest(endpoint, 'grafana/datasource', {});
+      await DeployRequest(endpoint, 'grafana/dashboards', {});
+      setLastStep('Deploy Grafana Config', stepText + 'Done!', 'finish');
+    } catch (e) {
+      setLastStep(
+        'Deploy Grafana Config',
+        'Error configuring container, please check server logs',
+        'error'
+      );
+      const x = Promise.break;
+    }
+  };
+
   const stepLength = () => {
     const l = steps.length - 1;
     console.log('Current step:' + l);
@@ -178,9 +197,16 @@ export default function RunDeploy() {
   return (
     <>
       {steps.length === 0 && (
-        <Button className="mb-3" variant="outline-primary" onClick={startRun()}>
-          Confirm
-        </Button>
+        <>
+          <h4>Are you sure you want to deploy?</h4>
+          <Button
+            className="mb-3"
+            variant="outline-primary"
+            onClick={startRun()}
+          >
+            Confirm
+          </Button>
+        </>
       )}
       {steps.length > 0 && (
         <Steps current={stepLength()} direction="vertical">
