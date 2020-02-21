@@ -1,17 +1,19 @@
+using System.IO;
 using Nancy;
-using Nancy.Extensions;
 using Nancy.Metadata.Modules;
 using Nancy.ModelBinding;
 using Nancy.Responses.Negotiation;
 using Nancy.Swagger;
 using Newtonsoft.Json;
-using OmegaGraf.Compose.Config.Grafana;
+using NLog;
 using Swagger.ObjectModel;
 
 namespace OmegaGraf.Compose.MetaData
 {
     public class GrafanaModule : NancyModule
     {
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
+
         public GrafanaModule() : base("/grafana")
         {
             Get(
@@ -44,12 +46,11 @@ namespace OmegaGraf.Compose.MetaData
                 "/datasource",
                 args =>
                 {
-                    DataSource bind = (this).Bind<DataSource>();
-
                     var g = new Grafana("http://localhost:3000");
 
-                    g.AddDataSource(bind).Wait();
+                    logger.Info("Adding default datasource");
 
+                    g.AddDataSource(Example.GrafanaDataSource).Wait();
                     g.Dispose();
 
                     return Negotiate.WithMediaRangeModel(
@@ -63,16 +64,28 @@ namespace OmegaGraf.Compose.MetaData
             );
 
             Post(
-                "/dashboard",
+                "/dashboards",
                 args =>
                 {
-                    string json = this.Request.Body.AsString();
-
                     var g = new Grafana("http://localhost:3000");
 
-                    var dash = JsonConvert.DeserializeObject(json);
+                    string filepath = Path.Join(System.AppDomain.CurrentDomain.BaseDirectory, "grafana/dashboards/");
 
-                    g.AddDashboard(dash).Wait();
+                    try
+                    {
+                        foreach (var file in Directory.GetFiles(filepath, "*.json"))
+                        {
+                            string json = File.ReadAllText(file);
+                            var dash = JsonConvert.DeserializeObject(json);
+                            logger.Info("Adding Grafana dashboard from file : " + file);
+                            g.AddDashboard(dash).Wait();
+                        }
+                    }
+                    catch (IOException ex)
+                    {
+                        logger.Error(ex, "Error reading a dashboard file");
+                        throw;
+                    }
 
                     g.Dispose();
 
@@ -129,17 +142,7 @@ namespace OmegaGraf.Compose.MetaData
                         .Summary("Add Grafana DataSource")
                         .ConsumeMimeType("application/json")
                         .ProduceMimeType("application/json")
-                        .BodyParameter(
-                            para =>
-                                para.Name("Build")
-                                    .Schema(
-                                        new Schema()
-                                        {
-                                            Example = Example.GrafanaDataSource
-                                        }
-                                    )
-                                    .Build()
-                        ).Response(x => x.Description("Container UUID").Build()))
+                        .Response(x => x.Description("Container UUID").Build()))
                 );
 
             Describe["DeployGrafanaDashboard"] =
@@ -150,18 +153,7 @@ namespace OmegaGraf.Compose.MetaData
                         .Summary("Add Grafana Dashboard")
                         .ConsumeMimeType("application/json")
                         .ProduceMimeType("application/json")
-                        .BodyParameter(
-                            para =>
-                                para.Name("Build")
-                                    .Description("Dynamic JSON body from Grafana's dashboard export")
-                                    .Schema(
-                                        new Schema()
-                                        {
-                                            Example = @"{""dashboard"": { ... }}"
-                                        }
-                                    )
-                                    .Build()
-                        ).Response(x => x.Description("Container UUID").Build()))
+                        .Response(x => x.Description("Container UUID").Build()))
                 );
         }
     }

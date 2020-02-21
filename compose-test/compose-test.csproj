@@ -21,7 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="assets\Dashboard.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="..\grafana\**\*.*" CopyToPublishDirectory="PreserveNewest">
+      <Link>grafana\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
