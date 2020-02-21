@@ -1,5 +1,6 @@
 using Docker.DotNet;
 using Docker.DotNet.Models;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace OmegaGraf.Compose
 {
     public class Docker
     {
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
+        
         public DockerClient DockerClient { get; }
         private string DockerURI
         {
@@ -169,6 +172,31 @@ namespace OmegaGraf.Compose
                         Force = false
                     }
                 );
+        
+        public Task RemoveAllContainers()
+        {
+            var containers = ListContainers().Result;
+            var tasks = new List<Task>();
+
+            foreach (var container in containers)
+            {
+                foreach (var name in container.Names)
+                {
+                    if (name.StartsWith("/og-"))
+                    {
+                        logger.Info("Removing " + name + ", " + container.ID);
+
+                        tasks.Add(
+                            Task.Run(async () => {
+                                    await StopContainer(container.ID);
+                                    await RemoveContainer(container.ID);
+                                }));
+                    }
+                }
+            }
+
+            return Task.WhenAll(tasks);
+        }
 
         public async Task<NetworksCreateResponse> CreateNetwork()
         {

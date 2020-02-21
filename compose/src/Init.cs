@@ -18,9 +18,6 @@ namespace OmegaGraf.Compose
         [ArgShortcut("-v"), ArgShortcut("--verbose"), ArgDescription("Enable verbose logging")]
         public bool Verbose { get; set; }
 
-        [ArgShortcut("-l"), ArgShortcut("--test-logs"), ArgDescription("Test logging")]
-        public bool Log { get; set; }
-
         [ArgShortcut("-p"), ArgShortcut("--path"), ArgDescription("Absolute path to store container data. Defaults to current directory."), ArgPosition(1), ArgDefaultValue("")]
         public string Path { get; set; }
 

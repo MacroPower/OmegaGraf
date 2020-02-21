@@ -20,70 +20,32 @@ namespace OmegaGraf.Compose
             {
                 var parsed = Args.Parse<MyArgs>(args);
 
-                if (parsed.Verbose)
-                {
-                    Log.SetLogLevel(LogLevel.Info);
-                }
-
-                if (parsed.Log)
-                {
-                    logger.Trace("Trace Error Example");
-                    logger.Info("Info Error Example");
-                    logger.Warn("Warn Error Example");
-                    logger.Error("Error Error Example");
-                    logger.Fatal("Fatal Error Example");
-                }
+                if (parsed.Verbose) Log.SetLogLevel(LogLevel.Info);
 
                 if (parsed.Help)
                 {
                     ArgUsage.GenerateUsageFromTemplate<MyArgs>().Write();
+                    System.Environment.Exit(0);
                 }
-                else
-                {
-                    if (parsed.Reset)
-                    {
-                        var docker = new Docker();
-                        var containers = docker.ListContainers().Result;
-                        var tasks = new List<Task>();
+                
+                if (parsed.Reset) new Docker().RemoveAllContainers().Wait();
 
-                        foreach (var container in containers)
-                        {
-                            foreach (var name in container.Names)
-                            {
-                                if (name.StartsWith("/og-"))
-                                {
-                                    logger.Info("Removing " + name + ", " + container.ID);
+                MetaData.Example.Root = parsed.Path;
+                logger.Info("Root: " + MetaData.Example.Root);
 
-                                    tasks.Add(
-                                        Task.Run(async () => {
-                                                await docker.StopContainer(container.ID);
-                                                await docker.RemoveContainer(container.ID);
-                                            }));
-                                }
-                            }
-                        }
+                Console.WriteLine("Your secure code: " + Guid.NewGuid().ToString());
 
-                        Task t = Task.WhenAll(tasks);
-                        t.Wait();
-                    }
+                var urls = 
+                    parsed.Host.Length == 0 ? new string[] { "https://0.0.0.0:5001" }
+                                            : parsed.Host;
 
-                    MetaData.Example.Root = parsed.Path;
-                    logger.Info("Root: " + MetaData.Example.Root);
+                var host = new WebHostBuilder()
+                            .UseKestrel()
+                            .UseUrls(urls)
+                            .UseStartup<Startup>()
+                            .Build();
 
-                    Console.WriteLine("Your secure code: " + Guid.NewGuid().ToString());
-
-                    var urls = 
-                        parsed.Host.Length == 0 ? new string[] { "https://0.0.0.0:5001" }
-                                                : parsed.Host;
-
-                    var host = new WebHostBuilder()
-                               .UseKestrel()
-                               .UseUrls(urls)
-                               .UseStartup<Startup>()
-                               .Build();
-
-                    host.Run();
-                }
+                host.Run();
             }
             catch (ArgException ex)
             {
