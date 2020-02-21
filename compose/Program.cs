@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using NLog;
 using PowerArgs;
@@ -38,6 +40,33 @@ namespace OmegaGraf.Compose
                 }
                 else
                 {
+                    if (parsed.Reset)
+                    {
+                        var docker = new Docker();
+                        var containers = docker.ListContainers().Result;
+                        var tasks = new List<Task>();
+
+                        foreach (var container in containers)
+                        {
+                            foreach (var name in container.Names)
+                            {
+                                if (name.StartsWith("/og-"))
+                                {
+                                    logger.Info("Removing " + name + ", " + container.ID);
+
+                                    tasks.Add(
+                                        Task.Run(async () => {
+                                                await docker.StopContainer(container.ID);
+                                                await docker.RemoveContainer(container.ID);
+                                            }));
+                                }
+                            }
+                        }
+
+                        Task t = Task.WhenAll(tasks);
+                        t.Wait();
+                    }
+
                     MetaData.Example.Root = parsed.Path;
                     logger.Info("Root: " + MetaData.Example.Root);
 
