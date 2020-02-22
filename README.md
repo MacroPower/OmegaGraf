@@ -1,10 +1,14 @@
+<p align="center">
+  <img src="docs/branding/logo_128.png">
+</p>
+
 # OmegaGraf
 
 OmegaGraf is an entirely open-source and containerized solution, configured and deployed through a simple web interface. In minutes, OmegaGraf provides dynamic dashboards, granular time series data, environment aggregation, alerting, and much more.
 
 ## Requirements
 
-![Click Here](https://github.com/OmegaGraf/install) for automated installers.
+[Click Here](https://github.com/OmegaGraf/install) for automated installers.
 
 - Linux (prod/dev) or Windows OS (dev)
 - Docker (prod/dev) or Docker Desktop (dev)
