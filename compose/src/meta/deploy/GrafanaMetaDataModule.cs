@@ -3,6 +3,7 @@ using Nancy;
 using Nancy.Metadata.Modules;
 using Nancy.ModelBinding;
 using Nancy.Responses.Negotiation;
+using Nancy.Security;
 using Nancy.Swagger;
 using Newtonsoft.Json;
 using NLog;
@@ -16,6 +17,8 @@ namespace OmegaGraf.Compose.MetaData
 
         public GrafanaModule() : base("/grafana")
         {
+            this.RequiresAuthentication();
+
             Get(
                 "/{id}",
                 args =>
@@ -121,6 +124,7 @@ namespace OmegaGraf.Compose.MetaData
                         .Summary("Deploy Grafana")
                         .ConsumeMimeType("application/json")
                         .ProduceMimeType("application/json")
+                        .SecurityRequirement(SecuritySchemes.ApiKey)
                         .BodyParameter(
                             para =>
                                 para.Name("Build")
@@ -142,6 +146,7 @@ namespace OmegaGraf.Compose.MetaData
                         .Summary("Add Grafana DataSource")
                         .ConsumeMimeType("application/json")
                         .ProduceMimeType("application/json")
+                        .SecurityRequirement(SecuritySchemes.ApiKey)
                         .Response(x => x.Description("Container UUID").Build()))
                 );
 
@@ -153,6 +158,7 @@ namespace OmegaGraf.Compose.MetaData
                         .Summary("Add Grafana Dashboard")
                         .ConsumeMimeType("application/json")
                         .ProduceMimeType("application/json")
+                        .SecurityRequirement(SecuritySchemes.ApiKey)
                         .Response(x => x.Description("Container UUID").Build()))
                 );
         }

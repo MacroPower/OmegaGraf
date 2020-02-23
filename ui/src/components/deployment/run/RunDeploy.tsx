@@ -56,15 +56,16 @@ export default function RunDeploy() {
     addStep('Initializing Deployment', 'Please wait');
 
     const endpoint = globalState.endpoint || '';
+    const apiKey = globalState.apiKey || '';
 
     const state = { ...globalSettings };
 
     Promise.then(() =>
-      deploySim(endpoint, state).then(() =>
-        deployGrafana(endpoint, state).then(() =>
-          deployTelegraf(endpoint, state).then(() =>
-            deployPrometheus(endpoint, state).then(() =>
-              deployGrafanaConfig(endpoint).then(() => {
+      deploySim(endpoint, apiKey, state).then(() =>
+        deployGrafana(endpoint, apiKey, state).then(() =>
+          deployTelegraf(endpoint, apiKey, state).then(() =>
+            deployPrometheus(endpoint, apiKey, state).then(() =>
+              deployGrafanaConfig(endpoint, apiKey).then(() => {
                 const stepText = 'Cleaning up our mess...';
                 addStep('Finishing up', stepText);
                 setLastStep('Done', 'You can start using OmegaGraf!', 'done');
@@ -76,7 +77,7 @@ export default function RunDeploy() {
     );
   };
 
-  const deployTelegraf = async (endpoint: string, state: Settings) => {
+  const deployTelegraf = async (endpoint: string, apiKey: string, state: Settings) => {
     try {
       const stepText = 'Asking OmegaGraf to create the container...';
       addStep('Deploy Telegraf', stepText);
@@ -99,7 +100,7 @@ export default function RunDeploy() {
         });
       }
 
-      await DeployRequest(endpoint, 'telegraf', conf);
+      await DeployRequest(endpoint, apiKey, 'telegraf', conf);
       setLastStep('Deploy Telegraf', stepText + 'Done!', 'finish');
     } catch (e) {
       setLastStep(
@@ -111,11 +112,11 @@ export default function RunDeploy() {
     }
   };
 
-  const deployPrometheus = async (endpoint: string, state: Settings) => {
+  const deployPrometheus = async (endpoint: string, apiKey: string, state: Settings) => {
     try {
       const stepText = 'Asking OmegaGraf to create the container...';
       addStep('Deploy Prometheus', stepText);
-      await DeployRequest(endpoint, 'prometheus', state.Prometheus);
+      await DeployRequest(endpoint, apiKey, 'prometheus', state.Prometheus);
       setLastStep('Deploy Prometheus', stepText + 'Done!', 'finish');
     } catch (e) {
       setLastStep(
@@ -127,11 +128,11 @@ export default function RunDeploy() {
     }
   };
 
-  const deployGrafana = async (endpoint: string, state: Settings) => {
+  const deployGrafana = async (endpoint: string, apiKey: string, state: Settings) => {
     try {
       const stepText = 'Asking OmegaGraf to create the container...';
       addStep('Deploy Grafana', stepText);
-      await DeployRequest(endpoint, 'grafana', state.Grafana);
+      await DeployRequest(endpoint, apiKey, 'grafana', state.Grafana);
       setLastStep('Deploy Grafana', stepText + 'Done!', 'finish');
     } catch (e) {
       setLastStep(
@@ -143,7 +144,7 @@ export default function RunDeploy() {
     }
   };
 
-  const deploySim = async (endpoint: string, state: Settings) => {
+  const deploySim = async (endpoint: string, apiKey: string, state: Settings) => {
     if (globalSim.Active) {
       try {
         const stepText = 'Asking OmegaGraf to create the container...';
@@ -157,7 +158,7 @@ export default function RunDeploy() {
           let conf = { ...state.VCSim };
           conf.BuildConfiguration.Name = 'vcsim' + iq;
 
-          await DeployRequest(endpoint, 'telegraf/sim', conf);
+          await DeployRequest(endpoint, apiKey, 'telegraf/sim', conf);
           setLastStep(stepTitle, stepText + 'Done!', 'finish');
         }
       } catch (e) {
@@ -171,12 +172,12 @@ export default function RunDeploy() {
     }
   };
 
-  const deployGrafanaConfig = async (endpoint: string) => {
+  const deployGrafanaConfig = async (endpoint: string, apiKey: string) => {
     try {
       const stepText = 'Asking OmegaGraf to update Grafana...';
       addStep('Deploy Grafana Config', stepText);
-      await DeployRequest(endpoint, 'grafana/datasource', {});
-      await DeployRequest(endpoint, 'grafana/dashboards', {});
+      await DeployRequest(endpoint, apiKey, 'grafana/datasource', {});
+      await DeployRequest(endpoint, apiKey, 'grafana/dashboards', {});
       setLastStep('Deploy Grafana Config', stepText + 'Done!', 'finish');
     } catch (e) {
       setLastStep(

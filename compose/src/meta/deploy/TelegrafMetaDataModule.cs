@@ -2,6 +2,7 @@ using Nancy;
 using Nancy.Metadata.Modules;
 using Nancy.ModelBinding;
 using Nancy.Responses.Negotiation;
+using Nancy.Security;
 using Nancy.Swagger;
 using OmegaGraf.Compose.Config.Telegraf;
 using Swagger.ObjectModel;
@@ -12,6 +13,8 @@ namespace OmegaGraf.Compose.MetaData
     {
         public TelegrafModule() : base("/telegraf")
         {
+            this.RequiresAuthentication();
+
             Get(
                 "/{id}",
                 args =>
@@ -83,6 +86,7 @@ namespace OmegaGraf.Compose.MetaData
                         .Summary("Deploy Telegraf")
                         .ConsumeMimeType("application/json")
                         .ProduceMimeType("application/json")
+                        .SecurityRequirement(SecuritySchemes.ApiKey)
                         .BodyParameter(
                             para =>
                                 para.Name("Build")
@@ -104,6 +108,7 @@ namespace OmegaGraf.Compose.MetaData
                         .Summary("Deploy VC Simulator")
                         .ConsumeMimeType("application/json")
                         .ProduceMimeType("application/json")
+                        .SecurityRequirement(SecuritySchemes.ApiKey)
                         .BodyParameter(
                             para =>
                                 para.Name("Build")

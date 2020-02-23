@@ -2,6 +2,7 @@ import { UseGlobalSession } from '../../Global';
 
 export default async function DeployRequest(
   endpoint: string,
+  apiKey: string,
   location: string,
   body: any
 ) {
@@ -12,6 +13,7 @@ export default async function DeployRequest(
       method: 'POST',
       body: JSON.stringify(body),
       headers: {
+        Authorization: '' + apiKey,
         'Content-Type': 'application/json'
       }
     }).then(r => {

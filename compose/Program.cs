@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using NLog;
 using PowerArgs;
@@ -25,7 +23,7 @@ namespace OmegaGraf.Compose
                 if (parsed.Help)
                 {
                     ArgUsage.GenerateUsageFromTemplate<MyArgs>().Write();
-                    System.Environment.Exit(0);
+                    Environment.Exit(0);
                 }
                 
                 if (parsed.Reset) new Docker().RemoveAllContainers().Wait();
@@ -33,7 +31,8 @@ namespace OmegaGraf.Compose
                 MetaData.Example.Root = parsed.Path;
                 logger.Info("Root: " + MetaData.Example.Root);
 
-                Console.WriteLine("Your secure code: " + Guid.NewGuid().ToString());
+                var key = KeyDatabase.CreateKey();
+                Console.WriteLine("Your secure code: " + key);
 
                 var urls = 
                     parsed.Host.Length == 0 ? new string[] { "https://0.0.0.0:5001" }

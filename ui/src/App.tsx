@@ -7,7 +7,7 @@ import { AppliedRoutes } from './components/Routes';
 import Footer from './components/Footer';
 import HeaderNav from './components/Header';
 import Navbar from 'react-bootstrap/Navbar';
-import { getSessionCookie } from './components/Session';
+import { getSessionCookie, removeSessionCookie } from './components/Session';
 import {
   UseGlobalSession,
   getDefaults,
@@ -24,9 +24,44 @@ export default function App() {
     console.log(session);
 
     if (session !== null) {
-      // TODO: VALIDATE API KEY HERE
-      globalActions.setSession(session);
-      getDefaults(session, globalSettingsActions);
+      fetch(session.endpoint + '/auth', {
+        method: 'GET',
+        headers: {
+          Authorization: '' + session.apiKey
+        }
+      })
+        .then(r => {
+          if (r.ok != true) {
+            throw new Error('API returned status ' + r.status.toString());
+          }
+          return r;
+        })
+        .then(r => r.json())
+        .then(r => {
+          if (r.Authenticated) {
+            return r;
+          } else {
+            throw new Error('Unauthorized');
+          }
+        })
+        .then(() => {
+          globalActions.setSession(session);
+          getDefaults(session, globalSettingsActions);
+        })
+        .catch((e: Error) => {
+          if (e.name === 'SyntaxError') {
+            console.log('Error connecting to the OmegaGraf server.');
+          } else {
+            console.log(e);
+          }
+
+          removeSessionCookie();
+
+          globalActions.setSession({
+            endpoint: undefined,
+            apiKey: undefined
+          });
+        });
     }
   }, [globalActions, globalSettingsActions]);
 
