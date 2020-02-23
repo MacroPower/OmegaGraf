@@ -2,6 +2,7 @@ using Nancy;
 using Nancy.Metadata.Modules;
 using Nancy.ModelBinding;
 using Nancy.Responses.Negotiation;
+using Nancy.Security;
 using Nancy.Swagger;
 using OmegaGraf.Compose.Config.Prometheus;
 using Swagger.ObjectModel;
@@ -12,6 +13,8 @@ namespace OmegaGraf.Compose.MetaData
     {
         public PrometheusModule() : base("/prometheus")
         {
+            this.RequiresAuthentication();
+
             Get(
                 "/{id}",
                 args =>
@@ -62,6 +65,7 @@ namespace OmegaGraf.Compose.MetaData
                         .Summary("Deploy Prometheus")
                         .ConsumeMimeType("application/json")
                         .ProduceMimeType("application/json")
+                        .SecurityRequirement(SecuritySchemes.ApiKey)
                         .BodyParameter(
                             para =>
                                 para.Name("Build")
