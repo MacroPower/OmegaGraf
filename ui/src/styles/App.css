@@ -192,3 +192,7 @@ body {
   margin-right: 8px;
   transition: background-color 0.3s, border-color 0.3s;
 }
+
+.logo {
+  margin-top: -4px;
+}

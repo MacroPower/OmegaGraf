@@ -13,6 +13,7 @@ import {
   getDefaults,
   UseGlobalSettings
 } from './components/Global';
+import Logo from './components/Logo';
 
 export default function App() {
   const [globalState, globalActions] = UseGlobalSession();
@@ -74,7 +75,13 @@ export default function App() {
         className="fixed-top header-gradient"
       >
         <Navbar.Brand href="/">
-          <FontAwesomeIcon icon={faReact} className="mr-1" />
+          <Logo
+            className="d-inline"
+            svgClassName="logo mr-3"
+            letterColor="white"
+            arrowColor="red"
+            size="32px"
+          />
           OmegaGraf
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
