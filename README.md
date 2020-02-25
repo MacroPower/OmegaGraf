@@ -1,10 +1,13 @@
 <p align="center">
   <img src="docs/branding/logo_128.png">
 </p>
-
-# OmegaGraf
+<h2 align="center">OmegaGraf</h2>
 
 OmegaGraf is an entirely open-source and containerized solution, configured and deployed through a simple web interface. In minutes, OmegaGraf provides dynamic dashboards, granular time series data, environment aggregation, alerting, and much more.
+
+<p align="center">
+  <img src="docs/branding/flow_1920.png">
+</p>
 
 ## Requirements
 
