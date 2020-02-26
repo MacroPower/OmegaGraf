@@ -6,6 +6,7 @@ import SimpleForm from './forms/SimpleForm';
 import NormalForm from './forms/NormalForm';
 import AdvancedForm from './forms/AdvancedForm';
 import { Redirect } from 'react-router-dom';
+import OptionCard from '../OptionCard';
 
 export default function DeployForm() {
   const [globalSettings, globalSettingsActions] = UseGlobalSettings();
@@ -54,20 +55,20 @@ export default function DeployForm() {
         {toDeploy && <Redirect to="/deploy" />}
         <Container>
           <Row className="justify-content-md-center">
-            <Col>
-              <Button variant="outline-primary" onClick={changeForm('1')}>
-                I'm New!
-              </Button>
+            <Col md={4}>
+              <a onClick={changeForm('1')}>
+                <OptionCard clicked={form === '1'} phase="1" />
+              </a>
             </Col>
-            <Col>
-              <Button variant="outline-primary" onClick={changeForm('2')}>
-                Help me out
-              </Button>
+            <Col md={4}>
+              <a onClick={changeForm('2')}>
+                <OptionCard clicked={form === '2'} phase="2" />
+              </a>
             </Col>
-            <Col>
-              <Button variant="outline-primary" onClick={changeForm('3')}>
-                I know what I'm doing
-              </Button>
+            <Col md={4}>
+              <a onClick={changeForm('3')}>
+                <OptionCard clicked={form === '3'} phase="3" />
+              </a>
             </Col>
           </Row>
           <Row className="mt-3">

@@ -196,3 +196,14 @@ body {
 .logo {
   margin-top: -4px;
 }
+
+.home-card {
+  border: 3px solid red;
+  border-radius: .5rem;
+}
+
+.card-clicked {
+  background-color: rgba(153, 153, 153, 0.5);
+  border: 3px solid rgba(0,0,0,.125);
+  border-radius: .5rem;
+}
