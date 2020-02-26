@@ -8,7 +8,7 @@ import {
   UseGlobalSim
 } from '../../Global';
 import DeployRequest from './DeployRequest';
-import PacmanGhost from '../../Ghost';
+import PacmanGhost from '../../../data/Ghost';
 import { Settings } from '../../settings/Settings';
 import Promise from 'thenfail';
 
