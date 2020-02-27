@@ -1,102 +1,52 @@
-import React, { useState, useReducer, useEffect } from 'react';
-import { UseGlobalSettings } from '../Global';
-import { Button, Container, Row, Col, Form } from 'react-bootstrap';
-import { SettingsReducer } from './SettingsReducer';
-import SimpleForm from './forms/SimpleForm';
-import NormalForm from './forms/NormalForm';
-import AdvancedForm from './forms/AdvancedForm';
-import { Redirect } from 'react-router-dom';
+import React, { useState, Component } from 'react';
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Route, Link, match } from 'react-router-dom';
 import OptionCard from '../OptionCard';
 
+class RoutedLink extends Component<{
+  to: string;
+  disabled: boolean;
+}> {
+  render() {
+    const data = {
+      label: '',
+      path: this.props.to,
+      exact: false,
+      children: ({ match }: { match: match }) => (
+        <Link to={this.props.to}>
+          <Button disabled={this.props.disabled}>Get Started</Button>
+        </Link>
+      )
+    };
+    return <Route {...data} />;
+  }
+}
+
 export default function DeployForm() {
-  const [globalSettings, globalSettingsActions] = UseGlobalSettings();
-
-  const [state, dispatch] = useReducer(SettingsReducer, globalSettings);
-
-  type formLevel = '1' | '2' | '3' | undefined;
-
-  const [form, setForm] = useState<formLevel>(undefined);
-
-  const [toDeploy, redirect] = useState(false);
-
-  useEffect(() => {
-    dispatch({
-      type: 'reset',
-      value: globalSettings
-    });
-  }, [globalSettings]);
-
-  const submit = (e: any) => {
-    e.preventDefault();
-
-    globalSettingsActions.setSettings(state);
-  };
-
-  const renderSwitch = (param: formLevel) => {
-    switch (param) {
-      case '1':
-        return <SimpleForm dispatch={dispatch} state={state} />;
-      case '2':
-        return <NormalForm dispatch={dispatch} state={state} />;
-      case '3':
-        return <AdvancedForm dispatch={dispatch} state={state} />;
-      default:
-        return null;
-    }
-  };
-
-  const changeForm = (form: '1' | '2' | '3') => (e: any) => {
-    setForm(form);
-  };
+  const [direct, setDirect] = useState('');
 
   return (
-    <>
-      <Form onSubmit={submit}>
-        {toDeploy && <Redirect to="/deploy" />}
-        <Container>
-          <Row className="justify-content-md-center">
-            <Col md={4}>
-              <a onClick={changeForm('1')}>
-                <OptionCard clicked={form === '1'} phase="1" />
-              </a>
-            </Col>
-            <Col md={4}>
-              <a onClick={changeForm('2')}>
-                <OptionCard clicked={form === '2'} phase="2" />
-              </a>
-            </Col>
-            <Col md={4}>
-              <a onClick={changeForm('3')}>
-                <OptionCard clicked={form === '3'} phase="3" />
-              </a>
-            </Col>
-          </Row>
-          <Row className="mt-3">
-            <Col>{renderSwitch(form)}</Col>
-          </Row>
-          {form && (
-            <Row className="mt-2">
-              <Col>
-                <Button variant="primary" type="submit">
-                  Save
-                </Button>
-                <Button
-                  className="ml-2"
-                  variant="success"
-                  onClick={() => {
-                    globalSettingsActions.setSettings(state);
-                    redirect(true);
-                  }}
-                >
-                  Deploy
-                </Button>
-              </Col>
-            </Row>
-          )}
-        </Container>
-      </Form>
-
-      <pre>{JSON.stringify(state, null, 1)}</pre>
-    </>
+    <Container>
+      <Row className="justify-content-md-center">
+        <Col md={4}>
+          <a onClick={() => setDirect('simple')}>
+            <OptionCard clicked={direct === 'simple'} phase="1" />
+          </a>
+        </Col>
+        <Col md={4}>
+          <a onClick={() => setDirect('normal')}>
+            <OptionCard clicked={direct === 'normal'} phase="2" />
+          </a>
+        </Col>
+        <Col md={4}>
+          <a onClick={() => setDirect('advanced')}>
+            <OptionCard clicked={direct === 'advanced'} phase="3" />
+          </a>
+        </Col>
+      </Row>
+      <Row className="mt-4 justify-content-md-center">
+        <RoutedLink to={'/form/' + direct} disabled={direct === ''} />
+      </Row>
+    </Container>
   );
 }

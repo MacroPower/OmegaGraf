@@ -1,4 +1,4 @@
-import React, { Component, useContext } from "react";
+import React, { Component } from "react";
 
 // eslint-disable-next-line
 import {
@@ -9,21 +9,24 @@ import {
   Redirect,
   match
 } from "react-router-dom";
-import AuthContext from "./Context";
+
+import { UseGlobalSession } from "./Global";
 
 import Home from "../views/Home";
 import Four04 from "../views/404";
 import About from "../views/About";
 import Login from "../views/Login";
-import { UseGlobalSession } from "./Global";
 import Deploy from "../views/Deploy";
+import SimpleForm from "./deployment/forms/SimpleForm";
+import NormalForm from "./deployment/forms/NormalForm";
+import AdvancedForm from "./deployment/forms/AdvancedForm";
 
 export enum RouteIdentifiers {
   Login,
   Logout
 }
 
-type Routed = {
+export type Routed = {
   id?: RouteIdentifiers;
   path: string;
   label: string;
@@ -66,11 +69,35 @@ const Routes: Routed[] = [
     hidden: true,
     requiresAuth: false,
     component: Login
+  },
+  {
+    path: "/form/simple",
+    label: 'Simple',
+    exact: false,
+    hidden: true,
+    requiresAuth: true,
+    component: SimpleForm
+  },
+  {
+    path: "/form/normal",
+    label: 'Normal',
+    exact: false,
+    hidden: true,
+    requiresAuth: true,
+    component: NormalForm
+  },
+  {
+    path: "/form/advanced",
+    label: 'Advanced',
+    exact: false,
+    hidden: true,
+    requiresAuth: true,
+    component: AdvancedForm
   }
 ];
 
 export function AppliedRoutes() {
-  const [globalState, globalActions] = UseGlobalSession();
+  const [globalState] = UseGlobalSession();
 
   // Filter if requiresAuth is true and session is invalid
   const routes = Routes.map(route => {
