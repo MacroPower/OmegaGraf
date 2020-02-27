@@ -192,3 +192,26 @@ body {
   margin-right: 8px;
   transition: background-color 0.3s, border-color 0.3s;
 }
+
+.logo {
+  margin-top: -4px;
+}
+
+.home-card {
+  border: 3px solid red;
+  border-radius: .5rem;
+}
+
+.card-clicked {
+  background-color: rgba(153, 153, 153, 0.5);
+  border: 3px solid rgba(0,0,0,.125);
+  border-radius: .5rem;
+}
+
+.home-title {
+  color: red
+}
+
+.home-subtitle {
+  color:rgb(31, 31, 31);
+}

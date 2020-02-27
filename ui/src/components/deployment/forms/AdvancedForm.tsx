@@ -1,17 +1,27 @@
-import React from 'react';
-import { Action } from '../SettingsReducer';
-import TextField from '../inputs/TextField';
+import React, { useReducer, useEffect } from 'react';
+import { SettingsReducer } from '../SettingsReducer';
 import AddSystem from '../inputs/AddSystem';
-import { Settings } from '../../settings/Settings';
+import { UseGlobalSettings } from '../../Global';
+import TextField from '../inputs/TextField';
+import FormView from '../../../views/Form';
 
-export default function AdvancedForm(props: {
-  dispatch: React.Dispatch<Action>;
-  state: Settings;
-}) {
-  const { dispatch, state } = props;
+export default function AdvancedForm() {
+  const [globalSettings] = UseGlobalSettings();
+  const [state, dispatch] = useReducer(SettingsReducer, globalSettings);
+
+  useEffect(() => {
+    dispatch({
+      type: 'reset',
+      value: globalSettings
+    });
+  }, [globalSettings]);
 
   return (
-    <>
+    <FormView
+      state={state}
+      title="Deploying Level 3"
+      description="Please enter your preferences."
+    >
       <AddSystem dispatch={dispatch} state={state} />
 
       <TextField
@@ -27,6 +37,6 @@ export default function AdvancedForm(props: {
         type="BuildConfiguration.Tag"
         value={state.Prometheus.BuildConfiguration.Tag}
       />
-    </>
+    </FormView>
   );
 }
