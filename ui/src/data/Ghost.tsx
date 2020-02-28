@@ -1,4 +1,4 @@
-import '../styles/ghost.scss';
+import '../styles/Ghost.scss';
 import React from 'react';
 
 type polyPoint = number[][];

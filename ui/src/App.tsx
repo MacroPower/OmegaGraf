@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './styles/App.css';
+import './styles/App.scss';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppliedRoutes } from './components/Routes';
 import Footer from './components/Footer';

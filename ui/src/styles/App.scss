@@ -1,3 +1,9 @@
+$red: var(--red);
+$orange: var(--orange);
+$yellow: var(--yellow);
+$blue: rgba(34, 193, 195, 1);
+$green: rgba(41, 209, 159, 1);
+
 html,
 body {
   height: 100%;
@@ -154,11 +160,7 @@ body {
 
 .header-gradient {
   background: rgb(34, 193, 195);
-  background: linear-gradient(
-    50deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(41, 209, 159, 1) 100%
-  );
+  background: linear-gradient(50deg, $blue 0%, $green 100%);
 }
 
 .rc-steps-item-active > .rc-steps-item-container > .rc-steps-item-content {
@@ -182,7 +184,7 @@ body {
 
 .rc-steps-item-done > .rc-steps-item-container > .rc-steps-item-icon {
   background-color: #fff;
-  border: 1px solid #108ee9;
+  border: 1px solid var(--blue);
   width: 26px;
   height: 26px;
   line-height: 26px;
@@ -198,20 +200,87 @@ body {
 }
 
 .home-card {
-  border: 3px solid red;
-  border-radius: .5rem;
+  border: 3px solid $red;
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 .card-clicked {
   background-color: rgba(153, 153, 153, 0.5);
-  border: 3px solid rgba(0,0,0,.125);
-  border-radius: .5rem;
+  border: 3px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem;
+  cursor: pointer;
 }
 
 .home-title {
-  color: red
+  color: $red;
 }
 
 .home-subtitle {
-  color:rgb(31, 31, 31);
+  color: rgb(31, 31, 31);
+}
+
+.big-btn,
+.big-btn-s,
+.big-btn:disabled,
+.big-btn-s:disabled {
+  width: 300px;
+  height: 100px;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 100px;
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 50px;
+  border: 0px solid gray;
+  background: linear-gradient(-45deg,  #338aff, #3cf0c5);
+  background-size: 600%;
+  text-decoration: none;
+}
+
+.big-btn-s,
+.big-btn-s:disabled {
+  display: flex;
+  position: absolute;
+  margin-top: -70px;
+  z-index: -1;
+  -webkit-filter: blur(30px);
+  filter: blur(30px);
+  opacity: 0.8;
+}
+
+.big-btn:disabled,
+.big-btn-s:disabled {
+  background: #555;
+  -webkit-animation: none;
+  animation: none;
+  cursor: not-allowed;
+}
+
+.big-btn:hover {
+  text-decoration: none;
+  -webkit-animation: anime 8s linear infinite;
+  animation: anime 8s linear infinite;
+}
+
+@-webkit-keyframes anime {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes anime {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
