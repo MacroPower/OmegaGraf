@@ -10,6 +10,10 @@ export default function Deploy() {
   const [globalSession, globalSessionActions] = UseGlobalSession();
   const [globalSettings, globalSettingsActions] = UseGlobalSettings();
 
+  //eslint-disable-next-line
+  const params = new URLSearchParams(location.search); 
+  const ref = params.get('ref');
+
   return (
     <main role="main" className="container">
       <Breadcrumb>
@@ -17,9 +21,8 @@ export default function Deploy() {
           <Link to="/">Home</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <Link to="/">Form</Link>
+          <Link to={"/form/" + ref}>Form</Link>
         </Breadcrumb.Item>
-
         <Breadcrumb.Item active>Deploy</Breadcrumb.Item>
       </Breadcrumb>
       <br />

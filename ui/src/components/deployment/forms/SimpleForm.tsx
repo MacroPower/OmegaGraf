@@ -18,7 +18,8 @@ export default function SimpleForm() {
   return (
     <FormView
       state={state}
-      page="Simple"
+      page="simple"
+      pageName="Simple"
       title="Deploying Level 1"
       description="Please enter your preferences."
     >

@@ -7,13 +7,14 @@ import { Settings } from '../components/settings/Settings';
 interface State {
   state: Settings;
   page: string;
+  pageName: string;
   title: string;
   description: string;
 }
 
 export default function FormView(props: React.PropsWithChildren<State>) {
   const [_, globalSettingsActions] = UseGlobalSettings();
-  const { state, children, title, description, page } = props;
+  const { state, children, title, description, pageName, page } = props;
   const [toDeploy, redirect] = useState(false);
 
   return (
@@ -22,7 +23,6 @@ export default function FormView(props: React.PropsWithChildren<State>) {
         <Breadcrumb.Item>
           <Link to="/">Home</Link>
         </Breadcrumb.Item>
-
         <Breadcrumb.Item active>Form</Breadcrumb.Item>
       </Breadcrumb>
       <br />
@@ -34,7 +34,7 @@ export default function FormView(props: React.PropsWithChildren<State>) {
 
       <Row className="justify-content-md-center">
         <Form>
-          {toDeploy && <Redirect to="/deploy" />}
+          {toDeploy && <Redirect to={"/deploy?ref=" + page} />}
 
           {children}
 
