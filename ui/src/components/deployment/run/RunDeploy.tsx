@@ -11,6 +11,7 @@ import DeployRequest from './DeployRequest';
 import PacmanGhost from '../../../data/Ghost';
 import { Settings } from '../../settings/Settings';
 import Promise from 'thenfail';
+import BigButton from '../../BigButton';
 
 type stepStatus = 'active' | 'error' | 'finish' | 'done';
 
@@ -201,13 +202,11 @@ export default function RunDeploy() {
         <div className="text-center">
           <h4>Are you sure you want to deploy?</h4>
           <br />
-          <Button
-            className="mb-3"
-            variant="outline-primary"
+          <BigButton
             onClick={startRun()}
           >
             Confirm
-          </Button>
+          </BigButton>
         </div>
       )}
       {steps.length > 0 && (

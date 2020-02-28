@@ -2,6 +2,7 @@ import React, { useState, Component } from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { Route, Link, match } from 'react-router-dom';
 import OptionCard from '../OptionCard';
+import BigButton from '../BigButton';
 
 class RoutedLink extends Component<{
   to: string;
@@ -13,8 +14,8 @@ class RoutedLink extends Component<{
       path: this.props.to,
       exact: false,
       children: ({ match }: { match: match }) => (
-        <Link to={this.props.to}>
-          <Button disabled={this.props.disabled}>Get Started</Button>
+        <Link to={this.props.to} className="text-decoration-none">
+          <BigButton disabled={this.props.disabled}>Get Started</BigButton>
         </Link>
       )
     };
@@ -27,7 +28,7 @@ export default function DeployForm() {
 
   return (
     <Container>
-      <Row className="justify-content-md-center">
+      <Row className="mb-4 justify-content-md-center">
         <Col md={4}>
           <a onClick={() => setDirect('simple')}>
             <OptionCard clicked={direct === 'simple'} phase="1" />
@@ -44,6 +45,7 @@ export default function DeployForm() {
           </a>
         </Col>
       </Row>
+      <br />
       <Row className="mt-4 justify-content-md-center">
         <RoutedLink to={'/form/' + direct} disabled={direct === ''} />
       </Row>
