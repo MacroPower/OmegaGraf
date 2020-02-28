@@ -36,13 +36,15 @@ export type Routed = {
   component: any;
 };
 
+const optionalAuth = true;
+
 const Routes: Routed[] = [
   {
     path: "/",
     label: "Home",
     exact: true,
     hidden: false,
-    requiresAuth: true,
+    requiresAuth: optionalAuth,
     component: Home
   },
   {
@@ -50,7 +52,7 @@ const Routes: Routed[] = [
     label: "About",
     exact: false,
     hidden: false,
-    requiresAuth: true,
+    requiresAuth: optionalAuth,
     component: About
   },
   {
@@ -58,7 +60,7 @@ const Routes: Routed[] = [
     label: "Deploy",
     exact: false,
     hidden: true,
-    requiresAuth: true,
+    requiresAuth: optionalAuth,
     component: Deploy
   },
   {
@@ -75,7 +77,7 @@ const Routes: Routed[] = [
     label: 'Simple',
     exact: false,
     hidden: true,
-    requiresAuth: true,
+    requiresAuth: optionalAuth,
     component: SimpleForm
   },
   {
@@ -83,7 +85,7 @@ const Routes: Routed[] = [
     label: 'Normal',
     exact: false,
     hidden: true,
-    requiresAuth: true,
+    requiresAuth: optionalAuth,
     component: NormalForm
   },
   {
@@ -91,7 +93,7 @@ const Routes: Routed[] = [
     label: 'Advanced',
     exact: false,
     hidden: true,
-    requiresAuth: true,
+    requiresAuth: optionalAuth,
     component: AdvancedForm
   }
 ];
