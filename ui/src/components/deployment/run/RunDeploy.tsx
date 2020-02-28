@@ -198,8 +198,9 @@ export default function RunDeploy() {
   return (
     <>
       {steps.length === 0 && (
-        <>
+        <div className="text-center">
           <h4>Are you sure you want to deploy?</h4>
+          <br />
           <Button
             className="mb-3"
             variant="outline-primary"
@@ -207,7 +208,7 @@ export default function RunDeploy() {
           >
             Confirm
           </Button>
-        </>
+        </div>
       )}
       {steps.length > 0 && (
         <Steps current={stepLength()} direction="vertical">
