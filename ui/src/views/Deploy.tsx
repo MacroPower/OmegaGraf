@@ -1,9 +1,10 @@
 import React from 'react';
 import { UseGlobalSession, UseGlobalSettings } from '../components/Global';
-import { Container } from 'react-bootstrap';
+import { Container, Breadcrumb } from 'react-bootstrap';
 import 'rc-steps/assets/index.css';
 import 'rc-steps/assets/iconfont.css';
 import RunDeploy from '../components/deployment/run/RunDeploy';
+import { Link } from 'react-router-dom';
 
 export default function Deploy() {
   const [globalSession, globalSessionActions] = UseGlobalSession();
@@ -11,8 +12,22 @@ export default function Deploy() {
 
   return (
     <main role="main" className="container">
-      <h2>Deploy</h2>
+      <Breadcrumb>
+        <Breadcrumb.Item>
+          <Link to="/">Home</Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <Link to="/">Form</Link>
+        </Breadcrumb.Item>
+
+        <Breadcrumb.Item active>Deploy</Breadcrumb.Item>
+      </Breadcrumb>
+      <br />
+      <h1 className="home-title text-center">Deploy</h1>
+      <h4 className="home-subtitle text-center">Create your environment.</h4>
+      <br />
       <hr />
+      <br />
       <Container>
         <RunDeploy />
       </Container>

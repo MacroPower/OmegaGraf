@@ -19,6 +19,7 @@ export default function AdvancedForm() {
   return (
     <FormView
       state={state}
+      page="Advanced"
       title="Deploying Level 3"
       description="Please enter your preferences."
     >

@@ -19,6 +19,7 @@ export default function NormalForm() {
   return (
     <FormView
       state={state}
+      page="Normal"
       title="Deploying Level 2"
       description="Please enter your preferences."
     >
