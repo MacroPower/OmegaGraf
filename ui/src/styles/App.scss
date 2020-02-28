@@ -232,8 +232,15 @@ body {
   color: rgba(255, 255, 255, 0.9);
   border-radius: 50px;
   border: 0px solid gray;
-  background: linear-gradient(-45deg,  #338aff, #3cf0c5);
-  background-size: 600%;
+  background: linear-gradient(
+    50deg,
+    #338aff 0%,
+    #3cf0c5 25%,
+    #338aff 50%,
+    #3cf0c5 75%,
+    #338aff 100%
+  );
+  background-size: 1200%;
   text-decoration: none;
 }
 
@@ -256,10 +263,11 @@ body {
   cursor: not-allowed;
 }
 
-.big-btn:hover {
+.big-btn:hover,
+.big-btn-s:hover {
   text-decoration: none;
-  -webkit-animation: anime 8s linear infinite;
-  animation: anime 8s linear infinite;
+  -webkit-animation: anime 16s linear infinite;
+  animation: anime 16s linear infinite;
 }
 
 @-webkit-keyframes anime {
