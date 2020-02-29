@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { SettingsReducer } from '../SettingsReducer';
+import { SettingsReducer, ActionTypes } from '../reducers/SettingsReducer';
 import AddSystem from '../inputs/AddSystem';
 import { UseGlobalSettings } from '../../Global';
 import FormView from '../../../views/Form';
@@ -10,7 +10,7 @@ export default function SimpleForm() {
 
   useEffect(() => {
     dispatch({
-      type: 'reset',
+      type: ActionTypes.Reset,
       value: globalSettings
     });
   }, [globalSettings]);

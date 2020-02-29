@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { SettingsReducer } from '../SettingsReducer';
+import { SettingsReducer, ActionTypes } from '../reducers/SettingsReducer';
 import AddSystem from '../inputs/AddSystem';
 import { UseGlobalSettings } from '../../Global';
 import TextField from '../inputs/TextField';
@@ -11,7 +11,7 @@ export default function NormalForm() {
 
   useEffect(() => {
     dispatch({
-      type: 'reset',
+      type: ActionTypes.Reset,
       value: globalSettings
     });
   }, [globalSettings]);
@@ -26,11 +26,27 @@ export default function NormalForm() {
     >
       <AddSystem dispatch={dispatch} state={state} />
 
+      <br />
+
       <TextField
         dispatch={dispatch}
-        label="BuildConfiguration.Image"
-        type="BuildConfiguration.Image"
-        value={state.Prometheus.BuildConfiguration.Image}
+        label="Telegraf Tag"
+        type={ActionTypes.TelegrafBuildConfigurationTag}
+        value={state.Telegraf.BuildConfiguration.Tag}
+      />
+
+      <TextField
+        dispatch={dispatch}
+        label="Prometheus Tag"
+        type={ActionTypes.PrometheusBuildConfigurationTag}
+        value={state.Prometheus.BuildConfiguration.Tag}
+      />
+
+      <TextField
+        dispatch={dispatch}
+        label="Grafana Tag"
+        type={ActionTypes.GrafanaBuildConfigurationTag}
+        value={state.Grafana.BuildConfiguration.Tag}
       />
     </FormView>
   );

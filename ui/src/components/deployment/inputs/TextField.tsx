@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import { Action, ActionTypes } from '../SettingsReducer';
+import { Action, ActionTypes } from '../reducers/SettingsReducer';
 
 export default function TextField(props: {
   dispatch: React.Dispatch<Action>;
@@ -8,9 +8,12 @@ export default function TextField(props: {
   type: ActionTypes;
   value: any;
 }) {
+
+  let value = props.value || ''
+
   return (
     <>
-      <Form.Group controlId={props.type}>
+      <Form.Group controlId={props.type.valueOf().toString()}>
         <Form.Label>{props.label}</Form.Label>
         <Form.Control
           type="text"
@@ -20,7 +23,7 @@ export default function TextField(props: {
               value: e.target.value
             })
           }
-          value={props.value}
+          value={value}
         />
       </Form.Group>
     </>

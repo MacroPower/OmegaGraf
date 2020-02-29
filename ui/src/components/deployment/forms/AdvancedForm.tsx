@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { SettingsReducer } from '../SettingsReducer';
+import { SettingsReducer, ActionTypes } from '../reducers/SettingsReducer';
 import AddSystem from '../inputs/AddSystem';
 import { UseGlobalSettings } from '../../Global';
 import TextField from '../inputs/TextField';
@@ -11,7 +11,7 @@ export default function AdvancedForm() {
 
   useEffect(() => {
     dispatch({
-      type: 'reset',
+      type: ActionTypes.Reset,
       value: globalSettings
     });
   }, [globalSettings]);
@@ -26,18 +26,20 @@ export default function AdvancedForm() {
     >
       <AddSystem dispatch={dispatch} state={state} />
 
+      <br />
+
       <TextField
         dispatch={dispatch}
-        label="BuildConfiguration.Image"
-        type="BuildConfiguration.Image"
-        value={state.Prometheus.BuildConfiguration.Image}
+        label="Prometheus Global Scrape Interval"
+        type={ActionTypes.PrometheusConfigDataScrapeIntervalShort}
+        value={state.Prometheus.Config[0].Data.Global.ScrapeInterval}
       />
 
       <TextField
         dispatch={dispatch}
-        label="BuildConfiguration.Tag"
-        type="BuildConfiguration.Tag"
-        value={state.Prometheus.BuildConfiguration.Tag}
+        label="Prometheus vCenter Scrape Interval"
+        type={ActionTypes.PrometheusConfigDataScrapeIntervalLong}
+        value={state.Prometheus.Config[0].Data.ScrapeConfigs[1]?.ScrapeInterval}
       />
     </FormView>
   );

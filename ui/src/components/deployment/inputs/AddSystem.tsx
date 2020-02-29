@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Form, Row, Col } from 'react-bootstrap';
-import { Action } from '../SettingsReducer';
+import { Action, ActionTypes } from '../reducers/SettingsReducer';
 import { Settings } from '../../settings/Settings';
 import { UseGlobalSim } from '../../Global';
 
@@ -20,7 +20,7 @@ export default function AddSystem(props: {
 
   useEffect(() => {
     dispatch({
-      type: 'vCenter',
+      type: ActionTypes.vCenterInputs,
       value: {
         systems: systems,
         username: username,
