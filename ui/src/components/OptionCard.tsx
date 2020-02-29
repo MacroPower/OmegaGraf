@@ -12,19 +12,19 @@ const phases: {
 } = {
   '1': {
     icon: 'cog',
-    color: 'green',
+    color: 'var(--green)',
     title: 'Default',
     description: 'Use the default configuration.'
   },
   '2': {
     icon: 'toolbox',
-    color: 'orange',
+    color: 'var(--blue)',
     title: 'Minor Adjustments',
     description: 'Make common changes.'
   },
   '3': {
     icon: 'tools',
-    color: 'red',
+    color: 'var(--red)',
     title: 'Advanced Settings',
     description: 'Make more intricate changes.'
   }
