@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/OmegaGraf/compose.svg?branch=master)](https://travis-ci.com/OmegaGraf/compose)
+[![Build Status](https://travis-ci.com/OmegaGraf/OmegaGraf.svg?branch=master)](https://travis-ci.com/OmegaGraf/compose)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OmegaGraf_compose&metric=alert_status)](https://sonarcloud.io/dashboard?id=OmegaGraf_compose)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=OmegaGraf_compose&metric=coverage)](https://sonarcloud.io/dashboard?id=OmegaGraf_compose)
 
