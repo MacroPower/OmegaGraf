@@ -24,8 +24,8 @@
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
     <PackageReference Include="Nett" Version="0.13.0"/>
-    <PackageReference Include="Nancy.Swagger" Version="2.2.56-alpha"/>
-    <PackageReference Include="Swagger.ObjectModel" Version="2.2.56-alpha"/>
+    <PackageReference Include="Nancy.Swagger" Version="2.2.59-alpha"/>
+    <PackageReference Include="Swagger.ObjectModel" Version="2.2.59-alpha"/>
     <PackageReference Include="Flurl" Version="2.8.2"/>
     <PackageReference Include="Flurl.Http" Version="2.4.2"/>
     <PackageReference Include="NLog" Version="4.6.8"/>
