@@ -14,6 +14,11 @@ namespace OmegaGraf.Compose
                     {
                         rule.SetLoggingLevels(newLogLevel, LogLevel.Fatal);
                     }
+
+                    if (target.Name == "file")
+                    {
+                        rule.SetLoggingLevels(LogLevel.Trace, LogLevel.Fatal);
+                    }
                 }
             }
 
