@@ -49,9 +49,9 @@ namespace OmegaGraf.Compose.MetaData
                 "/datasource",
                 args =>
                 {
-                    var g = new Grafana("http://localhost:3000");
+                    logger.Info("Adding default Grafana datasource");
 
-                    logger.Info("Adding default datasource");
+                    var g = new Grafana("http://localhost:3000");
 
                     g.AddDataSource(Example.GrafanaDataSource).Wait();
                     g.Dispose();
@@ -70,6 +70,8 @@ namespace OmegaGraf.Compose.MetaData
                 "/dashboards",
                 args =>
                 {
+                    logger.Info("Adding default Grafana dashboards");
+
                     var g = new Grafana("http://localhost:3000");
 
                     string filepath = Path.Join(System.AppDomain.CurrentDomain.BaseDirectory, "grafana/dashboards/");
@@ -87,6 +89,11 @@ namespace OmegaGraf.Compose.MetaData
                     catch (IOException ex)
                     {
                         logger.Error(ex, "Error reading a dashboard file");
+                        throw;
+                    }
+                    catch (System.Exception ex)
+                    {
+                        logger.Error(ex, "Unknown Exception");
                         throw;
                     }
 

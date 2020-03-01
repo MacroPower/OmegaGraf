@@ -5,11 +5,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
 using System;
+using NLog;
 
 namespace OmegaGraf.Compose
 {
     public class Grafana : IDisposable
     {
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
+
         private readonly Token token;
         private readonly string uri;
 
@@ -67,14 +70,23 @@ namespace OmegaGraf.Compose
                        .WithOAuthBearerToken(this.token.Key)
                        .PostJsonAsync(dataSource);
             }
-            catch (FlurlHttpException e)
+            catch (FlurlHttpException ex)
             {
-                if (e.Call.HttpStatus.ToString() == "Conflict")
+                if (ex.Call.HttpStatus.ToString() == "Conflict")
                 {
-                    return e.Call.Response;
+                    logger.Warn(ex, ex.Call.HttpStatus.ToString());
+
+                    return ex.Call.Response;
                 }
 
-                throw e;
+                logger.Error(ex);
+
+                throw;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                throw;
             }
         }
 
@@ -87,14 +99,23 @@ namespace OmegaGraf.Compose
                        .WithOAuthBearerToken(this.token.Key)
                        .PostJsonAsync(jsonModel);
             }
-            catch (FlurlHttpException e)
+            catch (FlurlHttpException ex)
             {
-                if (e.Call.HttpStatus.ToString() == "PreconditionFailed")
+                if (ex.Call.HttpStatus.ToString() == "PreconditionFailed")
                 {
-                    return e.Call.Response;
+                    logger.Warn(ex, ex.Call.HttpStatus.ToString());
+
+                    return ex.Call.Response;
                 }
 
-                throw e;
+                logger.Error(ex);
+
+                throw;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                throw;
             }
         }
     }
