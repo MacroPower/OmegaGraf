@@ -35,5 +35,12 @@ namespace OmegaGraf.Compose
 
             return key;
         }
+
+        public static string CreateKey(string key)
+        {
+            activeApiKey = key;
+
+            return key;
+        }
     }
 }

@@ -24,6 +24,9 @@ namespace OmegaGraf.Compose
         [ArgShortcut("--host"), ArgDescription("The listen address for this application."), ArgPosition(2), ArgDefaultValue("https://0.0.0.0:5001")]
         public string[] Host { get; set; }
 
+        [ArgShortcut("-k"), ArgShortcut("--key"), ArgDescription("Override the OmegaGraf Secure Key."), ArgPosition(3)]
+        public string Key { get; set; }
+
         [ArgShortcut("-r"), ArgShortcut("--reset"), ArgDescription("Removes existing OmegaGraf containers.")]
         public bool Reset { get; set; }
     }

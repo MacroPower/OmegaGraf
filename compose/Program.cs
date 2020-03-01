@@ -31,8 +31,15 @@ namespace OmegaGraf.Compose
                 MetaData.Example.Root = parsed.Path;
                 logger.Info("Root: " + MetaData.Example.Root);
 
-                var key = KeyDatabase.CreateKey();
-                Console.WriteLine("Your secure code: " + key);
+                if (string.IsNullOrWhiteSpace(parsed.Key))
+                {
+                    var key = KeyDatabase.CreateKey();
+                    Console.WriteLine("Your secure code: " + key);
+                }
+                else
+                {
+                    KeyDatabase.CreateKey(parsed.Key);
+                }
 
                 var urls = 
                     parsed.Host.Length == 0 ? new string[] { "https://0.0.0.0:5001" }
