@@ -22,7 +22,7 @@ namespace OmegaGraf.Compose.MetaData
                 return View["Index"];
             });
 
-            Get("/(.*)", _ =>
+            Get("/{all*}", _ =>
             {
                 return View["Index"];
             });
