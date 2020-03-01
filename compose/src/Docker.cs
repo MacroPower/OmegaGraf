@@ -13,7 +13,7 @@ namespace OmegaGraf.Compose
     public class Docker
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
-        
+
         public DockerClient DockerClient { get; }
         private string DockerURI
         {
@@ -71,7 +71,7 @@ namespace OmegaGraf.Compose
             List<string> cmd = null
         ){
             await CreateNetwork();
-            
+
             foreach (var b in binds)
             {
                 System.IO.Directory.CreateDirectory(b.Key);
@@ -135,9 +135,31 @@ namespace OmegaGraf.Compose
                 parameters.Cmd = cmd;
             }
 
-            var response = await this.DockerClient.Containers.CreateContainerAsync(parameters);
+            try
+            {
+                var response = await this.DockerClient.Containers.CreateContainerAsync(parameters);
 
-            return response.ID;
+                return response.ID;
+            }
+            catch (DockerApiException ex)
+            {
+                if (ex.StatusCode.ToString() == "Conflict")
+                {
+                    logger.Error(ex, "It looks like you already have a deployment! " +
+                                 "If you want to redeploy OmegaGraf, please start the application with --reset");
+                }
+                else
+                {
+                    logger.Error(ex, ex.StatusCode.ToString());
+                }
+
+                throw;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                throw;
+            }
         }
 
         public Task StartContainer(string id) =>
@@ -172,7 +194,7 @@ namespace OmegaGraf.Compose
                         Force = false
                     }
                 );
-        
+
         public Task RemoveAllContainers()
         {
             var containers = ListContainers().Result;
@@ -188,9 +210,9 @@ namespace OmegaGraf.Compose
 
                         tasks.Add(
                             Task.Run(async () => {
-                                    await StopContainer(container.ID);
-                                    await RemoveContainer(container.ID);
-                                }));
+                                     await StopContainer(container.ID);
+                                     await RemoveContainer(container.ID);
+                                 }));
                     }
                 }
             }
