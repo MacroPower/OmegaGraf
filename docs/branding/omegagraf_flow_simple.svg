@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1046.3776"
+   height="406.60364"
+   viewBox="0 0 276.85405 107.58055"
+   version="1.1"
+   id="svg54"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="omegagraf_flow_simple.svg"
+   inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1920.png"
+   inkscape:export-xdpi="200"
+   inkscape:export-ydpi="200">
+  <defs
+     id="defs48">
+    <linearGradient
+       id="linearGradient-1"
+       y2="83.100204"
+       x2="133.42033"
+       y1="326.78143"
+       x1="133.42033"
+       gradientTransform="matrix(0.40680638,0,0,0.44208187,313.93808,272.87735)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="stop4609"
+         offset="0%"
+         stop-color="#FFF100"
+         style="stop-color:#fd00ff;stop-opacity:1" />
+      <stop
+         id="stop4611"
+         offset="100%"
+         stop-color="#F05A28" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient-1-4"
+       y2="83.100204"
+       x2="133.42033"
+       y1="326.78143"
+       x1="133.42033"
+       gradientTransform="scale(0.95927369,1.0424554)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         id="stop4676"
+         offset="0%"
+         stop-color="#FFF100" />
+      <stop
+         id="stop4678"
+         offset="100%"
+         stop-color="#F05A28" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.67436345"
+     inkscape:cx="895.10106"
+     inkscape:cy="74.544937"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     showguides="true"
+     inkscape:window-width="1919"
+     inkscape:window-height="1024"
+     inkscape:window-x="160"
+     inkscape:window-y="259"
+     inkscape:window-maximized="0"
+     units="px"
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid4607"
+       originx="-451.37203"
+       originy="-335.00131" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata51">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-451.3721,145.58186)">
+    <circle
+       id="path56-5-7-5-2"
+       cx="602.19153"
+       cy="-121.76936"
+       style="fill:none;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       r="20.505209"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774" />
+    <path
+       id="path4787"
+       d="m 613.07048,-130.67408 -9.92285,-4.13452 a 2.4884628,2.4884628 0 0 0 -1.90704,0 l -9.92285,4.13452 c -0.92509,0.38244 -1.52977,1.28687 -1.52977,2.28949 0,10.25877 5.91753,17.34947 11.44745,19.65447 0.60984,0.25323 1.2972,0.25323 1.90705,0 4.4291,-1.84503 11.45261,-8.21736 11.45261,-19.65447 0,-1.00262 -0.60467,-1.90705 -1.5246,-2.28949 z m -10.87379,18.7397 -0.005,-19.69064 9.09078,3.78825 c -0.17055,7.82458 -4.24305,13.49404 -9.08561,15.90239 z"
+       inkscape:connector-curvature="0"
+       style="fill:#c81d8a;fill-opacity:1;stroke-width:0.05168147"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774" />
+    <path
+       id="path4809"
+       d="m 613.09934,-63.736523 -16.37044,-9.67809 c -1.33009,-0.78597 -3.3671,-0.02322 -3.3671,1.920736 v 19.351526 c 0,1.744011 1.89284,2.795059 3.3671,1.920735 l 16.37044,-9.673436 c 1.46031,-0.860382 1.46496,-2.981098 0,-3.841471 z"
+       inkscape:connector-curvature="0"
+       style="fill:#c81d8a;fill-opacity:1;stroke-width:0.04650691"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774" />
+    <circle
+       id="path56-5-7-5-2-6"
+       cx="602.19159"
+       cy="-61.813816"
+       style="fill:none;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       r="20.505209"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.32291663;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 602.19154,-99.067627 v 14.55208"
+       id="path4717-1-0"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Proxima Nova';-inkscape-font-specification:'Proxima Nova';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="625.5199"
+       y="-118.24511"
+       id="text4974-0"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774"><tspan
+         sodipodi:role="line"
+         id="tspan4972-0"
+         x="625.5199"
+         y="-118.24511"
+         style="stroke-width:0.26458332">Enter vCenter Details</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Proxima Nova';-inkscape-font-specification:'Proxima Nova';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="625.82678"
+       y="-59.263241"
+       id="text4974-2"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774"><tspan
+         sodipodi:role="line"
+         id="tspan4972-1"
+         x="625.82678"
+         y="-59.263241"
+         style="stroke-width:0.26458332">Click Deploy</tspan></text>
+    <circle
+       id="path56-5"
+       cx="475.18463"
+       cy="-121.76936"
+       style="fill:none;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       r="20.505209"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774" />
+    <path
+       id="path4734"
+       d="m 473.34592,-121.1847 -8.03436,8.03436 c -0.38749,0.38749 -1.01571,0.38749 -1.40316,0 l -0.93712,-0.93708 c -0.38683,-0.38683 -0.38757,-1.01377 -0.002,-1.40151 l 6.36744,-6.39737 -6.3674,-6.39733 c -0.38592,-0.38774 -0.38517,-1.01468 0.002,-1.40151 l 0.93708,-0.93708 c 0.38749,-0.38749 1.01571,-0.38749 1.40316,0 l 8.03436,8.03436 c 0.38749,0.38745 0.38749,1.01567 0,1.40316 z m 15.79309,7.56662 v -1.32291 c 0,-0.54798 -0.44421,-0.99219 -0.99219,-0.99219 h -12.5677 c -0.54797,0 -0.99218,0.44421 -0.99218,0.99219 v 1.32291 c 0,0.54798 0.44421,0.99219 0.99218,0.99219 h 12.5677 c 0.54798,0 0.99219,-0.44421 0.99219,-0.99219 z"
+       inkscape:connector-curvature="0"
+       style="fill:#c81d8a;fill-opacity:1;stroke-width:0.04134111"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774" />
+    <circle
+       id="path56-5-7-5"
+       cx="475.1846"
+       cy="-61.813816"
+       style="fill:none;stroke:#000000;stroke-width:1.32291663;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       r="20.505209"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774" />
+    <path
+       id="path4776"
+       d="m 471.68313,-67.009876 z m -3.08703,-1.54351 c 0.008,6e-4 0.004,6e-4 0,0 z m 18.46855,2.38333 c -0.5576,-1.34013 -1.68593,-2.78537 -2.572,-3.24417 0.72105,1.41318 1.13885,2.83162 1.29809,3.88901 0,0 0,0.007 0.003,0.0215 -1.44943,-3.61309 -3.90739,-5.06989 -5.91495,-8.24205 -0.10144,-0.16029 -0.20287,-0.32111 -0.30167,-0.49033 -0.0526,-0.0867 -0.0978,-0.17553 -0.14137,-0.2654 a 2.3586261,2.3586261 0 0 1 -0.19129,-0.50557 0.03310906,0.03310906 0 0 0 -0.0289,-0.0347 0.04729865,0.04729865 0 0 0 -0.0242,0 l -0.006,0.004 -0.01,0.005 0.005,-0.007 c -2.85001,1.66964 -4.03195,4.59217 -4.33571,6.45258 a 6.8320273,6.8320273 0 0 0 -2.53994,0.648 0.32846285,0.32846285 0 0 0 -0.16239,0.40729 0.32215636,0.32215636 0 0 0 0.40939,0.19918 l 0.0273,-0.011 a 6.1929701,6.1929701 0 0 1 2.21305,-0.5781 l 0.0746,-0.005 c 0.10511,-0.006 0.21022,-0.0105 0.31533,-0.0116 a 6.4436528,6.4436528 0 0 1 1.84202,0.25331 c 0.0352,0.0105 0.0694,0.0221 0.1051,0.0331 0.0993,0.03 0.19761,0.0631 0.29536,0.0983 0.0715,0.0263 0.14242,0.0526 0.21284,0.083 0.0573,0.0231 0.11457,0.0463 0.1708,0.071 q 0.13244,0.0594 0.26277,0.1235 c 0.0394,0.0194 0.0788,0.0389 0.11825,0.0594 q 0.12613,0.0662 0.24911,0.13822 0.0794,0.0457 0.15766,0.0946 a 6.5634761,6.5634761 0 0 1 2.24195,2.31921 c -0.6832,-0.48087 -1.91034,-0.95596 -3.09123,-0.75047 4.6111,2.30502 3.37292,10.24278 -3.01607,9.94323 a 5.6984364,5.6984364 0 0 1 -1.66807,-0.32164 c -0.12718,-0.0478 -0.25226,-0.0993 -0.37629,-0.15398 -0.0725,-0.0331 -0.14504,-0.0667 -0.21652,-0.10511 -1.56821,-0.80618 -2.86104,-2.33445 -3.02238,-4.19118 0,0 0.59123,-2.20465 4.23691,-2.20465 0.39415,0 1.52038,-1.09943 1.54141,-1.41896 -0.005,-0.1051 -2.23565,-0.99169 -3.10542,-1.84885 -0.46511,-0.45774 -0.68583,-0.67847 -0.88133,-0.84402 a 3.6567112,3.6567112 0 0 0 -0.33162,-0.25068 5.9412362,5.9412362 0 0 1 -0.0363,-3.1338 c -1.31701,0.59965 -2.34128,1.54772 -3.08545,2.38438 h -0.006 c -0.5082,-0.64379 -0.47299,-2.76697 -0.44303,-3.21 -0.006,-0.0279 -0.37944,0.1934 -0.42832,0.22651 a 9.3830012,9.3830012 0 0 0 -1.25288,1.07368 11.246568,11.246568 0 0 0 -1.19666,1.4363 v 0 a 10.817727,10.817727 0 0 0 -1.72009,3.88374 c -0.003,0.0142 -0.12246,0.53658 -0.21022,1.18142 q -0.0221,0.15083 -0.041,0.30166 c -0.03,0.19392 -0.0526,0.40519 -0.0757,0.73576 0,0.0126 0,0.0252 -0.003,0.0378 -0.01,0.14243 -0.0179,0.28432 -0.0258,0.42674 0,0.0216 0,0.0431 0,0.0652 0,7.07903 5.73943,12.81741 12.81898,12.81741 6.34012,0 11.60499,-4.60268 12.63558,-10.6485 0.0216,-0.16397 0.0389,-0.32899 0.0583,-0.49454 0.25489,-2.19833 -0.0284,-4.50861 -0.83141,-6.4405 z"
+       inkscape:connector-curvature="0"
+       style="fill:#c81d8a;fill-opacity:1;stroke-width:0.05255405"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.32291663;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 475.18463,-99.06761 v 14.55208"
+       id="path4717-1"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Proxima Nova';-inkscape-font-specification:'Proxima Nova';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="498.96805"
+       y="-119.15526"
+       id="text4974"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774"><tspan
+         sodipodi:role="line"
+         id="tspan4972"
+         x="498.96805"
+         y="-119.15526"
+         style="stroke-width:0.26458332">Start App</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:'Proxima Nova';-inkscape-font-specification:'Proxima Nova';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="499.24319"
+       y="-58.32132"
+       id="text4974-5"
+       inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\flow_1440_run.png"
+       inkscape:export-xdpi="200.83774"
+       inkscape:export-ydpi="200.83774"><tspan
+         sodipodi:role="line"
+         id="tspan4972-3"
+         x="499.24319"
+         y="-58.32132"
+         style="stroke-width:0.26458332">Visit Web UI</tspan></text>
+  </g>
+  <style
+     id="style4566"
+     type="text/css">
+	.st0{fill:none;}
+	.st1{fill:#22ADF6;}
+</style>
+  <style
+     id="style5114"
+     type="text/css">
+	.st0{fill:#2179BF;}
+</style>
+</svg>
