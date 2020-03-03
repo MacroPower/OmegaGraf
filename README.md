@@ -25,10 +25,10 @@ OmegaGraf is an entirely open-source and containerized solution, configured and 
 
 1. Run OmegaGraf application
 2. Visit printed URL and enter secure code
-3. Check 'Use simulation' and enter desired # of sims
+3. If you're just testing, check 'Use simulation'
 4. Click 'Deploy'
-5. Wait for deployment to complete
-6. Visit {hostname}:3000, enter admin/admin
+
+After your deployment completes, you may start using the monitoring stack by visiting Grafana at `http://{hostname}:3000` and entering `admin`/`admin`. You will be prompted to set a new password on first login.
 
 ## Create a release
 
