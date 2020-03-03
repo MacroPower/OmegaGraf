@@ -6,7 +6,7 @@
 OmegaGraf is an entirely open-source and containerized solution, configured and deployed through a simple web interface. In minutes, OmegaGraf provides the following features and more:
 
 <p align="center">
-  <img src="docs/branding/flow_1440_features.png" width="500px">
+  <img src="docs/branding/flow_1440_features.png" width="600px">
 </p>
 
 ## Requirements
@@ -29,13 +29,6 @@ OmegaGraf is an entirely open-source and containerized solution, configured and 
 4. Click 'Deploy'
 
 After your deployment completes, you may start using the monitoring stack by visiting Grafana at `http://{hostname}:3000` and entering `admin`/`admin`. You will be prompted to set a new password on first login.
-
-## Create a release
-
-```
-run ./build.ps1
---> build/{env}/
-```
 
 ## Credits
 
