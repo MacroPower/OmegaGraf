@@ -157,7 +157,7 @@ export default function RunDeploy() {
           addStep(stepTitle, stepText);
 
           let conf = { ...state.VCSim };
-          conf.BuildConfiguration.Name = 'vcsim' + iq;
+          conf.BuildInput.Name = 'vcsim' + iq;
 
           await DeployRequest(endpoint, apiKey, 'telegraf/sim', conf);
           setLastStep(stepTitle, stepText + 'Done!', 'finish');

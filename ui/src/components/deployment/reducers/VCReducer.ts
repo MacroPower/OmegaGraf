@@ -4,7 +4,7 @@ export const newVCenters = (state: Settings, current: any): Settings => {
   return {
     ...state,
     Telegraf: {
-      BuildConfiguration: state.Telegraf.BuildConfiguration,
+      BuildInput: state.Telegraf.BuildInput,
       Config: [
         {
           ...state.Telegraf.Config[0],

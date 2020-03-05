@@ -32,21 +32,21 @@ export default function NormalForm() {
         dispatch={dispatch}
         label="Telegraf Tag"
         type={ActionTypes.TelegrafBuildConfigurationTag}
-        value={state.Telegraf.BuildConfiguration.Tag}
+        value={state.Telegraf.BuildInput.Tag}
       />
 
       <TextField
         dispatch={dispatch}
         label="Prometheus Tag"
         type={ActionTypes.PrometheusBuildConfigurationTag}
-        value={state.Prometheus.BuildConfiguration.Tag}
+        value={state.Prometheus.BuildInput.Tag}
       />
 
       <TextField
         dispatch={dispatch}
         label="Grafana Tag"
         type={ActionTypes.GrafanaBuildConfigurationTag}
-        value={state.Grafana.BuildConfiguration.Tag}
+        value={state.Grafana.BuildInput.Tag}
       />
     </FormView>
   );

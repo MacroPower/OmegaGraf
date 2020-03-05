@@ -29,7 +29,9 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     Input<Prometheus> bind = (this).Bind<Input<Prometheus>>();
 
-                    var uuid = new Runner().AddYamlConfig(bind.Config).Build(bind.BuildConfiguration);
+                    var bc = bind.BuildInput.ToBuildConfiguration("prom/prometheus");
+
+                    var uuid = new Runner().AddYamlConfig(bind.Config).Build(bc);
 
                     return Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),

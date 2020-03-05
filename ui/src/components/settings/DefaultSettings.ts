@@ -1,11 +1,10 @@
 import { Settings } from './Settings';
 
 const defaultBuildConfiguration = {
-  BuildConfiguration: {
+  BuildInput: {
     Name: undefined,
-    Image: '',
     Tag: '',
-    Ports: [],
+    Ports: {},
     Binds: {},
     Parameters: []
   }

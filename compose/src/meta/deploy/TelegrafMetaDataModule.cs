@@ -29,8 +29,10 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     Input<Telegraf> bind = (this).Bind<Input<Telegraf>>();
 
+                    var bc = bind.BuildInput.ToBuildConfiguration("telegraf");
+
                     var uuid = new Runner().AddTomlConfig(x => x.LowerCase, bind.Config)
-                               .Build(bind.BuildConfiguration);
+                               .Build(bc);
 
                     return Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
@@ -48,7 +50,9 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     Input bind = (this).Bind<Input>();
 
-                    var uuid = new Runner().Build(bind.BuildConfiguration);
+                    var bc = bind.BuildInput.ToBuildConfiguration("macropower/vcsim");
+
+                    var uuid = new Runner().Build(bc);
 
                     return Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
