@@ -1,29 +1,24 @@
 using Nett;
 using SharpYaml.Serialization;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OmegaGraf.Compose.MetaData
 {
-    public class Input<T>
-    {
-        public BuildConfiguration BuildConfiguration { get; set; }
-        public Config<T>[] Config { get; set; }
-    }
-
-    public class Input
-    {
-        public BuildConfiguration BuildConfiguration { get; set; }
-    }
-
     public class BuildConfiguration
     {
         public string Name { get; set; }
         public string Image { get; set; }
         public string Tag { get; set; }
-        public List<int> Ports { get; set; }
-        public Dictionary<string, string> Binds { get; set; }
+        public Dictionary<int, int> Ports { get; set; }
+        private Dictionary<string, string> binds;
+        public Dictionary<string, string> Binds
+        {
+            get => this.binds;
+            set => this.binds = value.ToDictionary(d => Path.Join(SystemData.Root, d.Key), d => d.Value);
+        }
         public List<string> Parameters { get; set; }
     }
 
@@ -82,7 +77,7 @@ namespace OmegaGraf.Compose.MetaData
         {
             foreach (var c in configFile)
             {
-                System.IO.File.WriteAllText(c.Key, c.Value);
+                File.WriteAllText(Path.Join(SystemData.Root, c.Key), c.Value);
             }
         }
 
@@ -94,11 +89,9 @@ namespace OmegaGraf.Compose.MetaData
                     var docker = new Docker();
                     await docker.PullImage(config.Image, config.Tag);
 
-                    var ports = config.Ports.ToDictionary(x => x, x => x);
-
                     var id = await docker.CreateContainer(
                         image: config.Image,
-                        ports: ports,
+                        ports: config.Ports,
                         binds: config.Binds,
                         name: config.Name,
                         tag: config.Tag,

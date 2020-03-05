@@ -78,11 +78,10 @@ type PrometheusConfig = {
 
 //
 
-type BuildConfiguration = {
+type BuildInput = {
   Name: string | undefined;
-  Image: string;
   Tag: string;
-  Ports: number[];
+  Ports: { [key: string]: string };
   Binds: { [key: string]: string };
   Parameters: string[];
 };
@@ -94,10 +93,10 @@ export type Sim = {
 
 export type Settings = {
   VCSim: {
-    BuildConfiguration: BuildConfiguration;
+    BuildInput: BuildInput;
   };
   Telegraf: {
-    BuildConfiguration: BuildConfiguration;
+    BuildInput: BuildInput;
     Config: [
       {
         Path: string;
@@ -106,7 +105,7 @@ export type Settings = {
     ];
   };
   Prometheus: {
-    BuildConfiguration: BuildConfiguration;
+    BuildInput: BuildInput;
     Config: [
       {
         Path: string;
@@ -115,6 +114,6 @@ export type Settings = {
     ];
   };
   Grafana: {
-    BuildConfiguration: BuildConfiguration;
+    BuildInput: BuildInput;
   };
 };

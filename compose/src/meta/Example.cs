@@ -11,68 +11,22 @@ namespace OmegaGraf.Compose.MetaData
 {
     public static class Example
     {
-        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
-
-        public static string Mode
-        {
-            get
-            {
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                {
-                    return ":rw";
-                }
-
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                {
-                    return "";
-                }
-
-                var e = new NotSupportedException();
-                logger.Error(e, "OS Platform is not supported");
-                throw e;
-            }
-        }
-
-        private static string dataPath = "";
-        public static string Root
-        {
-            get
-            {
-                try
-                {
-                    string dir = dataPath == "" ? Directory.GetCurrentDirectory() : dataPath;
-                    dir = Path.Join(dir, "data/");
-                    dir = dir.Replace('\\', '/');
-                    return dir;
-                }
-                catch (Exception e)
-                {
-                    logger.Error(e, "Could not determine the current execution path");
-                    throw;
-                }
-            }
-            set
-            {
-                dataPath = value;
-            }
-        }
-
         public static Input<Prometheus> Prometheus
         {
             get => new Input<Prometheus>()
             {
-                BuildConfiguration = new BuildConfiguration()
+                BuildInput = new BuildConfigurationInput()
                 {
-                    Image = "prom/prometheus",
+                    Name  = "og-prometheus",
                     Tag   = "v2.16.0",
-                    Ports = new List<int>(){ 9090 },
+                    Ports = new Dictionary<int, int>(){ {9090, 9090} },
                     Binds = new Dictionary<string, string>()
                     {
                         {
-                            Path.Join(Root, "prometheus/config"), "/etc/prometheus" + Mode
+                            "prometheus/config", "/etc/prometheus" + SystemData.Mode
                         },
                         {
-                            Path.Join(Root, "prometheus/data"),   "/prometheus" + Mode
+                            "prometheus/data",   "/prometheus" + SystemData.Mode
                         }
                     },
                     Parameters = new List<string>()
@@ -85,7 +39,7 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     new Config<Prometheus>()
                     {
-                        Path = Path.Join(Root, "prometheus/config", "/prometheus.yml"),
+                        Path = Path.Join("prometheus/config", "/prometheus.yml"),
                         Data = new Prometheus()
                         {
                             Global = new Global()
@@ -135,15 +89,15 @@ namespace OmegaGraf.Compose.MetaData
         {
             get => new Input<Telegraf>()
             {
-                BuildConfiguration = new BuildConfiguration()
+                BuildInput = new BuildConfigurationInput()
                 {
-                    Image = "telegraf",
+                    Name  = "og-telegraf",
                     Tag   = "1.13.2",
-                    Ports = new List<int>(){ 8899 },
+                    Ports = new Dictionary<int, int>(){ {8899, 8899} },
                     Binds = new Dictionary<string, string>()
                     {
                         {
-                            Path.Join(Root, "telegraf"), "/etc/telegraf" + Mode
+                            "telegraf", "/etc/telegraf" + SystemData.Mode
                         }
                     }
                 },
@@ -151,7 +105,7 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     new Config<Telegraf>()
                     {
-                        Path = Path.Join(Root, "telegraf", "/telegraf.conf"),
+                        Path = Path.Join("telegraf", "/telegraf.conf"),
                         Data = new Telegraf(){
                             Agent = new Agent()
                             {
@@ -228,15 +182,15 @@ namespace OmegaGraf.Compose.MetaData
         {
             get => new Input()
             {
-                BuildConfiguration = new BuildConfiguration()
+                BuildInput = new BuildConfigurationInput()
                 {
-                    Image = "grafana/grafana",
+                    Name  = "og-grafana",
                     Tag   = "6.6.1",
-                    Ports = new List<int>(){ 3000 },
+                    Ports = new Dictionary<int, int>(){ {3000, 3000} },
                     Binds = new Dictionary<string, string>()
                     {
                         {
-                            Path.Join(Root, "grafana/lib"), "/var/lib/grafana" + Mode
+                            "grafana/lib", "/var/lib/grafana" + SystemData.Mode
                         }
                     }
                 }
@@ -268,12 +222,11 @@ namespace OmegaGraf.Compose.MetaData
         {
             get => new Input()
             {
-                BuildConfiguration = new BuildConfiguration()
+                BuildInput = new BuildConfigurationInput()
                 {
-                    Name  = "vcsim",
-                    Image = "macropower/vcsim",
+                    Name  = "og-vcsim",
                     Tag   = "latest",
-                    Ports = new List<int>(){ },
+                    Ports = new Dictionary<int, int>(){ },
                     Binds = new Dictionary<string, string>(){ },
                     Parameters = new List<string>()
                     {

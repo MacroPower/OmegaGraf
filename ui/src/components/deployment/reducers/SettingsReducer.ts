@@ -29,8 +29,8 @@ export function SettingsReducer(state: Settings, action: Action): Settings {
       return {
         ...state,
         Prometheus: {
-          BuildConfiguration: {
-            ...state.Prometheus.BuildConfiguration,
+          BuildInput: {
+            ...state.Prometheus.BuildInput,
             Tag: action.value
           },
           Config: state.Prometheus.Config
@@ -40,8 +40,8 @@ export function SettingsReducer(state: Settings, action: Action): Settings {
       return {
         ...state,
         Telegraf: {
-          BuildConfiguration: {
-            ...state.Telegraf.BuildConfiguration,
+          BuildInput: {
+            ...state.Telegraf.BuildInput,
             Tag: action.value
           },
           Config: state.Telegraf.Config
@@ -51,8 +51,8 @@ export function SettingsReducer(state: Settings, action: Action): Settings {
       return {
         ...state,
         Grafana: {
-          BuildConfiguration: {
-            ...state.Grafana.BuildConfiguration,
+          BuildInput: {
+            ...state.Grafana.BuildInput,
             Tag: action.value
           }
         }

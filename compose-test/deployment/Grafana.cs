@@ -14,7 +14,7 @@ namespace OmegaGraf.Compose.Tests.Builder
     [Category("Deployment")]
     public class Grafana : DeployTests
     {
-        private static readonly int port = Example.Grafana.BuildConfiguration.Ports.First();
+        private static readonly int port = Example.Grafana.BuildInput.Ports.First().Key;
         private static async Task<bool> IsOnline()
         {
             try
@@ -35,11 +35,13 @@ namespace OmegaGraf.Compose.Tests.Builder
         {
             var runner = new Runner();
 
-            var uuid = runner.Build(Example.Grafana.BuildConfiguration);
+            var bc = Example.Grafana.BuildInput.ToBuildConfiguration("grafana/grafana");
+
+            var uuid = runner.Build(bc);
 
             TestContext.Out.WriteLine("Container: " + uuid);
             TestContext.Out.WriteLine("Port: " + port);
-            TestContext.Out.WriteLine("Mode: " + Example.Mode);
+            TestContext.Out.WriteLine("Mode: " + SystemData.Mode);
 
             var wait = Is.True.After(30000, 2000);
 

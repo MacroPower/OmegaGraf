@@ -33,7 +33,9 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     Input bind = (this).Bind<Input>();
 
-                    var uuid = new Runner().Build(bind.BuildConfiguration);
+                    var bc = bind.BuildInput.ToBuildConfiguration("grafana/grafana");
+
+                    var uuid = new Runner().Build(bc);
 
                     return Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),

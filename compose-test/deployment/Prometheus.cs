@@ -15,7 +15,9 @@ namespace OmegaGraf.Compose.Tests.Builder
 
             var config = Example.Prometheus.Config[0];
 
-            var uuid = runner.AddYamlConfig(config).Build(Example.Prometheus.BuildConfiguration);
+            var bc = Example.Prometheus.BuildInput.ToBuildConfiguration("prom/prometheus");
+
+            var uuid = runner.AddYamlConfig(config).Build(bc);
 
             Console.WriteLine("docker container logs " + uuid);
             Console.WriteLine("docker container inspect " + uuid);

@@ -36,7 +36,7 @@ export type Routed = {
   component: any;
 };
 
-const optionalAuth = true;
+const optionalAuth = false;
 
 const Routes: Routed[] = [
   {

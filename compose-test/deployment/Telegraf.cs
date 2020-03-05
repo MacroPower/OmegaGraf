@@ -29,7 +29,7 @@ namespace OmegaGraf.Compose.Tests.Builder
             {
                 Image = "macropower/vcsim",
                 Tag = "latest",
-                Ports = new List<int>(){ },
+                Ports = new Dictionary<int, int>(){ },
                 Binds = new Dictionary<string, string>(){ },
                 Parameters = new List<string>()
                 {
@@ -61,7 +61,9 @@ namespace OmegaGraf.Compose.Tests.Builder
 
             var config = Example.Telegraf.Config[0];
 
-            var uuid = runner.AddTomlConfig(x => x.LowerCase, config).Build(Example.Telegraf.BuildConfiguration);
+            var bc = Example.Telegraf.BuildInput.ToBuildConfiguration("telegraf");
+
+            var uuid = runner.AddTomlConfig(x => x.LowerCase, config).Build(bc);
 
             Console.WriteLine("docker container logs " + uuid);
             Console.WriteLine("docker container inspect " + uuid);
