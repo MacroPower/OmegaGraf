@@ -35,6 +35,8 @@ export default function AdvancedForm() {
       <br />
 
       <Form.Check
+        custom
+        id="custom-checkbox"
         type="checkbox"
         label="Deploy Grafana Instance"
         onChange={() => {

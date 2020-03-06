@@ -120,6 +120,8 @@ export default function AddSystem(props: {
           </Form.Group>
           <Form.Group controlId="formBasicCheckbox">
             <Form.Check
+              custom
+              id="sim-checkbox"
               type="checkbox"
               label="Use simulation"
               onChange={() => {

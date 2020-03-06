@@ -33,6 +33,8 @@ export default function NormalForm() {
       <br />
 
       <Form.Check
+        custom
+        id="custom-checkbox"
         type="checkbox"
         label="Deploy Grafana Instance"
         onChange={() => {
@@ -45,6 +47,8 @@ export default function NormalForm() {
         }}
         checked={grafana}
       />
+
+      <br />
 
       <TextField
         dispatch={dispatch}
