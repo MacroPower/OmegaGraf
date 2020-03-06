@@ -18,8 +18,17 @@ namespace OmegaGraf.Compose
 
         public Grafana(string uri)
         {
-            this.uri   = uri;
-            this.token = GetToken().Result;
+            this.uri = uri;
+
+            try
+            {
+                this.token = GetToken().Result;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error fetching Grafana token");
+                throw;
+            }
         }
 
         public void Dispose()

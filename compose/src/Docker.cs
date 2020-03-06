@@ -84,13 +84,13 @@ namespace OmegaGraf.Compose
                 }
                 select new KeyValuePair<string, IList<PortBinding>>
                 (
-                    port.Value + "/" + protocol,
+                    port.Key + "/" + protocol,
                     new List<PortBinding>
                     {
                         new PortBinding
                         {
                             HostIP = "0.0.0.0",
-                            HostPort = port.Key.ToString()
+                            HostPort = port.Value.ToString()
                         }
                     }
                 )).ToDictionary(i => i.Key, i => i.Value);

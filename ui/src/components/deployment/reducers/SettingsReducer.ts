@@ -9,7 +9,8 @@ export enum ActionTypes {
   PrometheusConfigDataScrapeIntervalLong,
   PrometheusBuildConfigurationTag,
   TelegrafBuildConfigurationTag,
-  GrafanaBuildConfigurationTag
+  GrafanaBuildConfigurationTag,
+  GrafanaBuildConfigurationPort
 }
 
 export type Action = {
@@ -25,6 +26,17 @@ export function SettingsReducer(state: Settings, action: Action): Settings {
       return newPrometheusScrapeInterval(state, action.value, 'short');
     case ActionTypes.PrometheusConfigDataScrapeIntervalLong:
       return newPrometheusScrapeInterval(state, action.value, 'long');
+    case ActionTypes.GrafanaBuildConfigurationPort:
+      var port = parseInt(action.value, 10);
+      return {
+        ...state,
+        Grafana: {
+          BuildInput: {
+            ...state.Grafana.BuildInput,
+            Ports: { 3000: port }
+          }
+        }
+      };
     case ActionTypes.PrometheusBuildConfigurationTag:
       return {
         ...state,
