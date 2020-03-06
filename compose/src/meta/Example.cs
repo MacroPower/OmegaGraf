@@ -17,7 +17,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 BuildInput = new BuildConfigurationInput()
                 {
-                    Name  = "og-prometheus",
+                    Name  = "prometheus",
                     Tag   = "v2.16.0",
                     Ports = new Dictionary<int, int>(){ {9090, 9090} },
                     Binds = new Dictionary<string, string>()
@@ -91,7 +91,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 BuildInput = new BuildConfigurationInput()
                 {
-                    Name  = "og-telegraf",
+                    Name  = "telegraf",
                     Tag   = "1.13.2",
                     Ports = new Dictionary<int, int>(){ {8899, 8899} },
                     Binds = new Dictionary<string, string>()
@@ -184,7 +184,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 BuildInput = new BuildConfigurationInput()
                 {
-                    Name  = "og-grafana",
+                    Name  = "grafana",
                     Tag   = "6.6.1",
                     Ports = new Dictionary<int, int>(){ {3000, 3000} },
                     Binds = new Dictionary<string, string>()
@@ -224,7 +224,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 BuildInput = new BuildConfigurationInput()
                 {
-                    Name  = "og-vcsim",
+                    Name  = "vcsim",
                     Tag   = "latest",
                     Ports = new Dictionary<int, int>(){ },
                     Binds = new Dictionary<string, string>(){ },
