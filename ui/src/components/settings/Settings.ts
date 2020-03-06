@@ -81,7 +81,7 @@ type PrometheusConfig = {
 type BuildInput = {
   Name: string | undefined;
   Tag: string;
-  Ports: { [key: string]: string };
+  Ports: { [key: number]: number };
   Binds: { [key: string]: string };
   Parameters: string[];
 };

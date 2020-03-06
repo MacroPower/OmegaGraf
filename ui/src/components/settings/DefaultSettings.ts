@@ -4,7 +4,7 @@ const defaultBuildConfiguration = {
   BuildInput: {
     Name: undefined,
     Tag: '',
-    Ports: {},
+    Ports: { 0: 0 },
     Binds: {},
     Parameters: []
   }
