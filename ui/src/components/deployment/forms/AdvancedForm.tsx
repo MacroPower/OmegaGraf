@@ -1,9 +1,10 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import { SettingsReducer, ActionTypes } from '../reducers/SettingsReducer';
 import AddSystem from '../inputs/AddSystem';
-import { UseGlobalSettings } from '../../Global';
+import { UseGlobalSettings, UseGlobalGrafana } from '../../Global';
 import TextField from '../inputs/TextField';
 import FormView from '../../../views/Form';
+import { Form } from 'react-bootstrap';
 
 export default function AdvancedForm() {
   const [globalSettings] = UseGlobalSettings();
@@ -16,8 +17,8 @@ export default function AdvancedForm() {
     });
   }, [globalSettings]);
 
-  console.log(state.Grafana.BuildInput);
-  console.log(state.Grafana.BuildInput.Ports[3000]);
+  const [globalGrafana, globalGrafanaActions] = UseGlobalGrafana();
+  const [grafana, setGrafana] = useState(globalGrafana.Active);
 
   const port = state.Grafana.BuildInput.Ports[3000];
 
@@ -30,6 +31,22 @@ export default function AdvancedForm() {
       description="Please enter your preferences."
     >
       <AddSystem dispatch={dispatch} state={state} />
+
+      <br />
+
+      <Form.Check
+        type="checkbox"
+        label="Deploy Grafana Instance"
+        onChange={() => {
+          const active = !grafana;
+          setGrafana(active);
+
+          globalGrafanaActions.setGrafana({
+            Active: active
+          });
+        }}
+        checked={grafana}
+      />
 
       <br />
 
@@ -49,10 +66,35 @@ export default function AdvancedForm() {
 
       <TextField
         dispatch={dispatch}
-        label="Grafana Port Number"
-        type={ActionTypes.GrafanaBuildConfigurationPort}
-        value={port ? port.valueOf().toString() : '0'}
+        label="Telegraf Tag"
+        type={ActionTypes.TelegrafBuildConfigurationTag}
+        value={state.Telegraf.BuildInput.Tag}
       />
+
+      <TextField
+        dispatch={dispatch}
+        label="Prometheus Tag"
+        type={ActionTypes.PrometheusBuildConfigurationTag}
+        value={state.Prometheus.BuildInput.Tag}
+      />
+
+      {grafana && (
+        <TextField
+          dispatch={dispatch}
+          label="Grafana Tag"
+          type={ActionTypes.GrafanaBuildConfigurationTag}
+          value={state.Grafana.BuildInput.Tag}
+        />
+      )}
+
+      {grafana && (
+        <TextField
+          dispatch={dispatch}
+          label="Grafana Port Number"
+          type={ActionTypes.GrafanaBuildConfigurationPort}
+          value={port ? port.valueOf().toString() : '0'}
+        />
+      )}
     </FormView>
   );
 }

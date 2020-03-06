@@ -1,9 +1,10 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import { SettingsReducer, ActionTypes } from '../reducers/SettingsReducer';
 import AddSystem from '../inputs/AddSystem';
-import { UseGlobalSettings } from '../../Global';
+import { UseGlobalSettings, UseGlobalGrafana } from '../../Global';
 import TextField from '../inputs/TextField';
 import FormView from '../../../views/Form';
+import { Form } from 'react-bootstrap';
 
 export default function NormalForm() {
   const [globalSettings] = UseGlobalSettings();
@@ -15,6 +16,9 @@ export default function NormalForm() {
       value: globalSettings
     });
   }, [globalSettings]);
+
+  const [globalGrafana, globalGrafanaActions] = UseGlobalGrafana();
+  const [grafana, setGrafana] = useState(globalGrafana.Active);
 
   return (
     <FormView
@@ -28,25 +32,32 @@ export default function NormalForm() {
 
       <br />
 
-      <TextField
-        dispatch={dispatch}
-        label="Telegraf Tag"
-        type={ActionTypes.TelegrafBuildConfigurationTag}
-        value={state.Telegraf.BuildInput.Tag}
+      <Form.Check
+        type="checkbox"
+        label="Deploy Grafana Instance"
+        onChange={() => {
+          const active = !grafana;
+          setGrafana(active);
+
+          globalGrafanaActions.setGrafana({
+            Active: active
+          });
+        }}
+        checked={grafana}
       />
 
       <TextField
         dispatch={dispatch}
-        label="Prometheus Tag"
-        type={ActionTypes.PrometheusBuildConfigurationTag}
-        value={state.Prometheus.BuildInput.Tag}
+        label="Prometheus Global Scrape Interval"
+        type={ActionTypes.PrometheusConfigDataScrapeIntervalShort}
+        value={state.Prometheus.Config[0].Data.Global.ScrapeInterval}
       />
 
       <TextField
         dispatch={dispatch}
-        label="Grafana Tag"
-        type={ActionTypes.GrafanaBuildConfigurationTag}
-        value={state.Grafana.BuildInput.Tag}
+        label="Prometheus vCenter Scrape Interval"
+        type={ActionTypes.PrometheusConfigDataScrapeIntervalLong}
+        value={state.Prometheus.Config[0].Data.ScrapeConfigs[1]?.ScrapeInterval}
       />
     </FormView>
   );

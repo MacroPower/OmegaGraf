@@ -63,6 +63,26 @@ export const UseGlobalSim = globalHook<Sim, GlobalSimActions>(
 
 //
 
+export type Grafana = {
+  Active: boolean;
+};
+
+type GlobalGrafanaActions = {
+  setGrafana: (value: Grafana) => void;
+};
+
+const setGrafana = (store: Store<Grafana, GlobalGrafanaActions>, value: Grafana) => {
+  store.setState({ ...store.state, ...value });
+};
+
+export const UseGlobalGrafana = globalHook<Grafana, GlobalGrafanaActions>(
+  React,
+  { Active: true },
+  { setGrafana: setGrafana }
+);
+
+//
+
 export function getDefaults(
   session: Session,
   globalSettingsActions: GlobalSettingsActions
