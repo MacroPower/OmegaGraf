@@ -16,6 +16,11 @@ export default function AdvancedForm() {
     });
   }, [globalSettings]);
 
+  console.log(state.Grafana.BuildInput);
+  console.log(state.Grafana.BuildInput.Ports[3000]);
+
+  const port = state.Grafana.BuildInput.Ports[3000];
+
   return (
     <FormView
       state={state}
@@ -40,6 +45,13 @@ export default function AdvancedForm() {
         label="Prometheus vCenter Scrape Interval"
         type={ActionTypes.PrometheusConfigDataScrapeIntervalLong}
         value={state.Prometheus.Config[0].Data.ScrapeConfigs[1]?.ScrapeInterval}
+      />
+
+      <TextField
+        dispatch={dispatch}
+        label="Grafana Port Number"
+        type={ActionTypes.GrafanaBuildConfigurationPort}
+        value={port ? port.valueOf().toString() : '0'}
       />
     </FormView>
   );

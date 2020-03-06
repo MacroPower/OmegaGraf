@@ -11,6 +11,11 @@ using Swagger.ObjectModel;
 
 namespace OmegaGraf.Compose.MetaData
 {
+    public class GrafanaInput
+    {
+        public int Port { get; set; }
+    }
+
     public class GrafanaModule : NancyModule
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
@@ -53,7 +58,9 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     logger.Info("Adding default Grafana datasource");
 
-                    var g = new Grafana("http://localhost:3000");
+                    var bind = (this).Bind<GrafanaInput>();
+
+                    var g = new Grafana("http://localhost:" + bind.Port);
 
                     g.AddDataSource(Example.GrafanaDataSource).Wait();
                     g.Dispose();
@@ -74,7 +81,9 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     logger.Info("Adding default Grafana dashboards");
 
-                    var g = new Grafana("http://localhost:3000");
+                    var bind = (this).Bind<GrafanaInput>();
+
+                    var g = new Grafana("http://localhost:" + bind.Port);
 
                     string filepath = Path.Join(System.AppDomain.CurrentDomain.BaseDirectory, "grafana/dashboards/");
 

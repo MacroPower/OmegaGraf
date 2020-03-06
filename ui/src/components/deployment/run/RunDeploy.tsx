@@ -66,7 +66,7 @@ export default function RunDeploy() {
         deployGrafana(endpoint, apiKey, state).then(() =>
           deployTelegraf(endpoint, apiKey, state).then(() =>
             deployPrometheus(endpoint, apiKey, state).then(() =>
-              deployGrafanaConfig(endpoint, apiKey).then(() => {
+              deployGrafanaConfig(endpoint, apiKey, state).then(() => {
                 const stepText = 'Cleaning up our mess...';
                 addStep('Finishing up', stepText);
                 setLastStep('Done', 'You can start using OmegaGraf!', 'done');
@@ -78,7 +78,11 @@ export default function RunDeploy() {
     );
   };
 
-  const deployTelegraf = async (endpoint: string, apiKey: string, state: Settings) => {
+  const deployTelegraf = async (
+    endpoint: string,
+    apiKey: string,
+    state: Settings
+  ) => {
     try {
       const stepText = 'Asking OmegaGraf to create the container...';
       addStep('Deploy Telegraf', stepText);
@@ -113,7 +117,11 @@ export default function RunDeploy() {
     }
   };
 
-  const deployPrometheus = async (endpoint: string, apiKey: string, state: Settings) => {
+  const deployPrometheus = async (
+    endpoint: string,
+    apiKey: string,
+    state: Settings
+  ) => {
     try {
       const stepText = 'Asking OmegaGraf to create the container...';
       addStep('Deploy Prometheus', stepText);
@@ -129,7 +137,11 @@ export default function RunDeploy() {
     }
   };
 
-  const deployGrafana = async (endpoint: string, apiKey: string, state: Settings) => {
+  const deployGrafana = async (
+    endpoint: string,
+    apiKey: string,
+    state: Settings
+  ) => {
     try {
       const stepText = 'Asking OmegaGraf to create the container...';
       addStep('Deploy Grafana', stepText);
@@ -145,7 +157,11 @@ export default function RunDeploy() {
     }
   };
 
-  const deploySim = async (endpoint: string, apiKey: string, state: Settings) => {
+  const deploySim = async (
+    endpoint: string,
+    apiKey: string,
+    state: Settings
+  ) => {
     if (globalSim.Active) {
       try {
         const stepText = 'Asking OmegaGraf to create the container...';
@@ -173,12 +189,20 @@ export default function RunDeploy() {
     }
   };
 
-  const deployGrafanaConfig = async (endpoint: string, apiKey: string) => {
+  const deployGrafanaConfig = async (
+    endpoint: string,
+    apiKey: string,
+    state: Settings
+  ) => {
     try {
       const stepText = 'Asking OmegaGraf to update Grafana...';
       addStep('Deploy Grafana Config', stepText);
-      await DeployRequest(endpoint, apiKey, 'grafana/datasource', {});
-      await DeployRequest(endpoint, apiKey, 'grafana/dashboards', {});
+
+      const port = state.Grafana.BuildInput.Ports[3000].valueOf();
+      let conf = { Port: port };
+
+      await DeployRequest(endpoint, apiKey, 'grafana/datasource', conf);
+      await DeployRequest(endpoint, apiKey, 'grafana/dashboards', conf);
       setLastStep('Deploy Grafana Config', stepText + 'Done!', 'finish');
     } catch (e) {
       setLastStep(
@@ -202,11 +226,7 @@ export default function RunDeploy() {
         <div className="text-center">
           <h4>Are you sure you want to deploy?</h4>
           <br />
-          <BigButton
-            onClick={startRun()}
-          >
-            Confirm
-          </BigButton>
+          <BigButton onClick={startRun()}>Confirm</BigButton>
         </div>
       )}
       {steps.length > 0 && (
