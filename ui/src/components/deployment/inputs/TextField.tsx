@@ -40,38 +40,42 @@ export default function TextField(props: {
   const inputType = props.input || 'string';
   let value = props.value || '';
 
+  const { label, disabled, dispatch, type } = props;
+
   return (
     <>
       {valid
         .filter(x => x.input === inputType)
-        .map((x, _) => {
+        .map((x, i) => {
           const { regex, text } = x;
 
-          let isValid = props.disabled || regex.test(value.toString());
+          let isValid = disabled || regex.test(value.toString());
 
           return (
-            <Form.Group controlId={props.type.valueOf().toString()}>
-              <Form.Label>{props.label}</Form.Label>
+            <Form.Group
+              key={'TextField' + label + i}
+              controlId={type.valueOf().toString()}
+            >
+              <Form.Label>{label}</Form.Label>
               <Form.Control
                 required
-                disabled={props.disabled || false}
+                disabled={disabled || false}
                 type="text"
                 onChange={(e: any) => {
                   if (inputType === 'number' || inputType === 'port') {
                     const value: number = e.target.value;
                     if (value <= 65535) {
-                      props.dispatch({
-                        type: props.type,
+                      dispatch({
+                        type: type,
                         value: value
-                      })
+                      });
                     }
-                  }
-                  else {
+                  } else {
                     const value: string = e.target.value;
-                    props.dispatch({
-                      type: props.type,
+                    dispatch({
+                      type: type,
                       value: value
-                    })
+                    });
                   }
                 }}
                 value={value.toString()}
