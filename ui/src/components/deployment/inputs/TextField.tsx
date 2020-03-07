@@ -16,6 +16,7 @@ export default function TextField(props: {
       <Form.Group controlId={props.type.valueOf().toString()}>
         <Form.Label>{props.label}</Form.Label>
         <Form.Control
+          required
           type="text"
           onChange={(e: any) =>
             props.dispatch({
@@ -25,6 +26,7 @@ export default function TextField(props: {
           }
           value={value}
         />
+        <Form.Control.Feedback type="invalid">Please enter a value!</Form.Control.Feedback>
       </Form.Group>
     </>
   );
