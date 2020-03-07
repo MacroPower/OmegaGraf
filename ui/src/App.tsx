@@ -6,11 +6,7 @@ import Footer from './components/Footer';
 import HeaderNav from './components/Header';
 import Navbar from 'react-bootstrap/Navbar';
 import { getSessionCookie, removeSessionCookie } from './components/Session';
-import {
-  UseGlobalSession,
-  getDefaults,
-  UseGlobalSettings
-} from './components/Global';
+import { UseGlobalSession, UseGlobalSettings } from './components/Global';
 import Logo from './data/Logo';
 
 export default function App() {
@@ -45,7 +41,6 @@ export default function App() {
         })
         .then(() => {
           globalActions.setSession(session);
-          getDefaults(session, globalSettingsActions);
         })
         .catch((e: Error) => {
           if (e.name === 'SyntaxError') {
