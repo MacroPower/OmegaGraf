@@ -5,7 +5,8 @@ import { PacmanLoader } from 'react-spinners';
 import {
   UseGlobalSettings,
   UseGlobalSession,
-  UseGlobalSim
+  UseGlobalSim,
+  UseGlobalGrafana
 } from '../../Global';
 import DeployRequest from './DeployRequest';
 import PacmanGhost from '../../../data/Ghost';
@@ -25,6 +26,7 @@ export default function RunDeploy() {
   const [globalState] = UseGlobalSession();
   const [globalSettings] = UseGlobalSettings();
   const [globalSim] = UseGlobalSim();
+  const [globalGrafana] = UseGlobalGrafana();
 
   const [steps, setSteps] = useState<step>([]);
 
@@ -142,18 +144,20 @@ export default function RunDeploy() {
     apiKey: string,
     state: Settings
   ) => {
-    try {
-      const stepText = 'Asking OmegaGraf to create the container...';
-      addStep('Deploy Grafana', stepText);
-      await DeployRequest(endpoint, apiKey, 'grafana', state.Grafana);
-      setLastStep('Deploy Grafana', stepText + 'Done!', 'finish');
-    } catch (e) {
-      setLastStep(
-        'Deploy Grafana',
-        'Error creating container, please check server logs',
-        'error'
-      );
-      const x = Promise.break;
+    if (globalGrafana.Active) {
+      try {
+        const stepText = 'Asking OmegaGraf to create the container...';
+        addStep('Deploy Grafana', stepText);
+        await DeployRequest(endpoint, apiKey, 'grafana', state.Grafana);
+        setLastStep('Deploy Grafana', stepText + 'Done!', 'finish');
+      } catch (e) {
+        setLastStep(
+          'Deploy Grafana',
+          'Error creating container, please check server logs',
+          'error'
+        );
+        const x = Promise.break;
+      }
     }
   };
 
@@ -194,23 +198,25 @@ export default function RunDeploy() {
     apiKey: string,
     state: Settings
   ) => {
-    try {
-      const stepText = 'Asking OmegaGraf to update Grafana...';
-      addStep('Deploy Grafana Config', stepText);
+    if (globalGrafana.Active) {
+      try {
+        const stepText = 'Asking OmegaGraf to update Grafana...';
+        addStep('Deploy Grafana Config', stepText);
 
-      const port = state.Grafana.BuildInput.Ports[3000].valueOf();
-      let conf = { Port: port };
+        const port = state.Grafana.BuildInput.Ports[3000].valueOf();
+        let conf = { Port: port };
 
-      await DeployRequest(endpoint, apiKey, 'grafana/datasource', conf);
-      await DeployRequest(endpoint, apiKey, 'grafana/dashboards', conf);
-      setLastStep('Deploy Grafana Config', stepText + 'Done!', 'finish');
-    } catch (e) {
-      setLastStep(
-        'Deploy Grafana Config',
-        'Error configuring container, please check server logs',
-        'error'
-      );
-      const x = Promise.break;
+        await DeployRequest(endpoint, apiKey, 'grafana/datasource', conf);
+        await DeployRequest(endpoint, apiKey, 'grafana/dashboards', conf);
+        setLastStep('Deploy Grafana Config', stepText + 'Done!', 'finish');
+      } catch (e) {
+        setLastStep(
+          'Deploy Grafana Config',
+          'Error configuring container, please check server logs',
+          'error'
+        );
+        const x = Promise.break;
+      }
     }
   };
 

@@ -46,6 +46,7 @@ export default function AddSystem(props: {
                 <Row>
                   <Col md={i === 0 ? 12 : 10} className={i !== 0 ? 'pr-0' : ''}>
                     <Form.Control
+                      required
                       className="inline"
                       type="text"
                       disabled={sim}
@@ -96,6 +97,7 @@ export default function AddSystem(props: {
           <Form.Group controlId="formBasicUsername">
             <Form.Label>Username</Form.Label>
             <Form.Control
+              required
               type="text"
               disabled={sim}
               placeholder="Username"
@@ -109,6 +111,7 @@ export default function AddSystem(props: {
           <Form.Group controlId="formBasicPassword">
             <Form.Label>Password</Form.Label>
             <Form.Control
+              required
               type="password"
               disabled={sim}
               placeholder="Password"
@@ -120,6 +123,8 @@ export default function AddSystem(props: {
           </Form.Group>
           <Form.Group controlId="formBasicCheckbox">
             <Form.Check
+              custom
+              id="sim-checkbox"
               type="checkbox"
               label="Use simulation"
               onChange={() => {

@@ -16,6 +16,21 @@ export default function FormView(props: React.PropsWithChildren<State>) {
   const [_, globalSettingsActions] = UseGlobalSettings();
   const { state, children, title, description, pageName, page } = props;
   const [toDeploy, redirect] = useState(false);
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (event: any) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    else {
+      globalSettingsActions.setSettings(state);
+      redirect(true);
+    }
+
+    setValidated(true);
+  };
 
   return (
     <main role="main" className="container">
@@ -33,7 +48,7 @@ export default function FormView(props: React.PropsWithChildren<State>) {
       <br />
 
       <Row className="justify-content-md-center">
-        <Form>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
           {toDeploy && <Redirect to={"/deploy?ref=" + page} />}
 
           {children}
@@ -41,20 +56,8 @@ export default function FormView(props: React.PropsWithChildren<State>) {
           <Row className="mt-2">
             <Col>
               <Button
-                variant="primary"
-                onClick={() => {
-                  globalSettingsActions.setSettings(state);
-                }}
-              >
-                Save
-              </Button>
-              <Button
-                className="ml-2"
                 variant="success"
-                onClick={() => {
-                  globalSettingsActions.setSettings(state);
-                  redirect(true);
-                }}
+                type="submit"
               >
                 Deploy
               </Button>
@@ -62,6 +65,7 @@ export default function FormView(props: React.PropsWithChildren<State>) {
           </Row>
         </Form>
       </Row>
+      <br />
     </main>
   );
 }
