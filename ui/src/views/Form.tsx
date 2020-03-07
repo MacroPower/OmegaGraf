@@ -56,15 +56,6 @@ export default function FormView(props: React.PropsWithChildren<State>) {
           <Row className="mt-2">
             <Col>
               <Button
-                variant="primary"
-                onClick={() => {
-                  globalSettingsActions.setSettings(state);
-                }}
-              >
-                Save
-              </Button>
-              <Button
-                className="ml-2"
                 variant="success"
                 type="submit"
               >
