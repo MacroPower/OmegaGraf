@@ -23,8 +23,7 @@ export default function FormView(props: React.PropsWithChildren<State>) {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
-    }
-    else {
+    } else {
       globalSettingsActions.setSettings(state);
       redirect(true);
     }
@@ -49,16 +48,13 @@ export default function FormView(props: React.PropsWithChildren<State>) {
 
       <Row className="justify-content-md-center">
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          {toDeploy && <Redirect to={"/deploy?ref=" + page} />}
+          {toDeploy && <Redirect to={'/deploy?ref=' + page} push />}
 
           {children}
 
           <Row className="mt-2">
             <Col>
-              <Button
-                variant="success"
-                type="submit"
-              >
+              <Button variant="success" type="submit">
                 Deploy
               </Button>
             </Col>

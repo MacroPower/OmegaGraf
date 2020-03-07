@@ -1,4 +1,4 @@
-import { Session, defaultSession, setSessionCookie } from './Session';
+import { Session, defaultSession } from './Session';
 import globalHook, { Store } from 'use-global-hook';
 import React from 'react';
 import { Settings } from './settings/Settings';
@@ -23,7 +23,7 @@ export const UseGlobalSession = globalHook<Session, GlobalSessionActions>(
 
 //
 
-type GlobalSettingsActions = {
+export type GlobalSettingsActions = {
   setSettings: (value: Settings) => void;
 };
 
@@ -47,7 +47,7 @@ export type Sim = {
   Quantity: number;
 };
 
-type GlobalSimActions = {
+export type GlobalSimActions = {
   setSim: (value: Sim) => void;
 };
 
@@ -67,7 +67,7 @@ export type Grafana = {
   Active: boolean;
 };
 
-type GlobalGrafanaActions = {
+export type GlobalGrafanaActions = {
   setGrafana: (value: Grafana) => void;
 };
 
@@ -80,25 +80,3 @@ export const UseGlobalGrafana = globalHook<Grafana, GlobalGrafanaActions>(
   { Active: true },
   { setGrafana: setGrafana }
 );
-
-//
-
-export function getDefaults(
-  session: Session,
-  globalSettingsActions: GlobalSettingsActions
-): void {
-  const url = session.endpoint + '/example';
-  console.log('Get settings from ' + url);
-
-  fetch(url, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json'
-    }
-  })
-    .then(response => response.json())
-    .then(data => globalSettingsActions.setSettings(data))
-    .catch(() => {
-      setSessionCookie(defaultSession);
-    });
-}

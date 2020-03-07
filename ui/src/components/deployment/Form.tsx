@@ -1,30 +1,47 @@
-import React, { useState, Component } from 'react';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import { Route, Link, match } from 'react-router-dom';
 import OptionCard from '../OptionCard';
 import BigButton from '../BigButton';
+import setDefaults from '../settings/SetDefaults';
+import {
+  UseGlobalSession,
+  UseGlobalSettings,
+  UseGlobalGrafana,
+  UseGlobalSim
+} from '../Global';
 
-class RoutedLink extends Component<{
-  to: string;
-  disabled: boolean;
-}> {
-  render() {
-    const data = {
-      label: '',
-      path: this.props.to,
-      exact: false,
-      children: ({ match }: { match: match }) => (
-        <Link to={this.props.to} className="text-decoration-none">
-          <BigButton disabled={this.props.disabled}>Get Started</BigButton>
-        </Link>
-      )
-    };
-    return <Route {...data} />;
-  }
+function RoutedLink(props: { to: string; disabled: boolean }) {
+  const data = {
+    label: '',
+    path: props.to,
+    exact: false,
+    children: ({ match }: { match: match }) => (
+      <Link to={props.to} className="text-decoration-none">
+        <BigButton disabled={props.disabled}>Get Started</BigButton>
+      </Link>
+    )
+  };
+
+  return <Route {...data} />;
 }
 
 export default function DeployForm() {
   const [direct, setDirect] = useState('');
+
+  const globalState = UseGlobalSession()[0];
+  const globalSettingsActions = UseGlobalSettings()[1];
+  const globalGrafanaActions = UseGlobalGrafana()[1];
+  const globalSimActions = UseGlobalSim()[1];
+
+  useEffect(() => {
+    setDefaults(
+      globalState,
+      globalSettingsActions,
+      globalGrafanaActions,
+      globalSimActions
+    );
+  }, []);
 
   return (
     <Container>
