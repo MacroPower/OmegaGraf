@@ -54,6 +54,7 @@ export default function NormalForm() {
         dispatch={dispatch}
         label="Prometheus Global Scrape Interval"
         type={ActionTypes.PrometheusConfigDataScrapeIntervalShort}
+        input="duration"
         value={state.Prometheus.Config[0].Data.Global.ScrapeInterval}
       />
 
@@ -61,6 +62,7 @@ export default function NormalForm() {
         dispatch={dispatch}
         label="Prometheus vCenter Scrape Interval"
         type={ActionTypes.PrometheusConfigDataScrapeIntervalLong}
+        input="duration"
         value={state.Prometheus.Config[0].Data.ScrapeConfigs[1]?.ScrapeInterval}
       />
     </FormView>

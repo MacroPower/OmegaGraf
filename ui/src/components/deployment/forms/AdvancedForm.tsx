@@ -56,6 +56,7 @@ export default function AdvancedForm() {
         dispatch={dispatch}
         label="Prometheus Global Scrape Interval"
         type={ActionTypes.PrometheusConfigDataScrapeIntervalShort}
+        input="duration"
         value={state.Prometheus.Config[0].Data.Global.ScrapeInterval}
       />
 
@@ -63,6 +64,7 @@ export default function AdvancedForm() {
         dispatch={dispatch}
         label="Prometheus vCenter Scrape Interval"
         type={ActionTypes.PrometheusConfigDataScrapeIntervalLong}
+        input="duration"
         value={state.Prometheus.Config[0].Data.ScrapeConfigs[1]?.ScrapeInterval}
       />
 
@@ -80,23 +82,22 @@ export default function AdvancedForm() {
         value={state.Prometheus.BuildInput.Tag}
       />
 
-      {grafana && (
-        <TextField
-          dispatch={dispatch}
-          label="Grafana Tag"
-          type={ActionTypes.GrafanaBuildConfigurationTag}
-          value={state.Grafana.BuildInput.Tag}
-        />
-      )}
-
-      {grafana && (
-        <TextField
-          dispatch={dispatch}
-          label="Grafana Port Number"
-          type={ActionTypes.GrafanaBuildConfigurationPort}
-          value={port ? port.valueOf().toString() : '0'}
-        />
-      )}
+      <TextField
+        disabled={!grafana}
+        dispatch={dispatch}
+        label="Grafana Tag"
+        type={ActionTypes.GrafanaBuildConfigurationTag}
+        value={state.Grafana.BuildInput.Tag}
+      />
+      
+      <TextField
+        disabled={!grafana}
+        dispatch={dispatch}
+        label="Grafana Port Number"
+        type={ActionTypes.GrafanaBuildConfigurationPort}
+        input="port"
+        value={port ? port.valueOf().toString() : ''}
+      />
     </FormView>
   );
 }
