@@ -1,11 +1,20 @@
 <p align="center">
-  <img src="docs/branding/logo_128.png">
+  <img src="docs/branding/logo_sticker_g_1024.png" width="256px" height="256px">
 </p>
-<h2 align="center">OmegaGraf</h2>
+
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/OmegaGraf/OmegaGraf)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/OmegaGraf/OmegaGraf)
+![GitHub All Releases](https://img.shields.io/github/downloads/OmegaGraf/OmegaGraf/total)
+![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/OmegaGraf/OmegaGraf)
+![GitHub issues](https://img.shields.io/github/issues-raw/OmegaGraf/OmegaGraf)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/OmegaGraf/OmegaGraf)
+![GitHub](https://img.shields.io/github/license/OmegaGraf/OmegaGraf)
+
+## Overview
 
 OmegaGraf is a **vCenter monitoring deployment solution** that is incredibly light, lightning fast, and dead simple. Through a web interface, users may configure and deploy an entirely open-source and containerized software stack.
 
-## Features 
+## Features
 
 In minutes, OmegaGraf provides the following features and more:
 
