@@ -64,11 +64,12 @@ OmegaGraf was inspired by several other products. We thought we could build on s
 
 ## Philosophy
 
-* OmegaGraf only serves as a way to configure and deploy other products, and makes no unsupported changes.
-  * OmegaGraf supports upgrading each individual container at-will, via Watchtower (or some other product).
-  * While other solutions fall behind on patches, OmegaGrafs deployments should always be up-to-date.
-* OmegaGraf runs only during the deployment phase, and takes no actions in any other circumstance.
-  * Feel free to `rm OmegaGraf.sh` after you have deployed.
+* OmegaGraf should only serve as a way to configure and deploy other products.
+  * OmegaGraf should make no unsupported changes to any products in the stack.
+  * OmegaGraf should support upgrading each individual container at-will, e.g. via Watchtower.
+  * While other solutions fall behind on patches, OmegaGraf's deployments should always be up-to-date.
+* OmegaGraf should run only during the deployment phase, and should take no actions in any other circumstance.
+  * Users should feel free to `rm OmegaGraf.sh` after deploying.
 * While the UI is a core tenant, users should always have the option to deploy with OmegaGraf using code.
 
 ## Credits
@@ -80,3 +81,5 @@ OmegaGraf uses the following technologies:
 </p>
 
 With assets from [Font Awesome](https://fontawesome.com/), [Proxima Nova](https://www.marksimonson.com/fonts/view/proxima-nova), and [Bootstrap](https://getbootstrap.com/) via [React Bootstrap](https://react-bootstrap.github.io/).
+
+View all our dependencies on [libraries.io](https://libraries.io/github/OmegaGraf/OmegaGraf).
