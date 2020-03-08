@@ -3,19 +3,20 @@
 </p>
 <h2 align="center">OmegaGraf</h2>
 
-OmegaGraf is an entirely open-source and containerized solution, configured and deployed through a simple web interface. In minutes, OmegaGraf provides the following features and more:
+OmegaGraf is a **vCenter monitoring deployment solution** that is incredibly light, lightning fast, and dead simple. Through a web interface, users may configure and deploy an entirely open-source and containerized software stack.
 
-<p align="center">
+## Features 
+
+In minutes, OmegaGraf provides the following features and more:
+
+<p align="left">
   <img src="docs/branding/flow_1440_features.png" width="600px">
 </p>
 
 ## Requirements
 
-[Click Here](https://github.com/OmegaGraf/install) for automated installers.
-
-- Linux (prod/dev) or Windows OS (dev)
-- Docker (prod/dev) or Docker Desktop (dev)
-- OpenSSL (prod)
+- Linux or Windows
+- Docker CE
 
 ## Using OmegaGraf
 
@@ -28,7 +29,38 @@ OmegaGraf is an entirely open-source and containerized solution, configured and 
 3. If you're just testing, check 'Use simulation'
 4. Click 'Deploy'
 
-After your deployment completes, you may start using the monitoring stack by visiting Grafana at `http://{hostname}:3000` and entering `admin`/`admin`. You will be prompted to set a new password on first login.
+After your deployment completes, you may start using the monitoring stack by visiting Grafana at `http://{hostname}:3000`, or whatever port you chose in the deployment options, and entering `admin`/`admin`. You will be prompted to set a new password on first login.
+
+## SSL
+
+To run OmegaGraf with SSL, you will need to generate a certificate. To generate a self-signed cert, you can install the dotnet-sdk and run `dotnet dev-certs https`.
+
+## Reconfigure & Redeploy
+
+To make changes to any container created by OmegaGraf, you can run with the `--reset` switch. This will remove the containers, but will not delete any data (e.g. time series data, custom dashboards/datasources). You may then re-run the deployment process without issue. Note that currently, we cannot configure Grafana if you have changed the default password. A fix for this is coming soon.
+
+## Comparison
+
+OmegaGraf was inspired by several other products. We thought we could build on some of their accomplishments, any create something that was more dynamic, simpler to use, and easier to maintain.
+
+|Feature|OmegaGraf|SexiGraf|
+|-------|---------|--------|
+|Containerized| :heavy_check_mark: | :heavy_multiplication_x: |
+|Integration with existing products| :heavy_check_mark: | :heavy_multiplication_x: |
+|Removable after deployment| :heavy_check_mark: | :heavy_multiplication_x: |
+|Self-Monitoring| :heavy_check_mark: | :heavy_check_mark: |
+|Collection| Telegraf | Perl |
+|TSDB| Prometheus | Graphite |
+|Display| Grafana | Modified Grafana |
+
+## Philosophy
+
+* OmegaGraf only serves as a way to configure and deploy other products, and makes no unsupported changes.
+  * OmegaGraf supports upgrading each individual container at-will, via Watchtower (or some other product).
+  * While other solutions fall behind on patches, OmegaGrafs deployments should always be up-to-date.
+* OmegaGraf runs only during the deployment phase, and takes no actions in any other circumstance.
+  * Feel free to `rm OmegaGraf.sh` after you have deployed.
+* While the UI is a core tenant, users should always have the option to deploy with OmegaGraf using code.
 
 ## Credits
 
