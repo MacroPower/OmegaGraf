@@ -44,23 +44,19 @@ export default function FormView(props: React.PropsWithChildren<State>) {
       <h4 className="home-subtitle text-center">{description}</h4>
       <br />
       <hr />
-      <br />
+      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+        {toDeploy && <Redirect to={'/deploy?ref=' + page} push />}
 
-      <Row className="justify-content-md-center">
-        <Form noValidate validated={validated} onSubmit={handleSubmit}>
-          {toDeploy && <Redirect to={'/deploy?ref=' + page} push />}
+        {children}
 
-          {children}
-
-          <Row className="mt-2">
-            <Col>
-              <Button variant="success" type="submit">
-                Deploy
-              </Button>
-            </Col>
-          </Row>
-        </Form>
-      </Row>
+        <Row className="justify-content-md-center mt-4">
+          <Col lg={4} md={12}>
+            <Button variant="success" type="submit" block>
+              Deploy
+            </Button>
+          </Col>
+        </Row>
+      </Form>
       <br />
     </main>
   );

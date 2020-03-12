@@ -32,7 +32,7 @@ export default function AddSystem(props: {
   const [sim, setSim] = useState(globalSim.Active);
 
   return (
-    <Card style={{ width: '24rem' }}>
+    <Card>
       <Card.Body>
         <Card.Title>Add vCenter</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">

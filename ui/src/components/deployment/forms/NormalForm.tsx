@@ -1,10 +1,10 @@
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { SettingsReducer, ActionTypes } from '../reducers/SettingsReducer';
 import AddSystem from '../inputs/AddSystem';
-import { UseGlobalSettings, UseGlobalGrafana } from '../../Global';
-import TextField from '../inputs/TextField';
+import { UseGlobalSettings } from '../../Global';
 import FormView from '../../../views/Form';
-import { Form } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
+import SetScrape from '../inputs/SetScrape';
 
 export default function NormalForm() {
   const [globalSettings] = UseGlobalSettings();
@@ -17,9 +17,6 @@ export default function NormalForm() {
     });
   }, [globalSettings]);
 
-  const [globalGrafana, globalGrafanaActions] = UseGlobalGrafana();
-  const [grafana, setGrafana] = useState(globalGrafana.Active);
-
   return (
     <FormView
       state={state}
@@ -28,43 +25,16 @@ export default function NormalForm() {
       title="Deploying Level 2"
       description="Please enter your preferences."
     >
-      <AddSystem dispatch={dispatch} state={state} />
-
-      <br />
-
-      <Form.Check
-        custom
-        id="custom-checkbox"
-        type="checkbox"
-        label="Deploy Grafana Instance"
-        onChange={() => {
-          const active = !grafana;
-          setGrafana(active);
-
-          globalGrafanaActions.setGrafana({
-            Active: active
-          });
-        }}
-        checked={grafana}
-      />
-
-      <br />
-
-      <TextField
-        dispatch={dispatch}
-        label="Prometheus Global Scrape Interval"
-        type={ActionTypes.PrometheusConfigDataScrapeIntervalShort}
-        input="duration"
-        value={state.Prometheus.Config[0].Data.Global.ScrapeInterval}
-      />
-
-      <TextField
-        dispatch={dispatch}
-        label="Prometheus vCenter Scrape Interval"
-        type={ActionTypes.PrometheusConfigDataScrapeIntervalLong}
-        input="duration"
-        value={state.Prometheus.Config[0].Data.ScrapeConfigs[1]?.ScrapeInterval}
-      />
+      <Row className="justify-content-md-center">
+        <Col lg={6} md={12} sm={12}>
+          <br />
+          <AddSystem dispatch={dispatch} state={state} />
+        </Col>
+        <Col lg={6} md={12} sm={12}>
+          <br />
+          <SetScrape dispatch={dispatch} state={state} />
+        </Col>
+      </Row>
     </FormView>
   );
 }
