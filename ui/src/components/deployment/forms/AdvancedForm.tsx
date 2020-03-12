@@ -1,10 +1,12 @@
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { SettingsReducer, ActionTypes } from '../reducers/SettingsReducer';
 import AddSystem from '../inputs/AddSystem';
-import { UseGlobalSettings, UseGlobalGrafana } from '../../Global';
-import TextField from '../inputs/TextField';
+import { UseGlobalSettings } from '../../Global';
 import FormView from '../../../views/Form';
-import { Form } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
+import SetTags from '../inputs/SetTags';
+import SetGrafana from '../inputs/SetGrafana';
+import SetScrape from '../inputs/SetScrape';
 
 export default function AdvancedForm() {
   const [globalSettings] = UseGlobalSettings();
@@ -17,11 +19,6 @@ export default function AdvancedForm() {
     });
   }, [globalSettings]);
 
-  const [globalGrafana, globalGrafanaActions] = UseGlobalGrafana();
-  const [grafana, setGrafana] = useState(globalGrafana.Active);
-
-  const port = state.Grafana.BuildInput.Ports[3000];
-
   return (
     <FormView
       state={state}
@@ -30,74 +27,20 @@ export default function AdvancedForm() {
       title="Deploying Level 3"
       description="Please enter your preferences."
     >
-      <AddSystem dispatch={dispatch} state={state} />
-
-      <br />
-
-      <Form.Check
-        custom
-        id="custom-checkbox"
-        type="checkbox"
-        label="Deploy Grafana Instance"
-        onChange={() => {
-          const active = !grafana;
-          setGrafana(active);
-
-          globalGrafanaActions.setGrafana({
-            Active: active
-          });
-        }}
-        checked={grafana}
-      />
-
-      <br />
-
-      <TextField
-        dispatch={dispatch}
-        label="Prometheus Global Scrape Interval"
-        type={ActionTypes.PrometheusConfigDataScrapeIntervalShort}
-        input="duration"
-        value={state.Prometheus.Config[0].Data.Global.ScrapeInterval}
-      />
-
-      <TextField
-        dispatch={dispatch}
-        label="Prometheus vCenter Scrape Interval"
-        type={ActionTypes.PrometheusConfigDataScrapeIntervalLong}
-        input="duration"
-        value={state.Prometheus.Config[0].Data.ScrapeConfigs[1]?.ScrapeInterval}
-      />
-
-      <TextField
-        dispatch={dispatch}
-        label="Telegraf Tag"
-        type={ActionTypes.TelegrafBuildConfigurationTag}
-        value={state.Telegraf.BuildInput.Tag}
-      />
-
-      <TextField
-        dispatch={dispatch}
-        label="Prometheus Tag"
-        type={ActionTypes.PrometheusBuildConfigurationTag}
-        value={state.Prometheus.BuildInput.Tag}
-      />
-
-      <TextField
-        disabled={!grafana}
-        dispatch={dispatch}
-        label="Grafana Tag"
-        type={ActionTypes.GrafanaBuildConfigurationTag}
-        value={state.Grafana.BuildInput.Tag}
-      />
-      
-      <TextField
-        disabled={!grafana}
-        dispatch={dispatch}
-        label="Grafana Port Number"
-        type={ActionTypes.GrafanaBuildConfigurationPort}
-        input="port"
-        value={port ? port.valueOf().toString() : ''}
-      />
+      <Row className="justify-content-md-center">
+        <Col lg={6} md={12} sm={12}>
+          <br />
+          <AddSystem dispatch={dispatch} state={state} />
+          <br />
+          <SetScrape dispatch={dispatch} state={state} />
+        </Col>
+        <Col lg={6} md={12} sm={12}>
+          <br />
+          <SetGrafana dispatch={dispatch} state={state} />
+          <br />
+          <SetTags dispatch={dispatch} state={state} />
+        </Col>
+      </Row>
     </FormView>
   );
 }
