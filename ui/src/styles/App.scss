@@ -10,7 +10,9 @@ body {
 }
 
 main {
-  min-height: 100%;
+  min-height: -webkit-calc(100% - 128px);
+  min-height:    -moz-calc(100% - 128px);
+  min-height:         calc(100% - 128px);
   overflow: auto;
   padding-top: 1rem;
 }
