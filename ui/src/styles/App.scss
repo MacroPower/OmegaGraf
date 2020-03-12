@@ -292,3 +292,30 @@ body {
     background-position: 0% 50%;
   }
 }
+
+.lh-1 {
+  line-height: 1;
+}
+
+.footer-logo {
+  margin-top: -.25rem;
+  color: var(--dark);
+}
+
+.footer-swagger, .footer-swagger a {
+  color: #999;;
+}
+
+.footer-logo a {
+  color: var(--dark);
+}
+
+.footer-shield {
+  margin-top: -.75rem;
+}
+
+.footer-icon {
+  margin-top: -1rem;
+  font-size: 1.5rem;
+  color: var(--dark);
+}
