@@ -4,12 +4,12 @@ import { faFileCode } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Container, Row, Col } from 'react-bootstrap';
 import Logo from '../data/Logo';
+import GitHubButton from 'react-github-btn';
 
 export default function Footer() {
   const git = 'https://github.com/';
   const repo = 'OmegaGraf/OmegaGraf';
   const dev = 'MacroPower';
-  const style = 'social';
   const shields = 'https://img.shields.io/github';
   const web = 'https://OmegaGraf.github.io';
 
@@ -38,21 +38,32 @@ export default function Footer() {
               <FontAwesomeIcon icon={faGithub} className="footer-icon" />
             </a>
           </Col>
-          <Col md={4} sm={6} xs={6}>
-            <a href={git + repo} target="_BLANK">
-              <img
-                className="footer-shield mr-1"
-                alt="GitHub stars"
-                src={shields + '/stars/' + repo + '?style=' + style}
-              />
-            </a>
-            <a href={git + dev} target="_BLANK">
-              <img
-                className="footer-shield ml-1"
-                alt="GitHub followers"
-                src={shields + '/followers/' + dev + '?style=' + style}
-              />
-            </a>
+          <Col md={4} sm={6} xs={6} className="footer-shield">
+            <Row className="justify-content-md-center">
+              <Col xl={3} lg={4} md={6}>
+                <GitHubButton
+                  href={git + repo}
+                  data-color-scheme="no-preference: light; light: light; dark: light;"
+                  data-icon="octicon-star"
+                  data-size="large"
+                  data-show-count
+                  aria-label="Star OmegaGraf/OmegaGraf on GitHub"
+                >
+                  Star
+                </GitHubButton>
+              </Col>
+              <Col xl={3} lg={4} md={6}>
+                <GitHubButton
+                  href={git + dev}
+                  data-color-scheme="no-preference: light; light: light; dark: light;"
+                  data-size="large"
+                  data-show-count
+                  aria-label={"Follow @" + dev + " on GitHub"}
+                >
+                  Follow
+                </GitHubButton>
+              </Col>
+            </Row>
           </Col>
         </Row>
         <hr />
