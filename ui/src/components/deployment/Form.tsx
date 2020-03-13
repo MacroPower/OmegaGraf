@@ -47,19 +47,19 @@ export default function DeployForm() {
     <Container>
       <Row className="mb-4 justify-content-md-center">
         <Col md={4}>
-          <a onClick={() => setDirect('simple')}>
+          <Button variant="success" className="card-button" onClick={() => setDirect('simple')}>
             <OptionCard clicked={direct === 'simple'} phase="1" />
-          </a>
+          </Button>
         </Col>
         <Col md={4}>
-          <a onClick={() => setDirect('normal')}>
+          <Button className="card-button" onClick={() => setDirect('normal')}>
             <OptionCard clicked={direct === 'normal'} phase="2" />
-          </a>
+          </Button>
         </Col>
         <Col md={4}>
-          <a onClick={() => setDirect('advanced')}>
+          <Button variant="danger" className="card-button" onClick={() => setDirect('advanced')}>
             <OptionCard clicked={direct === 'advanced'} phase="3" />
-          </a>
+          </Button>
         </Col>
       </Row>
       <br />
