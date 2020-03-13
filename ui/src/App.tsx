@@ -11,7 +11,7 @@ import Logo from './data/Logo';
 
 export default function App() {
   const [globalState, globalActions] = UseGlobalSession();
-  const [globalSettings, globalSettingsActions] = UseGlobalSettings();
+  const globalSettingsActions = UseGlobalSettings()[1];
 
   useEffect(() => {
     const session = getSessionCookie();
@@ -26,7 +26,7 @@ export default function App() {
         }
       })
         .then(r => {
-          if (r.ok != true) {
+          if (r.ok !== true) {
             throw new Error('API returned status ' + r.status.toString());
           }
           return r;

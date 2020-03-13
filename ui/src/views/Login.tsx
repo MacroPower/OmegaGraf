@@ -29,7 +29,7 @@ export default function Login() {
       }
     })
       .then(r => {
-        if (r.ok != true) {
+        if (r.ok !== true) {
           throw new Error('API returned status ' + r.status.toString());
         }
         return r;

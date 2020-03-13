@@ -1,5 +1,4 @@
 import React from 'react';
-import { UseGlobalSession, UseGlobalSettings } from '../components/Global';
 import { Container, Breadcrumb } from 'react-bootstrap';
 import 'rc-steps/assets/index.css';
 import 'rc-steps/assets/iconfont.css';
@@ -7,9 +6,6 @@ import RunDeploy from '../components/deployment/run/RunDeploy';
 import { Link } from 'react-router-dom';
 
 export default function Deploy() {
-  const [globalSession, globalSessionActions] = UseGlobalSession();
-  const [globalSettings, globalSettingsActions] = UseGlobalSettings();
-
   //eslint-disable-next-line
   const params = new URLSearchParams(location.search); 
   const ref = params.get('ref');

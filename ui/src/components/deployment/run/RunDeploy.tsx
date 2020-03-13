@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useState } from 'react';
 import Steps from 'rc-steps';
 import { PacmanLoader } from 'react-spinners';
 import {
@@ -64,21 +63,20 @@ export default function RunDeploy() {
     const state = { ...globalSettings };
 
     Promise.then(() =>
-      deploySim(endpoint, apiKey, state).then(() =>
-        deployGrafana(endpoint, apiKey, state).then(() =>
-          deployTelegraf(endpoint, apiKey, state).then(() =>
-            deployPrometheus(endpoint, apiKey, state).then(() =>
-              deployGrafanaConfig(endpoint, apiKey, state).then(() => {
-                const stepText = 'Cleaning up our mess...';
-                addStep('Finishing up', stepText);
-                setLastStep('Done', 'You can start using OmegaGraf!', 'done');
-              })
-            )
-          )
-        )
-      )
+      deploySim(endpoint, apiKey, state)
+        .then(() => deployGrafana(endpoint, apiKey, state))
+        .then(() => deployTelegraf(endpoint, apiKey, state))
+        .then(() => deployPrometheus(endpoint, apiKey, state))
+        .then(() => deployGrafanaConfig(endpoint, apiKey, state))
+        .then(() => {
+          const stepText = 'Cleaning up our mess...';
+          addStep('Finishing up', stepText);
+          setLastStep('Done', 'You can start using OmegaGraf!', 'done');
+        })
     );
   };
+
+  const breakPromise = () => Promise.break;
 
   const deployTelegraf = async (
     endpoint: string,
@@ -115,7 +113,7 @@ export default function RunDeploy() {
         'Error creating container, please check server logs',
         'error'
       );
-      const x = Promise.break;
+      breakPromise();
     }
   };
 
@@ -135,7 +133,7 @@ export default function RunDeploy() {
         'Error creating container, please check server logs',
         'error'
       );
-      const x = Promise.break;
+      breakPromise();
     }
   };
 
@@ -156,7 +154,7 @@ export default function RunDeploy() {
           'Error creating container, please check server logs',
           'error'
         );
-        const x = Promise.break;
+        breakPromise();
       }
     }
   };
@@ -188,7 +186,7 @@ export default function RunDeploy() {
           'Error creating container, please check server logs',
           'error'
         );
-        const x = Promise.break;
+        breakPromise();
       }
     }
   };
@@ -215,7 +213,7 @@ export default function RunDeploy() {
           'Error configuring container, please check server logs',
           'error'
         );
-        const x = Promise.break;
+        breakPromise();
       }
     }
   };
