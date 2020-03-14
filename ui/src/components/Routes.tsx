@@ -100,12 +100,14 @@ const Routes: Routed[] = [
 export function AppliedRoutes() {
   const [globalState] = UseGlobalSession();
 
-  const getRoutes = () => Routes.filter(route => globalState.apiKey || !route.requiresAuth);
-
-  const [routes, setRoutes] = useState<Routed[]>(getRoutes);
+  const [routes, setRoutes] = useState<Routed[]>(
+    Routes.filter(route => globalState.apiKey || !route.requiresAuth)
+  );
 
   useEffect(() => {
-    setRoutes(getRoutes);
+    setRoutes(
+      Routes.filter(route => globalState.apiKey || !route.requiresAuth)
+    );
   }, [globalState]);
 
   return (
