@@ -22,7 +22,7 @@ namespace OmegaGraf.Compose
 
             try
             {
-                this.token = GetToken().Result;
+                this.token = CreateToken().Result;
             }
             catch (Exception ex)
             {
@@ -36,9 +36,11 @@ namespace OmegaGraf.Compose
             RemoveToken().Wait();
         }
 
-        public Task<Token> GetToken()
+        public Task<Token> CreateToken()
         {
-            return this.uri
+            try
+            {
+                return this.uri
                    .AppendPathSegments("api", "auth", "keys")
                    .WithBasicAuth("admin", "admin")
                    .PostJsonAsync(
@@ -48,26 +50,51 @@ namespace OmegaGraf.Compose
                            name = "OG-ApiKey"
                        }
                    ).ReceiveJson<Token>();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Could not create a Grafana token");
+                throw;
+            }
         }
 
         public Task<IEnumerable<Token>> ListTokens()
         {
-            return this.uri
-                   .AppendPathSegments("api", "auth", "keys")
-                   .WithOAuthBearerToken(this.token.Key)
-                   .GetJsonAsync<IEnumerable<Token>>();
+            try
+            {
+                return this.uri
+                    .AppendPathSegments("api", "auth", "keys")
+                    .WithOAuthBearerToken(this.token.Key)
+                    .GetJsonAsync<IEnumerable<Token>>();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Could not list Grafana tokens");
+                throw;
+            }
         }
 
         public async Task<System.Net.Http.HttpResponseMessage> RemoveToken()
         {
             var tokens = await ListTokens();
 
-            var toDelete = tokens.First(t => t.Name == this.token.Name);
+            var toDelete = tokens.FirstOrDefault(t => t.Name == this.token.Name);
 
-            return await this.uri
-                   .AppendPathSegments("api", "auth", "keys", toDelete.ID)
-                   .WithOAuthBearerToken(this.token.Key)
-                   .DeleteAsync();
+            if (toDelete == null)
+                return null;
+
+            try
+            {
+                return await this.uri
+                    .AppendPathSegments("api", "auth", "keys", toDelete.ID)
+                    .WithOAuthBearerToken(this.token.Key)
+                    .DeleteAsync();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Could not remove Grafana token");
+                throw;
+            }
         }
 
         public async Task<System.Net.Http.HttpResponseMessage> AddDataSource(DataSource dataSource)
