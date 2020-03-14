@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 
 import {
   Route,
@@ -99,22 +99,24 @@ const Routes: Routed[] = [
 
 export function AppliedRoutes() {
   const [globalState] = UseGlobalSession();
+  const [routes, setRoutes] = useState<Routed[]>(Routes);
 
-  // Filter if requiresAuth is true and session is invalid
-  const routes = Routes.filter(
-    route => globalState.apiKey || !route.requiresAuth
-  ).map((route, i) => (
-    <Route
-      key={'AppliedRoute' + i}
-      exact={route.exact}
-      path={route.path}
-      component={route.component}
-    />
-  ));
+  useEffect(() => {
+    setRoutes(
+      Routes.filter(route => globalState.apiKey || !route.requiresAuth)
+    );
+  }, [globalState]);
 
   return (
     <Switch>
-      {routes}
+      {routes.map((route, i) => (
+        <Route
+          key={'AppliedRoute' + i}
+          exact={route.exact}
+          path={route.path}
+          component={route.component}
+        />
+      ))}
       {!globalState.apiKey && <Redirect to="/login" />}
       <Route component={Four04} />
     </Switch>
