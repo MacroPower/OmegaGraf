@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
-using NLog;
 using OmegaGraf.Compose.Config.Grafana;
 using OmegaGraf.Compose.Config.Prometheus;
 using OmegaGraf.Compose.Config.Telegraf;
@@ -23,10 +20,10 @@ namespace OmegaGraf.Compose.MetaData
                     Binds = new Dictionary<string, string>()
                     {
                         {
-                            "prometheus/config", "/etc/prometheus" + SystemData.Mode
+                            Path.Join("prometheus", "config"), "/etc/prometheus" + SystemData.Mode
                         },
                         {
-                            "prometheus/data",   "/prometheus" + SystemData.Mode
+                            Path.Join("prometheus", "data"),   "/prometheus" + SystemData.Mode
                         }
                     },
                     Parameters = new List<string>()
@@ -39,7 +36,7 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     new Config<Prometheus>()
                     {
-                        Path = Path.Join("prometheus/config", "/prometheus.yml"),
+                        Path = Path.Join("prometheus", "config", "prometheus.yml"),
                         Data = new Prometheus()
                         {
                             Global = new Global()
@@ -105,7 +102,7 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     new Config<Telegraf>()
                     {
-                        Path = Path.Join("telegraf", "/telegraf.conf"),
+                        Path = Path.Join("telegraf", "telegraf.conf"),
                         Data = new Telegraf(){
                             Agent = new Agent()
                             {
@@ -190,7 +187,7 @@ namespace OmegaGraf.Compose.MetaData
                     Binds = new Dictionary<string, string>()
                     {
                         {
-                            "grafana/lib", "/var/lib/grafana" + SystemData.Mode
+                            Path.Join("grafana", "lib"), "/var/lib/grafana" + SystemData.Mode
                         }
                     }
                 }
