@@ -25,7 +25,7 @@ install:
   - sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$RELEASE_ID $RELEASE_CODE stable"
   - apt-cache policy docker-ce
   - sudo apt-get update
-  - sudo apt-get install dotnet-sdk-3.1 docker-ce
+  - sudo apt-get install dotnet-sdk-3.1 docker-ce nodejs
   - dotnet tool install --global dotnet-sonarscanner
   - sudo systemctl status docker
   - sudo usermod -aG docker $USER
@@ -48,11 +48,14 @@ script:
     /o:omegagraf 
     /n:"OmegaGraf Compose" 
     /d:project.home=. 
-    /d:sonar.language=cs
     /d:sonar.coverage.exclusions=**/*MetaDataModule.cs,**/Bootstrapper.cs,**/HomeModule.cs,**/Startup.cs,**/Program.cs
     /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
     /d:sonar.cs.vstest.reportsPaths=**/TestResults/*.trx 
   - dotnet restore
+  - cd ui
+  - npm install
+  - npm run build
+  - cd ..
   - dotnet build
   - netstat -tulnp
   - dotnet test --logger:trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover

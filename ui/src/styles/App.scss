@@ -10,9 +10,9 @@ body {
 }
 
 main {
-  min-height: -webkit-calc(100% - 128px);
-  min-height:    -moz-calc(100% - 128px);
-  min-height:         calc(100% - 128px);
+  min-height: -webkit-calc(100% - 135px);
+  min-height:    -moz-calc(100% - 135px);
+  min-height:         calc(100% - 135px);
   overflow: auto;
   padding-top: 1rem;
 }
@@ -241,7 +241,7 @@ body {
 .big-btn,
 .big-btn-s,
 .big-btn:disabled,
-.big-btn-s:disabled {
+.big-btn-s-disabled {
   width: 300px;
   height: 100px;
   font-size: 2rem;
@@ -263,7 +263,7 @@ body {
 }
 
 .big-btn-s,
-.big-btn-s:disabled {
+.big-btn-s-disabled {
   display: flex;
   position: absolute;
   margin-top: -70px;
@@ -274,7 +274,7 @@ body {
 }
 
 .big-btn:disabled,
-.big-btn-s:disabled {
+.big-btn-s-disabled {
   background: #555;
   -webkit-animation: none;
   animation: none;

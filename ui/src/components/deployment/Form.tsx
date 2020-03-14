@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Route, Link, match } from 'react-router-dom';
+import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Route, Link } from 'react-router-dom';
 import OptionCard from '../OptionCard';
 import BigButton from '../BigButton';
 import setDefaults from '../settings/SetDefaults';
@@ -16,7 +16,7 @@ function RoutedLink(props: { to: string; disabled: boolean }) {
     label: '',
     path: props.to,
     exact: false,
-    children: ({ match }: { match: match }) => (
+    children: () => (
       <Link to={props.to} className="text-decoration-none">
         <BigButton disabled={props.disabled}>Get Started</BigButton>
       </Link>
@@ -41,13 +41,22 @@ export default function DeployForm() {
       globalGrafanaActions,
       globalSimActions
     );
-  }, []);
+  }, [
+    globalState,
+    globalSettingsActions,
+    globalGrafanaActions,
+    globalSimActions
+  ]);
 
   return (
     <Container>
       <Row className="mb-4 justify-content-md-center">
         <Col md={4}>
-          <Button variant="success" className="card-button" onClick={() => setDirect('simple')}>
+          <Button
+            variant="success"
+            className="card-button"
+            onClick={() => setDirect('simple')}
+          >
             <OptionCard clicked={direct === 'simple'} phase="1" />
           </Button>
         </Col>
@@ -57,7 +66,11 @@ export default function DeployForm() {
           </Button>
         </Col>
         <Col md={4}>
-          <Button variant="danger" className="card-button" onClick={() => setDirect('advanced')}>
+          <Button
+            variant="danger"
+            className="card-button"
+            onClick={() => setDirect('advanced')}
+          >
             <OptionCard clicked={direct === 'advanced'} phase="3" />
           </Button>
         </Col>

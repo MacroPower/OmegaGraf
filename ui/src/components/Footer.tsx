@@ -18,7 +18,7 @@ export default function Footer() {
       <Container>
         <Row className="justify-content-md-center">
           <Col md={4} sm={4} xs={5} className="footer-logo">
-            <a href={web} target="_BLANK">
+            <a href={web} target="_BLANK" rel="noopener noreferrer">
               <Logo
                 className="d-inline"
                 svgClassName="logo mr-3"
@@ -33,6 +33,7 @@ export default function Footer() {
             <a
               href={git + repo}
               target="_BLANK"
+              rel="noopener noreferrer"
               className="text-decoration-none"
             >
               <FontAwesomeIcon icon={faGithub} className="footer-icon" />
@@ -58,7 +59,7 @@ export default function Footer() {
                   data-color-scheme="no-preference: light; light: light; dark: light;"
                   data-size="large"
                   data-show-count
-                  aria-label={"Follow @" + dev + " on GitHub"}
+                  aria-label={'Follow @' + dev + ' on GitHub'}
                 >
                   Follow
                 </GitHubButton>
@@ -72,6 +73,7 @@ export default function Footer() {
             <a
               href="/swagger-ui"
               target="_BLANK"
+              rel="noopener noreferrer"
               className="text-decoration-none"
             >
               <FontAwesomeIcon icon={faFileCode} /> API
@@ -79,7 +81,11 @@ export default function Footer() {
           </Col>
           <Col md={8}>
             <i>OmegaGraf is free and open source software</i>
-            <a href={git + repo + '/blob/master/LICENSE'} target="_BLANK">
+            <a
+              href={git + repo + '/blob/master/LICENSE'}
+              target="_BLANK"
+              rel="noopener noreferrer"
+            >
               <img
                 className="ml-2"
                 alt="GitHub"

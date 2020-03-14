@@ -1,5 +1,3 @@
-import { UseGlobalSession } from '../../Global';
-
 export default async function DeployRequest(
   endpoint: string,
   apiKey: string,

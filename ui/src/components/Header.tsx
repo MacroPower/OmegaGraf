@@ -1,7 +1,7 @@
-import React, { Fragment, Component } from "react";
-import Nav from "react-bootstrap/Nav";
-import { Session } from "./Session";
-import Routes, { RoutedLink, RouteIdentifiers } from "./Routes";
+import React, { Component } from 'react';
+import Nav from 'react-bootstrap/Nav';
+import { Session } from './Session';
+import Routes, { RoutedLink, RouteIdentifiers } from './Routes';
 
 function HeaderRoutedLinks(
   session: Session
@@ -12,28 +12,31 @@ function HeaderRoutedLinks(
 } {
   const nav = Routes.filter(
     route => route.hidden === false && session && session.apiKey
-  ).map(route => (
+  ).map((route, i) => (
     <RoutedLink
+      key={i}
       label={route.label}
       to={route.path}
       activeOnlyWhenExact={route.exact}
     />
   ));
 
-  const login = Routes.filter(route => route.id === RouteIdentifiers.Login).map(
-    route => (
-      <RoutedLink
-        to={route.path}
-        label={route.label}
-        activeOnlyWhenExact={route.exact}
-      />
-    )
-  );
+  const login = Routes.filter(
+    route => route.id === RouteIdentifiers.Login
+  ).map((route, i) => (
+    <RoutedLink
+      key={i}
+      to={route.path}
+      label={route.label}
+      activeOnlyWhenExact={route.exact}
+    />
+  ));
 
   const logout = Routes.filter(
     route => route.id === RouteIdentifiers.Logout
-  ).map(route => (
+  ).map((route, i) => (
     <RoutedLink
+      key={i}
       to={route.path}
       label={route.label}
       activeOnlyWhenExact={route.exact}
@@ -50,7 +53,7 @@ export default class HeaderNav extends Component<{
     const { nav, login, logout } = HeaderRoutedLinks(this.props.session);
 
     return this.props.session.apiKey ? (
-      <Fragment>
+      <>
         <Nav className="mr-auto">{nav}</Nav>
         <Nav>
           <p className="p-2 m-0 text-light">
@@ -58,11 +61,11 @@ export default class HeaderNav extends Component<{
           </p>
           {logout}
         </Nav>
-      </Fragment>
+      </>
     ) : (
-      <Fragment>
+      <>
         <Nav className="mr-auto">{login}</Nav>
-      </Fragment>
+      </>
     );
   }
 }

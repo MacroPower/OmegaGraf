@@ -13,8 +13,8 @@ interface State {
 }
 
 export default function FormView(props: React.PropsWithChildren<State>) {
-  const [_, globalSettingsActions] = UseGlobalSettings();
-  const { state, children, title, description, pageName, page } = props;
+  const globalSettingsActions = UseGlobalSettings()[1];
+  const { state, children, title, description, page } = props;
   const [toDeploy, redirect] = useState(false);
   const [validated, setValidated] = useState(false);
 
