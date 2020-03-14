@@ -37,10 +37,10 @@ namespace OmegaGraf.Compose.MetaData
             {
                 try
                 {
-                    string dir = dataPath == "" ? Path.Join(Directory.GetCurrentDirectory(), "data/")
-                                                : dataPath;
-
-                    dir = dir.Replace('\\', '/');
+                    string dir = dataPath == "" ? Path.Join(Directory.GetCurrentDirectory(), "data")
+                                                : dataPath.StartsWith("/") || dataPath.StartsWith(@"\")
+                                                    ? dataPath
+                                                    : Path.Join(Directory.GetCurrentDirectory(), dataPath);
 
                     return dir;
                 }

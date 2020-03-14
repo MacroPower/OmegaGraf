@@ -10,7 +10,7 @@
       "request": "launch",
       "preLaunchTask": "build",
       "program": "${workspaceFolder}/compose/bin/Debug/netcoreapp3.1/compose.dll",
-      "args": ["-v", "--reset", "-k", "123"],
+      "args": ["-v", "--reset", "-k", "123", "--path", "build\\win"],
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",
       "stopAtEntry": false
