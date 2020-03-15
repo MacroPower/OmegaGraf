@@ -2,8 +2,8 @@
   <img src="docs/branding/logo_sticker_g_1024.png" width="256px" height="256px">
 </p>
 
+[![Build Status](https://travis-ci.com/OmegaGraf/OmegaGraf.svg?branch=master)](https://travis-ci.com/OmegaGraf/OmegaGraf)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/OmegaGraf/OmegaGraf)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/OmegaGraf/OmegaGraf)
 ![GitHub All Releases](https://img.shields.io/github/downloads/OmegaGraf/OmegaGraf/total)
 ![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/OmegaGraf/OmegaGraf)
 ![GitHub issues](https://img.shields.io/github/issues-raw/OmegaGraf/OmegaGraf)
