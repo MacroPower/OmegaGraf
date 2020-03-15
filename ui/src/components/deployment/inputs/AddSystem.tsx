@@ -41,7 +41,7 @@ export default function AddSystem(props: {
         <Card.Text>
           {systems.map((system: string, i: number) => {
             return (
-              <Form.Group controlId={'formBasicSystem' + i}>
+              <Form.Group key={i} controlId={'formBasicSystem' + i}>
                 <Form.Label>Address</Form.Label>
                 <Row>
                   <Col md={i === 0 ? 12 : 10} className={i !== 0 ? 'pr-0' : ''}>
