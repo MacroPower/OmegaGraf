@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import { Action, ActionTypes } from '../reducers/SettingsReducer';
 
-type inputs = 'string' | 'number' | 'duration' | 'port';
+type inputs = 'string' | 'number' | 'duration-s' | 'duration-d' | 'port';
 
 const ports = /^(102[4-9])|(10[3-9][0-9])|(1[1-9][0-9][0-9])|([2-9][0-9][0-9][0-9])|([1-5][0-9][0-9][0-9][0-9])|(6[0-4][0-9][0-9][0-9])|(65[0-4][0-9][0-9])|(655[0-2][0-9])|(6553[0-5])$/;
 
@@ -18,9 +18,14 @@ const valid: { input: inputs; regex: RegExp; text: string }[] = [
     text: 'Please enter a number.'
   },
   {
-    input: 'duration',
+    input: 'duration-s',
     regex: /^([0-9]+)s$/,
     text: 'Please enter a time duration in seconds.'
+  },
+  {
+    input: 'duration-d',
+    regex: /^([0-9]+)d$/,
+    text: 'Please enter a time duration in days.'
   },
   {
     input: 'port',

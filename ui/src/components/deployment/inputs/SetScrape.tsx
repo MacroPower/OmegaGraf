@@ -22,7 +22,7 @@ export default function SetScrape(props: {
             dispatch={dispatch}
             label="Prometheus Global Scrape Interval"
             type={ActionTypes.PrometheusConfigDataScrapeIntervalShort}
-            input="duration"
+            input="duration-s"
             value={state.Prometheus.Config[0].Data.Global.ScrapeInterval}
           />
 
@@ -30,9 +30,21 @@ export default function SetScrape(props: {
             dispatch={dispatch}
             label="Prometheus vCenter Scrape Interval"
             type={ActionTypes.PrometheusConfigDataScrapeIntervalLong}
-            input="duration"
+            input="duration-s"
             value={
               state.Prometheus.Config[0].Data.ScrapeConfigs[1]?.ScrapeInterval
+            }
+          />
+
+          <TextField
+            dispatch={dispatch}
+            label="Prometheus Retention Time"
+            type={ActionTypes.PrometheusRetentionTime}
+            input="duration-d"
+            value={
+              state.Prometheus.BuildInput.Parameters.filter(p =>
+                p.match(/^--storage\.tsdb\.retention\.time=.*$/g)
+              )[0].replace(/^--storage\.tsdb\.retention\.time=/g, '') || ''
             }
           />
         </Card.Text>

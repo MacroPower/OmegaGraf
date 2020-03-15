@@ -8,6 +8,7 @@ export enum ActionTypes {
   PrometheusConfigDataScrapeIntervalShort,
   PrometheusConfigDataScrapeIntervalLong,
   PrometheusBuildConfigurationTag,
+  PrometheusRetentionTime,
   TelegrafBuildConfigurationTag,
   GrafanaBuildConfigurationTag,
   GrafanaBuildConfigurationPort
@@ -26,6 +27,28 @@ export function SettingsReducer(state: Settings, action: Action): Settings {
       return newPrometheusScrapeInterval(state, action.value, 'short');
     case ActionTypes.PrometheusConfigDataScrapeIntervalLong:
       return newPrometheusScrapeInterval(state, action.value, 'long');
+    case ActionTypes.PrometheusRetentionTime:
+      const parameters = [...state.Prometheus.BuildInput.Parameters];
+      const r = /^--storage\.tsdb\.retention\.time=.*$/g
+      const index = parameters.findIndex(p => p.match(r));
+      const newParameter = "--storage.tsdb.retention.time=" + action.value;
+
+      if(index === -1) {
+        parameters.push(newParameter);
+      } else {
+        parameters[index] = newParameter;
+      }
+
+      return {
+        ...state,
+        Prometheus: {
+          BuildInput: {
+            ...state.Prometheus.BuildInput,
+            Parameters: parameters
+          },
+          Config: state.Prometheus.Config
+        }
+      };
     case ActionTypes.GrafanaBuildConfigurationPort:
       var port = parseInt(action.value, 10);
       return {
