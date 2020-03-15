@@ -32,13 +32,13 @@ export default function AdvancedForm() {
           <br />
           <AddSystem dispatch={dispatch} state={state} />
           <br />
-          <SetScrape dispatch={dispatch} state={state} />
+          <SetTags dispatch={dispatch} state={state} />
         </Col>
         <Col lg={6} md={12} sm={12}>
           <br />
           <SetGrafana dispatch={dispatch} state={state} />
           <br />
-          <SetTags dispatch={dispatch} state={state} />
+          <SetScrape dispatch={dispatch} state={state} />
         </Col>
       </Row>
     </FormView>

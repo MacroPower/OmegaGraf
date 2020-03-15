@@ -29,7 +29,8 @@ namespace OmegaGraf.Compose.MetaData
                     Parameters = new List<string>()
                     {
                         "--config.file=/etc/prometheus/prometheus.yml",
-                        "--storage.tsdb.path=/prometheus"
+                        "--storage.tsdb.path=/prometheus",
+                        "--storage.tsdb.retention.time=15d"
                     }
                 },
                 Config = new Config<Prometheus>[]
