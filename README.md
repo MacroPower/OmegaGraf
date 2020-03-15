@@ -14,6 +14,17 @@
 
 OmegaGraf is a **vCenter monitoring deployment solution** that is incredibly light, lightning fast, and dead simple. Through a web interface, users may configure and deploy an entirely open-source and containerized software stack.
 
+## Expo
+
+<a href="https://cech.uc.edu/soitexpo.html"><img src="https://cech.uc.edu/soitexpo/expo-agenda/_jcr_content/main/textimage_273720174/image.img.png/1566481041698.png" width="256px"></a>
+
+OmegaGraf will be showcased in UC's [IT Expo](https://cech.uc.edu/soitexpo.html), April 14, 2020.
+
+|Current Progress||
+|--|--|
+|![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/OmegaGraf/OmegaGraf/1)|![GitHub milestone](https://img.shields.io/github/milestones/issues-open/OmegaGraf/OmegaGraf/1?label=Remaining)|
+|![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/OmegaGraf/OmegaGraf/2)|![GitHub milestone](https://img.shields.io/github/milestones/issues-open/OmegaGraf/OmegaGraf/2?label=Remaining)|
+
 ## Features
 
 In minutes, OmegaGraf provides the following features and more:
