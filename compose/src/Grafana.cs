@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 using NLog;
+using System.Threading;
+using Polly;
 
 namespace OmegaGraf.Compose
 {
@@ -13,7 +15,7 @@ namespace OmegaGraf.Compose
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
-        private readonly Token token;
+        private Token token;
         private readonly string uri;
 
         public Grafana(string uri)
@@ -22,7 +24,13 @@ namespace OmegaGraf.Compose
 
             try
             {
-                this.token = CreateToken().Result;
+                Policy
+                    .Handle<Exception>(ex => {
+                        logger.Warn(ex, "Error fetching Grafana token, retrying...");
+                        return true;
+                    })
+                    .WaitAndRetry(3, retryAttempt => TimeSpan.FromSeconds(5))
+                    .Execute(() => this.token = CreateToken().Result);
             }
             catch (Exception ex)
             {
@@ -33,7 +41,15 @@ namespace OmegaGraf.Compose
 
         public void Dispose()
         {
-            RemoveToken().Wait();
+            try
+            {
+                RemoveToken().Wait();
+            }
+            catch (Exception ex)
+            {
+                logger.Warn(ex, "Unable to remove the Grafana token." + 
+                                "This may cause errors on future deployments.");
+            }
         }
 
         public Task<Token> CreateToken()
@@ -110,7 +126,7 @@ namespace OmegaGraf.Compose
             {
                 if (ex.Call.HttpStatus.ToString() == "Conflict")
                 {
-                    logger.Warn(ex, ex.Call.HttpStatus.ToString());
+                    logger.Warn(ex, "Seems like you already have this datasource, skipping...");
 
                     return ex.Call.Response;
                 }
@@ -139,7 +155,7 @@ namespace OmegaGraf.Compose
             {
                 if (ex.Call.HttpStatus.ToString() == "PreconditionFailed")
                 {
-                    logger.Warn(ex, ex.Call.HttpStatus.ToString());
+                    logger.Warn(ex, "Seems like you already have this dashboard, skipping...");
 
                     return ex.Call.Response;
                 }
