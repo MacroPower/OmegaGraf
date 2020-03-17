@@ -18,17 +18,20 @@ export default function FormView(props: React.PropsWithChildren<State>) {
   const [toDeploy, redirect] = useState(false);
   const [validated, setValidated] = useState(false);
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
+    if (
+      form.checkValidity() === true &&
+      // TODO: Fix this
+      !form.innerHTML.match(/^((.*)(is-invalid)(.*))$/g)
+    ) {
+      setValidated(true);
       globalSettingsActions.setSettings(state);
       redirect(true);
+    } else {
+      event.preventDefault();
+      event.stopPropagation();
     }
-
-    setValidated(true);
   };
 
   return (
