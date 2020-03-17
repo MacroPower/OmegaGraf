@@ -562,7 +562,7 @@
           {
             "alias": "/.*- Write/",
             "color": "#F2495C",
-            "yaxis": 2
+            "transform": "negative-Y"
           },
           {
             "alias": "/.*- Read/",
