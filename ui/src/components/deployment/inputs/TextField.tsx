@@ -4,7 +4,7 @@ import { Action, ActionTypes } from '../reducers/SettingsReducer';
 
 type inputs = 'string' | 'number' | 'duration-s' | 'duration-d' | 'port';
 
-const ports = /^(102[4-9])|(10[3-9][0-9])|(1[1-9][0-9][0-9])|([2-9][0-9][0-9][0-9])|([1-5][0-9][0-9][0-9][0-9])|(6[0-4][0-9][0-9][0-9])|(65[0-4][0-9][0-9])|(655[0-2][0-9])|(6553[0-5])$/;
+const ports = /^((102[4-9])|(10[3-9][0-9])|(1[1-9][0-9][0-9])|([2-9][0-9][0-9][0-9])|([1-5][0-9][0-9][0-9][0-9])|(6[0-4][0-9][0-9][0-9])|(65[0-4][0-9][0-9])|(655[0-2][0-9])|(6553[0-5]))$/;
 
 const valid: { input: inputs; regex: RegExp; text: string }[] = [
   {
@@ -19,13 +19,13 @@ const valid: { input: inputs; regex: RegExp; text: string }[] = [
   },
   {
     input: 'duration-s',
-    regex: /^([0-9]+)s$/,
-    text: 'Please enter a time duration in seconds.'
+    regex: /^([5-9]|[1-9][0-9]|[1-2][0-9][0-9]|300)s$/,
+    text: 'Please enter a time duration in range: 5s - 300s'
   },
   {
     input: 'duration-d',
-    regex: /^([0-9]+)d$/,
-    text: 'Please enter a time duration in days.'
+    regex: /^([1-9]|[1-9][0-9]|[1-9][0-9][0-9])d$/,
+    text: 'Please enter a time duration in range: 1d - 999d'
   },
   {
     input: 'port',
@@ -69,7 +69,7 @@ export default function TextField(props: {
                 onChange={(e: any) => {
                   if (inputType === 'number' || inputType === 'port') {
                     const value: number = e.target.value;
-                    if (value <= 65535) {
+                    if (value <= 99999999) {
                       dispatch({
                         type: type,
                         value: value

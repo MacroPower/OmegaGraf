@@ -10,6 +10,15 @@ export default function SetScrape(props: {
 }) {
   const { dispatch, state } = props;
 
+  let rTimeParams = state.Prometheus.BuildInput.Parameters.filter(p =>
+    p.match(/^--storage\.tsdb\.retention\.time=.*$/g)
+  )
+  let rTime = ''
+
+  if (rTimeParams.length > 0) {
+    rTime = rTimeParams[0].replace(/^--storage\.tsdb\.retention\.time=/g, '');
+  }
+
   return (
     <Card>
       <Card.Body>
@@ -41,11 +50,7 @@ export default function SetScrape(props: {
             label="Prometheus Retention Time"
             type={ActionTypes.PrometheusRetentionTime}
             input="duration-d"
-            value={
-              state.Prometheus.BuildInput.Parameters.filter(p =>
-                p.match(/^--storage\.tsdb\.retention\.time=.*$/g)
-              )[0].replace(/^--storage\.tsdb\.retention\.time=/g, '') || ''
-            }
+            value={rTime}
           />
         </Card.Text>
       </Card.Body>
