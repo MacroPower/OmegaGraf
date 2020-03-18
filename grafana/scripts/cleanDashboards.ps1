@@ -14,11 +14,7 @@ $base = '../dashboards/'
         $db.PSObject.properties.remove('__inputs')
         $db.PSObject.properties.remove('__requires')
 
-        $newFile = @{
-            'dashboard' = $db
-        }
-
-        $json = $newFile | ConvertTo-Json -Depth 10 
+        $json = $db | ConvertTo-Json -Depth 10 
 
         $json | Out-File -FilePath $filePath
     }
