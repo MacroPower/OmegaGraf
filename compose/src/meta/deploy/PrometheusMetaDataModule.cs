@@ -74,7 +74,7 @@ namespace OmegaGraf.Compose.MetaData
                                     .Schema(
                                         new Schema()
                                         {
-                                            Example = Example.Prometheus
+                                            Example = Defaults.Prometheus
                                         }
                                     )
                                     .Build()

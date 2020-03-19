@@ -59,9 +59,9 @@ namespace OmegaGraf.Compose.Tests.Builder
         {
             var runner = new Runner();
 
-            var config = Example.Telegraf.Config[0];
+            var config = Defaults.Telegraf.Config[0];
 
-            var bc = Example.Telegraf.BuildInput.ToBuildConfiguration("telegraf");
+            var bc = Defaults.Telegraf.BuildInput.ToBuildConfiguration("telegraf");
 
             var uuid = runner.AddTomlConfig(x => x.LowerCase, config).Build(bc);
 

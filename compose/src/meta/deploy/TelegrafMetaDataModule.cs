@@ -97,7 +97,7 @@ namespace OmegaGraf.Compose.MetaData
                                     .Schema(
                                         new Schema()
                                         {
-                                            Example = Example.Telegraf
+                                            Example = Defaults.Telegraf
                                         }
                                     )
                                     .Build()
@@ -119,7 +119,7 @@ namespace OmegaGraf.Compose.MetaData
                                     .Schema(
                                         new Schema()
                                         {
-                                            Example = Example.VCSim
+                                            Example = Defaults.VCSim
                                         }
                                     )
                                     .Build()

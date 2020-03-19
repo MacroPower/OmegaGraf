@@ -13,9 +13,9 @@ namespace OmegaGraf.Compose.Tests.Builder
         {
             var runner = new Runner();
 
-            var config = Example.Prometheus.Config[0];
+            var config = Defaults.Prometheus.Config[0];
 
-            var bc = Example.Prometheus.BuildInput.ToBuildConfiguration("prom/prometheus");
+            var bc = Defaults.Prometheus.BuildInput.ToBuildConfiguration("prom/prometheus");
 
             var uuid = runner.AddYamlConfig(config).Build(bc);
 

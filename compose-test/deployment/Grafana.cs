@@ -14,7 +14,7 @@ namespace OmegaGraf.Compose.Tests.Builder
     [Category("Deployment")]
     public class Grafana : DeployTests
     {
-        private static readonly int port = Example.Grafana.BuildInput.Ports.First().Key;
+        private static readonly int port = Defaults.Grafana.BuildInput.Ports.First().Key;
         private static async Task<bool> IsOnline()
         {
             try
@@ -35,7 +35,7 @@ namespace OmegaGraf.Compose.Tests.Builder
         {
             var runner = new Runner();
 
-            var bc = Example.Grafana.BuildInput.ToBuildConfiguration("grafana/grafana");
+            var bc = Defaults.Grafana.BuildInput.ToBuildConfiguration("grafana/grafana");
 
             var uuid = runner.Build(bc);
 

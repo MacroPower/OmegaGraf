@@ -62,7 +62,7 @@ namespace OmegaGraf.Compose.MetaData
 
                     var g = new Grafana("http://localhost:" + bind.Port);
 
-                    g.AddDataSource(Example.GrafanaDataSource).Wait();
+                    g.AddDataSource(Defaults.GrafanaDataSource).Wait();
                     g.Dispose();
 
                     return Negotiate.WithMediaRangeModel(
@@ -153,7 +153,7 @@ namespace OmegaGraf.Compose.MetaData
                                     .Schema(
                                         new Schema()
                                         {
-                                            Example = Example.Grafana
+                                            Example = Defaults.Grafana
                                         }
                                     )
                                     .Build()

@@ -6,7 +6,7 @@ using OmegaGraf.Compose.Config.Telegraf;
 
 namespace OmegaGraf.Compose.MetaData
 {
-    public static class Example
+    public static class Defaults
     {
         public static Input<Prometheus> Prometheus
         {

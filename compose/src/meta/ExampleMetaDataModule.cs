@@ -30,10 +30,10 @@ namespace OmegaGraf.Compose.MetaData
 
                     var examples = new ExampleSettings()
                     {
-                        Prometheus = Example.Prometheus,
-                        Telegraf = Example.Telegraf,
-                        Grafana = Example.Grafana,
-                        VCSim = Example.VCSim
+                        Prometheus = Defaults.Prometheus,
+                        Telegraf = Defaults.Telegraf,
+                        Grafana = Defaults.Grafana,
+                        VCSim = Defaults.VCSim
                     };
 
                     examples.Telegraf.Config[0].Data.Inputs.VSphere = new List<VSphere>()
