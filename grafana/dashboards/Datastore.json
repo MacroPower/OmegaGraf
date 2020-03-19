@@ -1,685 +1,683 @@
 {
-  "dashboard": {
-    "annotations": {
-      "list": [
-        {
-          "builtIn": 1,
-          "datasource": "-- Grafana --",
-          "enable": true,
-          "hide": true,
-          "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
-          "type": "dashboard"
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1584332730045,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 10,
+      "panels": [],
+      "repeat": "vcenter",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
         }
-      ]
+      },
+      "title": "$vcenter Quick Stats",
+      "type": "row"
     },
-    "editable": true,
-    "gnetId": null,
-    "graphTooltip": 0,
-    "id": null,
-    "iteration": 1584332730045,
-    "links": [],
-    "panels": [
-      {
-        "collapsed": false,
-        "datasource": null,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 0
-        },
-        "id": 10,
-        "panels": [],
-        "repeat": "vcenter",
-        "scopedVars": {
-          "vcenter": {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        },
-        "title": "$vcenter Quick Stats",
-        "type": "row"
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 1
       },
-      {
-        "datasource": null,
-        "gridPos": {
-          "h": 6,
-          "w": 6,
-          "x": 0,
-          "y": 1
-        },
-        "id": 5,
-        "options": {
-          "colorMode": "value",
-          "fieldOptions": {
-            "calcs": ["lastNotNull"],
-            "defaults": {
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "decbytes"
-            },
-            "overrides": [],
-            "values": false
-          },
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto"
-        },
-        "pluginVersion": "6.6.1",
-        "scopedVars": {
-          "vcenter": {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        },
-        "targets": [
-          {
-            "expr": "sum(vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"})",
-            "refId": "A"
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Datastore Total Capacity",
-        "type": "stat"
-      },
-      {
-        "datasource": null,
-        "gridPos": {
-          "h": 6,
-          "w": 6,
-          "x": 6,
-          "y": 1
-        },
-        "id": 7,
-        "options": {
-          "colorMode": "value",
-          "fieldOptions": {
-            "calcs": ["lastNotNull"],
-            "defaults": {
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "orange",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "decbytes"
-            },
-            "overrides": [],
-            "values": false
-          },
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto"
-        },
-        "pluginVersion": "6.6.1",
-        "scopedVars": {
-          "vcenter": {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        },
-        "targets": [
-          {
-            "expr": "sum(vsphere_datastore_disk_provisioned_latest{vcenter=\"$vcenter\"})",
-            "refId": "A"
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Datastore Total Provisioned",
-        "type": "stat"
-      },
-      {
-        "datasource": null,
-        "gridPos": {
-          "h": 6,
-          "w": 6,
-          "x": 12,
-          "y": 1
-        },
-        "id": 6,
-        "options": {
-          "colorMode": "value",
-          "fieldOptions": {
-            "calcs": ["lastNotNull"],
-            "defaults": {
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "red",
-                    "value": null
-                  }
-                ]
-              },
-              "unit": "decbytes"
-            },
-            "overrides": [],
-            "values": false
-          },
-          "graphMode": "area",
-          "justifyMode": "auto",
-          "orientation": "auto"
-        },
-        "pluginVersion": "6.6.1",
-        "scopedVars": {
-          "vcenter": {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        },
-        "targets": [
-          {
-            "expr": "sum(vsphere_datastore_disk_used_latest{vcenter=\"$vcenter\"})",
-            "refId": "A"
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Datastore Used Capacity",
-        "type": "stat"
-      },
-      {
-        "datasource": null,
-        "gridPos": {
-          "h": 6,
-          "w": 6,
-          "x": 18,
-          "y": 1
-        },
-        "id": 8,
-        "options": {
-          "colorMode": "background",
-          "fieldOptions": {
-            "calcs": ["lastNotNull"],
-            "defaults": {
-              "mappings": [
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": ["lastNotNull"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
                 {
-                  "from": "0",
-                  "id": 1,
-                  "operator": "",
-                  "text": "Healthy",
-                  "to": ".8",
-                  "type": 2,
-                  "value": ""
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.1",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"})",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Datastore Total Capacity",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 6,
+        "y": 1
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": ["lastNotNull"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "orange",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.1",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_datastore_disk_provisioned_latest{vcenter=\"$vcenter\"})",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Datastore Total Provisioned",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 12,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": ["lastNotNull"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "red",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "decbytes"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.1",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_datastore_disk_used_latest{vcenter=\"$vcenter\"})",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Datastore Used Capacity",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 18,
+        "y": 1
+      },
+      "id": 8,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["lastNotNull"],
+          "defaults": {
+            "mappings": [
+              {
+                "from": "0",
+                "id": 1,
+                "operator": "",
+                "text": "Healthy",
+                "to": ".8",
+                "type": 2,
+                "value": ""
+              },
+              {
+                "from": ".8",
+                "id": 2,
+                "operator": "",
+                "text": "Unhealthy",
+                "to": "1000",
+                "type": 2,
+                "value": ""
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
                 },
                 {
-                  "from": ".8",
-                  "id": 2,
-                  "operator": "",
-                  "text": "Unhealthy",
-                  "to": "1000",
-                  "type": 2,
-                  "value": ""
+                  "color": "red",
+                  "value": 0.8
                 }
-              ],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 0.8
-                  }
-                ]
-              },
-              "unit": "none"
+              ]
             },
-            "overrides": [],
-            "values": false
+            "unit": "none"
           },
-          "graphMode": "none",
-          "justifyMode": "auto",
-          "orientation": "auto"
+          "overrides": [],
+          "values": false
         },
-        "pluginVersion": "6.6.1",
-        "scopedVars": {
-          "vcenter": {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        },
-        "targets": [
-          {
-            "expr": "max(vsphere_datastore_disk_used_latest{vcenter=\"$vcenter\"} / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"})",
-            "instant": false,
-            "refId": "A"
-          }
-        ],
-        "timeFrom": null,
-        "timeShift": null,
-        "title": "Datastore Health",
-        "type": "stat"
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto"
       },
-      {
-        "collapsed": false,
-        "datasource": null,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 21
-        },
-        "id": 12,
-        "panels": [],
-        "repeat": "vcenter",
-        "scopedVars": {
-          "vcenter": {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        },
-        "title": "$vcenter Datastore Stats",
-        "type": "row"
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": null,
-        "fill": 1,
-        "fillGradient": 3,
-        "gridPos": {
-          "h": 10,
-          "w": 24,
-          "x": 0,
-          "y": 22
-        },
-        "hiddenSeries": false,
-        "id": 2,
-        "legend": {
-          "alignAsTable": true,
-          "avg": false,
-          "current": true,
-          "max": false,
-          "min": false,
-          "rightSide": true,
-          "show": true,
-          "total": false,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 2,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": false,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "scopedVars": {
-          "vcenter": {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        },
-        "seriesOverrides": [
-          {
-            "alias": "/.*- Prediction/",
-            "color": "#F2495C",
-            "fill": 0,
-            "fillGradient": 0,
-            "linewidth": 1
-          }
-        ],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "expr": "clamp_max(vsphere_datastore_disk_used_latest{vcenter=\"$vcenter\"} / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"}, 1)",
-            "legendFormat": "{{ dsname }}",
-            "refId": "A"
-          },
-          {
-            "expr": "clamp_min(clamp_max((predict_linear(vsphere_datastore_disk_used_latest{vcenter=\"$vcenter\"}[1h], 4 * 3600) / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"}), 1), 0)",
-            "legendFormat": "{{ dsname }} - Prediction",
-            "refId": "B"
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Datastore Used Capacity",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "percentunit",
-            "label": null,
-            "logBase": 1,
-            "max": "1",
-            "min": "0",
-            "show": true
-          },
-          {
-            "format": "percentunit",
-            "label": null,
-            "logBase": 1,
-            "max": "1",
-            "min": "0",
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
+      "pluginVersion": "6.6.1",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
         }
       },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": null,
-        "fill": 1,
-        "fillGradient": 3,
-        "gridPos": {
-          "h": 10,
-          "w": 24,
-          "x": 0,
-          "y": 32
-        },
-        "hiddenSeries": false,
-        "id": 3,
-        "legend": {
-          "alignAsTable": true,
-          "avg": false,
-          "current": true,
-          "max": false,
-          "min": false,
-          "rightSide": true,
-          "show": true,
-          "total": false,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 2,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": false,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "scopedVars": {
-          "vcenter": {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        },
-        "seriesOverrides": [
-          {
-            "alias": "/.* - Prediction/",
-            "color": "#F2495C",
-            "fill": 0,
-            "fillGradient": 0,
-            "linewidth": 1
-          }
-        ],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "expr": "vsphere_datastore_disk_provisioned_latest{vcenter=\"$vcenter\"} / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"}",
-            "legendFormat": "{{ dsname }}",
-            "refId": "A"
-          },
-          {
-            "expr": "clamp_min((predict_linear(vsphere_datastore_disk_provisioned_latest{vcenter=\"$vcenter\"}[1h], 4 * 3600) / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"}), 0)",
-            "legendFormat": "{{ dsname }} - Prediction",
-            "refId": "B"
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Datastore Provisioning",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "percentunit",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "percentunit",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      },
-      {
-        "aliasColors": {},
-        "bars": false,
-        "dashLength": 10,
-        "dashes": false,
-        "datasource": null,
-        "fill": 1,
-        "fillGradient": 1,
-        "gridPos": {
-          "h": 8,
-          "w": 24,
-          "x": 0,
-          "y": 42
-        },
-        "hiddenSeries": false,
-        "id": 13,
-        "legend": {
-          "alignAsTable": true,
-          "avg": false,
-          "current": true,
-          "max": false,
-          "min": false,
-          "rightSide": true,
-          "show": true,
-          "total": false,
-          "values": true
-        },
-        "lines": true,
-        "linewidth": 1,
-        "nullPointMode": "null",
-        "options": {
-          "dataLinks": []
-        },
-        "percentage": false,
-        "pointradius": 2,
-        "points": false,
-        "renderer": "flot",
-        "scopedVars": {
-          "vcenter": {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        },
-        "seriesOverrides": [
-          {
-            "alias": "/.*- Write/",
-            "color": "#F2495C",
-            "transform": "negative-Y"
-          },
-          {
-            "alias": "/.*- Read/",
-            "color": "#5794F2"
-          }
-        ],
-        "spaceLength": 10,
-        "stack": false,
-        "steppedLine": false,
-        "targets": [
-          {
-            "expr": "vsphere_datastore_datastore_write_average{vcenter=\"$vcenter\"}",
-            "legendFormat": "{{ source }} - Write",
-            "refId": "A"
-          },
-          {
-            "expr": "vsphere_datastore_datastore_read_average{vcenter=\"$vcenter\"}",
-            "legendFormat": "{{ source }} - Read",
-            "refId": "B"
-          }
-        ],
-        "thresholds": [],
-        "timeFrom": null,
-        "timeRegions": [],
-        "timeShift": null,
-        "title": "Datastore Reads/Writes",
-        "tooltip": {
-          "shared": true,
-          "sort": 0,
-          "value_type": "individual"
-        },
-        "type": "graph",
-        "xaxis": {
-          "buckets": null,
-          "mode": "time",
-          "name": null,
-          "show": true,
-          "values": []
-        },
-        "yaxes": [
-          {
-            "format": "Bps",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          },
-          {
-            "format": "Bps",
-            "label": null,
-            "logBase": 1,
-            "max": null,
-            "min": null,
-            "show": true
-          }
-        ],
-        "yaxis": {
-          "align": false,
-          "alignLevel": null
-        }
-      }
-    ],
-    "refresh": false,
-    "schemaVersion": 22,
-    "style": "dark",
-    "tags": [],
-    "templating": {
-      "list": [
+      "targets": [
         {
-          "allValue": null,
-          "current": {
-            "text": "",
-            "value": [""]
-          },
-          "datasource": "og-prometheus",
-          "definition": "label_values(vcenter)",
-          "hide": 0,
-          "includeAll": true,
-          "label": "vCenter",
-          "multi": true,
-          "name": "vcenter",
-          "options": [],
-          "query": "label_values(vcenter)",
-          "refresh": 1,
-          "regex": "",
-          "skipUrlSync": false,
-          "sort": 0,
-          "tagValuesQuery": "",
-          "tags": [],
-          "tagsQuery": "",
-          "type": "query",
-          "useTags": false
+          "expr": "max(vsphere_datastore_disk_used_latest{vcenter=\"$vcenter\"} / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"})",
+          "instant": false,
+          "refId": "A"
         }
-      ]
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Datastore Health",
+      "type": "stat"
     },
-    "time": {
-      "from": "now-1h",
-      "to": "now"
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 21
+      },
+      "id": 12,
+      "panels": [],
+      "repeat": "vcenter",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "title": "$vcenter Datastore Stats",
+      "type": "row"
     },
-    "timepicker": {
-      "refresh_intervals": [
-        "5s",
-        "10s",
-        "30s",
-        "1m",
-        "5m",
-        "15m",
-        "30m",
-        "1h",
-        "2h",
-        "1d"
-      ]
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 3,
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "seriesOverrides": [
+        {
+          "alias": "/.*- Prediction/",
+          "color": "#F2495C",
+          "fill": 0,
+          "fillGradient": 0,
+          "linewidth": 1
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "clamp_max(vsphere_datastore_disk_used_latest{vcenter=\"$vcenter\"} / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"}, 1)",
+          "legendFormat": "{{ dsname }}",
+          "refId": "A"
+        },
+        {
+          "expr": "clamp_min(clamp_max((predict_linear(vsphere_datastore_disk_used_latest{vcenter=\"$vcenter\"}[1h], 4 * 3600) / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"}), 1), 0)",
+          "legendFormat": "{{ dsname }} - Prediction",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Datastore Used Capacity",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": "1",
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": "1",
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
-    "timezone": "",
-    "title": "Datastores",
-    "uid": "uT3M4aXWz",
-    "version": 23
-  }
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 3,
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 32
+      },
+      "hiddenSeries": false,
+      "id": 3,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 2,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "seriesOverrides": [
+        {
+          "alias": "/.* - Prediction/",
+          "color": "#F2495C",
+          "fill": 0,
+          "fillGradient": 0,
+          "linewidth": 1
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "vsphere_datastore_disk_provisioned_latest{vcenter=\"$vcenter\"} / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"}",
+          "legendFormat": "{{ dsname }}",
+          "refId": "A"
+        },
+        {
+          "expr": "clamp_min((predict_linear(vsphere_datastore_disk_provisioned_latest{vcenter=\"$vcenter\"}[1h], 4 * 3600) / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"}), 0)",
+          "legendFormat": "{{ dsname }} - Prediction",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Datastore Provisioning",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "percentunit",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 1,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "hiddenSeries": false,
+      "id": 13,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "seriesOverrides": [
+        {
+          "alias": "/.*- Write/",
+          "color": "#F2495C",
+          "transform": "negative-Y"
+        },
+        {
+          "alias": "/.*- Read/",
+          "color": "#5794F2"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "vsphere_datastore_datastore_write_average{vcenter=\"$vcenter\"}",
+          "legendFormat": "{{ source }} - Write",
+          "refId": "A"
+        },
+        {
+          "expr": "vsphere_datastore_datastore_read_average{vcenter=\"$vcenter\"}",
+          "legendFormat": "{{ source }} - Read",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Datastore Reads/Writes",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "Bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "",
+          "value": [""]
+        },
+        "datasource": "og-prometheus",
+        "definition": "label_values(vcenter)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "vCenter",
+        "multi": true,
+        "name": "vcenter",
+        "options": [],
+        "query": "label_values(vcenter)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Datastores",
+  "uid": "uT3M4aXWz",
+  "version": 23
 }

@@ -30,4 +30,10 @@ namespace OmegaGraf.Compose.Config.Grafana
         public bool IsDefault { get; set; }
         public dynamic JsonData { get; set; }
     }
+
+    public class Dashboard
+    {
+        [JsonProperty("dashboard")]
+        public dynamic DashboardData { get; set; }
+    }
 }

@@ -142,14 +142,14 @@ namespace OmegaGraf.Compose
             }
         }
 
-        public async Task<System.Net.Http.HttpResponseMessage> AddDashboard(object jsonModel)
+        public async Task<System.Net.Http.HttpResponseMessage> AddDashboard(Dashboard dashboard)
         {
             try
             {
                 return await this.uri
                        .AppendPathSegments("api", "dashboards", "db")
                        .WithOAuthBearerToken(this.token.Key)
-                       .PostJsonAsync(jsonModel);
+                       .PostJsonAsync(dashboard);
             }
             catch (FlurlHttpException ex)
             {

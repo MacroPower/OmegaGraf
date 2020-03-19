@@ -96,9 +96,11 @@ namespace OmegaGraf.Compose.Tests.Builder
 
             try
             {
-                var dash = JsonConvert.DeserializeObject(d);
-
-                g.AddDashboard(dash).Wait();
+                g.AddDashboard(
+                    new Compose.Config.Grafana.Dashboard()
+                    {
+                        DashboardData = JsonConvert.DeserializeObject(d)
+                    }).Wait();
 
                 g.Dispose();
             }

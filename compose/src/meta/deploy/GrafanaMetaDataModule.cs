@@ -91,10 +91,14 @@ namespace OmegaGraf.Compose.MetaData
                     {
                         foreach (var file in Directory.GetFiles(filepath, "*.json"))
                         {
-                            string json = File.ReadAllText(file);
-                            var dash = JsonConvert.DeserializeObject(json);
                             logger.Info("Adding Grafana dashboard from file : " + file);
-                            g.AddDashboard(dash).Wait();
+
+                            string json = File.ReadAllText(file);
+                            g.AddDashboard(
+                                new Compose.Config.Grafana.Dashboard()
+                                {
+                                    DashboardData = JsonConvert.DeserializeObject(json)
+                                }).Wait();
                         }
                     }
                     catch (IOException ex)
