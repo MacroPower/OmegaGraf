@@ -268,3 +268,7 @@ tools/*
 **/coverage.opencover.xml
 
 build/**
+
+# Jsonnet dashboard libs
+**/jsonnet/*
+**/grafonnet/*
