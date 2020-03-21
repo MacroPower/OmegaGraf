@@ -28,8 +28,8 @@ namespace OmegaGraf.Compose
                 
                 if (parsed.Reset) new Docker().RemoveAllContainers().Wait();
 
-                MetaData.SystemData.Root = parsed.Path;
-                logger.Info("Root: " + MetaData.SystemData.Root);
+                MetaData.SystemData.SetRoot(parsed.Path);
+                logger.Info("Root: " + MetaData.SystemData.GetRoot());
 
                 if (string.IsNullOrWhiteSpace(parsed.Key))
                 {

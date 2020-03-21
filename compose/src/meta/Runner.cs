@@ -17,7 +17,7 @@ namespace OmegaGraf.Compose.MetaData
         public Dictionary<string, string> Binds
         {
             get => this.binds;
-            set => this.binds = value.ToDictionary(d => Path.Join(SystemData.Root, d.Key), d => d.Value);
+            set => this.binds = value.ToDictionary(d => Path.Join(SystemData.GetRoot(), d.Key), d => d.Value);
         }
         public List<string> Parameters { get; set; }
     }
@@ -77,7 +77,7 @@ namespace OmegaGraf.Compose.MetaData
         {
             foreach (var c in configFile)
             {
-                File.WriteAllText(Path.Join(SystemData.Root, c.Key), c.Value);
+                File.WriteAllText(Path.Join(SystemData.GetRoot(), c.Key), c.Value);
             }
         }
 

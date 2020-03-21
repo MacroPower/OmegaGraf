@@ -4,7 +4,7 @@ using System.Security.Principal;
 
 namespace OmegaGraf.Compose
 {
-    public class KeyDatabase
+    public static class KeyDatabase
     {
         private static string activeApiKey;
 

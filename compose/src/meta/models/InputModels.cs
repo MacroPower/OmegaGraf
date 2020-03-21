@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 
 namespace OmegaGraf.Compose.MetaData
 {
@@ -26,20 +24,15 @@ namespace OmegaGraf.Compose.MetaData
 
     public static class TranslateConfig
     {
-        public static BuildConfiguration ToBuildConfiguration(this BuildConfigurationInput input, string image)
-        {
-            // Append the absolute path to the input path, using either the current directory or the user specified directory.
-            // var absolutePathBinds = input.Binds.ToDictionary(d => Path.Join(SystemData.Root, d.Key), d => d.Value);
-
-            return new BuildConfiguration()
-                   {
-                       Name = input.Name,
-                       Image = image,
-                       Tag = input.Tag,
-                       Ports = input.Ports,
-                       Binds = input.Binds,
-                       Parameters = input.Parameters
-                   };
-        }
+        public static BuildConfiguration ToBuildConfiguration(this BuildConfigurationInput input, string image) =>
+            new BuildConfiguration()
+            {
+                Name = input.Name,
+                Image = image,
+                Tag = input.Tag,
+                Ports = input.Ports,
+                Binds = input.Binds,
+                Parameters = input.Parameters
+            };
     }
 }

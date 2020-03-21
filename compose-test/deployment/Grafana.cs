@@ -41,7 +41,7 @@ namespace OmegaGraf.Compose.Tests.Builder
 
             TestContext.Out.WriteLine("Container: " + uuid);
             TestContext.Out.WriteLine("Port: " + port);
-            TestContext.Out.WriteLine("Mode: " + SystemData.Mode);
+            TestContext.Out.WriteLine("Mode: " + SystemData.GetMode());
 
             var wait = Is.True.After(30000, 2000);
 

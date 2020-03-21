@@ -20,10 +20,10 @@ namespace OmegaGraf.Compose.MetaData
                     Binds = new Dictionary<string, string>()
                     {
                         {
-                            Path.Join("prometheus", "config"), "/etc/prometheus" + SystemData.Mode
+                            Path.Join("prometheus", "config"), "/etc/prometheus" + SystemData.GetMode()
                         },
                         {
-                            Path.Join("prometheus", "data"),   "/prometheus" + SystemData.Mode
+                            Path.Join("prometheus", "data"),   "/prometheus" + SystemData.GetMode()
                         }
                     },
                     Parameters = new List<string>()
@@ -95,7 +95,7 @@ namespace OmegaGraf.Compose.MetaData
                     Binds = new Dictionary<string, string>()
                     {
                         {
-                            "telegraf", "/etc/telegraf" + SystemData.Mode
+                            "telegraf", "/etc/telegraf" + SystemData.GetMode()
                         }
                     }
                 },
@@ -188,7 +188,7 @@ namespace OmegaGraf.Compose.MetaData
                     Binds = new Dictionary<string, string>()
                     {
                         {
-                            Path.Join("grafana", "lib"), "/var/lib/grafana" + SystemData.Mode
+                            Path.Join("grafana", "lib"), "/var/lib/grafana" + SystemData.GetMode()
                         }
                     }
                 }
