@@ -12,6 +12,8 @@ import PacmanGhost from '../../../data/Ghost';
 import { Settings } from '../../settings/Settings';
 import Promise from 'thenfail';
 import BigButton from '../../BigButton';
+import Results from './Results';
+import { Col, Row } from 'react-bootstrap';
 
 type stepStatus = 'active' | 'error' | 'finish' | 'done';
 
@@ -28,6 +30,12 @@ export default function RunDeploy() {
   const [globalGrafana] = UseGlobalGrafana();
 
   const [steps, setSteps] = useState<step>([]);
+
+  const [grafanaResults, showGrafanaResults] = useState(false);
+  const [promResults, showPromResults] = useState(false);
+
+  const grafanaPort = globalSettings.Grafana.BuildInput.Ports[3000];
+  const prometheusPort = globalSettings.Prometheus.BuildInput.Ports[9090];
 
   const addStep = (title: string, description: string) => {
     setSteps(prev => [
@@ -127,6 +135,7 @@ export default function RunDeploy() {
       addStep('Deploy Prometheus', stepText);
       await DeployRequest(endpoint, apiKey, 'prometheus', state.Prometheus);
       setLastStep('Deploy Prometheus', stepText + 'Done!', 'finish');
+      showPromResults(true);
     } catch (e) {
       setLastStep(
         'Deploy Prometheus',
@@ -207,6 +216,7 @@ export default function RunDeploy() {
         await DeployRequest(endpoint, apiKey, 'grafana/datasource', conf);
         await DeployRequest(endpoint, apiKey, 'grafana/dashboards', conf);
         setLastStep('Deploy Grafana Config', stepText + 'Done!', 'finish');
+        showGrafanaResults(true);
       } catch (e) {
         setLastStep(
           'Deploy Grafana Config',
@@ -233,32 +243,53 @@ export default function RunDeploy() {
           <BigButton onClick={startRun()}>Confirm</BigButton>
         </div>
       )}
-      {steps.length > 0 && (
-        <Steps current={stepLength()} direction="vertical">
-          {steps.map((step, i) => {
-            const isError = step.status === 'error';
+      <Row className="justify-content-md-center">
+        <Col md={8}>
+          {steps.length > 0 && (
+            <Steps current={stepLength()} direction="vertical">
+              {steps.map((step, i) => {
+                const isError = step.status === 'error';
 
-            const icon = !isError ? (
-              step.status === 'done' ? (
-                <i className="rcicon rcicon-check" />
-              ) : (
-                <PacmanLoader size={15} color={'#007bff'} loading={true} />
-              )
-            ) : (
-              <PacmanGhost />
-            );
-            return (
-              <Steps.Step
-                key={i}
-                {...step}
-                {...(i === stepLength() && {
-                  icon: { ...icon }
-                })}
-              />
-            );
-          })}
-        </Steps>
-      )}
+                const icon = !isError ? (
+                  step.status === 'done' ? (
+                    <i className="rcicon rcicon-check" />
+                  ) : (
+                    <PacmanLoader size={15} color={'#007bff'} loading={true} />
+                  )
+                ) : (
+                  <PacmanGhost />
+                );
+                return (
+                  <Steps.Step
+                    key={i}
+                    {...step}
+                    {...(i === stepLength() && {
+                      icon: { ...icon }
+                    })}
+                  />
+                );
+              })}
+            </Steps>
+          )}
+        </Col>
+        <Col md={4}>
+          {promResults && (
+            <Results
+              app="Prometheus"
+              url={'http://' + (window.location.hostname || '+')}
+              port={prometheusPort ? prometheusPort.valueOf().toString() : '0'}
+            />
+          )}
+          {grafanaResults && (
+            <Results
+              app="Grafana"
+              url={'http://' + (window.location.hostname || '+')}
+              port={grafanaPort ? grafanaPort.valueOf().toString() : '0'}
+              message="Login with admin/admin"
+            />
+          )}
+        </Col>
+      </Row>
     </>
   );
 }

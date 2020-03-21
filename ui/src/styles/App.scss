@@ -337,3 +337,9 @@ body {
   font-size: 1.5rem;
   color: var(--dark);
 }
+
+.deploy-results {
+  border: 3px solid $red;
+  color: #000;
+  border-radius: 0.5rem;
+}
