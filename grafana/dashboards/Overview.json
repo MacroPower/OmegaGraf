@@ -1,0 +1,894 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1584819937408,
+  "links": [],
+  "panels": [
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 31,
+      "repeat": null,
+      "title": "At A Glance",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 6,
+        "x": 0,
+        "y": 1
+      },
+      "id": 4,
+      "interval": "",
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "semi-dark-blue",
+                  "value": null
+                }
+              ]
+            },
+            "title": ""
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "targets": [
+        {
+          "expr": "sum(vsphere_cluster_vmop_numPoweron_latest{vcenter=~\"$vcenter\"})",
+          "legendFormat": "Powered On VMs",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(vsphere_cluster_vmop_numPoweron_latest{vcenter=~\"$vcenter\"}) + sum(vsphere_cluster_vmop_numPoweroff_latest{vcenter=~\"$vcenter\"})",
+          "legendFormat": "Total VMs",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 6,
+        "y": 1
+      },
+      "id": 28,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "title": "Disk Provisioned",
+            "unit": "decbytes"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "targets": [
+        {
+          "expr": "sum(vsphere_datastore_disk_capacity_provisioned_average{vcenter=~\"$vcenter\"})",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 9,
+        "y": 1
+      },
+      "id": 27,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "title": "Disk Throughput",
+            "unit": "Bps"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "targets": [
+        {
+          "expr": "sum(vsphere_datastore_datastore_throughput_usage_average{vcenter=~\"$vcenter\"})",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 6,
+        "w": 3,
+        "x": 12,
+        "y": 1
+      },
+      "id": 44,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "semi-dark-purple",
+                  "value": null
+                }
+              ]
+            },
+            "title": "Network Throughput",
+            "unit": "Bps"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "targets": [
+        {
+          "expr": "sum(vsphere_cluster_net_throughput_usage_average{vcenter=~\"$vcenter\"})",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 15,
+        "y": 1
+      },
+      "id": 22,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "title": "",
+            "unit": "decbytes"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "targets": [
+        {
+          "expr": "vsphere_datastore_disk_capacity_latest{vcenter=~\"$vcenter\"}",
+          "legendFormat": "{{vcenter}} {{source}} Capacity",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 15,
+        "y": 4
+      },
+      "id": 23,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "decimals": 1,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 80
+                },
+                {
+                  "color": "red",
+                  "value": 95
+                }
+              ]
+            },
+            "unit": "percentunit"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "targets": [
+        {
+          "expr": "vsphere_datastore_disk_used_latest{vcenter=~\"$vcenter\"} / vsphere_datastore_disk_capacity_latest{vcenter=~\"$vcenter\"}",
+          "legendFormat": "{{vcenter}} {{source}} Usage",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 7
+      },
+      "id": 33,
+      "panels": [],
+      "repeat": "vcenter",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "title": "$vcenter CPU",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 0,
+        "y": 8
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "title": "CPU Cores Provisioned",
+            "unit": "none"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_cluster_cpu_corecount_provisioned_average{vcenter=~\"$vcenter\"})",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 4,
+        "w": 22,
+        "x": 2,
+        "y": 8
+      },
+      "id": 25,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["lastNotNull"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 80
+                },
+                {
+                  "color": "red",
+                  "value": 95
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_host_cpu_usage_average{cpu=\"instance-total\",vcenter=~\"$vcenter\"}) by (vcenter, esxhostname)",
+          "legendFormat": "{{ esxhostname }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
+      "id": 35,
+      "panels": [],
+      "repeat": "vcenter",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "title": "$vcenter Memory",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 0,
+        "y": 37
+      },
+      "id": 29,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "title": "RAM Provisioned",
+            "unit": "decbytes"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_cluster_mem_capacity_provisioned_average{vcenter=~\"$vcenter\"})",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 4,
+        "w": 22,
+        "x": 2,
+        "y": 37
+      },
+      "id": 26,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["lastNotNull"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "orange",
+                  "value": 80
+                },
+                {
+                  "color": "red",
+                  "value": 100
+                }
+              ]
+            },
+            "unit": "percent"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_host_mem_usage_average{vcenter=~\"$vcenter\"}) by (vcenter, esxhostname)",
+          "legendFormat": "{{ esxhostname }}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 111
+      },
+      "id": 47,
+      "panels": [],
+      "repeat": "vcenter",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "title": "$vcenter Network",
+      "type": "row"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 0,
+        "y": 112
+      },
+      "id": 49,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "title": "Packets Rx",
+            "unit": "short"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_host_net_packetsRx_summation{vcenter=~\"$vcenter\",interface=\"instance-total\"})",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 4,
+        "w": 22,
+        "x": 2,
+        "y": 112
+      },
+      "id": 45,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["lastNotNull"],
+          "defaults": {
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "purple",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "Bps"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_host_net_bytesRx_average{vcenter=~\"$vcenter\",interface=\"instance-total\"}) by (vcenter, esxhostname)",
+          "legendFormat": "{{ esxhostname }} Rx",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 0,
+        "y": 116
+      },
+      "id": 50,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "title": "Packets Tx",
+            "unit": "short"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_host_net_packetsTx_summation{vcenter=~\"$vcenter\",interface=\"instance-total\"})",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 4,
+        "w": 22,
+        "x": 2,
+        "y": 116
+      },
+      "id": 48,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["lastNotNull"],
+          "defaults": {
+            "decimals": 2,
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-purple",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "Bps"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "scopedVars": {
+        "vcenter": {
+          "selected": true,
+          "text": "",
+          "value": ""
+        }
+      },
+      "targets": [
+        {
+          "expr": "sum(vsphere_host_net_bytesTx_average{vcenter=~\"$vcenter\",interface=\"instance-total\"}) by (vcenter, esxhostname)",
+          "legendFormat": "{{ esxhostname }} Tx",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    }
+  ],
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "",
+          "value": [""]
+        },
+        "datasource": "og-prometheus",
+        "definition": "label_values(vcenter)",
+        "hide": 0,
+        "includeAll": true,
+        "label": "vCenter",
+        "multi": true,
+        "name": "vcenter",
+        "options": [],
+        "query": "label_values(vcenter)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Overview",
+  "uid": "YU4i6lXZz",
+  "version": 27
+}
