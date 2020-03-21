@@ -19,8 +19,7 @@ export default function Login() {
   const submit = (e: any) => {
     e.preventDefault();
 
-    //eslint-disable-next-line
-    const host: string = location.protocol + '//' + location.host;
+    const host: string = window.location.protocol + '//' + window.location.host;
 
     fetch(host + '/auth', {
       method: 'GET',
