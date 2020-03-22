@@ -36,6 +36,11 @@ export const defaultSettings: Settings = {
             PrometheusClient: []
           },
           Inputs: {
+            Internal: [
+              {
+                CollectMemstats: false
+              }
+            ],
             VSphere: [
               {
                 VCenters: [''],

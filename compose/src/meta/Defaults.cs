@@ -120,6 +120,13 @@ namespace OmegaGraf.Compose.MetaData
                             },
                             Inputs = new Inputs()
                             {
+                                Internal = new List<Internal>()
+                                {
+                                    new Internal()
+                                    {
+                                        CollectMemstats = true
+                                    }
+                                },
                                 VSphere = new List<VSphere>()
                                 {
                                     new VSphere()
