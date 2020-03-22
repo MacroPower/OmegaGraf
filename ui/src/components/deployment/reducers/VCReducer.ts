@@ -11,6 +11,7 @@ export const newVCenters = (state: Settings, current: any): Settings => {
           Data: {
             ...state.Telegraf.Config[0].Data,
             Inputs: {
+              ...state.Telegraf.Config[0].Data.Inputs,
               VSphere: [
                 {
                   ...state.Telegraf.Config[0].Data.Inputs.VSphere[0],

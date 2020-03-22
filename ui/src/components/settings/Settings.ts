@@ -7,7 +7,12 @@ type TelegrafConfig = {
 };
 
 type Inputs = {
+  Internal: Internal[];
   VSphere: VSphere[];
+};
+
+export type Internal = {
+  CollectMemstats: boolean;
 };
 
 export type VSphere = {

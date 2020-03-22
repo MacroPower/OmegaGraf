@@ -92,6 +92,7 @@ namespace OmegaGraf.Compose.Config.Telegraf
 
     public class Inputs
     {
+        public IEnumerable<Internal> Internal { get; set; }
         public IEnumerable<VSphere> VSphere { get; set; }
     }
 
@@ -130,6 +131,15 @@ namespace OmegaGraf.Compose.Config.Telegraf
         /// </summary>
         /// <value>/metrics</value>
         public string Path { get; set; }
+    }
+
+    public class Internal
+    {
+        /// <summary>
+        /// Collect telegraf memory stats.
+        /// </summary>
+        [TomlMember(Key = "collect_memstats")]
+        public bool CollectMemstats { get; set; }
     }
 
     public class VSphere
