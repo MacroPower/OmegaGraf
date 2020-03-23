@@ -51,10 +51,8 @@ namespace OmegaGraf.Compose
                     KeyDatabase.CreateKey(parsed.Key);
                 }
 
-                if (!string.IsNullOrWhiteSpace(parsed.Socket))
-                {
-                    Docker.SetDockerURI(parsed.Socket);
-                }
+                if (!string.IsNullOrWhiteSpace(parsed.Socket)) Docker.SetDockerURI(parsed.Socket);
+                if (parsed.Dev) Globals.Development = true;
 
                 var urls = 
                     parsed.Host.Length == 0 ? new string[] { "https://0.0.0.0:5001" }

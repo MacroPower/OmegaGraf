@@ -1,3 +1,4 @@
+using System;
 using Nancy;
 using Nancy.Authentication.Stateless;
 using Nancy.Bootstrapper;
@@ -16,8 +17,18 @@ namespace ShopAutomation.API
     {
         public override void Configure(INancyEnvironment environment)
         {
-            environment.Diagnostics(true, "password");
-            environment.Tracing(enabled: true, displayErrorTraces: true);
+            var enabled = Globals.Development;
+            var key = Guid.NewGuid().ToString().Replace("-", null);
+
+            if (enabled)
+            {
+                Console.WriteLine("Development mode is enabled.");
+                Console.WriteLine("Diagnostic interface: http://+/_Nancy");
+                Console.WriteLine("Password: " + key);
+            }
+
+            environment.Diagnostics(enabled, key);
+            environment.Tracing(enabled: enabled, displayErrorTraces: enabled);
             base.Configure(environment);
         }
 
@@ -36,7 +47,7 @@ namespace ShopAutomation.API
 
             SwaggerMetadataProvider.SetInfo(
                 title: "OmegaGraf",
-                version: "alpha",
+                version: Globals.Version,
                 desc: "OmegaGraf-Compose",
                 contact: new Contact()
                 {
@@ -55,7 +66,7 @@ namespace ShopAutomation.API
                 externalDocumentation: new ExternalDocumentation
                 {
                     Description = "GitHub",
-                    Url = "https://github.8451.com/OmegaGraf/"
+                    Url = "https://github.com/OmegaGraf/OmegaGraf"
                 },
                 schemes: new[] { Schemes.Http, Schemes.Https },
                 produces: new[] { "application/json" }

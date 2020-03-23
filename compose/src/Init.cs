@@ -28,6 +28,7 @@ namespace OmegaGraf.Compose
         [ArgShortcut("-r"), ArgShortcut("--reset"), ArgDescription("Removes existing OmegaGraf containers.")]
         public bool Reset { get; set; }
 
-        
+        [ArgShortcut("-d"), ArgShortcut("--dev"), ArgDescription("Enables development mode.")]
+        public bool Dev { get; set; }
     }
 }
