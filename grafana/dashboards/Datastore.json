@@ -12,11 +12,12 @@
       }
     ]
   },
+  "description": "OmegaGraf dashboard providing insight into Datastores inside vCenter.",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1584577258921,
+  "iteration": 1584922832868,
   "links": [],
   "panels": [
     {
@@ -201,76 +202,6 @@
         "x": 18,
         "y": 1
       },
-      "id": 8,
-      "options": {
-        "colorMode": "background",
-        "fieldOptions": {
-          "calcs": ["lastNotNull"],
-          "defaults": {
-            "mappings": [
-              {
-                "from": "0",
-                "id": 1,
-                "operator": "",
-                "text": "Healthy",
-                "to": ".8",
-                "type": 2,
-                "value": ""
-              },
-              {
-                "from": ".8",
-                "id": 2,
-                "operator": "",
-                "text": "Unhealthy",
-                "to": "1000",
-                "type": 2,
-                "value": ""
-              }
-            ],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 0.8
-                }
-              ]
-            },
-            "title": "Datastore Status",
-            "unit": "none"
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.6.2",
-      "targets": [
-        {
-          "expr": "max(vsphere_datastore_disk_used_latest{vcenter=\"$vcenter\"} / vsphere_datastore_disk_capacity_latest{vcenter=\"$vcenter\"})",
-          "instant": false,
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 8,
-        "w": 24,
-        "x": 0,
-        "y": 7
-      },
       "id": 15,
       "options": {
         "displayMode": "basic",
@@ -296,7 +227,7 @@
           "overrides": [],
           "values": false
         },
-        "orientation": "auto",
+        "orientation": "vertical",
         "showUnfilled": true
       },
       "pluginVersion": "6.6.2",
@@ -326,7 +257,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 21
       },
       "id": 12,
       "panels": [],
@@ -353,7 +284,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 22
       },
       "hiddenSeries": false,
       "id": 2,
@@ -463,7 +394,7 @@
         "h": 10,
         "w": 24,
         "x": 0,
-        "y": 26
+        "y": 32
       },
       "hiddenSeries": false,
       "id": 3,
@@ -573,7 +504,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 42
       },
       "hiddenSeries": false,
       "id": 13,
@@ -676,7 +607,7 @@
   "refresh": false,
   "schemaVersion": 22,
   "style": "dark",
-  "tags": [],
+  "tags": ["vsphere", "monitoring"],
   "templating": {
     "list": [
       {
@@ -727,5 +658,5 @@
   "timezone": "",
   "title": "Datastores",
   "uid": "uT3M4aXWz",
-  "version": 25
+  "version": 30
 }
