@@ -19,7 +19,7 @@
   "links": [],
   "panels": [
     {
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 4,
         "w": 24,
@@ -82,7 +82,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "decimals": 0,
       "fill": 1,
       "fillGradient": 2,
@@ -177,7 +177,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "decimals": 0,
       "fill": 1,
       "fillGradient": 2,
@@ -272,7 +272,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "decimals": 0,
       "fill": 1,
       "fillGradient": 2,

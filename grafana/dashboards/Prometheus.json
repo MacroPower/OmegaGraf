@@ -95,7 +95,7 @@
   "panels": [
     {
       "content": "<img src=\"https://cdn.worldvectorlogo.com/logos/prometheus.svg\"/ height=\"140px\">",
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 5,
         "w": 2,
@@ -507,7 +507,7 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -820,7 +820,7 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1137,7 +1137,7 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1486,7 +1486,7 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1701,7 +1701,7 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2025,7 +2025,7 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2362,7 +2362,7 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2701,7 +2701,7 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3033,7 +3033,7 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3332,7 +3332,7 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3646,7 +3646,7 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3964,7 +3964,7 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4403,7 +4403,7 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4781,7 +4781,7 @@
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,

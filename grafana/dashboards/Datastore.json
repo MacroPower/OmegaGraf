@@ -22,7 +22,7 @@
   "panels": [
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -43,7 +43,7 @@
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -96,7 +96,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -149,7 +149,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -195,7 +195,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 6,
         "w": 6,
@@ -252,7 +252,7 @@
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -277,7 +277,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "fill": 1,
       "fillGradient": 3,
       "gridPos": {
@@ -387,7 +387,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "fill": 1,
       "fillGradient": 3,
       "gridPos": {
@@ -497,7 +497,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "og-prometheus",
       "fill": 1,
       "fillGradient": 1,
       "gridPos": {
