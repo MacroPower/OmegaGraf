@@ -90,7 +90,7 @@ namespace OmegaGraf.Compose.Tests.Builder
         [Test, Order(2)]
         public void CreateDashboard()
         {
-            var d = File.ReadAllText("grafana/dashboards/_Example.json");
+            var d = File.ReadAllText("grafana/dashboards/Overview.json");
 
             var g = new Compose.Grafana("http://localhost:" + port);
 
