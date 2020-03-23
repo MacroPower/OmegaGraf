@@ -13,7 +13,7 @@ namespace OmegaGraf.Compose
         [ArgShortcut("-p"), ArgShortcut("--path"), ArgDescription("Absolute path to store container data. Defaults to current directory."), ArgPosition(1), ArgDefaultValue("")]
         public string Path { get; set; }
 
-        [ArgShortcut("--host"), ArgDescription("The listen address for this application."), ArgPosition(2), ArgDefaultValue("https://0.0.0.0:5001")]
+        [ArgShortcut("--host"), ArgDescription("The listen address for this application."), ArgPosition(2), ArgDefaultValue("http://0.0.0.0:5000")]
         public string[] Host { get; set; }
 
         [ArgShortcut("-k"), ArgShortcut("--key"), ArgDescription("Override the OmegaGraf Secure Key."), ArgPosition(3)]
