@@ -6,7 +6,6 @@ using Nancy.Conventions;
 using Nancy.Diagnostics;
 using Nancy.Swagger.Services;
 using Nancy.TinyIoc;
-using NLog;
 using OmegaGraf.Compose;
 using Swagger.ObjectModel;
 using Swagger.ObjectModel.Builders;
@@ -15,8 +14,6 @@ namespace ShopAutomation.API
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {
-        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
-        
         public override void Configure(INancyEnvironment environment)
         {
             environment.Diagnostics(true, "password");
@@ -67,7 +64,7 @@ namespace ShopAutomation.API
             base.ApplicationStartup(container, pipelines);
         }
 
-        protected override void RequestStartup(TinyIoCContainer requestContainer, IPipelines pipelines, NancyContext context)
+        protected override void RequestStartup(TinyIoCContainer container, IPipelines pipelines, NancyContext context)
         {
             var configuration =
                 new StatelessAuthenticationConfiguration(

@@ -1,7 +1,6 @@
 using Nancy;
 using Nancy.Responses.Negotiation;
 using NLog;
-using OmegaGraf.Compose.Config.Grafana;
 using OmegaGraf.Compose.Config.Prometheus;
 using OmegaGraf.Compose.Config.Telegraf;
 using System.Collections.Generic;

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 using NLog;
-using System.Threading;
 using Polly;
 
 namespace OmegaGraf.Compose
@@ -40,6 +39,12 @@ namespace OmegaGraf.Compose
         }
 
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             try
             {
