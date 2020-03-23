@@ -12,20 +12,57 @@
       }
     ]
   },
+  "description": "OmegaGraf dashboard providing an overview of all your vCenter systems.",
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1584819937408,
+  "iteration": 1584926843980,
   "links": [],
   "panels": [
+    {
+      "content": "<div style=\"text-align: center\">\n<a href=\"https://github.com/OmegaGraf/OmegaGraf/\" target=\"_BLANK\">\n  <img width=90 src=\"https://github.com/OmegaGraf/OmegaGraf/raw/master/docs/branding/logo_1024_w.png\" alt=\"OmegaGraf\"/>\n</a>\n<h2>OmegaGraf</h2>\n</div>\n",
+      "datasource": null,
+      "gridPos": {
+        "h": 4,
+        "w": 2,
+        "x": 0,
+        "y": 0
+      },
+      "id": 63,
+      "mode": "html",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "content": "<h3>Thanks for using OmegaGraf.</h3>\n<p>\nWe hope that this tool saved you some time. If it did, please consider leaving us a star at <a href=\"https://github.com/OmegaGraf/OmegaGraf\">https://github.com/OmegaGraf/OmegaGraf</a>\n<br/>\nIf you had any issues, or have any suggestions, please submit an <a href=\"https://github.com/OmegaGraf/OmegaGraf/issues\">issue</a> so that we can make OmegaGraf better.\n<br/>\nAlso, feel free to submit your improvements via a <a href=\"https://github.com/OmegaGraf/OmegaGraf/pulls\">pull request</a>. (Including any upgrades you make to the dashboards here!)\n</p>",
+      "datasource": null,
+      "gridPos": {
+        "h": 4,
+        "w": 9,
+        "x": 2,
+        "y": 0
+      },
+      "id": 65,
+      "mode": "html",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
     {
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 0
+        "y": 4
       },
       "id": 31,
       "repeat": null,
@@ -38,7 +75,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 1
+        "y": 5
       },
       "id": 4,
       "interval": "",
@@ -90,7 +127,7 @@
         "h": 6,
         "w": 3,
         "x": 6,
-        "y": 1
+        "y": 5
       },
       "id": 28,
       "options": {
@@ -138,7 +175,7 @@
         "h": 6,
         "w": 3,
         "x": 9,
-        "y": 1
+        "y": 5
       },
       "id": 27,
       "options": {
@@ -185,7 +222,7 @@
         "h": 6,
         "w": 3,
         "x": 12,
-        "y": 1
+        "y": 5
       },
       "id": 44,
       "options": {
@@ -232,54 +269,7 @@
         "h": 3,
         "w": 9,
         "x": 15,
-        "y": 1
-      },
-      "id": 22,
-      "options": {
-        "colorMode": "background",
-        "fieldOptions": {
-          "calcs": ["last"],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "blue",
-                  "value": null
-                }
-              ]
-            },
-            "title": "",
-            "unit": "decbytes"
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto"
-      },
-      "pluginVersion": "6.6.2",
-      "targets": [
-        {
-          "expr": "vsphere_datastore_disk_capacity_latest{vcenter=~\"$vcenter\"}",
-          "legendFormat": "{{vcenter}} {{source}} Capacity",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
-      "type": "stat"
-    },
-    {
-      "datasource": null,
-      "gridPos": {
-        "h": 3,
-        "w": 9,
-        "x": 15,
-        "y": 4
+        "y": 5
       },
       "id": 23,
       "options": {
@@ -329,13 +319,60 @@
       "type": "stat"
     },
     {
+      "datasource": null,
+      "gridPos": {
+        "h": 3,
+        "w": 9,
+        "x": 15,
+        "y": 8
+      },
+      "id": 22,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["last"],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                }
+              ]
+            },
+            "title": "",
+            "unit": "decbytes"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "targets": [
+        {
+          "expr": "vsphere_datastore_disk_capacity_latest{vcenter=~\"$vcenter\"}",
+          "legendFormat": "{{vcenter}} {{source}} Capacity",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 7
+        "y": 11
       },
       "id": 33,
       "panels": [],
@@ -356,7 +393,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 8
+        "y": 12
       },
       "id": 12,
       "options": {
@@ -409,7 +446,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 8
+        "y": 12
       },
       "id": 25,
       "options": {
@@ -471,7 +508,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 36
+        "y": 16
       },
       "id": 35,
       "panels": [],
@@ -492,7 +529,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 37
+        "y": 17
       },
       "id": 29,
       "options": {
@@ -545,7 +582,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 37
+        "y": 17
       },
       "id": 26,
       "options": {
@@ -607,7 +644,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 111
+        "y": 21
       },
       "id": 47,
       "panels": [],
@@ -628,7 +665,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 112
+        "y": 22
       },
       "id": 49,
       "options": {
@@ -681,7 +718,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 112
+        "y": 22
       },
       "id": 45,
       "options": {
@@ -735,7 +772,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 116
+        "y": 26
       },
       "id": 50,
       "options": {
@@ -788,7 +825,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 116
+        "y": 26
       },
       "id": 48,
       "options": {
@@ -839,7 +876,7 @@
   ],
   "schemaVersion": 22,
   "style": "dark",
-  "tags": [],
+  "tags": ["vsphere", "monitoring"],
   "templating": {
     "list": [
       {
@@ -890,5 +927,5 @@
   "timezone": "",
   "title": "Overview",
   "uid": "YU4i6lXZz",
-  "version": 27
+  "version": 30
 }
