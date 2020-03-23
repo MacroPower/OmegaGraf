@@ -17,15 +17,15 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1584926843980,
+  "iteration": 1584936677317,
   "links": [],
   "panels": [
     {
       "content": "<div style=\"text-align: center\">\n<a href=\"https://github.com/OmegaGraf/OmegaGraf/\" target=\"_BLANK\">\n  <img width=90 src=\"https://github.com/OmegaGraf/OmegaGraf/raw/master/docs/branding/logo_1024_w.png\" alt=\"OmegaGraf\"/>\n</a>\n<h2>OmegaGraf</h2>\n</div>\n",
       "datasource": "og-prometheus",
       "gridPos": {
-        "h": 4,
-        "w": 2,
+        "h": 5,
+        "w": 3,
         "x": 0,
         "y": 0
       },
@@ -42,9 +42,9 @@
       "content": "<h3>Thanks for using OmegaGraf.</h3>\n<p>\nWe hope that this tool saved you some time. If it did, please consider leaving us a star at <a href=\"https://github.com/OmegaGraf/OmegaGraf\">https://github.com/OmegaGraf/OmegaGraf</a>\n<br/>\nIf you had any issues, or have any suggestions, please submit an <a href=\"https://github.com/OmegaGraf/OmegaGraf/issues\">issue</a> so that we can make OmegaGraf better.\n<br/>\nAlso, feel free to submit your improvements via a <a href=\"https://github.com/OmegaGraf/OmegaGraf/pulls\">pull request</a>. (Including any upgrades you make to the dashboards here!)\n</p>",
       "datasource": "og-prometheus",
       "gridPos": {
-        "h": 4,
-        "w": 9,
-        "x": 2,
+        "h": 5,
+        "w": 21,
+        "x": 3,
         "y": 0
       },
       "id": 65,
@@ -62,7 +62,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 4
+        "y": 5
       },
       "id": 31,
       "repeat": null,
@@ -75,7 +75,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 5
+        "y": 6
       },
       "id": 4,
       "interval": "",
@@ -127,7 +127,7 @@
         "h": 6,
         "w": 3,
         "x": 6,
-        "y": 5
+        "y": 6
       },
       "id": 28,
       "options": {
@@ -175,7 +175,7 @@
         "h": 6,
         "w": 3,
         "x": 9,
-        "y": 5
+        "y": 6
       },
       "id": 27,
       "options": {
@@ -222,7 +222,7 @@
         "h": 6,
         "w": 3,
         "x": 12,
-        "y": 5
+        "y": 6
       },
       "id": 44,
       "options": {
@@ -269,7 +269,7 @@
         "h": 3,
         "w": 9,
         "x": 15,
-        "y": 5
+        "y": 6
       },
       "id": 23,
       "options": {
@@ -324,7 +324,7 @@
         "h": 3,
         "w": 9,
         "x": 15,
-        "y": 8
+        "y": 9
       },
       "id": 22,
       "options": {
@@ -372,18 +372,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 11
+        "y": 12
       },
       "id": 33,
       "panels": [],
       "repeat": "vcenter",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "title": "$vcenter CPU",
       "type": "row"
     },
@@ -393,7 +386,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 12
+        "y": 13
       },
       "id": 12,
       "options": {
@@ -422,13 +415,6 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.6.2",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "targets": [
         {
           "expr": "sum(vsphere_cluster_cpu_corecount_provisioned_average{vcenter=~\"$vcenter\"})",
@@ -446,7 +432,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 12
+        "y": 13
       },
       "id": 25,
       "options": {
@@ -482,13 +468,6 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.6.2",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "targets": [
         {
           "expr": "sum(vsphere_host_cpu_usage_average{cpu=\"instance-total\",vcenter=~\"$vcenter\"}) by (vcenter, esxhostname)",
@@ -508,18 +487,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 17
       },
       "id": 35,
       "panels": [],
       "repeat": "vcenter",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "title": "$vcenter Memory",
       "type": "row"
     },
@@ -529,7 +501,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 17
+        "y": 18
       },
       "id": 29,
       "options": {
@@ -558,13 +530,6 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.6.2",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "targets": [
         {
           "expr": "sum(vsphere_cluster_mem_capacity_provisioned_average{vcenter=~\"$vcenter\"})",
@@ -582,7 +547,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 17
+        "y": 18
       },
       "id": 26,
       "options": {
@@ -618,13 +583,6 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.6.2",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "targets": [
         {
           "expr": "sum(vsphere_host_mem_usage_average{vcenter=~\"$vcenter\"}) by (vcenter, esxhostname)",
@@ -644,18 +602,11 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 22
       },
       "id": 47,
       "panels": [],
       "repeat": "vcenter",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "title": "$vcenter Network",
       "type": "row"
     },
@@ -665,7 +616,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 22
+        "y": 23
       },
       "id": 49,
       "options": {
@@ -694,13 +645,6 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.6.2",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "targets": [
         {
           "expr": "sum(vsphere_host_net_packetsRx_summation{vcenter=~\"$vcenter\",interface=\"instance-total\"})",
@@ -718,7 +662,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 22
+        "y": 23
       },
       "id": 45,
       "options": {
@@ -747,13 +691,6 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.6.2",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "targets": [
         {
           "expr": "sum(vsphere_host_net_bytesRx_average{vcenter=~\"$vcenter\",interface=\"instance-total\"}) by (vcenter, esxhostname)",
@@ -772,7 +709,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 26
+        "y": 27
       },
       "id": 50,
       "options": {
@@ -801,13 +738,6 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.6.2",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "targets": [
         {
           "expr": "sum(vsphere_host_net_packetsTx_summation{vcenter=~\"$vcenter\",interface=\"instance-total\"})",
@@ -825,7 +755,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 26
+        "y": 27
       },
       "id": 48,
       "options": {
@@ -854,13 +784,6 @@
         "orientation": "auto"
       },
       "pluginVersion": "6.6.2",
-      "scopedVars": {
-        "vcenter": {
-          "selected": true,
-          "text": "",
-          "value": ""
-        }
-      },
       "targets": [
         {
           "expr": "sum(vsphere_host_net_bytesTx_average{vcenter=~\"$vcenter\",interface=\"instance-total\"}) by (vcenter, esxhostname)",
@@ -882,8 +805,9 @@
       {
         "allValue": null,
         "current": {
-          "text": "",
-          "value": [""]
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": "og-prometheus",
         "definition": "label_values(vcenter)",
@@ -927,5 +851,5 @@
   "timezone": "",
   "title": "Overview",
   "uid": "YU4i6lXZz",
-  "version": 30
+  "version": 33
 }
