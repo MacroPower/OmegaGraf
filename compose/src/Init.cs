@@ -21,5 +21,8 @@ namespace OmegaGraf.Compose
 
         [ArgShortcut("-r"), ArgShortcut("--reset"), ArgDescription("Removes existing OmegaGraf containers.")]
         public bool Reset { get; set; }
+
+        [ArgShortcut("--version"), ArgDescription("Print version info and exit.")]
+        public bool Version { get; set; }
     }
 }

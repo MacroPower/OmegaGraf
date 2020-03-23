@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using NLog;
 using PowerArgs;
@@ -11,7 +12,10 @@ namespace OmegaGraf.Compose
 
         static void Main(string[] args)
         {
-            logger.Info("Starting up!");
+            var versionFile = Path.Join(System.AppDomain.CurrentDomain.BaseDirectory, "VERSION");
+            var version = "OmegaGraf Version: v" + File.ReadAllText(versionFile);
+
+            logger.Info("Starting up! " + version);
             Console.WriteLine(Figgle.FiggleFonts.Standard.Render("OmegaGraf"));
 
             try
@@ -25,7 +29,13 @@ namespace OmegaGraf.Compose
                     ArgUsage.GenerateUsageFromTemplate<MyArgs>().Write();
                     Environment.Exit(0);
                 }
-                
+
+                if (parsed.Version)
+                {
+                    Console.WriteLine(version);
+                    Environment.Exit(0);
+                }
+
                 if (parsed.Reset) new Docker().RemoveAllContainers().Wait();
 
                 MetaData.SystemData.SetRoot(parsed.Path);
