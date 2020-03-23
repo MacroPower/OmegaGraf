@@ -22,7 +22,7 @@ OmegaGraf will be showcased in UC's [IT Expo](https://cech.uc.edu/soitexpo.html)
 
 |Current Progress||
 |--|--|
-|![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/OmegaGraf/OmegaGraf/1)|![GitHub milestone](https://img.shields.io/github/milestones/issues-open/OmegaGraf/OmegaGraf/1?label=Remaining)|
+|![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/OmegaGraf/OmegaGraf/1?color=green)|![GitHub milestone](https://img.shields.io/github/milestones/issues-open/OmegaGraf/OmegaGraf/1?label=Remaining&color=green)|
 |![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/OmegaGraf/OmegaGraf/2)|![GitHub milestone](https://img.shields.io/github/milestones/issues-open/OmegaGraf/OmegaGraf/2?label=Remaining)|
 
 ## Features
@@ -35,8 +35,15 @@ In minutes, OmegaGraf provides the following features and more:
 
 ## Requirements
 
-- Linux or Windows
-- Docker CE
+For help installing requirements, you can use an [install script](https://github.com/OmegaGraf/OmegaGraf/tree/master/install).
+
+Othwerwise, please install `docker-ce` and any prereqs.
+
+OmegaGraf is supported on Windows and Linux. Our testing is done using Xenial, but other distributions should work just fine. We do not currently support MacOS, but if you're up for working with the C# Docker package on MacOS, feel free to give it a try!
+
+## SSL
+
+To run OmegaGraf with SSL, you will need to generate a certificate. To generate a self-signed cert, you can install `dotnet-sdk-3.1` and run `dotnet dev-certs https`.
 
 ## Using OmegaGraf
 
@@ -50,10 +57,6 @@ In minutes, OmegaGraf provides the following features and more:
 4. Click 'Deploy'
 
 After your deployment completes, you may start using the monitoring stack by visiting Grafana at `http://{hostname}:3000`, or whatever port you chose in the deployment options, and entering `admin`/`admin`. You will be prompted to set a new password on first login.
-
-## SSL
-
-To run OmegaGraf with SSL, you will need to generate a certificate. To generate a self-signed cert, you can install the dotnet-sdk and run `dotnet dev-certs https`.
 
 ## Reconfigure & Redeploy
 
