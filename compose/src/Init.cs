@@ -4,25 +4,30 @@ namespace OmegaGraf.Compose
 {
     public class MyArgs
     {
-        [ArgShortcut("-h"), ArgShortcut("--help"), ArgDescription("Shows this help")]
+        [ArgShortcut("-h"), ArgShortcut("--help"), ArgDescription("Shows this help and exits.")]
         public bool Help { get; set; }
 
-        [ArgShortcut("-v"), ArgShortcut("--verbose"), ArgDescription("Enable verbose logging")]
+        [ArgShortcut("--version"), ArgDescription("Prints version info and exits.")]
+        public bool Version { get; set; }
+
+        [ArgShortcut("-v"), ArgShortcut("--verbose"), ArgDescription("Enables verbose logging.")]
         public bool Verbose { get; set; }
 
-        [ArgShortcut("-p"), ArgShortcut("--path"), ArgDescription("Absolute path to store container data. Defaults to current directory."), ArgPosition(1), ArgDefaultValue("")]
+        [ArgShortcut("-p"), ArgShortcut("--path"), ArgDescription("Sets absolute path to container data. Defaults to working directory."), ArgDefaultValue("")]
         public string Path { get; set; }
 
-        [ArgShortcut("--host"), ArgDescription("The listen address for this application."), ArgPosition(2), ArgDefaultValue("http://0.0.0.0:5000")]
+        [ArgShortcut("--host"), ArgDescription("Sets the listen addresses for this application."), ArgDefaultValue("http://0.0.0.0:5000")]
         public string[] Host { get; set; }
 
-        [ArgShortcut("-k"), ArgShortcut("--key"), ArgDescription("Override the OmegaGraf Secure Key."), ArgPosition(3)]
+        [ArgShortcut("-s"), ArgShortcut("--sock"), ArgDescription("Overrides the Docker socket path.")]
+        public string Socket { get; set; }
+
+        [ArgShortcut("-k"), ArgShortcut("--key"), ArgDescription("Overrides the OmegaGraf Secure Key.")]
         public string Key { get; set; }
 
         [ArgShortcut("-r"), ArgShortcut("--reset"), ArgDescription("Removes existing OmegaGraf containers.")]
         public bool Reset { get; set; }
 
-        [ArgShortcut("--version"), ArgDescription("Print version info and exit.")]
-        public bool Version { get; set; }
+        
     }
 }

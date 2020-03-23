@@ -1,5 +1,7 @@
 using Nett;
+using NLog;
 using SharpYaml.Serialization;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,6 +26,8 @@ namespace OmegaGraf.Compose.MetaData
 
     public class Runner
     {
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
+
         private readonly Dictionary<string, string> configFile = new Dictionary<string, string>();
 
         public Runner AddYamlConfig<T>(params Config<T>[] config)
@@ -81,34 +85,38 @@ namespace OmegaGraf.Compose.MetaData
             }
         }
 
+        private async Task<string> BuildFromConfigAsync(BuildConfiguration config)
+        {
+            try
+            {
+                var docker = new Docker();
+                await docker.PullImage(config.Image, config.Tag);
+
+                var id = await docker.CreateContainer(
+                    image: config.Image,
+                    ports: config.Ports,
+                    binds: config.Binds,
+                    name: config.Name,
+                    tag: config.Tag,
+                    cmd: config.Parameters
+                );
+
+                this.WriteConfig();
+
+                await docker.StartContainer(id);
+
+                return id;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Unable to create Docker container");
+                throw;
+            }
+        }
+
         public string Build(BuildConfiguration config)
         {
-            var buildTask = Task.Run(
-                async () =>
-                {
-                    var docker = new Docker();
-                    await docker.PullImage(config.Image, config.Tag);
-
-                    var id = await docker.CreateContainer(
-                        image: config.Image,
-                        ports: config.Ports,
-                        binds: config.Binds,
-                        name: config.Name,
-                        tag: config.Tag,
-                        cmd: config.Parameters
-                    );
-
-                    this.WriteConfig();
-
-                    await docker.StartContainer(id);
-
-                    return id;
-                }
-            );
-
-            var uuid = buildTask.Result;
-
-            return uuid;
+            return BuildFromConfigAsync(config).Result;
         }
     }
 }

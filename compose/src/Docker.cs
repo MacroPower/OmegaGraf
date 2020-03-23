@@ -15,31 +15,49 @@ namespace OmegaGraf.Compose
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
         public DockerClient DockerClient { get; }
-        private string DockerURI
+
+        private static string socketPath = "";
+
+        private string GetDockerURI()
         {
-            get
+            if (!string.IsNullOrWhiteSpace(socketPath))
             {
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-                {
-                    return "unix:/var/run/docker.sock";
-                }
-
-                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-                {
-                    return "npipe://./pipe/docker_engine";
-                }
-
-                throw new NotSupportedException();
+                return socketPath;
             }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                return "unix:/var/run/docker.sock";
+            }
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                return "npipe://./pipe/docker_engine";
+            }
+
+            throw new NotSupportedException();
+        }
+
+        public static void SetDockerURI(string value)
+        {
+            socketPath = value;
         }
 
         public Docker()
         {
-            var uri = new Uri(this.DockerURI);
+            var uri = new Uri(this.GetDockerURI());
 
-            using (var config = new DockerClientConfiguration(uri))
+            try
             {
-                this.DockerClient = config.CreateClient();
+                using (var config = new DockerClientConfiguration(uri))
+                {
+                    this.DockerClient = config.CreateClient();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Unable to create a Docker client");
+                throw;
             }
         }
 
