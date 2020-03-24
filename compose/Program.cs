@@ -55,7 +55,7 @@ namespace OmegaGraf.Compose
                 if (parsed.Dev) Globals.Development = true;
 
                 var urls = 
-                    parsed.Host.Length == 0 ? new string[] { "https://0.0.0.0:5001" }
+                    parsed.Host.Length == 0 ? new string[] { "http://0.0.0.0:5000" }
                                             : parsed.Host;
 
                 var host = new WebHostBuilder()
