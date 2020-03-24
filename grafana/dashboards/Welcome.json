@@ -1,0 +1,195 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "content": "<div style=\"text-align: center\">\n<a href=\"https://github.com/OmegaGraf/OmegaGraf/\" target=\"_BLANK\">\n  <img height=128 src=\"https://github.com/OmegaGraf/OmegaGraf/raw/master/docs/branding/logo/dist/logo_1024_w.png\" alt=\"OmegaGraf\"/>\n</a>\n<h1>OmegaGraf</h1>\n</div>\n",
+      "datasource": "og-prometheus",
+      "gridPos": {
+        "h": 5,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 4,
+      "mode": "html",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "content": "<div style=\"width: max-content; margin: 0 auto; left: 0; right: 0;\">\n<h3>Thanks for using OmegaGraf.</h3>\n<p>\nWe hope that this tool saved you some time. If it did, please consider leaving us a star at <a href=\"https://github.com/OmegaGraf/OmegaGraf\">https://github.com/OmegaGraf/OmegaGraf</a>\n<br/>\nIf you had any issues, or have any suggestions, please submit an <a href=\"https://github.com/OmegaGraf/OmegaGraf/issues\">issue</a> so that we can make OmegaGraf better.\n<br/>\nAlso, feel free to submit your improvements via a <a href=\"https://github.com/OmegaGraf/OmegaGraf/pulls\">pull request</a>. (Including any upgrades you make to the dashboards here!)\n</p>\n</div>",
+      "datasource": "og-prometheus",
+      "gridPos": {
+        "h": 4,
+        "w": 24,
+        "x": 0,
+        "y": 5
+      },
+      "id": 6,
+      "mode": "html",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "content": "<h1 style=\"text-align: center;\">Included Dashboards</h1>\n\n\n",
+      "datasource": "og-prometheus",
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 8,
+      "mode": "html",
+      "options": {},
+      "pluginVersion": "6.6.2",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": "og-prometheus",
+      "folderId": null,
+      "gridPos": {
+        "h": 9,
+        "w": 10,
+        "x": 7,
+        "y": 11
+      },
+      "headings": true,
+      "id": 2,
+      "limit": 10,
+      "options": {},
+      "query": "",
+      "recent": false,
+      "search": true,
+      "starred": false,
+      "tags": [],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "dashlist"
+    },
+    {
+      "content": "<h1 style=\"text-align: center;\">Discovery Status</h1>\n\n<p style=\"text-align: center;\">It may take up to 5 minutes for data to populate. Check below for discovery status.</p>\n",
+      "datasource": "og-prometheus",
+      "gridPos": {
+        "h": 3,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 11,
+      "mode": "html",
+      "options": {},
+      "pluginVersion": "6.6.2",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "datasource": "og-prometheus",
+      "gridPos": {
+        "h": 8,
+        "w": 10,
+        "x": 7,
+        "y": 23
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "background",
+        "fieldOptions": {
+          "calcs": ["lastNotNull"],
+          "defaults": {
+            "mappings": [
+              {
+                "from": "",
+                "id": 1,
+                "operator": "",
+                "text": "Please Wait",
+                "to": "",
+                "type": 1,
+                "value": "0"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "orange",
+                  "value": null
+                },
+                {
+                  "color": "green",
+                  "value": 1
+                }
+              ]
+            },
+            "title": "Gathered Metrics",
+            "unit": "short"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto"
+      },
+      "pluginVersion": "6.6.2",
+      "targets": [
+        {
+          "expr": "sum(internal_vsphere_gather_count) OR ON() vector(0)",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "stat"
+    }
+  ],
+  "schemaVersion": 22,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Welcome",
+  "uid": "BZOvRNrZz",
+  "version": 4
+}

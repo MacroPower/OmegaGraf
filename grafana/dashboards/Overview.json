@@ -17,52 +17,16 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1584936677317,
+  "iteration": 1585019760027,
   "links": [],
   "panels": [
-    {
-      "content": "<div style=\"text-align: center\">\n<a href=\"https://github.com/OmegaGraf/OmegaGraf/\" target=\"_BLANK\">\n  <img width=90 src=\"https://github.com/OmegaGraf/OmegaGraf/raw/master/docs/branding/logo/dist/logo_1024_w.png\" alt=\"OmegaGraf\"/>\n</a>\n<h2>OmegaGraf</h2>\n</div>\n",
-      "datasource": "og-prometheus",
-      "gridPos": {
-        "h": 5,
-        "w": 3,
-        "x": 0,
-        "y": 0
-      },
-      "id": 63,
-      "mode": "html",
-      "options": {},
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
-      "transparent": true,
-      "type": "text"
-    },
-    {
-      "content": "<h3>Thanks for using OmegaGraf.</h3>\n<p>\nWe hope that this tool saved you some time. If it did, please consider leaving us a star at <a href=\"https://github.com/OmegaGraf/OmegaGraf\">https://github.com/OmegaGraf/OmegaGraf</a>\n<br/>\nIf you had any issues, or have any suggestions, please submit an <a href=\"https://github.com/OmegaGraf/OmegaGraf/issues\">issue</a> so that we can make OmegaGraf better.\n<br/>\nAlso, feel free to submit your improvements via a <a href=\"https://github.com/OmegaGraf/OmegaGraf/pulls\">pull request</a>. (Including any upgrades you make to the dashboards here!)\n</p>",
-      "datasource": "og-prometheus",
-      "gridPos": {
-        "h": 5,
-        "w": 21,
-        "x": 3,
-        "y": 0
-      },
-      "id": 65,
-      "mode": "html",
-      "options": {},
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "",
-      "transparent": true,
-      "type": "text"
-    },
     {
       "datasource": "og-prometheus",
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 5
+        "y": 0
       },
       "id": 31,
       "repeat": null,
@@ -75,7 +39,7 @@
         "h": 6,
         "w": 6,
         "x": 0,
-        "y": 6
+        "y": 1
       },
       "id": 4,
       "interval": "",
@@ -127,7 +91,7 @@
         "h": 6,
         "w": 3,
         "x": 6,
-        "y": 6
+        "y": 1
       },
       "id": 28,
       "options": {
@@ -175,7 +139,7 @@
         "h": 6,
         "w": 3,
         "x": 9,
-        "y": 6
+        "y": 1
       },
       "id": 27,
       "options": {
@@ -222,7 +186,7 @@
         "h": 6,
         "w": 3,
         "x": 12,
-        "y": 6
+        "y": 1
       },
       "id": 44,
       "options": {
@@ -269,7 +233,7 @@
         "h": 3,
         "w": 9,
         "x": 15,
-        "y": 6
+        "y": 1
       },
       "id": 23,
       "options": {
@@ -324,7 +288,7 @@
         "h": 3,
         "w": 9,
         "x": 15,
-        "y": 9
+        "y": 4
       },
       "id": 22,
       "options": {
@@ -372,7 +336,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 12
+        "y": 7
       },
       "id": 33,
       "panels": [],
@@ -386,7 +350,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 13
+        "y": 8
       },
       "id": 12,
       "options": {
@@ -432,7 +396,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 13
+        "y": 8
       },
       "id": 25,
       "options": {
@@ -487,7 +451,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 12
       },
       "id": 35,
       "panels": [],
@@ -501,7 +465,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 18
+        "y": 13
       },
       "id": 29,
       "options": {
@@ -547,7 +511,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 18
+        "y": 13
       },
       "id": 26,
       "options": {
@@ -602,7 +566,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 17
       },
       "id": 47,
       "panels": [],
@@ -616,7 +580,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 23
+        "y": 18
       },
       "id": 49,
       "options": {
@@ -662,7 +626,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 23
+        "y": 18
       },
       "id": 45,
       "options": {
@@ -709,7 +673,7 @@
         "h": 4,
         "w": 2,
         "x": 0,
-        "y": 27
+        "y": 22
       },
       "id": 50,
       "options": {
@@ -755,7 +719,7 @@
         "h": 4,
         "w": 22,
         "x": 2,
-        "y": 27
+        "y": 22
       },
       "id": 48,
       "options": {
@@ -851,5 +815,5 @@
   "timezone": "",
   "title": "Overview",
   "uid": "YU4i6lXZz",
-  "version": 33
+  "version": 36
 }
