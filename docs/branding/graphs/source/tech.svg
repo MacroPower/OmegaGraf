@@ -9,16 +9,16 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="870"
-   height="650"
-   viewBox="0 0 230.18749 171.97917"
+   width="863.76196"
+   height="643.57141"
+   viewBox="0 0 228.53701 170.27827"
    version="1.1"
    id="svg54"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
    sodipodi:docname="omegagraf_tech.svg"
    inkscape:export-filename="C:\Users\macropower\Documents\omegagraf_tech.png"
-   inkscape:export-xdpi="199.94482"
-   inkscape:export-ydpi="199.94482">
+   inkscape:export-xdpi="200"
+   inkscape:export-ydpi="200">
   <defs
      id="defs48">
     <linearGradient
@@ -65,8 +65,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.86516594"
-     inkscape:cx="587.94475"
-     inkscape:cy="400.54402"
+     inkscape:cx="586.29535"
+     inkscape:cy="395.25179"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -77,15 +77,15 @@
      inkscape:window-y="175"
      inkscape:window-maximized="0"
      units="px"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0">
+     fit-margin-top="10"
+     fit-margin-left="10"
+     fit-margin-right="10"
+     fit-margin-bottom="10">
     <inkscape:grid
        type="xygrid"
        id="grid4607"
-       originx="-7.8223765"
-       originy="-126.27071" />
+       originx="-8.2587801"
+       originy="-127.67095" />
   </sodipodi:namedview>
   <metadata
      id="metadata51">
@@ -95,7 +95,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -103,7 +103,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-7.8223769,1.2499045)">
+     transform="translate(-8.2587808,0.94924798)">
     <path
        style="fill:none;stroke:#000000;stroke-width:1.32291663;stroke-linecap:round;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        d="m 32.071268,46.250526 v 14.55208"

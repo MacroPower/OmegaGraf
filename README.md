@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/branding/logo_sticker_g_1024.png" width="256px" height="256px">
+  <img src="docs/branding/logo/dist/logo_name_g_1024.png" width="256px" height="256px">
 </p>
 
 [![Build Status](https://travis-ci.com/OmegaGraf/OmegaGraf.svg?branch=master)](https://travis-ci.com/OmegaGraf/OmegaGraf)
@@ -30,7 +30,7 @@ OmegaGraf will be showcased in UC's [IT Expo](https://cech.uc.edu/soitexpo.html)
 In minutes, OmegaGraf provides the following features and more:
 
 <p align="left">
-  <img src="docs/branding/flow_1440_features.png" width="600px">
+  <img src="docs/branding/graphs/dist/features_1440.png" width="600px">
 </p>
 
 ## Requirements
@@ -48,7 +48,7 @@ To run OmegaGraf with SSL, you will need to generate a certificate. To generate 
 ## Using OmegaGraf
 
 <p align="left">
-  <img src="docs/branding/flow_1440_run_detailed.png" width="500px">
+  <img src="docs/branding/graphs/dist/flow_1440_run_detailed.png" width="500px">
 </p>
 
 1. Run OmegaGraf application
@@ -91,7 +91,7 @@ OmegaGraf was inspired by several other products. We thought we could build on s
 OmegaGraf uses the following technologies:
 
 <p align="left">
-  <img src="docs/branding/tech_1440.png" width="400px">
+  <img src="docs/branding/graphs/dist/tech_1440.png" width="400px">
 </p>
 
 With assets from [Font Awesome](https://fontawesome.com/), [Proxima Nova](https://www.marksimonson.com/fonts/view/proxima-nova), and [Bootstrap](https://getbootstrap.com/) via [React Bootstrap](https://react-bootstrap.github.io/).
