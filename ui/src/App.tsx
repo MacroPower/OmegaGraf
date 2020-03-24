@@ -72,7 +72,7 @@ export default function App() {
             className="d-inline"
             svgClassName="logo mr-3"
             letterColor="var(--white)"
-            arrowColor="var(--red)"
+            arrowColor="var(--dark)"
             size="32px"
           />
           OmegaGraf
