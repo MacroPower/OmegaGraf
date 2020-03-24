@@ -1,8 +1,11 @@
 using Nancy;
+using Nancy.Metadata.Modules;
 using Nancy.Responses.Negotiation;
+using Nancy.Swagger;
 using NLog;
 using OmegaGraf.Compose.Config.Prometheus;
 using OmegaGraf.Compose.Config.Telegraf;
+using Swagger.ObjectModel;
 using System.Collections.Generic;
 
 namespace OmegaGraf.Compose.MetaData
@@ -35,42 +38,12 @@ namespace OmegaGraf.Compose.MetaData
                         VCSim = Defaults.VCSim
                     };
 
-                    examples.Telegraf.Config[0].Data.Inputs.VSphere = new List<VSphere>()
+                    foreach (var o in examples.Telegraf.Config[0].Data.Inputs.VSphere)
                     {
-                        new VSphere()
-                        {
-                            Interval = "60s",
-                            VCenters = new List<string>(){ "" },
-                            Username = "",
-                            Password = "",
-                            IPAddresses = new List<string>(){ "ipv4" },
-                            IntSamples = true,
-                            InsecureSkipVerify = true,
-                            ForceDiscover = true,
-                            DatacenterMetricExclude = new List<string> { "*" },
-                            ClusterMetricExclude = new List<string> { "*" },
-                            DatastoreMetricExclude = new List<string> { "*" },
-                            CollectConcurrency = 1,
-                            DiscoverConcurrency = 1,
-                            MaxQueryMetrics = 64
-                        },
-                        new VSphere()
-                        {
-                            Interval = "300s",
-                            VCenters = new List<string>(){ "" },
-                            Username = "",
-                            Password = "",
-                            IPAddresses = new List<string>(){ "ipv4" },
-                            IntSamples = true,
-                            InsecureSkipVerify = true,
-                            ForceDiscover = true,
-                            VMMetricExclude = new List<string> { "*" },
-                            HostMetricExclude = new List<string> { "*" },
-                            CollectConcurrency = 1,
-                            DiscoverConcurrency = 1,
-                            MaxQueryMetrics = 256
-                        }
-                    };
+                        o.VCenters = new List<string>(){ "" };
+                        o.Username = "";
+                        o.Password = "";
+                    }
 
                     return Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
@@ -78,6 +51,28 @@ namespace OmegaGraf.Compose.MetaData
                     );
                 }, null, "Example"
             );
+        }
+    }
+
+    public class ExampleMetadataModule : MetadataModule<PathItem>
+    {
+        public ExampleMetadataModule(ISwaggerModelCatalog modelCatalog)
+        {
+            modelCatalog.AddModels(
+                typeof(ExampleSettings),
+                typeof(Input)
+            );
+
+            Describe["Example"] =
+                desc => desc.AsSwagger(
+                    with => with.Operation(
+                        op => op.OperationId("Example")
+                        .Tag("Info")
+                        .Summary("Default Data")
+                        .ConsumeMimeType("application/json")
+                        .ProduceMimeType("application/json")
+                        .Response(x => x.Description("Returns an object containing all default settings").Build()))
+                );
         }
     }
 }

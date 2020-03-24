@@ -78,6 +78,8 @@ namespace OmegaGraf.Compose.MetaData
                 typeof(PrometheusClient),
                 typeof(VSphere),
                 typeof(BuildConfiguration),
+                typeof(BuildConfigurationInput),
+                typeof(Internal),
                 typeof(Config<Telegraf>),
                 typeof(Input<Telegraf>)
             );

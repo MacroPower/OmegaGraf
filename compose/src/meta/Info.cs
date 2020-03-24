@@ -22,7 +22,7 @@ namespace OmegaGraf.Compose.MetaData
                             Authenticated = KeyDatabase.ValidateKey(Request.Headers.Authorization)
                         }
                     );
-                }, null, "Info"
+                }, null, "Auth"
             );
 
             Get(
@@ -35,6 +35,7 @@ namespace OmegaGraf.Compose.MetaData
                         new MediaRange("application/json"),
                         new
                         {
+                            Version = Globals.Version,
                             Authenticated = true
                         }
                     );
@@ -57,6 +58,17 @@ namespace OmegaGraf.Compose.MetaData
                         .ProduceMimeType("application/json")
                         .SecurityRequirement(SecuritySchemes.ApiKey)
                         .Response(x => x.Description("Deployment Info").Build()))
+                );
+            
+            Describe["Auth"] =
+                desc => desc.AsSwagger(
+                    with => with.Operation(
+                        op => op.OperationId("Auth")
+                        .Tag("Info")
+                        .Summary("Auth status")
+                        .ConsumeMimeType("application/json")
+                        .ProduceMimeType("application/json")
+                        .Response(x => x.Description("Shows the status of the provided API key").Build()))
                 );
         }
     }

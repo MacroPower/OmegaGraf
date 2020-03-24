@@ -55,6 +55,7 @@ namespace OmegaGraf.Compose.MetaData
                 typeof(Global),
                 typeof(StaticConfigs),
                 typeof(BuildConfiguration),
+                typeof(BuildConfigurationInput),
                 typeof(Config<Prometheus>),
                 typeof(Input<Prometheus>)
             );

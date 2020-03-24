@@ -134,6 +134,7 @@ namespace OmegaGraf.Compose.MetaData
                 typeof(Grafana),
                 typeof(string),
                 typeof(BuildConfiguration),
+                typeof(BuildConfigurationInput),
                 typeof(Config<Grafana>),
                 typeof(Input<Grafana>)
             );

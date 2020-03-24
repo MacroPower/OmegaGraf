@@ -13,7 +13,9 @@ namespace OmegaGraf.Compose
         static void Main(string[] args)
         {
             var versionFile = Path.Join(System.AppDomain.CurrentDomain.BaseDirectory, "VERSION");
-            var version = "OmegaGraf Version: v" + File.ReadAllText(versionFile);
+            Globals.Version = File.ReadAllText(versionFile);
+
+            var version = "OmegaGraf Version: v" + Globals.Version;
 
             logger.Info("Starting up! " + version);
             Console.WriteLine(Figgle.FiggleFonts.Standard.Render("OmegaGraf"));
