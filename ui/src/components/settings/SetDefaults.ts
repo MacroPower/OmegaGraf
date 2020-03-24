@@ -17,13 +17,14 @@ export default function setDefaults(
   fetch(url, {
     method: 'GET',
     headers: {
+      Authorization: '' + globalState.apiKey,
       Accept: 'application/json'
     }
   })
     .then(response => response.json())
     .then(data => globalSettingsActions.setSettings(data))
-    .then(x => globalGrafanaActions.setGrafana({ Active: true }))
-    .then(x => globalSimActions.setSim({ Active: false, Quantity: 0 }))
+    .then(() => globalGrafanaActions.setGrafana({ Active: true }))
+    .then(() => globalSimActions.setSim({ Active: false, Quantity: 0 }))
     .catch((e: Error) => {
       console.log(e.message);
       setSessionCookie(defaultSession);

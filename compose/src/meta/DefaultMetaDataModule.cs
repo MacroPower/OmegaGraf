@@ -29,6 +29,8 @@ namespace OmegaGraf.Compose.MetaData
                 "/",
                 args =>
                 {
+                    this.RequiresAuthentication();
+
                     logger.Info("Collecting and returning default values");
 
                     var defaults = new DefaultSettings()
@@ -72,6 +74,7 @@ namespace OmegaGraf.Compose.MetaData
                         .Summary("Default Data")
                         .ConsumeMimeType("application/json")
                         .ProduceMimeType("application/json")
+                        .SecurityRequirement(SecuritySchemes.ApiKey)
                         .Response(x => x.Description("Returns an object containing all default settings").Build()))
                 );
         }
