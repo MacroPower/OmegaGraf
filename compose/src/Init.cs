@@ -13,7 +13,7 @@ namespace OmegaGraf.Compose
         [ArgShortcut("-v"), ArgShortcut("--verbose"), ArgDescription("Enables verbose logging.")]
         public bool Verbose { get; set; }
 
-        [ArgShortcut("-p"), ArgShortcut("--path"), ArgDescription("Sets absolute path to container data. Defaults to working directory."), ArgDefaultValue("")]
+        [ArgShortcut("-p"), ArgShortcut("--path"), ArgDescription("Sets path to container data. Defaults to working directory."), ArgDefaultValue("")]
         public string Path { get; set; }
 
         [ArgShortcut("--host"), ArgDescription("Sets the listen addresses for this application."), ArgDefaultValue("http://0.0.0.0:5000")]

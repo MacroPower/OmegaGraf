@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using NLog;
 
 namespace OmegaGraf.Compose.MetaData
@@ -34,7 +35,7 @@ namespace OmegaGraf.Compose.MetaData
             try
             {
                 string dir = dataPath == "" ? Path.Join(Directory.GetCurrentDirectory(), "data")
-                                            : dataPath.StartsWith("/") || dataPath.StartsWith(@"\")
+                                            : Regex.IsMatch(dataPath, @"^((\/)|([A-Za-z]:(\\|\/)))")
                                                 ? dataPath
                                                 : Path.Join(Directory.GetCurrentDirectory(), dataPath);
 
