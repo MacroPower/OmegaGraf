@@ -180,7 +180,7 @@
           "pattern": "Value #A",
           "thresholds": [""],
           "type": "number",
-          "unit": "decbytes"
+          "unit": "deckbytes"
         },
         {
           "alias": "Memory Used",
@@ -193,7 +193,7 @@
           "pattern": "Value #B",
           "thresholds": [],
           "type": "number",
-          "unit": "decbytes"
+          "unit": "deckbytes"
         },
         {
           "alias": "Memory Consumed",
@@ -206,7 +206,7 @@
           "pattern": "Value #C",
           "thresholds": [""],
           "type": "number",
-          "unit": "decbytes"
+          "unit": "deckbytes"
         },
         {
           "alias": "",
@@ -292,7 +292,7 @@
           "pattern": "Value #A",
           "thresholds": [""],
           "type": "number",
-          "unit": "Bps"
+          "unit": "KBs"
         },
         {
           "alias": "Network Rx",
@@ -305,7 +305,7 @@
           "pattern": "Value #B",
           "thresholds": [],
           "type": "number",
-          "unit": "Bps"
+          "unit": "KBs"
         },
         {
           "alias": "Network Tx",
@@ -318,7 +318,7 @@
           "pattern": "Value #C",
           "thresholds": [""],
           "type": "number",
-          "unit": "Bps"
+          "unit": "KBs"
         },
         {
           "alias": "",

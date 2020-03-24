@@ -67,7 +67,7 @@
               ]
             },
             "title": "Datastore Total Capacity",
-            "unit": "decbytes"
+            "unit": "deckbytes"
           },
           "overrides": [],
           "values": false
@@ -120,7 +120,7 @@
               ]
             },
             "title": "Datastore Total Provisioned",
-            "unit": "decbytes"
+            "unit": "deckbytes"
           },
           "overrides": [],
           "values": false
@@ -173,7 +173,7 @@
               ]
             },
             "title": "Datastore Total Used",
-            "unit": "decbytes"
+            "unit": "deckbytes"
           },
           "overrides": [],
           "values": false
@@ -582,7 +582,7 @@
       },
       "yaxes": [
         {
-          "format": "Bps",
+          "format": "KBs",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -590,7 +590,7 @@
           "show": true
         },
         {
-          "format": "Bps",
+          "format": "KBs",
           "label": null,
           "logBase": 1,
           "max": null,
