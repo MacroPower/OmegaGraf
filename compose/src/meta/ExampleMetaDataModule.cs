@@ -1,6 +1,7 @@
 using Nancy;
 using Nancy.Metadata.Modules;
 using Nancy.Responses.Negotiation;
+using Nancy.Security;
 using Nancy.Swagger;
 using NLog;
 using OmegaGraf.Compose.Config.Prometheus;
@@ -10,7 +11,7 @@ using System.Collections.Generic;
 
 namespace OmegaGraf.Compose.MetaData
 {
-    public class ExampleSettings
+    public class DefaultSettings
     {
         public Input<Prometheus> Prometheus { get; set; }
         public Input<Telegraf> Telegraf { get; set; }
@@ -18,11 +19,11 @@ namespace OmegaGraf.Compose.MetaData
         public Input VCSim { get; set; }
     }
 
-    public class ExampleModule : NancyModule
+    public class DefaultModule : NancyModule
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
-        public ExampleModule() : base("/example")
+        public DefaultModule() : base("/default")
         {
             Get(
                 "/",
@@ -30,7 +31,7 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     logger.Info("Collecting and returning default values");
 
-                    var examples = new ExampleSettings()
+                    var defaults = new DefaultSettings()
                     {
                         Prometheus = Defaults.Prometheus,
                         Telegraf = Defaults.Telegraf,
@@ -38,7 +39,7 @@ namespace OmegaGraf.Compose.MetaData
                         VCSim = Defaults.VCSim
                     };
 
-                    foreach (var o in examples.Telegraf.Config[0].Data.Inputs.VSphere)
+                    foreach (var o in defaults.Telegraf.Config[0].Data.Inputs.VSphere)
                     {
                         o.VCenters = new List<string>(){ "" };
                         o.Username = "";
@@ -47,26 +48,26 @@ namespace OmegaGraf.Compose.MetaData
 
                     return Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
-                        examples
+                        defaults
                     );
-                }, null, "Example"
+                }, null, "Default"
             );
         }
     }
 
-    public class ExampleMetadataModule : MetadataModule<PathItem>
+    public class DefaultMetadataModule : MetadataModule<PathItem>
     {
-        public ExampleMetadataModule(ISwaggerModelCatalog modelCatalog)
+        public DefaultMetadataModule(ISwaggerModelCatalog modelCatalog)
         {
             modelCatalog.AddModels(
-                typeof(ExampleSettings),
+                typeof(DefaultSettings),
                 typeof(Input)
             );
 
-            Describe["Example"] =
+            Describe["Default"] =
                 desc => desc.AsSwagger(
                     with => with.Operation(
-                        op => op.OperationId("Example")
+                        op => op.OperationId("Default")
                         .Tag("Info")
                         .Summary("Default Data")
                         .ConsumeMimeType("application/json")

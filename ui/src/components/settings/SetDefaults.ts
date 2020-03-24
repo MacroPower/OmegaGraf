@@ -11,7 +11,7 @@ export default function setDefaults(
     globalGrafanaActions: GlobalGrafanaActions,
     globalSimActions: GlobalSimActions
 ) {
-  const url = globalState.endpoint + '/example';
+  const url = globalState.endpoint + '/default';
   console.log('Get settings from ' + url);
 
   fetch(url, {
