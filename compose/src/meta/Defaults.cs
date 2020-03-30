@@ -190,7 +190,7 @@ namespace OmegaGraf.Compose.MetaData
                 BuildInput = new BuildConfigurationInput()
                 {
                     Name  = "grafana",
-                    Tag   = "6.6.2",
+                    Tag   = "6.7.1",
                     Ports = new Dictionary<int, int>(){ {3000, 3000} },
                     Binds = new Dictionary<string, string>()
                     {
