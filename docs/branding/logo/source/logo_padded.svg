@@ -16,8 +16,8 @@
    version="1.1"
    id="SVGRoot"
    inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
-   sodipodi:docname="logo.svg"
-   inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\logo_sticker_g_1024.png"
+   sodipodi:docname="logo_padded.svg"
+   inkscape:export-filename="C:\Users\macropower\Documents\GitHub\OmegaGraf\OmegaGraf\compose\docs\branding\logo_ultra_padded.png"
    inkscape:export-xdpi="384"
    inkscape:export-ydpi="384">
   <defs
@@ -52,27 +52,27 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4142135"
-     inkscape:cx="212.53303"
-     inkscape:cy="117.59684"
+     inkscape:cx="94.193151"
+     inkscape:cy="112.5096"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1889"
      inkscape:window-height="889"
-     inkscape:window-x="448"
-     inkscape:window-y="315"
+     inkscape:window-x="705"
+     inkscape:window-y="597"
      inkscape:window-maximized="0"
      inkscape:grid-bbox="true"
      showguides="true"
-     fit-margin-top="0"
-     fit-margin-left="2"
-     fit-margin-right="2"
-     fit-margin-bottom="0">
+     fit-margin-top="10"
+     fit-margin-left="12"
+     fit-margin-right="12"
+     fit-margin-bottom="10">
     <inkscape:grid
        type="xygrid"
        id="grid3745"
-       originx="-7.0898348"
-       originy="-7.3213812" />
+       originx="-10.524858"
+       originy="-12.408619" />
   </sodipodi:namedview>
   <metadata
      id="metadata3826">
@@ -90,10 +90,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-2.5449184,3.6606846)">
+     transform="translate(-5.9799406,8.7479413)">
     <g
        id="g4561"
-       transform="matrix(1.397107,0,0,1.397107,-46.1574,-26.191412)">
+       transform="matrix(1.2190845,0,0,1.2190845,-20.206573,-12.097706)">
       <g
          transform="matrix(0.93273648,0,0,0.93273648,302.83879,-1.1398911)"
          id="g3753">
