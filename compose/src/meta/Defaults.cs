@@ -195,7 +195,10 @@ namespace OmegaGraf.Compose.MetaData
                     Binds = new Dictionary<string, string>()
                     {
                         {
-                            Path.Join("grafana", "lib"), "/var/lib/grafana" + SystemData.GetMode()
+                            Path.Join("grafana", "plugins"), "/var/lib/grafana/plugins" + SystemData.GetMode()
+                        },
+                        {
+                            Path.Join("grafana", "grafana.db"), "/var/lib/grafana/grafana.db" + SystemData.GetMode()
                         }
                     }
                 }

@@ -92,7 +92,16 @@ namespace OmegaGraf.Compose
 
             foreach (var b in binds)
             {
-                System.IO.Directory.CreateDirectory(b.Key);
+                var hostBind = b.Key;
+
+                if (Regex.IsMatch(hostBind, @"^(.?:([\\/]+)|[/])((.+[\\/]+)+)(.+\..+)$"))
+                {
+                    System.IO.File.Create(hostBind).Dispose();
+                }
+                else
+                {
+                    System.IO.Directory.CreateDirectory(hostBind);
+                }
             }
 
             Dictionary<string, IList<PortBinding>> portBinds = (
