@@ -22,7 +22,7 @@ function Polygon(props: { points: polyPoint; scale?: number }) {
 
 export default function PacmanGhost() {
   return (
-    <div className="ghost inky mt-4">
+    <div className="ghost inky">
       <div className="ghost__body">
         <svg>
           <Polygon
