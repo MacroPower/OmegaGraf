@@ -10,10 +10,10 @@ body {
 }
 
 main {
-  min-height: -webkit-calc(100% - 135px);
-  min-height:    -moz-calc(100% - 135px);
-  min-height:         calc(100% - 135px);
-  overflow: auto;
+  min-height: -webkit-calc(100% - 136px);
+  min-height:    -moz-calc(100% - 136px);
+  min-height:         calc(100% - 136px);
+  overflow: hidden;
   padding-top: 1rem;
 }
 
@@ -201,7 +201,7 @@ body {
   margin-top: -4px;
 }
 
-.card-button, .card-button:active, .card-button:hover, .card-button:focus, .card-button::-moz-focus-inner {
+.card-button, .card-button:active, .card-button:hover, .card-button:focus {
   outline: none;
   box-shadow: none;
   background: none;
@@ -219,7 +219,7 @@ body {
   border-radius: 0.5rem;
 }
 
-.home-card:focus, .home-card:active, .home-card::-moz-focus-inner {
+.home-card:focus, .home-card:active {
   border: 3px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -342,4 +342,14 @@ body {
   border: 3px solid $red;
   color: #000;
   border-radius: 0.5rem;
+}
+
+
+.rc-steps-item-icon > .rc-steps-icon {
+  line-height: 0;
+}
+
+.rc-steps-item-error .rc-steps-item-icon > .rc-steps-icon {
+  font-size: 0px !important;
+  top: 1px !important;
 }
