@@ -22,3 +22,31 @@ If you run it after placing JSON files in the dashboards folder, it will format 
 - `./cleanupDashboards.ps1`
 - `git commit && git push`
 - Done! Your dashboard will be included with the next release.
+
+### Jsonnet
+
+It is possible to use Jsonnet with graffonetlibs. More documentation coming soon on this.
+
+### Diagram
+
+```
+ .---.     +--------------------+    +--------------------+
+; ○ ○ :    |                    |    |                    |     .---------------.
+:  ~  ;--->| OmegaGraf UI / API |    |      Jsonnet       |--->(      make       )
+ \   User  |                    |    |                    |     `---------------'
+  `-'      +--------------------+    +--------------------+             |
+                      |                                                 |
+                      v                                                 |
+           +--------------+-----+                                       v
+           |              |     |                             * Dashboard1.json
+           |  OmegaGraf   | Bin |<----------Compile---------- * Dashboard2.json
+           |              |     |                             * ...
+           +--------------+-----+                                       ^
+                      |                                                 |
+                      v                                                 |
+           +--------------------+                                       |
+           |                    |                               .---------------.
+           |      Grafana       |- - - - - -Changes- - - - - ->(     Export      )
+           |                    |                               `---------------'
+           +--------------------+
+```
