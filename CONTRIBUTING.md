@@ -1,4 +1,6 @@
-# Introduction
+# Contributing
+
+## Introduction
 
 Thank you for considering contributing to OmegaGraf.
 
@@ -16,50 +18,80 @@ No contribution is too small. Please help with:
 * Adding Dashboards
 * Closing issues
 
-### 
-
-# Ground Rules
+## Ground Rules
 
 * Ensure cross-platform compatibility for every change that's accepted. Windows, Debian & Ubuntu Linux.
 * Create issues for any major changes and enhancements that you wish to make. Discuss things transparently and get community feedback.
 * Keep feature versions as small as possible, preferably one new feature per version.
 * Be welcoming to newcomers and encourage diverse new contributors from all backgrounds.
 
-# Your First Contribution
+## Your First Contribution
 
 Unsure where to begin contributing? You can start by looking through these beginner and help-wanted issues:
+
 * Beginner issues - issues which should only require a few lines of code, and a test or two.
 * Help wanted issues - issues which should be a bit more involved than beginner issues.
 * Both issue lists are sorted by total number of comments. While not perfect, number of comments is a reasonable proxy for impact a given change will have.
 
-# Getting started
+## Getting started
 
 For something that is bigger than a one or two line fix:
 
-1. Create your own fork of the code
-2. Do the changes in your fork
+1. Create your own fork of the code.
+2. Do the changes in your fork.
 3. If you like the change and think the project could use it:
-    * Be sure you have followed the code style for the project
+    * Be sure you have followed the code style for the project.
     * Send a pull request.
- 
 
-Pull Request Etiquette
-=======
+---
+
+## Github Style Guidelines
+
+Recommendations for commit and pull request subjects.
+
+### General
+
+1. Avoid using punctuation.
+2. Begin with a capital letter.
+3. Follow our templates when applicable.
+
+### Prefix
+
+Please consider using one of the following prefixes:
+
+1. Compose - Edits to the backend.
+2. UI - Edits to the UI project.
+3. /Tests - Edits to the tests.
+4. Docs - Edits to any docs (e.g. readme).
+5. Branding - Edits to any branding (e.g. logo).
+6. Git - Edits to git config (e.g. gitignore).
+7. Travis/Azure/Sonar - Edits to any build pipelines.
+8. VS - VSCode config edits.
+9. Meta - General edits (e.g. moving files, edits to tooling).
+
+### Examples
+
+* `Compose: Fix spelling on 'path' parameter help`
+* `Compose/Tests: Add a test to ensure login fails for incorrect credentials`
+* `Meta: Add cleanup parameter to build script`
+
+---
+
+## Pull Request Etiquette
 
 Adapted from [pr_etiquette.md](https://gist.githubusercontent.com/mikepea/863f63d6e37281e329f8/raw/f127b247383132259225316d6fb556f92b4fef50/pr_etiquette.md)
 
-### Why do we use a Pull Request workflow?
+## Why do we use a Pull Request workflow
 
 PRs are a great way of sharing information, and can help us be aware of the changes that are occuring in our codebase. They are also an excellent way of getting peer review on the work that we do, without the cost of working in direct pairs.
 
-**Ultimately though, the primary reason we use PRs is to encourage quality in the commits that are made to our code repositories**
+**Ultimately though, the primary reason we use PRs is to encourage quality in the commits that are made to our code repositories.**
 
 Done well, the commits (and their attached messages) contained within tell a story to people examining the code at a later date. If we are not careful to ensure the quality of these commits, we silently lose this ability.
 
 **Poor quality code can be refactored. A terrible commit lasts forever.**
 
-
-### What constitutes a good PR?
+## What constitutes a good PR
 
 A good quality PR will have the following characteristics:
 
@@ -73,10 +105,7 @@ A PR does not end at submission though. A code change is not made until it is me
 
 A good PR should be able to flow through a peer review system easily and quickly.
 
-
-
-Submitting Pull Requests
-----
+## Submitting Pull Requests
 
 ### Ensure there is a solid title and summary
 
@@ -88,10 +117,9 @@ Ensure that your PR title is scannable. People will read through the list of PRs
 
 Use keywords in the title to help people understand your intention with the PR, eg [WIP] to indicate that it's still in progress, so should not be merged.
 
-
 ### Rebase before you make the PR, if needed
 
-Unless there is a good reason not to rebase - typically because more than one person has been working on the branch - it is often a good idea to rebase your branch to tidy up before submitting the PR. 
+Unless there is a good reason not to rebase - typically because more than one person has been working on the branch - it is often a good idea to rebase your branch to tidy up before submitting the PR.
 
 Use `git rebase -i master # or other reference, eg HEAD~5`
 
@@ -100,15 +128,11 @@ For example:
 * Merge 'oops, fix typo/bug' into their parent commit. There is no reason to create and solve bugs within a PR, **unless there is educational value in highlighting them**.
 * Reword your commit messages for clarity. Once a PR is submitted, any rewording of commits will involve a rebase, which can then mess up the conversation in the PR.
 
-
-
 ### Aim for one succinct commit
 
 In an ideal world, your PR will be one small(ish) commit, doing one thing - in which case your life will be made easier, since the commit message and PR title/summary are equivalent.
 
 If your change contains more work than can be sensibly covered in a single commit though, **do not** try to squash it down into one. Commit history should tell a story, and if that story is long then it may require multiple commits to walk the reviewer through it.
-
-
 
 ### Describe your changes well in each commit
 
@@ -120,8 +144,7 @@ Where external information references are available - such as Issue/Story IDs, P
 
 Remember that your commit message must survive the ravages of time. Try to link to something that will be preserved equally well -- another commit for example, rather than linking to master.
 
-** Each commit message should include the reason why this commit was made. Usually by adding a sentence completing the form 'So that we...' will give an amazing amount of context to the history that the code change itself cannot **
-
+**Each commit message should include the reason why this commit was made. Usually by adding a sentence completing the form 'So that we...' will give an amazing amount of context to the history that the code change itself cannot.**
 
 ### Keep it small
 
@@ -131,12 +154,7 @@ If you must submit a large PR, try to at least make someone else aware of this f
 
 If you can rebase up a large PR into multiple smaller PRs, then do so.
 
-
-
-
-
-Reviewing Pull Requests
------
+## Reviewing Pull Requests
 
 It's a reviewers responsibility to ensure:
 
@@ -157,8 +175,6 @@ When looking at a commit message, ask yourself the question - from the perspecti
 
 A useful tip is simply asking the submitter to add a sentence to the commit message completing the sentence 'So that we...'.
 
-
-
 ### Keep the flow going
 
 Pull Requests are the fundamental unit of how we progress change. If PRs are getting clogged up in the system, either unreviewed or unmanaged, they are preventing a piece of work from being completed.
@@ -169,15 +185,13 @@ There is a balance between flow and ensuring the quality of our PRs. As a review
 
 Any quality issue that will obviously result in a bug should be fixed.
 
-
 ### We are all reviewers
 
 If you are the first to comment on a PR, you are that PRs reviewer. If you feel that you can no longer be responsible for the subsequent merge or closure of the PR, then flag this up in the PR conversation, so someone else can take up the role.
 
 There's no reason why multiple people cannot comment on a PR and review it, and this is to be encouraged.
 
-
-### Don't add to the PR yourself.
+### Don't add to the PR yourself
 
 It's sometimes tempting to fix a bug in a PR yourself, or to rework a section to meet coding standards, or just to make a feature better fit your needs.
 
