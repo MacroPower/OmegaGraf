@@ -153,7 +153,11 @@ namespace OmegaGraf.Compose
                 {
                     Binds = hostBinds,
                     PortBindings = portBinds,
-                    PublishAllPorts = false
+                    PublishAllPorts = false,
+                    RestartPolicy = new RestartPolicy()
+                    {
+                        Name = RestartPolicyKind.UnlessStopped
+                    }
                 }
             };
 
