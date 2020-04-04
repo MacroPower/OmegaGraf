@@ -11,5 +11,10 @@
         "vcenter",
         "scroller",
         "unmount"
-    ]
+    ],
+    "cSpell.allowCompoundWords": true,
+    "omnisharp.enableRoslynAnalyzers": true,
+    "files.exclude": {
+      "**/obj/**": true
+    }
 }
