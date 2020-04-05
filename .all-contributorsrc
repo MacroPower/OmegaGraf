@@ -16,6 +16,16 @@
         "infra",
         "maintenance"
       ]
+    },
+    {
+      "login": "curriemw",
+      "name": "Matt Currie",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2603635?v=4",
+      "profile": "https://mcurrie.net/",
+      "contributions": [
+        "projectManagement",
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
