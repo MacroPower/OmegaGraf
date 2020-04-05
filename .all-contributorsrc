@@ -26,6 +26,16 @@
         "projectManagement",
         "design"
       ]
+    },
+    {
+      "login": "xvDylan",
+      "name": "xvDylan",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/55466545?v=4",
+      "profile": "https://github.com/xvDylan",
+      "contributions": [
+        "security",
+        "test"
+      ]
     }
   ],
   "contributorsPerLine": 7,
