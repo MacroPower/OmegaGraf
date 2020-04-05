@@ -90,6 +90,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://stackoverflow.com/users/4868262/jacob-colvin"><img src="https://avatars1.githubusercontent.com/u/5648814?v=4" width="100px;" alt=""/><br /><sub><b>Jacob Colvin</b></sub></a><br /><a href="https://github.com/OmegaGraf/OmegaGraf/commits?author=MacroPower" title="Code">💻</a> <a href="#infra-MacroPower" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-MacroPower" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://mcurrie.net/"><img src="https://avatars2.githubusercontent.com/u/2603635?v=4" width="100px;" alt=""/><br /><sub><b>Matt Currie</b></sub></a><br /><a href="#projectManagement-curriemw" title="Project Management">📆</a> <a href="#design-curriemw" title="Design">🎨</a></td>
   </tr>
 </table>
 
