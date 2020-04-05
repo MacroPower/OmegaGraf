@@ -97,3 +97,22 @@ OmegaGraf uses the following technologies:
 With assets from [Font Awesome](https://fontawesome.com/), [Proxima Nova](https://www.marksimonson.com/fonts/view/proxima-nova), and [Bootstrap](https://getbootstrap.com/) via [React Bootstrap](https://react-bootstrap.github.io/).
 
 View all our dependencies on [libraries.io](https://libraries.io/github/OmegaGraf/OmegaGraf).
+
+## Contributing
+
+Check out the [Contributing Guide](CONTRIBUTING.md).
+
+## Contributors
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification:
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+  </tr>
+</table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+([emoji key](https://github.com/all-contributors/all-contributors#emoji-key)). Contributions of any kind are welcome.
