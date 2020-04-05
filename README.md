@@ -8,7 +8,7 @@
 ![GitHub issues](https://img.shields.io/github/issues-raw/OmegaGraf/OmegaGraf)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/OmegaGraf/OmegaGraf)
 ![GitHub](https://img.shields.io/github/license/OmegaGraf/OmegaGraf)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-blue.svg)](#contributors-)
 
 ## Overview
 
@@ -89,8 +89,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://stackoverflow.com/users/4868262/jacob-colvin"><img src="https://avatars1.githubusercontent.com/u/5648814?v=4" width="100px;" alt=""/><br /><sub><b>Jacob Colvin</b></sub></a><br /><a href="https://github.com/OmegaGraf/OmegaGraf/commits?author=MacroPower" title="Code">💻</a> <a href="#infra-MacroPower" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-MacroPower" title="Maintenance">🚧</a></td>
-    <td align="center"><a href="https://mcurrie.net/"><img src="https://avatars2.githubusercontent.com/u/2603635?v=4" width="100px;" alt=""/><br /><sub><b>Matt Currie</b></sub></a><br /><a href="#projectManagement-curriemw" title="Project Management">📆</a> <a href="#design-curriemw" title="Design">🎨</a></td>
+    <td align="center"><a href="https://github.com/MacroPower"><img src="https://avatars1.githubusercontent.com/u/5648814?v=4" width="100px;" alt=""/><br /><sub><b>Jacob Colvin</b></sub></a><br /><a href="https://github.com/OmegaGraf/OmegaGraf/commits?author=MacroPower" title="Code">💻</a> <a href="#infra-MacroPower" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-MacroPower" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/curriemw"><img src="https://avatars2.githubusercontent.com/u/2603635?v=4" width="100px;" alt=""/><br /><sub><b>Matt Currie</b></sub></a><br /><a href="#projectManagement-curriemw" title="Project Management">📆</a> <a href="#design-curriemw" title="Design">🎨</a></td>
     <td align="center"><a href="https://github.com/xvDylan"><img src="https://avatars0.githubusercontent.com/u/55466545?v=4" width="100px;" alt=""/><br /><sub><b>xvDylan</b></sub></a><br /><a href="#security-xvDylan" title="Security">🛡️</a> <a href="https://github.com/OmegaGraf/OmegaGraf/commits?author=xvDylan" title="Tests">⚠️</a></td>
   </tr>
 </table>

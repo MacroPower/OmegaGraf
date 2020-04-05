@@ -4,13 +4,13 @@
   ],
   "imageSize": 100,
   "commit": false,
-  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg)](#contributors)",
+  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-blue.svg)](#contributors-)",
   "contributors": [
     {
       "login": "MacroPower",
       "name": "Jacob Colvin",
       "avatar_url": "https://avatars1.githubusercontent.com/u/5648814?v=4",
-      "profile": "https://stackoverflow.com/users/4868262/jacob-colvin",
+      "profile": "https://github.com/MacroPower",
       "contributions": [
         "code",
         "infra",
@@ -21,7 +21,7 @@
       "login": "curriemw",
       "name": "Matt Currie",
       "avatar_url": "https://avatars2.githubusercontent.com/u/2603635?v=4",
-      "profile": "https://mcurrie.net/",
+      "profile": "https://github.com/curriemw",
       "contributions": [
         "projectManagement",
         "design"
