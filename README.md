@@ -1,16 +1,16 @@
 <p align="center">
-  <img src="docs/branding/logo/dist/logo_name_g_1024.png" width="256px" height="256px">
+  <a href="#"><img src="docs/branding/logo/dist/logo_name_g_1024.png" width="256px" height="256px" /></a>
 </p>
 
-[![Build Status](https://travis-ci.com/OmegaGraf/OmegaGraf.svg?branch=master)](https://travis-ci.com/OmegaGraf/OmegaGraf)
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/OmegaGraf/OmegaGraf)
-![GitHub All Releases](https://img.shields.io/github/downloads/OmegaGraf/OmegaGraf/total)
-![GitHub issues](https://img.shields.io/github/issues-raw/OmegaGraf/OmegaGraf)
-![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/OmegaGraf/OmegaGraf)
-![GitHub](https://img.shields.io/github/license/OmegaGraf/OmegaGraf)
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-blue.svg)](#contributors-)
+<h2 align="center">Rapid, UI-driven vCenter Monitoring Deployment</h2>
 
-## Overview
+<p align="center">
+  <a href="https://travis-ci.com/OmegaGraf/OmegaGraf"><img alt="Build Status" src="https://travis-ci.com/OmegaGraf/OmegaGraf.svg?branch=master"></a>
+  <a href="https://github.com/OmegaGraf/OmegaGraf/releases"><img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/OmegaGraf/OmegaGraf"></a>
+  <a href="https://github.com/OmegaGraf/OmegaGraf/releases"><img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/OmegaGraf/OmegaGraf/total"></a>
+  <a href="#contributors-"><img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-3-blue.svg"></a>
+  <a href="#"><img alt="License" src="https://img.shields.io/github/license/OmegaGraf/OmegaGraf"></a>
+</p>
 
 OmegaGraf is a **vCenter monitoring deployment solution** that is incredibly light, lightning fast, and dead simple. Through a web interface, users may configure and deploy an entirely open-source and containerized software stack.
 
