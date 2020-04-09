@@ -1,16 +1,18 @@
 # Getting Started
 
-## Requirements
+## Auto Install
 
-For help installing requirements, you can use an [install script](https://github.com/OmegaGraf/OmegaGraf/tree/master/install).
+If you're using Debian, you can use an [install script](https://github.com/OmegaGraf/OmegaGraf/tree/master/install).
+
+## Requirements
 
 Othwerwise, please install `docker-ce` and any prereqs.
 
 OmegaGraf is supported on Windows and Linux. Our testing is done using Xenial, but other distributions should work just fine. We do not currently support MacOS, but if you're up for working with the C# Docker package on MacOS, feel free to give it a try!
 
-## SSL
+### SSL
 
-To run OmegaGraf with SSL, you will need to generate a certificate. To generate a self-signed cert, you can install `dotnet-sdk-3.1` and run `dotnet dev-certs https`. More details can be found [here](https://github.com/OmegaGraf/OmegaGraf/tree/master/install). This process will eventually be improved.
+To run OmegaGraf with SSL, you will need to generate a certificate. To generate a self-signed cert, you can install `dotnet-sdk-3.1` and run `dotnet dev-certs https`. This process will eventually be improved.
 
 ## Using OmegaGraf
 

@@ -1,9 +1,38 @@
+#!/bin/bash
+
+RELEASE_ID=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
+RELEASE_CODE=$(lsb_release -cs)
+RELEASE_VERSION=$(lsb_release -rs)
+
+echo ">> installing OmegaGraf for $RELEASE_ID/$RELEASE_CODE $RELEASE_VERSION"
+
 # Prereqs
 sudo apt update
 sudo apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
 
+read -p "Would you like to enable SSL (BETA)? (y/n)" answer
+case ${answer:0:1} in
+	y|Y )
+		echo "OK! I will be installing certs and running on HTTPS port 5001."
+		echo ""
+		echo ">> installing microsoft tooling for developer certs"
+		wget -q "https://packages.microsoft.com/config/$RELEASE_ID/$RELEASE_VERSION/packages-microsoft-prod.deb"
+		sudo dpkg -i packages-microsoft-prod.deb
+		sudo apt update
+		rm packages-microsoft-prod.deb
+		sudo apt install -y dotnet-sdk-3.1
+		dotnet dev-certs https
+		export OMEGAGRAF_HOST="https://0.0.0.0:5001"
+	;;
+	* )
+		echo "OK! I will be running on HTTP port 5000 by default."
+		export OMEGAGRAF_HOST="http://0.0.0.0:5000"
+	;;
+esac
+
+echo ">> installing docker"
+
 # Add key
-RELEASE_ID=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
 curl -fsSL "https://download.docker.com/linux/$RELEASE_ID/gpg" | sudo apt-key add -
 
 # Add repo
@@ -21,3 +50,33 @@ docker -v
 
 # Allow current user
 sudo usermod -aG docker $USER
+
+echo ">> downloading OmegaGraf"
+
+# Remove old binaries
+rm OmegaGraf*.tar.gz
+rm OmegaGraf
+
+# Download the latest OmegaGraf release
+curl -s "https://api.github.com/repos/OmegaGraf/OmegaGraf/releases/latest" \
+	| grep "OmegaGraf.*tar.gz" \
+	| cut -d : -f 2,3 \
+	| tr -d \" \
+	| wget -qi -
+
+# Extract the OmegaGraf binary
+tar -xzf OmegaGraf*.tar.gz
+
+# Create the default OmegaGraf data directory
+mkdir data
+chmod -R 777 data
+
+# Run with default settings
+./OmegaGraf --host $OMEGAGRAF_HOST
+
+echo
+echo "Thanks for using OmegaGraf!"
+echo
+echo "To re-run, you can use"
+echo "./OmegaGraf --host $OMEGAGRAF_HOST --reset"
+echo
