@@ -17,7 +17,7 @@ To run OmegaGraf with SSL, you will need to generate a certificate. To generate 
 ## Using OmegaGraf
 
 <p align="left">
-  <img src="docs/branding/graphs/dist/flow_1440_run_detailed.png" width="500px">
+  <img src="../docs/branding/graphs/dist/flow_1440_run_detailed.png" width="500px">
 </p>
 
 1. Run OmegaGraf application
