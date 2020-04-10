@@ -8,7 +8,7 @@
     "@fortawesome/free-solid-svg-icons": "latest",
     "@fortawesome/react-fontawesome": "latest",
     "@types/js-cookie": "2.2.5",
-    "@types/react": "16.9.32",
+    "@types/react": "16.9.34",
     "@types/react-bootstrap": "0.32.20",
     "@types/react-dom": "16.9.6",
     "@types/react-router-dom": "5.1.3",
