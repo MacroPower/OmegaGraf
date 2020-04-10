@@ -69,6 +69,9 @@ tar -xzf OmegaGraf*.tar.gz
 
 # Create the default OmegaGraf data directory
 mkdir data
+mkdir data/telegraf
+mkdir data/prometheus
+mkdir data/grafana
 chmod -R 777 data
 
 # Run with default settings
