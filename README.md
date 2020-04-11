@@ -22,11 +22,6 @@ OmegaGraf is a **vCenter monitoring deployment solution** that is incredibly lig
 
 OmegaGraf will be showcased in UC's [IT Expo](https://cech.uc.edu/soitexpo.html), April 14, 2020.
 
-| Current Progress                                                                                                 |                                                                                                                             |
-| ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/OmegaGraf/OmegaGraf/1?color=green) | ![GitHub milestone](https://img.shields.io/github/milestones/issues-open/OmegaGraf/OmegaGraf/1?label=Remaining&color=green) |
-| ![GitHub milestone](https://img.shields.io/github/milestones/progress-percent/OmegaGraf/OmegaGraf/2)             | ![GitHub milestone](https://img.shields.io/github/milestones/issues-open/OmegaGraf/OmegaGraf/2?label=Remaining)             |
-
 ## Getting Started
 
 - **[Getting Started](docs/getting-started.md)**
@@ -49,20 +44,6 @@ In minutes, OmegaGraf provides the following features and more:
 - OmegaGraf should run only during the deployment phase, and should take no actions in any other circumstance.
   - Users should feel free to `rm OmegaGraf` after deploying.
 - While the UI is a core tenant, users should always have the option to deploy with OmegaGraf using code.
-
-## Comparison
-
-OmegaGraf was inspired by several other products. We thought we could build on some of their accomplishments, any create something that was more dynamic, simpler to use, and easier to maintain.
-
-| Feature                            | OmegaGraf          | SexiGraf                 |
-| ---------------------------------- | ------------------ | ------------------------ |
-| Containerized                      | :heavy_check_mark: | :heavy_multiplication_x: |
-| Integration with existing products | :heavy_check_mark: | :heavy_multiplication_x: |
-| Removable after deployment         | :heavy_check_mark: | :heavy_multiplication_x: |
-| Self-Monitoring                    | :heavy_check_mark: | :heavy_check_mark:       |
-| Collection                         | Telegraf           | Perl                     |
-| TSDB                               | Prometheus         | Graphite                 |
-| Display                            | Grafana            | Modified Grafana         |
 
 ## Credits
 
