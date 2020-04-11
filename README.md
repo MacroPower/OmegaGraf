@@ -29,11 +29,14 @@ OmegaGraf will be showcased in UC's [IT Expo](https://cech.uc.edu/soitexpo.html)
 
 ## Features
 
-In minutes, OmegaGraf provides the following features and more:
-
-<p align="left">
-  <img src="docs/branding/graphs/dist/features_1440.png" width="600px">
-</p>
+- Deploys a Telegraf, Prometheus and Grafana stack in just minutes.
+- Simple [React user interface](ui) to manage configuration and deployment.
+- Suite of arguments and options to customize behavior.
+- Deserializes and actions on configuration as JSON data.
+- API documented via the OpenAPI Specification.
+- Fully testable through the [vCenter Simulator](https://github.com/OmegaGraf/docker-vcsim) container.
+- Automatically configures Grafana and adds a set of [curated dashboards](grafana).
+- Can be set up with just one command using our [install script](install).
 
 ## Philosophy
 
