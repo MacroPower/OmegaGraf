@@ -25,6 +25,8 @@ OmegaGraf will be showcased in UC's [IT Expo](https://cech.uc.edu/soitexpo.html)
 ## Getting Started
 
 - **[Getting Started](docs/getting-started.md)**
+- [Walkthrough](docs/walkthrough.md)
+- [API](docs/api.md)
 - [Design](docs/architecture.md)
 
 ## Features

@@ -16,16 +16,14 @@ To run OmegaGraf with SSL, you will need to generate a certificate. To generate 
 
 ## Using OmegaGraf
 
-<p align="left">
-  <img src="../docs/branding/graphs/dist/flow_1440_run_detailed.png" width="500px">
-</p>
-
-1. Run OmegaGraf application
-2. Visit printed URL and enter secure code
-3. If you're just testing, check 'Use simulation'
-4. Click 'Deploy'
+1. Run the OmegaGraf application.
+2. Visit printed URL and enter your secure code.
+3. Enter your vCenter details. If you're just testing, check 'Use simulation'.
+4. Click 'Deploy'.
 
 After your deployment completes, you may start using the monitoring stack by visiting Grafana at `http://{hostname}:3000`, or whatever port you chose in the deployment options, and entering `admin`/`admin`. You will be prompted to set a new password on first login.
+
+For a more detailed walkthrough with screenshots, take a look at [our walkthrough](walkthrough.md).
 
 ## Reconfigure & Redeploy
 
