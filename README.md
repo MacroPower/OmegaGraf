@@ -8,6 +8,7 @@
   <a href="https://travis-ci.com/OmegaGraf/OmegaGraf"><img alt="Build Status" src="https://travis-ci.com/OmegaGraf/OmegaGraf.svg?branch=master"></a>
   <a href="https://github.com/OmegaGraf/OmegaGraf/releases"><img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/OmegaGraf/OmegaGraf"></a>
   <a href="https://github.com/OmegaGraf/OmegaGraf/releases"><img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/OmegaGraf/OmegaGraf/total"></a>
+  <a href="https://bestpractices.coreinfrastructure.org/projects/3874"><img src="https://bestpractices.coreinfrastructure.org/projects/3874/badge"></a>
   <a href="#contributors-"><img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-3-blue.svg"></a>
   <a href="#"><img alt="License" src="https://img.shields.io/github/license/OmegaGraf/OmegaGraf"></a>
 </p>
