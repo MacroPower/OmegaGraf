@@ -74,6 +74,9 @@ mkdir data/prometheus
 mkdir data/grafana
 chmod -R 777 data
 
+# Allow execute on binary
+chmod +x OmegaGraf
+
 # Run with default settings
 ./OmegaGraf --host $OMEGAGRAF_HOST
 
