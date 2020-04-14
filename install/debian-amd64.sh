@@ -8,7 +8,7 @@ echo ">> installing OmegaGraf for $RELEASE_ID/$RELEASE_CODE $RELEASE_VERSION"
 
 # Prereqs
 sudo apt update
-sudo apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common
+sudo apt install -y apt-transport-https ca-certificates curl gnupg2 software-properties-common acl
 
 read -p "Would you like to enable SSL (BETA)? (y/n)" answer
 case ${answer:0:1} in
@@ -72,7 +72,10 @@ mkdir data
 mkdir data/telegraf
 mkdir data/prometheus
 mkdir data/grafana
-chmod -R 777 data
+chmod g+s data
+setfacl -R -d -m u::rwx data  # Default permissions for owning user
+setfacl -R -d -m g::rwx data  # Default permissions for owning group
+setfacl -R -d -m o::rwx data  # Default permissions for others
 
 # Allow execute on binary
 chmod +x OmegaGraf
