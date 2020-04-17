@@ -7,7 +7,7 @@
     "@fortawesome/free-brands-svg-icons": "latest",
     "@fortawesome/free-solid-svg-icons": "latest",
     "@fortawesome/react-fontawesome": "latest",
-    "@types/js-cookie": "2.2.5",
+    "@types/js-cookie": "2.2.6",
     "@types/react": "16.9.32",
     "@types/react-bootstrap": "1.0.0",
     "@types/react-dom": "16.9.6",
