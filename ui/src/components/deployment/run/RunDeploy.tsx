@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Steps from 'rc-steps';
 import { PacmanLoader } from 'react-spinners';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import {
   UseGlobalSettings,
   UseGlobalSession,
@@ -252,7 +254,7 @@ export default function RunDeploy() {
 
                 const icon = !isError ? (
                   step.status === 'done' ? (
-                    <i className="rcicon rcicon-check" />
+                    <FontAwesomeIcon icon={faCheckCircle} />
                   ) : (
                     <PacmanLoader size={15} color={'#007bff'} loading={true} />
                   )

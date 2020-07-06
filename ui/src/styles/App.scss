@@ -11,8 +11,8 @@ body {
 
 main {
   min-height: -webkit-calc(100% - 136px);
-  min-height:    -moz-calc(100% - 136px);
-  min-height:         calc(100% - 136px);
+  min-height: -moz-calc(100% - 136px);
+  min-height: calc(100% - 136px);
   overflow: hidden;
   padding-top: 1rem;
 }
@@ -179,29 +179,35 @@ body {
   margin-left: 40px;
 }
 
+.rc-steps-item-error .rc-steps-item-icon > .rc-steps-icon {
+  font-size: 0px !important;
+  top: 1px !important;
+}
+
 .rc-steps-item-done > .rc-steps-item-container > .rc-steps-item-content {
   margin-top: -1px;
   margin-left: 35px;
 }
 
 .rc-steps-item-done > .rc-steps-item-container > .rc-steps-item-icon {
-  background-color: #fff;
-  border: 1px solid var(--blue);
-  width: 26px;
-  height: 26px;
-  line-height: 26px;
-  text-align: center;
-  border-radius: 26px;
-  font-size: 14px;
-  margin-right: 8px;
-  transition: background-color 0.3s, border-color 0.3s;
+  width: 27px;
+  font-size: 27px;
+}
+
+.rc-steps-item-done .rc-steps-item-icon > .rc-steps-icon {
+  font-size: 27px !important;
+  top: -1px;
+  color: var(--blue);
 }
 
 .logo {
   margin-top: -4px;
 }
 
-.card-button, .card-button:active, .card-button:hover, .card-button:focus {
+.card-button,
+.card-button:active,
+.card-button:hover,
+.card-button:focus {
   outline: none;
   box-shadow: none;
   background: none;
@@ -219,7 +225,8 @@ body {
   border-radius: 0.5rem;
 }
 
-.home-card:focus, .home-card:active {
+.home-card:focus,
+.home-card:active {
   border: 3px solid rgba(0, 0, 0, 0.125);
 }
 
@@ -316,12 +323,13 @@ body {
 }
 
 .footer-logo {
-  margin-top: -.25rem;
+  margin-top: -0.25rem;
   color: var(--dark);
 }
 
-.footer-swagger, .footer-swagger a {
-  color: #999;;
+.footer-swagger,
+.footer-swagger a {
+  color: #999;
 }
 
 .footer-logo a {
@@ -329,7 +337,7 @@ body {
 }
 
 .footer-shield {
-  margin-top: -.5rem;
+  margin-top: -0.5rem;
 }
 
 .footer-icon {
@@ -344,12 +352,6 @@ body {
   border-radius: 0.5rem;
 }
 
-
 .rc-steps-item-icon > .rc-steps-icon {
   line-height: 0;
-}
-
-.rc-steps-item-error .rc-steps-item-icon > .rc-steps-icon {
-  font-size: 0px !important;
-  top: 1px !important;
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Breadcrumb } from 'react-bootstrap';
 import 'rc-steps/assets/index.css';
-import 'rc-steps/assets/iconfont.css';
 import RunDeploy from '../components/deployment/run/RunDeploy';
 import { Link } from 'react-router-dom';
 
