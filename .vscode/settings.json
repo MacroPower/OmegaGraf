@@ -19,5 +19,9 @@
   },
   "csharpsortusings.sort.usings.splitGroups": false,
   "files.insertFinalNewline": true,
-  "files.trimFinalNewlines": true
+  "files.trimFinalNewlines": true,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+  "prettier.jsxSingleQuote": false,
+  "prettier.useEditorConfig": false
 }

@@ -14,7 +14,7 @@ charset = utf-8-bom
 indent_size = 2
 
 # XML config files
-[*.{props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
+[*.{xml,props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
 indent_size = 2
 
 # JSON files
