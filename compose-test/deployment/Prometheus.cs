@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using System;
+using NUnit.Framework;
 using OmegaGraf.Compose.MetaData;
 
 namespace OmegaGraf.Compose.Tests.Builder

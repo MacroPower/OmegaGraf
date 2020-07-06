@@ -1,12 +1,13 @@
-using NUnit.Framework;
-using OmegaGraf.Compose.MetaData;
-using OmegaGraf.Compose.Config.Grafana;
 using System;
 using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
-using Flurl.Http;
 using System.Threading.Tasks;
+using Flurl.Http;
+using Newtonsoft.Json;
+using NUnit.Framework;
+using OmegaGraf.Compose.Config.Grafana;
+using OmegaGraf.Compose.MetaData;
+
 
 namespace OmegaGraf.Compose.Tests.Builder
 {
@@ -19,8 +20,7 @@ namespace OmegaGraf.Compose.Tests.Builder
         {
             try
             {
-                var response = await ("http://localhost:" + port)
-                               .GetAsync();
+                var response = await ("http://localhost:" + port).GetAsync();
 
                 return response.IsSuccessStatusCode;
             }
@@ -57,20 +57,20 @@ namespace OmegaGraf.Compose.Tests.Builder
             {
                 var dataSource = new DataSource()
                 {
-                    ID = 1,
-                    OrgID = 1,
-                    Name = "og-prometheus",
-                    Type = "prometheus",
-                    Access = "proxy",
-                    URL = "http://og-prometheus:9090",
-                    Password = "",
-                    User = "",
-                    Database = "",
-                    BasicAuth = false,
-                    BasicAuthUser = "",
+                    ID                = 1,
+                    OrgID             = 1,
+                    Name              = "og-prometheus",
+                    Type              = "prometheus",
+                    Access            = "proxy",
+                    URL               = "http://og-prometheus:9090",
+                    Password          = "",
+                    User              = "",
+                    Database          = "",
+                    BasicAuth         = false,
+                    BasicAuthUser     = "",
                     BasicAuthPassword = "",
-                    IsDefault = true,
-                    JsonData = null
+                    IsDefault         = true,
+                    JsonData          = null
                 };
 
                 g.AddDataSource(dataSource).Wait();
@@ -97,7 +97,7 @@ namespace OmegaGraf.Compose.Tests.Builder
             try
             {
                 g.AddDashboard(
-                    new Compose.Config.Grafana.Dashboard()
+                    new Dashboard()
                     {
                         DashboardData = JsonConvert.DeserializeObject(d)
                     }).Wait();

@@ -1,8 +1,8 @@
-using NUnit.Framework;
-using OmegaGraf.Compose.MetaData;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using NUnit.Framework;
+using OmegaGraf.Compose.MetaData;
+
 
 namespace OmegaGraf.Compose.Tests.Builder
 {
@@ -29,8 +29,8 @@ namespace OmegaGraf.Compose.Tests.Builder
             {
                 Image = "macropower/vcsim",
                 Tag = "latest",
-                Ports = new Dictionary<int, int>(){ },
-                Binds = new Dictionary<string, string>(){ },
+                Ports = new Dictionary<int, int>() { },
+                Binds = new Dictionary<string, string>() { },
                 Parameters = new List<string>()
                 {
                     "--clusters", "2",

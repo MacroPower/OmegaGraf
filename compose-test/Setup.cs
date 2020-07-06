@@ -1,8 +1,5 @@
-using System.Collections.Generic;
 using NUnit.Framework;
 using OmegaGraf.Compose.MetaData;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OmegaGraf.Compose.Tests.Builder
 {
