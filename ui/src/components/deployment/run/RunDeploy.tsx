@@ -7,7 +7,7 @@ import {
   UseGlobalSettings,
   UseGlobalSession,
   UseGlobalSim,
-  UseGlobalGrafana
+  UseGlobalGrafana,
 } from '../../Global';
 import DeployRequest from './DeployRequest';
 import PacmanGhost from '../../../data/Ghost';
@@ -40,27 +40,27 @@ export default function RunDeploy() {
   const prometheusPort = globalSettings.Prometheus.BuildInput.Ports[9090];
 
   const addStep = (title: string, description: string) => {
-    setSteps(prev => [
+    setSteps((prev) => [
       ...prev,
       {
         title: title,
-        description: description
-      }
+        description: description,
+      },
     ]);
   };
 
   const setLastStep = (
     title: string,
     description: string,
-    status?: stepStatus
+    status?: stepStatus,
   ) => {
-    setSteps(prev => [
+    setSteps((prev) => [
       ...prev.slice(0, prev.length - 1),
       {
         title: title,
         description: description,
-        status: status
-      }
+        status: status,
+      },
     ]);
   };
 
@@ -81,8 +81,8 @@ export default function RunDeploy() {
         .then(() => {
           const stepText = 'Cleaning up our mess...';
           addStep('Finishing up', stepText);
-          setLastStep('Done', 'You can start using OmegaGraf!', 'done');
-        })
+          setLastStep('Ready!', 'You can start using OmegaGraf.', 'done');
+        }),
     );
   };
 
@@ -91,7 +91,7 @@ export default function RunDeploy() {
   const deployTelegraf = async (
     endpoint: string,
     apiKey: string,
-    state: Settings
+    state: Settings,
   ) => {
     try {
       const stepText = 'Asking OmegaGraf to create the container...';
@@ -100,7 +100,7 @@ export default function RunDeploy() {
       const conf = { ...state.Telegraf };
 
       if (globalSim.Active) {
-        conf.Config[0].Data.Inputs.VSphere.forEach(x => {
+        conf.Config[0].Data.Inputs.VSphere.forEach((x) => {
           let vcs: string[] = [];
 
           for (let i = 0; i < globalSim.Quantity; i++) {
@@ -121,7 +121,7 @@ export default function RunDeploy() {
       setLastStep(
         'Deploy Telegraf',
         'Error creating container, please check server logs',
-        'error'
+        'error',
       );
       breakPromise();
     }
@@ -130,7 +130,7 @@ export default function RunDeploy() {
   const deployPrometheus = async (
     endpoint: string,
     apiKey: string,
-    state: Settings
+    state: Settings,
   ) => {
     try {
       const stepText = 'Asking OmegaGraf to create the container...';
@@ -142,7 +142,7 @@ export default function RunDeploy() {
       setLastStep(
         'Deploy Prometheus',
         'Error creating container, please check server logs',
-        'error'
+        'error',
       );
       breakPromise();
     }
@@ -151,7 +151,7 @@ export default function RunDeploy() {
   const deployGrafana = async (
     endpoint: string,
     apiKey: string,
-    state: Settings
+    state: Settings,
   ) => {
     if (globalGrafana.Active) {
       try {
@@ -163,7 +163,7 @@ export default function RunDeploy() {
         setLastStep(
           'Deploy Grafana',
           'Error creating container, please check server logs',
-          'error'
+          'error',
         );
         breakPromise();
       }
@@ -173,7 +173,7 @@ export default function RunDeploy() {
   const deploySim = async (
     endpoint: string,
     apiKey: string,
-    state: Settings
+    state: Settings,
   ) => {
     if (globalSim.Active) {
       try {
@@ -195,7 +195,7 @@ export default function RunDeploy() {
         setLastStep(
           'Deploy VCSim',
           'Error creating container, please check server logs',
-          'error'
+          'error',
         );
         breakPromise();
       }
@@ -205,7 +205,7 @@ export default function RunDeploy() {
   const deployGrafanaConfig = async (
     endpoint: string,
     apiKey: string,
-    state: Settings
+    state: Settings,
   ) => {
     if (globalGrafana.Active) {
       try {
@@ -223,7 +223,7 @@ export default function RunDeploy() {
         setLastStep(
           'Deploy Grafana Config',
           'Error configuring container, please check server logs',
-          'error'
+          'error',
         );
         breakPromise();
       }
@@ -266,7 +266,7 @@ export default function RunDeploy() {
                     key={i}
                     {...step}
                     {...(i === stepLength() && {
-                      icon: { ...icon }
+                      icon: { ...icon },
                     })}
                   />
                 );
