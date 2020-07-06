@@ -1,20 +1,23 @@
 {
-    "cSpell.words": [
-        "Figgle",
-        "flurl",
-        "ipam",
-        "nett",
-        "npipe",
-        "omnisharp",
-        "owin",
-        "tsdb",
-        "vcenter",
-        "scroller",
-        "unmount"
-    ],
-    "cSpell.allowCompoundWords": true,
-    "omnisharp.enableRoslynAnalyzers": true,
-    "files.exclude": {
-      "**/obj/**": true
-    }
+  "cSpell.words": [
+    "Figgle",
+    "flurl",
+    "ipam",
+    "nett",
+    "npipe",
+    "omnisharp",
+    "owin",
+    "tsdb",
+    "vcenter",
+    "scroller",
+    "unmount"
+  ],
+  "cSpell.allowCompoundWords": true,
+  "omnisharp.enableRoslynAnalyzers": true,
+  "files.exclude": {
+    "**/obj/**": true
+  },
+  "csharpsortusings.sort.usings.splitGroups": false,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true
 }
