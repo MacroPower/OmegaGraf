@@ -10,7 +10,10 @@
     "tsdb",
     "vcenter",
     "scroller",
-    "unmount"
+    "unmount",
+    "vcsim",
+    "hsep",
+    "blinky"
   ],
   "cSpell.allowCompoundWords": true,
   "omnisharp.enableRoslynAnalyzers": true,
