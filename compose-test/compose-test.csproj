@@ -1,25 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <IsPackable>false</IsPackable>
     <ProjectGuid>{4FF62D0E-109A-4FDB-AEAB-91666F0F8616}</ProjectGuid>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="coverlet.msbuild" Version="2.8.1">
+    <PackageReference Include="coverlet.msbuild" Version="2.9.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.16.1" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\compose\compose.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Content Include="..\grafana\**\*.*" CopyToPublishDirectory="PreserveNewest">
       <Link>grafana\%(RecursiveDir)%(Filename)%(Extension)</Link>
@@ -27,5 +23,4 @@
       <CopyToPublishDirectory>Always</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
-
 </Project>
