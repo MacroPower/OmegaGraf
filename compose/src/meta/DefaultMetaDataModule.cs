@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Nancy;
 using Nancy.Metadata.Modules;
 using Nancy.Responses.Negotiation;
@@ -7,7 +8,6 @@ using NLog;
 using OmegaGraf.Compose.Config.Prometheus;
 using OmegaGraf.Compose.Config.Telegraf;
 using Swagger.ObjectModel;
-using System.Collections.Generic;
 
 namespace OmegaGraf.Compose.MetaData
 {
@@ -25,9 +25,8 @@ namespace OmegaGraf.Compose.MetaData
 
         public DefaultModule() : base("/default")
         {
-            Get(
-                "/",
-                args =>
+            this.Get(
+                "/", args =>
                 {
                     this.RequiresAuthentication();
 
@@ -36,19 +35,19 @@ namespace OmegaGraf.Compose.MetaData
                     var defaults = new DefaultSettings()
                     {
                         Prometheus = Defaults.Prometheus,
-                        Telegraf = Defaults.Telegraf,
-                        Grafana = Defaults.Grafana,
-                        VCSim = Defaults.VCSim
+                        Telegraf   = Defaults.Telegraf,
+                        Grafana    = Defaults.Grafana,
+                        VCSim      = Defaults.VCSim
                     };
 
                     foreach (var o in defaults.Telegraf.Config[0].Data.Inputs.VSphere)
                     {
-                        o.VCenters = new List<string>(){ "" };
+                        o.VCenters = new List<string>() { "" };
                         o.Username = "";
                         o.Password = "";
                     }
 
-                    return Negotiate.WithMediaRangeModel(
+                    return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
                         defaults
                     );
@@ -66,7 +65,7 @@ namespace OmegaGraf.Compose.MetaData
                 typeof(Input)
             );
 
-            Describe["Default"] =
+            this.Describe["Default"] =
                 desc => desc.AsSwagger(
                     with => with.Operation(
                         op => op.OperationId("Default")

@@ -15,25 +15,23 @@ namespace OmegaGraf.Compose.MetaData
         {
             this.RequiresAuthentication();
 
-            Get(
-                "/{id}",
-                args =>
+            this.Get(
+                "/{id}", args =>
                 {
                     return HttpStatusCode.OK;
                 }, null, "Info"
             );
 
-            Post(
-                "/",
-                args =>
+            this.Post(
+                "/", args =>
                 {
-                    Input<Prometheus> bind = (this).Bind<Input<Prometheus>>();
+                    var bind = this.Bind<Input<Prometheus>>();
 
                     var bc = bind.BuildInput.ToBuildConfiguration("prom/prometheus");
 
                     var uuid = new Runner().AddYamlConfig(bind.Config).Build(bc);
 
-                    return Negotiate.WithMediaRangeModel(
+                    return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
                         new
                         {
@@ -60,7 +58,7 @@ namespace OmegaGraf.Compose.MetaData
                 typeof(Input<Prometheus>)
             );
 
-            Describe["DeployPrometheus"] =
+            this.Describe["DeployPrometheus"] =
                 desc => desc.AsSwagger(
                     with => with.Operation(
                         op => op.OperationId("DeployPrometheus")

@@ -1,11 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
-using OmegaGraf.Compose.Config.Grafana;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
-using System;
 using NLog;
+using OmegaGraf.Compose.Config.Grafana;
 using Polly;
 
 namespace OmegaGraf.Compose
@@ -14,22 +14,23 @@ namespace OmegaGraf.Compose
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
-        private Token token;
-        private readonly string uri;
+        private Token _token;
+        private readonly string _uri;
 
         public Grafana(string uri)
         {
-            this.uri = uri;
+            this._uri = uri;
 
             try
             {
-                Policy
-                    .Handle<Exception>(ex => {
+                _=Policy
+                    .Handle<Exception>(ex =>
+                    {
                         logger.Warn(ex, "Error fetching Grafana token, retrying...");
                         return true;
                     })
                     .WaitAndRetry(3, retryAttempt => TimeSpan.FromSeconds(5))
-                    .Execute(() => this.token = CreateToken().Result);
+                    .Execute(() => this._token = this.CreateToken().Result);
             }
             catch (Exception ex)
             {
@@ -40,7 +41,7 @@ namespace OmegaGraf.Compose
 
         public void Dispose()
         {
-            Dispose(true);
+            this.Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -48,11 +49,11 @@ namespace OmegaGraf.Compose
         {
             try
             {
-                RemoveToken().Wait();
+                this.RemoveToken().Wait();
             }
             catch (Exception ex)
             {
-                logger.Warn(ex, "Unable to remove the Grafana token." + 
+                logger.Warn(ex, "Unable to remove the Grafana token." +
                                 "This may cause errors on future deployments.");
             }
         }
@@ -61,7 +62,7 @@ namespace OmegaGraf.Compose
         {
             try
             {
-                return this.uri
+                return this._uri
                    .AppendPathSegments("api", "auth", "keys")
                    .WithBasicAuth("admin", "admin")
                    .PostJsonAsync(
@@ -83,9 +84,9 @@ namespace OmegaGraf.Compose
         {
             try
             {
-                return this.uri
+                return this._uri
                     .AppendPathSegments("api", "auth", "keys")
-                    .WithOAuthBearerToken(this.token.Key)
+                    .WithOAuthBearerToken(this._token.Key)
                     .GetJsonAsync<IEnumerable<Token>>();
             }
             catch (Exception ex)
@@ -97,18 +98,20 @@ namespace OmegaGraf.Compose
 
         public async Task<System.Net.Http.HttpResponseMessage> RemoveToken()
         {
-            var tokens = await ListTokens();
+            var tokens = await this.ListTokens();
 
-            var toDelete = tokens.FirstOrDefault(t => t.Name == this.token.Name);
+            var toDelete = tokens.FirstOrDefault(t => t.Name == this._token.Name);
 
             if (toDelete == null)
+            {
                 return null;
+            }
 
             try
             {
-                return await this.uri
+                return await this._uri
                     .AppendPathSegments("api", "auth", "keys", toDelete.ID)
-                    .WithOAuthBearerToken(this.token.Key)
+                    .WithOAuthBearerToken(this._token.Key)
                     .DeleteAsync();
             }
             catch (Exception ex)
@@ -122,10 +125,10 @@ namespace OmegaGraf.Compose
         {
             try
             {
-                return await this.uri
-                       .AppendPathSegments("api", "datasources")
-                       .WithOAuthBearerToken(this.token.Key)
-                       .PostJsonAsync(dataSource);
+                return await this._uri
+                    .AppendPathSegments("api", "datasources")
+                    .WithOAuthBearerToken(this._token.Key)
+                    .PostJsonAsync(dataSource);
             }
             catch (FlurlHttpException ex)
             {
@@ -151,10 +154,10 @@ namespace OmegaGraf.Compose
         {
             try
             {
-                return await this.uri
-                       .AppendPathSegments("api", "dashboards", "db")
-                       .WithOAuthBearerToken(this.token.Key)
-                       .PostJsonAsync(dashboard);
+                return await this._uri
+                    .AppendPathSegments("api", "dashboards", "db")
+                    .WithOAuthBearerToken(this._token.Key)
+                    .PostJsonAsync(dashboard);
             }
             catch (FlurlHttpException ex)
             {

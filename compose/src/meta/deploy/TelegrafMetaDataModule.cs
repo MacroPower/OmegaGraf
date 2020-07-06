@@ -15,26 +15,24 @@ namespace OmegaGraf.Compose.MetaData
         {
             this.RequiresAuthentication();
 
-            Get(
-                "/{id}",
-                args =>
+            this.Get(
+                "/{id}", args =>
                 {
                     return HttpStatusCode.OK;
                 }, null, "Info"
             );
 
-            Post(
-                "/",
-                args =>
+            this.Post(
+                "/", args =>
                 {
-                    Input<Telegraf> bind = (this).Bind<Input<Telegraf>>();
+                    var bind = this.Bind<Input<Telegraf>>();
 
                     var bc = bind.BuildInput.ToBuildConfiguration("telegraf");
 
                     var uuid = new Runner().AddTomlConfig(x => x.LowerCase, bind.Config)
                                .Build(bc);
 
-                    return Negotiate.WithMediaRangeModel(
+                    return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
                         new
                         {
@@ -44,17 +42,16 @@ namespace OmegaGraf.Compose.MetaData
                 }, null, "DeployTelegraf"
             );
 
-            Post(
-                "/sim",
-                args =>
+            this.Post(
+                "/sim", args =>
                 {
-                    Input bind = (this).Bind<Input>();
+                    var bind = this.Bind<Input>();
 
                     var bc = bind.BuildInput.ToBuildConfiguration("macropower/vcsim");
 
                     var uuid = new Runner().Build(bc);
 
-                    return Negotiate.WithMediaRangeModel(
+                    return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
                         new
                         {
@@ -84,7 +81,7 @@ namespace OmegaGraf.Compose.MetaData
                 typeof(Input<Telegraf>)
             );
 
-            Describe["DeployTelegraf"] =
+            this.Describe["DeployTelegraf"] =
                 desc => desc.AsSwagger(
                     with => with.Operation(
                         op => op.OperationId("DeployTelegraf")
@@ -106,7 +103,7 @@ namespace OmegaGraf.Compose.MetaData
                         ).Response(x => x.Description("Container UUID").Build()))
                 );
 
-            Describe["DeployVCSim"] =
+            this.Describe["DeployVCSim"] =
                 desc => desc.AsSwagger(
                     with => with.Operation(
                         op => op.OperationId("DeployVCSim")

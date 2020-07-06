@@ -12,7 +12,7 @@ namespace OmegaGraf.Compose
 
         static void Main(string[] args)
         {
-            var versionFile = Path.Join(System.AppDomain.CurrentDomain.BaseDirectory, "VERSION");
+            var versionFile = Path.Join(AppDomain.CurrentDomain.BaseDirectory, "VERSION");
             Globals.Version = File.ReadAllText(versionFile);
 
             var version = "OmegaGraf Version: v" + Globals.Version;
@@ -24,7 +24,10 @@ namespace OmegaGraf.Compose
             {
                 var parsed = Args.Parse<MyArgs>(args);
 
-                if (parsed.Verbose) Log.SetLogLevel(LogLevel.Info);
+                if (parsed.Verbose)
+                {
+                    Log.SetLogLevel(LogLevel.Info);
+                }
 
                 if (parsed.Help)
                 {
@@ -38,7 +41,10 @@ namespace OmegaGraf.Compose
                     Environment.Exit(0);
                 }
 
-                if (parsed.Reset) new Docker().RemoveAllContainers().Wait();
+                if (parsed.Reset)
+                {
+                    new Docker().RemoveAllContainers().Wait();
+                }
 
                 MetaData.SystemData.SetRoot(parsed.Path);
                 logger.Info("Root: " + MetaData.SystemData.GetRoot());
@@ -53,18 +59,25 @@ namespace OmegaGraf.Compose
                     KeyDatabase.CreateKey(parsed.Key);
                 }
 
-                if (!string.IsNullOrWhiteSpace(parsed.Socket)) Docker.SetDockerURI(parsed.Socket);
-                if (parsed.Dev) Globals.Development = true;
+                if (!string.IsNullOrWhiteSpace(parsed.Socket))
+                {
+                    Docker.SetDockerURI(parsed.Socket);
+                }
 
-                var urls = 
+                if (parsed.Dev)
+                {
+                    Globals.Development = true;
+                }
+
+                var urls =
                     parsed.Host.Length == 0 ? new string[] { "http://0.0.0.0:5000" }
                                             : parsed.Host;
 
                 var host = new WebHostBuilder()
-                            .UseKestrel()
-                            .UseUrls(urls)
-                            .UseStartup<Startup>()
-                            .Build();
+                    .UseKestrel()
+                    .UseUrls(urls)
+                    .UseStartup<Startup>()
+                    .Build();
 
                 host.Run();
             }

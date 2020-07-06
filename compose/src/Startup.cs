@@ -1,7 +1,7 @@
 using System;
+using Microsoft.AspNetCore.Builder;
 using Flurl.Http;
 using Flurl.Http.Configuration;
-using Microsoft.AspNetCore.Builder;
 using Nancy.Owin;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;

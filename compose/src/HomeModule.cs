@@ -6,25 +6,25 @@ namespace OmegaGraf.Compose.MetaData
     {
         public HomeModule()
         {
-            Get("/ready", _ =>
+            this.Get("/ready", _ =>
             {
                 return HttpStatusCode.OK;
             });
 
-            Get("/swagger-ui", _ =>
+            this.Get("/swagger-ui", _ =>
             {
-                var url = $"{Request.Url.BasePath}/api-docs";
-                return View["swagger", url];
+                var url = $"{this.Request.Url.BasePath}/api-docs";
+                return this.View["swagger", url];
             });
 
-            Get("/", _ =>
+            this.Get("/", _ =>
             {
-                return View["Index"];
+                return this.View["Index"];
             });
 
-            Get("/{all*}", _ =>
+            this.Get("/{all*}", _ =>
             {
-                return View["Index"];
+                return this.View["Index"];
             });
         }
     }

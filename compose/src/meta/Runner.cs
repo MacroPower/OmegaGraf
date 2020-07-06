@@ -15,11 +15,11 @@ namespace OmegaGraf.Compose.MetaData
         public string Image { get; set; }
         public string Tag { get; set; }
         public Dictionary<int, int> Ports { get; set; }
-        private Dictionary<string, string> binds;
+        private Dictionary<string, string> _binds;
         public Dictionary<string, string> Binds
         {
-            get => this.binds;
-            set => this.binds = value.ToDictionary(d => Path.Join(SystemData.GetRoot(), d.Key), d => d.Value);
+            get => this._binds;
+            set => this._binds = value.ToDictionary(d => Path.Join(SystemData.GetRoot(), d.Key), d => d.Value);
         }
         public List<string> Parameters { get; set; }
     }
@@ -28,13 +28,13 @@ namespace OmegaGraf.Compose.MetaData
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
-        private readonly Dictionary<string, string> configFile = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _configFile = new Dictionary<string, string>();
 
         public Runner AddYamlConfig<T>(params Config<T>[] config)
         {
             foreach (var c in config)
             {
-                this.configFile.Add(
+                this._configFile.Add(
                     c.Path,
                     new Serializer(
                         new SerializerSettings()
@@ -55,7 +55,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 var text = Toml.WriteString(c.Data);
 
-                this.configFile.Add(c.Path, text);
+                this._configFile.Add(c.Path, text);
             }
 
             return this;
@@ -71,7 +71,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 var text = Toml.WriteString(c.Data, tomlSettings);
 
-                this.configFile.Add(c.Path, text);
+                this._configFile.Add(c.Path, text);
             }
 
             return this;
@@ -79,7 +79,7 @@ namespace OmegaGraf.Compose.MetaData
 
         private void WriteConfig()
         {
-            foreach (var c in configFile)
+            foreach (var c in this._configFile)
             {
                 File.WriteAllText(Path.Join(SystemData.GetRoot(), c.Key), c.Value);
             }
@@ -116,7 +116,7 @@ namespace OmegaGraf.Compose.MetaData
 
         public string Build(BuildConfiguration config)
         {
-            return BuildFromConfigAsync(config).Result;
+            return this.BuildFromConfigAsync(config).Result;
         }
     }
 }

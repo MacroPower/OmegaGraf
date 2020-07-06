@@ -1,12 +1,12 @@
-using Docker.DotNet;
-using Docker.DotNet.Models;
-using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Docker.DotNet;
+using Docker.DotNet.Models;
+using NLog;
 
 namespace OmegaGraf.Compose
 {
@@ -87,8 +87,9 @@ namespace OmegaGraf.Compose
             string name = "",
             string tag = "latest",
             List<string> cmd = null
-        ){
-            await CreateNetwork();
+        )
+        {
+            _=await this.CreateNetwork();
 
             foreach (var b in binds)
             {
@@ -104,7 +105,7 @@ namespace OmegaGraf.Compose
                 }
             }
 
-            Dictionary<string, IList<PortBinding>> portBinds = (
+            var portBinds = (
                 from port in ports
                 from protocol in new string[] {
                     "tcp", "udp"
@@ -116,7 +117,7 @@ namespace OmegaGraf.Compose
                     {
                         new PortBinding
                         {
-                            HostIP = "0.0.0.0",
+                            HostIP   = "0.0.0.0",
                             HostPort = port.Value.ToString()
                         }
                     }
@@ -128,8 +129,8 @@ namespace OmegaGraf.Compose
 
             var parameters = new CreateContainerParameters
             {
-                Name = hostname,
-                Hostname = hostname,
+                Name             = hostname,
+                Hostname         = hostname,
                 NetworkingConfig = new NetworkingConfig()
                 {
                     EndpointsConfig = new Dictionary<string, EndpointSettings>()
@@ -147,14 +148,14 @@ namespace OmegaGraf.Compose
                         }
                     }
                 },
-                Image = image + ":" + tag,
+                Image        = image + ":" + tag,
                 ExposedPorts = exposedPorts,
-                HostConfig = new HostConfig
+                HostConfig   = new HostConfig
                 {
-                    Binds = hostBinds,
-                    PortBindings = portBinds,
+                    Binds           = hostBinds,
+                    PortBindings    = portBinds,
                     PublishAllPorts = false,
-                    RestartPolicy = new RestartPolicy()
+                    RestartPolicy   = new RestartPolicy()
                     {
                         Name = RestartPolicyKind.UnlessStopped
                     }
@@ -177,7 +178,7 @@ namespace OmegaGraf.Compose
                 if (ex.StatusCode.ToString() == "Conflict")
                 {
                     logger.Error(ex, "It looks like you already have a deployment! " +
-                                 "If you want to redeploy OmegaGraf, please start the application with --reset");
+                                     "If you want to redeploy OmegaGraf, please start the application with --reset");
                 }
                 else
                 {
@@ -221,14 +222,14 @@ namespace OmegaGraf.Compose
                     new ContainerRemoveParameters()
                     {
                         RemoveVolumes = false,
-                        RemoveLinks = false,
-                        Force = false
+                        RemoveLinks   = false,
+                        Force         = false
                     }
                 );
 
         public Task RemoveAllContainers()
         {
-            var containers = ListContainers().Result;
+            var containers = this.ListContainers().Result;
             var tasks = new List<Task>();
 
             foreach (var container in containers)
@@ -240,10 +241,11 @@ namespace OmegaGraf.Compose
                         logger.Info("Removing " + name + ", " + container.ID);
 
                         tasks.Add(
-                            Task.Run(async () => {
-                                     await StopContainer(container.ID);
-                                     await RemoveContainer(container.ID);
-                                 }));
+                            Task.Run(async () =>
+                            {
+                                await this.StopContainer(container.ID);
+                                await this.RemoveContainer(container.ID);
+                            }));
                     }
                 }
             }
@@ -257,22 +259,24 @@ namespace OmegaGraf.Compose
             var networks = await this.DockerClient.Networks.ListNetworksAsync();
 
             if (networks.Any(x => x.Name == name))
+            {
                 return null;
+            }
 
             return await this.DockerClient.Networks.CreateNetworkAsync(
                 new NetworksCreateParameters()
                 {
-                    Name = name,
-                    Driver = "bridge",
+                    Name           = name,
+                    Driver         = "bridge",
                     CheckDuplicate = true,
-                    IPAM = new IPAM()
+                    IPAM           = new IPAM()
                     {
                         Driver = "default",
                         Config = new List<IPAMConfig>()
                         {
                             new IPAMConfig()
                             {
-                                Subnet = "172.20.0.0/16",
+                                Subnet  = "172.20.0.0/16",
                                 IPRange = "172.20.10.0/24",
                                 Gateway = "172.20.10.11"
                             }

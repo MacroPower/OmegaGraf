@@ -34,10 +34,10 @@ namespace OmegaGraf.Compose.MetaData
         {
             try
             {
-                string dir = dataPath == "" ? Path.Join(Directory.GetCurrentDirectory(), "data")
-                                            : Regex.IsMatch(dataPath, @"^((\/)|([A-Za-z]:(\\|\/)))")
-                                                ? dataPath
-                                                : Path.Join(Directory.GetCurrentDirectory(), dataPath);
+                var dir = dataPath == "" ? Path.Join(Directory.GetCurrentDirectory(), "data")
+                                         : Regex.IsMatch(dataPath, @"^((\/)|([A-Za-z]:(\\|\/)))")
+                                             ? dataPath
+                                             : Path.Join(Directory.GetCurrentDirectory(), dataPath);
 
                 return dir;
             }

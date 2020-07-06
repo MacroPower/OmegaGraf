@@ -11,31 +11,29 @@ namespace OmegaGraf.Compose.MetaData
     {
         public InfoModule()
         {
-            Get(
-                "/auth",
-                args =>
+            this.Get(
+                "/auth", args =>
                 {
-                    return Negotiate.WithMediaRangeModel(
+                    return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
                         new
                         {
-                            Authenticated = KeyDatabase.ValidateKey(Request.Headers.Authorization)
+                            Authenticated = KeyDatabase.ValidateKey(this.Request.Headers.Authorization)
                         }
                     );
                 }, null, "Auth"
             );
 
-            Get(
-                "/info",
-                args =>
+            this.Get(
+                "/info", args =>
                 {
                     this.RequiresAuthentication();
-                    
-                    return Negotiate.WithMediaRangeModel(
+
+                    return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
                         new
                         {
-                            Version = Globals.Version,
+                            Globals.Version,
                             Authenticated = true
                         }
                     );
@@ -48,7 +46,7 @@ namespace OmegaGraf.Compose.MetaData
     {
         public InfoMetadataModule(ISwaggerModelCatalog _)
         {
-            Describe["Info"] =
+            this.Describe["Info"] =
                 desc => desc.AsSwagger(
                     with => with.Operation(
                         op => op.OperationId("Info")
@@ -59,8 +57,8 @@ namespace OmegaGraf.Compose.MetaData
                         .SecurityRequirement(SecuritySchemes.ApiKey)
                         .Response(x => x.Description("Deployment Info").Build()))
                 );
-            
-            Describe["Auth"] =
+
+            this.Describe["Auth"] =
                 desc => desc.AsSwagger(
                     with => with.Operation(
                         op => op.OperationId("Auth")

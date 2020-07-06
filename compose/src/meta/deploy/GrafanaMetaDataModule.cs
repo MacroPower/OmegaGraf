@@ -24,25 +24,23 @@ namespace OmegaGraf.Compose.MetaData
         {
             this.RequiresAuthentication();
 
-            Get(
-                "/{id}",
-                args =>
+            this.Get(
+                "/{id}", args =>
                 {
                     return HttpStatusCode.OK;
                 }, null, "Info"
             );
 
-            Post(
-                "/",
-                args =>
+            this.Post(
+                "/", args =>
                 {
-                    Input bind = (this).Bind<Input>();
+                    var bind = this.Bind<Input>();
 
                     var bc = bind.BuildInput.ToBuildConfiguration("grafana/grafana");
 
                     var uuid = new Runner().Build(bc);
 
-                    return Negotiate.WithMediaRangeModel(
+                    return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
                         new
                         {
@@ -52,20 +50,19 @@ namespace OmegaGraf.Compose.MetaData
                 }, null, "DeployGrafana"
             );
 
-            Post(
-                "/datasource",
-                args =>
+            this.Post(
+                "/datasource", args =>
                 {
                     logger.Info("Adding default Grafana datasource");
 
-                    var bind = (this).Bind<GrafanaInput>();
+                    var bind = this.Bind<GrafanaInput>();
 
                     var g = new Grafana("http://localhost:" + bind.Port);
 
                     g.AddDataSource(Defaults.GrafanaDataSource).Wait();
                     g.Dispose();
 
-                    return Negotiate.WithMediaRangeModel(
+                    return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
                         new
                         {
@@ -75,17 +72,16 @@ namespace OmegaGraf.Compose.MetaData
                 }, null, "DeployGrafanaDataSource"
             );
 
-            Post(
-                "/dashboards",
-                args =>
+            this.Post(
+                "/dashboards", args =>
                 {
                     logger.Info("Adding default Grafana dashboards");
 
-                    var bind = (this).Bind<GrafanaInput>();
+                    var bind = this.Bind<GrafanaInput>();
 
                     var g = new Grafana("http://localhost:" + bind.Port);
 
-                    string filepath = Path.Join(System.AppDomain.CurrentDomain.BaseDirectory, "grafana/dashboards/");
+                    var filepath = Path.Join(System.AppDomain.CurrentDomain.BaseDirectory, "grafana/dashboards/");
 
                     try
                     {
@@ -93,9 +89,9 @@ namespace OmegaGraf.Compose.MetaData
                         {
                             logger.Info("Adding Grafana dashboard from file : " + file);
 
-                            string json = File.ReadAllText(file);
+                            var json = File.ReadAllText(file);
                             g.AddDashboard(
-                                new Compose.Config.Grafana.Dashboard()
+                                new Config.Grafana.Dashboard()
                                 {
                                     DashboardData = JsonConvert.DeserializeObject(json)
                                 }).Wait();
@@ -114,7 +110,7 @@ namespace OmegaGraf.Compose.MetaData
 
                     g.Dispose();
 
-                    return Negotiate.WithMediaRangeModel(
+                    return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
                         new
                         {
@@ -139,7 +135,7 @@ namespace OmegaGraf.Compose.MetaData
                 typeof(Input<Grafana>)
             );
 
-            Describe["DeployGrafana"] =
+            this.Describe["DeployGrafana"] =
                 desc => desc.AsSwagger(
                     with => with.Operation(
                         op => op.OperationId("DeployGrafana")
@@ -161,7 +157,7 @@ namespace OmegaGraf.Compose.MetaData
                         ).Response(x => x.Description("Container UUID").Build()))
                 );
 
-            Describe["DeployGrafanaDataSource"] =
+            this.Describe["DeployGrafanaDataSource"] =
                 desc => desc.AsSwagger(
                     with => with.Operation(
                         op => op.OperationId("DeployGrafanaDataSource")
@@ -173,7 +169,7 @@ namespace OmegaGraf.Compose.MetaData
                         .Response(x => x.Description("Container UUID").Build()))
                 );
 
-            Describe["DeployGrafanaDashboard"] =
+            this.Describe["DeployGrafanaDashboard"] =
                 desc => desc.AsSwagger(
                     with => with.Operation(
                         op => op.OperationId("DeployGrafanaDashboard")

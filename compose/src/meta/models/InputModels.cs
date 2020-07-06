@@ -27,11 +27,11 @@ namespace OmegaGraf.Compose.MetaData
         public static BuildConfiguration ToBuildConfiguration(this BuildConfigurationInput input, string image) =>
             new BuildConfiguration()
             {
-                Name = input.Name,
-                Image = image,
-                Tag = input.Tag,
-                Ports = input.Ports,
-                Binds = input.Binds,
+                Name       = input.Name,
+                Image      = image,
+                Tag        = input.Tag,
+                Ports      = input.Ports,
+                Binds      = input.Binds,
                 Parameters = input.Parameters
             };
     }
