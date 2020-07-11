@@ -72,4 +72,4 @@ The Telegraf plugin is configured to gather metrics at intervals of 1 and 5 minu
 
 ## Enjoy
 
-After the aformentioned panel is green, you can start using the dashboards we have added for you. Feel free to remove the OmegaGraf binary.
+After the aforementioned panel is green, you can start using the dashboards we have added for you. Feel free to remove the OmegaGraf binary.

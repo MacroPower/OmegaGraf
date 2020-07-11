@@ -2,7 +2,7 @@
 
 ## Deployed State
 
-```
+```text
               +-------------------------OmegaGraf Host--------------------------+  +--------+
               |                                                         +-------+--+        ++
               |    #---------------------Host Network-------------------+--#    |  |        ||
@@ -27,9 +27,9 @@
 
 ## File Layout
 
-OmegaGraf packages all parts of the application in the dotnet release. This emphasises the "portable" nature of our application.
+OmegaGraf packages all parts of the application in the dotnet release. This emphasizes the "portable" nature of our application.
 
-```
+```text
 +--------------------+ +----------------+ +----------------------------+
 |                    | |                | |          API (/)           |
 |                    | |                | +----------------------------+
@@ -53,7 +53,6 @@ OmegaGraf packages all parts of the application in the dotnet release. This emph
 +--------------------+ +----------------+  ----------------------------
 ```
 
-
 ## Input Handling
 
 OmegaGraf removes control over sensitive aspects of configuration from the user.
@@ -64,7 +63,7 @@ OmegaGraf's general convention is to take data from the host (via environment or
 
 For all inputs, inbound data is also bound to a model. On an as-needed basis, data is merged from the aforementioned models. Merged data will be placed into a new model, or passed as parameters depending on context.
 
-```
+```text
              +----------------OmegaGraf----------------+
 +----------+ | +----------+  +---------+  +----------+ | +---------+
 |          | | |          |  |         |  |          | | |         |
@@ -81,7 +80,7 @@ For all inputs, inbound data is also bound to a model. On an as-needed basis, da
 
 A simplified example can be observed in the following diagram.
 
-```
+```text
              +----------------OmegaGraf----------------+
 +----------+ | +----------+  +---------+  +----------+ | +---------+
 |          | | |          |  |         |  |          | | |         |
@@ -100,7 +99,7 @@ A simplified example can be observed in the following diagram.
 
 Requests will use one or more input pipelines (see above) for a container deployment.
 
-```
+```text
               +---------------------+
               |         API         |
               +---------------------+
