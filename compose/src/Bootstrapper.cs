@@ -17,7 +17,7 @@ namespace ShopAutomation.API
     {
         public override void Configure(INancyEnvironment environment)
         {
-            var enabled = Globals.Development;
+            var enabled = Globals.Config.Development;
             var key = Guid.NewGuid().ToString().Replace("-", null);
 
             if (enabled)
@@ -47,7 +47,7 @@ namespace ShopAutomation.API
 
             SwaggerMetadataProvider.SetInfo(
                 title: "OmegaGraf",
-                version: Globals.Version,
+                version: Globals.Config.Version,
                 desc: "OmegaGraf-Compose",
                 contact: new Contact()
                 {

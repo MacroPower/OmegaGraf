@@ -13,9 +13,9 @@ namespace OmegaGraf.Compose
         static void Main(string[] args)
         {
             var versionFile = Path.Join(AppDomain.CurrentDomain.BaseDirectory, "VERSION");
-            Globals.Version = File.ReadAllText(versionFile);
+            Globals.Config.Version = File.ReadAllText(versionFile);
 
-            var version = "OmegaGraf Version: v" + Globals.Version;
+            var version = "OmegaGraf Version: v" + Globals.Config.Version;
 
             logger.Info("Starting up! " + version);
             Console.WriteLine(Figgle.FiggleFonts.Standard.Render("OmegaGraf"));
@@ -66,7 +66,7 @@ namespace OmegaGraf.Compose
 
                 if (parsed.Dev)
                 {
-                    Globals.Development = true;
+                    Globals.Config.Development = true;
                 }
 
                 var urls =

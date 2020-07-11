@@ -14,11 +14,13 @@ namespace OmegaGraf.Compose.MetaData
             this.Get(
                 "/auth", args =>
                 {
+                    var authenticated = KeyDatabase.ValidateKey(this.Request.Headers.Authorization);
+
                     return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
                         new
                         {
-                            Authenticated = KeyDatabase.ValidateKey(this.Request.Headers.Authorization)
+                            Authenticated = authenticated
                         }
                     );
                 }, null, "Auth"
@@ -29,13 +31,11 @@ namespace OmegaGraf.Compose.MetaData
                 {
                     this.RequiresAuthentication();
 
+                    var globals = Globals.Clone();
+
                     return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),
-                        new
-                        {
-                            Globals.Version,
-                            Authenticated = true
-                        }
+                        globals
                     );
                 }, null, "Info"
             );

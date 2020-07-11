@@ -13,6 +13,7 @@ namespace OmegaGraf.Compose.MetaData
 {
     public class DefaultSettings
     {
+        public GlobalConfig Config { get; set; }
         public Input<Prometheus> Prometheus { get; set; }
         public Input<Telegraf> Telegraf { get; set; }
         public Input Grafana { get; set; }
@@ -34,6 +35,7 @@ namespace OmegaGraf.Compose.MetaData
 
                     var defaults = new DefaultSettings()
                     {
+                        Config     = Globals.Clone(),
                         Prometheus = Defaults.Prometheus,
                         Telegraf   = Defaults.Telegraf,
                         Grafana    = Defaults.Grafana,
