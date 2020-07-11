@@ -1,19 +1,21 @@
 {
   "cSpell.words": [
     "Figgle",
+    "Jsonnet",
+    "blinky",
     "flurl",
+    "graffonetlibs",
+    "hsep",
     "ipam",
     "nett",
     "npipe",
     "omnisharp",
     "owin",
-    "tsdb",
-    "vcenter",
     "scroller",
+    "tsdb",
     "unmount",
-    "vcsim",
-    "hsep",
-    "blinky"
+    "vcenter",
+    "vcsim"
   ],
   "cSpell.allowCompoundWords": true,
   "omnisharp.enableRoslynAnalyzers": true,
@@ -26,5 +28,6 @@
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
   "prettier.jsxSingleQuote": false,
-  "prettier.useEditorConfig": false
+  "prettier.useEditorConfig": false,
+  "omnisharp.enableEditorConfigSupport": true
 }

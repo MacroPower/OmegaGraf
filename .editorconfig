@@ -47,6 +47,10 @@ dotnet_diagnostic.IDE0055.severity = warning
 # IDE0063: 'using' statement can be simplified
 dotnet_diagnostic.IDE0063.severity = none
 
+# IDE0037: Member name can be simplified
+dotnet_diagnostic.IDE0037.severity = none
+dotnet_diagnostic.IDE0037WithoutSuggestion.severity = none
+
 # Do not sort using and Import directives
 dotnet_sort_system_directives_first = false
 dotnet_separate_import_directive_groups = false
