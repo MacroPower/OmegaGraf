@@ -11,7 +11,7 @@ import Logo from './data/Logo';
 
 export default function App() {
   const [globalState, globalActions] = UseGlobalSession();
-  const globalSettingsActions = UseGlobalSettings()[1];
+  const [globalSettings, globalSettingsActions] = UseGlobalSettings();
 
   useEffect(() => {
     const session = getSessionCookie();
@@ -22,17 +22,17 @@ export default function App() {
       fetch(session.endpoint + '/auth', {
         method: 'GET',
         headers: {
-          Authorization: '' + session.apiKey
-        }
+          Authorization: '' + session.apiKey,
+        },
       })
-        .then(r => {
+        .then((r) => {
           if (r.ok !== true) {
             throw new Error('API returned status ' + r.status.toString());
           }
           return r;
         })
-        .then(r => r.json())
-        .then(r => {
+        .then((r) => r.json())
+        .then((r) => {
           if (r.Authenticated) {
             return r;
           } else {
@@ -53,7 +53,7 @@ export default function App() {
 
           globalActions.setSession({
             endpoint: undefined,
-            apiKey: undefined
+            apiKey: undefined,
           });
         });
     }
@@ -79,7 +79,7 @@ export default function App() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <HeaderNav session={globalState} />
+          <HeaderNav session={globalState} settings={globalSettings} />
         </Navbar.Collapse>
       </Navbar>
 

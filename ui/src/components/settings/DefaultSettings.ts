@@ -6,12 +6,23 @@ const defaultBuildConfiguration = {
     Tag: '',
     Ports: { 0: 0 },
     Binds: {},
-    Parameters: []
-  }
-}
-
+    Parameters: [],
+  },
+};
 
 export const defaultSettings: Settings = {
+  Config: {
+    Hostname: '',
+    Environment: {
+      Framework: '',
+      Architecture: '',
+      Description: '',
+      ProcessArchitecture: '',
+      Platform: '',
+    },
+    Version: '',
+    Development: false,
+  },
   VCSim: defaultBuildConfiguration,
   Grafana: defaultBuildConfiguration,
   Telegraf: {
@@ -30,16 +41,16 @@ export const defaultSettings: Settings = {
             FlushJitter: '',
             Precision: '',
             Hostname: '',
-            OmitHostname: false
+            OmitHostname: false,
           },
           Outputs: {
-            PrometheusClient: []
+            PrometheusClient: [],
           },
           Inputs: {
             Internal: [
               {
-                CollectMemstats: false
-              }
+                CollectMemstats: false,
+              },
             ],
             VSphere: [
               {
@@ -56,7 +67,7 @@ export const defaultSettings: Settings = {
                 DatacenterMetricExclude: [],
                 MaxQueryMetrics: 0,
                 CollectConcurrency: 0,
-                DiscoverConcurrency: 0
+                DiscoverConcurrency: 0,
               },
               {
                 VCenters: [''],
@@ -71,13 +82,13 @@ export const defaultSettings: Settings = {
                 VMMetricExclude: [],
                 MaxQueryMetrics: 0,
                 CollectConcurrency: 0,
-                DiscoverConcurrency: 0
-              }
-            ]
-          }
-        }
-      }
-    ]
+                DiscoverConcurrency: 0,
+              },
+            ],
+          },
+        },
+      },
+    ],
   },
   Prometheus: {
     ...defaultBuildConfiguration,
@@ -86,11 +97,11 @@ export const defaultSettings: Settings = {
         Path: '',
         Data: {
           Global: {
-            ScrapeInterval: ''
+            ScrapeInterval: '',
           },
-          ScrapeConfigs: []
-        }
-      }
-    ]
-  }
+          ScrapeConfigs: [],
+        },
+      },
+    ],
+  },
 };

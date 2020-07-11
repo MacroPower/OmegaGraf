@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import { Session } from './Session';
 import Routes, { RoutedLink, RouteIdentifiers } from './Routes';
+import { Settings } from './settings/Settings';
 
 function HeaderRoutedLinks(
-  session: Session
+  session: Session,
 ): {
   nav: JSX.Element[];
   login: JSX.Element[];
   logout: JSX.Element[];
 } {
   const nav = Routes.filter(
-    route => route.hidden === false && session && session.apiKey
+    (route) => route.hidden === false && session && session.apiKey,
   ).map((route, i) => (
     <RoutedLink
       key={i}
@@ -22,7 +23,7 @@ function HeaderRoutedLinks(
   ));
 
   const login = Routes.filter(
-    route => route.id === RouteIdentifiers.Login
+    (route) => route.id === RouteIdentifiers.Login,
   ).map((route, i) => (
     <RoutedLink
       key={i}
@@ -33,7 +34,7 @@ function HeaderRoutedLinks(
   ));
 
   const logout = Routes.filter(
-    route => route.id === RouteIdentifiers.Logout
+    (route) => route.id === RouteIdentifiers.Logout,
   ).map((route, i) => (
     <RoutedLink
       key={i}
@@ -46,26 +47,25 @@ function HeaderRoutedLinks(
   return { nav, login, logout };
 }
 
-export default class HeaderNav extends Component<{
+export default function HeaderNav(props: {
   session: Session;
-}> {
-  render() {
-    const { nav, login, logout } = HeaderRoutedLinks(this.props.session);
+  settings: Settings;
+}) {
+  const { nav, login, logout } = HeaderRoutedLinks(props.session);
 
-    return this.props.session.apiKey ? (
-      <>
-        <Nav className="mr-auto">{nav}</Nav>
-        <Nav>
-          <p className="p-2 m-0 text-light">
-            Logged in as: <b>{this.props.session.apiKey}</b>
-          </p>
-          {logout}
-        </Nav>
-      </>
-    ) : (
-      <>
-        <Nav className="mr-auto">{login}</Nav>
-      </>
-    );
-  }
+  return props.session.apiKey ? (
+    <>
+      <Nav className="mr-auto">{nav}</Nav>
+      <Nav>
+        <p className="p-2 m-0 text-light">
+          Connected to: <b>{props.settings.Config.Hostname}</b>
+        </p>
+        {logout}
+      </Nav>
+    </>
+  ) : (
+    <>
+      <Nav className="mr-auto">{login}</Nav>
+    </>
+  );
 }

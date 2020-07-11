@@ -97,6 +97,18 @@ export type Sim = {
 };
 
 export type Settings = {
+  Config: {
+    Hostname: string;
+    Environment: {
+      Framework: string;
+      Architecture: string;
+      Description: string;
+      ProcessArchitecture: string;
+      Platform: string;
+    };
+    Version: string;
+    Development: boolean;
+  };
   VCSim: {
     BuildInput: BuildInput;
   };
@@ -106,7 +118,7 @@ export type Settings = {
       {
         Path: string;
         Data: TelegrafConfig;
-      }
+      },
     ];
   };
   Prometheus: {
@@ -115,7 +127,7 @@ export type Settings = {
       {
         Path: string;
         Data: PrometheusConfig;
-      }
+      },
     ];
   };
   Grafana: {
