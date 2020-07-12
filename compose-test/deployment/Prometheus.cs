@@ -6,7 +6,7 @@ namespace OmegaGraf.Compose.Tests.Builder
 {
     [TestFixture]
     [Category("Deployment")]
-    public class Prometheus : DeployTests
+    public class Prometheus
     {
         [Test]
         public void Deploy()

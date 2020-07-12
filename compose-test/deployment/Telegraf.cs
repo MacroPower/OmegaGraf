@@ -8,7 +8,7 @@ namespace OmegaGraf.Compose.Tests.Builder
 {
     [TestFixture]
     [Category("Deployment")]
-    public class Telegraf : DeployTests
+    public class Telegraf
     {
         [OneTimeSetUp]
         public void DeployVCSim()

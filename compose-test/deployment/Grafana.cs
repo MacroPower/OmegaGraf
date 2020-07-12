@@ -13,7 +13,7 @@ namespace OmegaGraf.Compose.Tests.Builder
 {
     [TestFixture, NonParallelizable]
     [Category("Deployment")]
-    public class Grafana : DeployTests
+    public class Grafana
     {
         private static readonly int port = Defaults.Grafana.BuildInput.Ports.First().Key;
         private static async Task<bool> IsOnline()

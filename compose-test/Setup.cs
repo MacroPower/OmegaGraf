@@ -1,17 +1,26 @@
+using System;
+using System.IO;
 using NUnit.Framework;
 using OmegaGraf.Compose.MetaData;
 
 namespace OmegaGraf.Compose.Tests.Builder
 {
-    [TestFixture]
+    [SetUpFixture]
     public class DeployTests
     {
         [OneTimeSetUp]
         public void Init()
         {
-            SystemData.SetRoot("/docker");
+            var tempName = "OmegaGraf-" + Guid.NewGuid().ToString();
+            var tempDirectory = Path.Combine(Path.GetTempPath(), tempName);
+            Directory.CreateDirectory(tempDirectory);
+
+            SystemData.SetRoot(tempDirectory);
 
             var docker = new Docker();
+
+            docker.RemoveAllContainers().Wait();
+
             var network = docker.CreateNetwork().Result;
 
             if (network == null)
