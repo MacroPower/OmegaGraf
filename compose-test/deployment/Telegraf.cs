@@ -10,18 +10,26 @@ namespace OmegaGraf.Compose.Tests.Builder
     [Category("Deployment")]
     public class Telegraf
     {
+        private const string Image = "telegraf";
+
         [OneTimeSetUp]
         public void DeployVCSim()
         {
             var docker = new Docker();
-            var sims = docker.ListContainers().Result;
+            var containers = docker.ListContainers().Result;
 
-            foreach (var sim in sims)
+            foreach (var container in containers)
             {
-                if (sim.Image == "macropower/vcsim:latest")
+                if (container.Image == "macropower/vcsim:latest")
                 {
-                    docker.StopContainer(sim.ID).Wait();
-                    docker.RemoveContainer(sim.ID).Wait();
+                    docker.StopContainer(container.ID).Wait();
+                    docker.RemoveContainer(container.ID).Wait();
+                }
+
+                if (container.Image.Contains(Image))
+                {
+                    docker.StopContainer(container.ID).Wait();
+                    docker.RemoveContainer(container.ID).Wait();
                 }
             }
 
@@ -61,7 +69,8 @@ namespace OmegaGraf.Compose.Tests.Builder
 
             var config = Defaults.Telegraf.Config[0];
 
-            var bc = Defaults.Telegraf.BuildInput.ToBuildConfiguration("telegraf");
+            var bc = Defaults.Telegraf.BuildInput
+                .ToBuildConfiguration(Image);
 
             var uuid = runner.AddTomlConfig(x => x.LowerCase, config).Build(bc);
 

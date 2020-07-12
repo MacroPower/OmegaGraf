@@ -25,8 +25,6 @@ namespace OmegaGraf.Compose.Tests.Builder
 
             var docker = new Docker();
 
-            docker.RemoveAllContainers().Wait();
-
             var network = docker.CreateNetwork().Result;
 
             if (network == null)

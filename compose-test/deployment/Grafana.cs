@@ -15,6 +15,7 @@ namespace OmegaGraf.Compose.Tests.Builder
     [Category("Deployment")]
     public class Grafana
     {
+        private const string Image = "grafana/grafana";
         private static readonly int port = Defaults.Grafana.BuildInput.Ports.First().Key;
         private static async Task<bool> IsOnline()
         {
@@ -30,12 +31,28 @@ namespace OmegaGraf.Compose.Tests.Builder
             }
         }
 
+        [OneTimeSetUp]
+        public void Cleanup()
+        {
+            var docker = new Docker();
+            var containers = docker.ListContainers().Result;
+
+            foreach (var container in containers)
+            {
+                if (container.Image.Contains(Image))
+                {
+                    docker.StopContainer(container.ID).Wait();
+                    docker.RemoveContainer(container.ID).Wait();
+                }
+            }
+        }
+
         [Test, Order(1)]
         public void Deploy()
         {
             var runner = new Runner();
 
-            var bc = Defaults.Grafana.BuildInput.ToBuildConfiguration("grafana/grafana");
+            var bc = Defaults.Grafana.BuildInput.ToBuildConfiguration(Image);
 
             var uuid = runner.Build(bc);
 
