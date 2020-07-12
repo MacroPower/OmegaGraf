@@ -1,11 +1,12 @@
-using Nett;
-using NLog;
-using SharpYaml.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Nett;
+using NLog;
+using SharpYaml.Serialization;
+
 using static OmegaGraf.Compose.Unix;
 
 namespace OmegaGraf.Compose.MetaData
@@ -20,7 +21,11 @@ namespace OmegaGraf.Compose.MetaData
         public Dictionary<string, string> Binds
         {
             get => this._binds;
-            set => this._binds = value.ToDictionary(d => Path.Join(SystemData.GetRoot(), d.Key), d => d.Value);
+            set => this._binds =
+                value.ToDictionary(
+                    d => Path.Join(SystemData.GetRoot(), d.Key),
+                    d => d.Value
+                );
         }
         public List<string> Parameters { get; set; }
     }
@@ -62,7 +67,7 @@ namespace OmegaGraf.Compose.MetaData
             return this;
         }
 
-        public Runner AddTomlConfig<T>(System.Func<KeyGenerators, IKeyGenerator> keyGenerator, params Config<T>[] config)
+        public Runner AddTomlConfig<T>(Func<KeyGenerators, IKeyGenerator> keyGenerator, params Config<T>[] config)
         {
             var tomlSettings = TomlSettings.Create(
                 s => s.ConfigurePropertyMapping(
@@ -73,6 +78,16 @@ namespace OmegaGraf.Compose.MetaData
                 var text = Toml.WriteString(c.Data, tomlSettings);
 
                 this._configFile.Add(c.Path, text);
+            }
+
+            return this;
+        }
+
+        public Runner AddConfig(params Config<string>[] config)
+        {
+            foreach (var c in config)
+            {
+                this._configFile.Add(c.Path, c.Data);
             }
 
             return this;

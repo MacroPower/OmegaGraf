@@ -38,7 +38,14 @@ namespace OmegaGraf.Compose.MetaData
 
                     var bc = bind.BuildInput.ToBuildConfiguration("grafana/grafana");
 
-                    var uuid = new Runner().Build(bc);
+                    var uuid = new Runner().AddConfig(
+                        // This file only exists to ensure permissions are correct.
+                        new Config<string>()
+                        {
+                            Path = Path.Join("grafana", "plugins", ".OmegaGraf"),
+                            Data = "",
+                        }
+                    ).Build(bc);
 
                     return this.Negotiate.WithMediaRangeModel(
                         new MediaRange("application/json"),

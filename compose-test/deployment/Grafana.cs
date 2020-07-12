@@ -50,11 +50,16 @@ namespace OmegaGraf.Compose.Tests.Builder
         [Test, Order(1)]
         public void Deploy()
         {
-            var runner = new Runner();
+            var bc = Defaults.Grafana.BuildInput
+                .ToBuildConfiguration(Image);
 
-            var bc = Defaults.Grafana.BuildInput.ToBuildConfiguration(Image);
-
-            var uuid = runner.Build(bc);
+            var uuid = new Runner().AddConfig(
+                new Config<string>()
+                {
+                    Path = Path.Join("grafana", "plugins", ".OmegaGraf"),
+                    Data = "",
+                }
+            ).Build(bc);
 
             TestContext.Out.WriteLine("Container: " + uuid);
             TestContext.Out.WriteLine("Port: " + port);
