@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using static OmegaGraf.Compose.Unix;
 
 namespace OmegaGraf.Compose.MetaData
 {
@@ -77,13 +78,48 @@ namespace OmegaGraf.Compose.MetaData
             return this;
         }
 
+        private void SetPermissionsRecursive(string dir)
+        {
+            chmod(dir, P0777);
+
+            foreach (var file in Directory.GetFiles(dir))
+            {
+                chmod(file, P0666);
+            }
+
+            foreach (var d in Directory.GetDirectories(dir))
+            {
+                this.SetPermissionsRecursive(d);
+            }
+        }
+
         private void WriteConfig()
         {
             foreach (var c in this._configFile)
             {
-                var path = Path.Join(SystemData.GetRoot(), c.Key);
-                Directory.CreateDirectory(path);
-                File.WriteAllText(path, c.Value);
+                if (Globals.Config.Environment.IsWindows)
+                {
+                    var path = Path.Join(SystemData.GetRoot(), c.Key);
+                    File.WriteAllText(path, c.Value);
+                }
+                else
+                {
+                    // Note: This entire block is a hack that exists due to Microsoft
+                    //       refusing to fix System.IO's consistency for over 5 years.
+                    //       This is why you don't have any friends, Microsoft.
+                    //       dotnet/runtime/issues/13946
+
+                    var root = SystemData.GetRoot();
+                    var path = Path.Join(root, c.Key);
+
+                    // Ensure that the root directory maintains the correct permissions
+                    this.SetPermissionsRecursive(root);
+
+                    // Write the file and set its permissions
+                    File.WriteAllText(path, c.Value);
+                    this.SetPermissionsRecursive(root);
+                }
+
             }
         }
 

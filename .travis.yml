@@ -29,13 +29,6 @@ install:
   - dotnet tool install --global dotnet-sonarscanner
   - sudo systemctl status docker
   - sudo usermod -aG docker $USER
-  - sudo mkdir /docker
-  - sudo chmod -R 777 /docker
-  - sudo chown -R $USER:$USER /docker
-  - sudo setfacl -Rm d:g:$USER:rwx,g:$USER:rwx /docker
-  - sudo setfacl -Rm d:u:$USER:rwx,u:$USER:rwx /docker
-  - ls -l /
-  - ls -l /docker
 
 before_script:
   - export PATH="$PATH:$HOME/.dotnet/tools"
@@ -50,7 +43,7 @@ script:
     /d:project.home=. 
     /d:sonar.coverage.exclusions=**/*MetaDataModule.cs,**/Bootstrapper.cs,**/HomeModule.cs,**/Startup.cs,**/Program.cs
     /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
-    /d:sonar.cs.vstest.reportsPaths=**/TestResults/*.trx 
+    /d:sonar.cs.vstest.reportsPaths=**/TestResults/*.trx
   - dotnet restore
   - cd ui
   - npm install
@@ -62,5 +55,5 @@ script:
   - docker ps -a
   - netstat -tulnp
   - for c in $(docker ps -a --format="{{.Names}}"); do docker container logs $c; done
-  - ls -l /docker
+  - ls -l /tmp
   - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
