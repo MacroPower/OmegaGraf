@@ -81,7 +81,9 @@ namespace OmegaGraf.Compose.MetaData
         {
             foreach (var c in this._configFile)
             {
-                File.WriteAllText(Path.Join(SystemData.GetRoot(), c.Key), c.Value);
+                var path = Path.Join(SystemData.GetRoot(), c.Key);
+                Directory.CreateDirectory(path);
+                File.WriteAllText(path, c.Value);
             }
         }
 
