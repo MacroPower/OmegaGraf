@@ -15,7 +15,7 @@ namespace OmegaGraf.Compose
             BuildInput = new BuildConfigurationInput()
             {
                 Name  = "prometheus",
-                Tag   = "v2.16.0",
+                Tag   = "v2.19.2",
                 Ports = new Dictionary<int, int>() { { 9090, 9090 } },
                 Binds = new Dictionary<string, string>()
                 {
@@ -87,7 +87,7 @@ namespace OmegaGraf.Compose
             BuildInput = new BuildConfigurationInput()
             {
                 Name  = "telegraf",
-                Tag   = "1.13.4",
+                Tag   = "1.14.5",
                 Ports = new Dictionary<int, int>() { { 8899, 8899 } },
                 Binds = new Dictionary<string, string>()
                 {
@@ -185,7 +185,7 @@ namespace OmegaGraf.Compose
             BuildInput = new BuildConfigurationInput()
             {
                 Name  = "grafana",
-                Tag   = "6.7.1",
+                Tag   = "7.0.6",
                 Ports = new Dictionary<int, int>() { { 3000, 3000 } },
                 Binds = new Dictionary<string, string>()
                 {
