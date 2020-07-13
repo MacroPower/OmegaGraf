@@ -1,6 +1,6 @@
-using System;
 using System.Security.Claims;
 using System.Security.Principal;
+using MlkPwgen;
 
 namespace OmegaGraf.Compose
 {
@@ -30,7 +30,9 @@ namespace OmegaGraf.Compose
 
         public static string CreateKey()
         {
-            var key = Guid.NewGuid().ToString().Replace("-", null);
+            var key = PasswordGenerator
+                .Generate(32, Sets.Alphanumerics + Sets.Symbols);
+
             activeApiKey = key;
 
             return key;
