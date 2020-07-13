@@ -4,10 +4,10 @@ using Nancy.ModelBinding;
 using Nancy.Responses.Negotiation;
 using Nancy.Security;
 using Nancy.Swagger;
-using OmegaGraf.Compose.Config.Telegraf;
+using OmegaGraf.Compose.Models.Telegraf;
 using Swagger.ObjectModel;
 
-namespace OmegaGraf.Compose.MetaData
+namespace OmegaGraf.Compose.Modules
 {
     public class TelegrafModule : NancyModule
     {

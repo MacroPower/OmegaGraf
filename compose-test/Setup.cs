@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
-using OmegaGraf.Compose.MetaData;
+
 using static OmegaGraf.Compose.Unix;
 
 namespace OmegaGraf.Compose.Tests.Builder
@@ -21,7 +21,7 @@ namespace OmegaGraf.Compose.Tests.Builder
                 chmod(tempDirectory, P0777);
             }
 
-            SystemData.SetRoot(tempDirectory);
+            AppPath.SetRoot(tempDirectory);
 
             var docker = new Docker();
 

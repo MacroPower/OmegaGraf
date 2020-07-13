@@ -46,8 +46,8 @@ namespace OmegaGraf.Compose
                     new Docker().RemoveAllContainers().Wait();
                 }
 
-                MetaData.SystemData.SetRoot(parsed.Path);
-                logger.Info("Root: " + MetaData.SystemData.GetRoot());
+                AppPath.SetRoot(parsed.Path);
+                logger.Info("Root: " + AppPath.GetRoot());
 
                 if (string.IsNullOrWhiteSpace(parsed.Key))
                 {

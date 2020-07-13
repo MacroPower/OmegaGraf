@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Nett;
 
-namespace OmegaGraf.Compose.Config.Telegraf
+namespace OmegaGraf.Compose.Models.Telegraf
 {
     /// <summary>
     /// Represents the telegraf.conf file

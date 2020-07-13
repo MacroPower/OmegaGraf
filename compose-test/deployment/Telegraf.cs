@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using NUnit.Framework;
-using OmegaGraf.Compose.MetaData;
-
 
 namespace OmegaGraf.Compose.Tests.Builder
 {

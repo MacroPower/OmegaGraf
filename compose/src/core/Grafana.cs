@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Flurl;
 using Flurl.Http;
 using NLog;
-using OmegaGraf.Compose.Config.Grafana;
+using OmegaGraf.Compose.Models.Grafana;
 using Polly;
 
 namespace OmegaGraf.Compose

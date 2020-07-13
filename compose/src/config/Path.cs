@@ -1,23 +1,22 @@
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using NLog;
 
-namespace OmegaGraf.Compose.MetaData
+namespace OmegaGraf.Compose
 {
-    public static class SystemData
+    public static class AppPath
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
         public static string GetMode()
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            if (Globals.Config.Environment.IsLinux)
             {
                 return ":rw";
             }
 
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            if (Globals.Config.Environment.IsWindows)
             {
                 return "";
             }

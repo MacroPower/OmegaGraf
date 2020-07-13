@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 using NLog;
 using Swagger.ObjectModel;
 
-namespace OmegaGraf.Compose.MetaData
+namespace OmegaGraf.Compose.Modules
 {
     public class GrafanaInput
     {
@@ -98,7 +98,7 @@ namespace OmegaGraf.Compose.MetaData
 
                             var json = File.ReadAllText(file);
                             g.AddDashboard(
-                                new Config.Grafana.Dashboard()
+                                new Models.Grafana.Dashboard()
                                 {
                                     DashboardData = JsonConvert.DeserializeObject(json)
                                 }).Wait();

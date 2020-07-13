@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using SharpYaml;
 using SharpYaml.Serialization;
 
-namespace OmegaGraf.Compose.Config.Prometheus
+namespace OmegaGraf.Compose.Models.Prometheus
 {
     /// <summary>
     /// Represents the prometheus.yaml config file

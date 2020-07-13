@@ -7,11 +7,10 @@ using Nancy.Conventions;
 using Nancy.Diagnostics;
 using Nancy.Swagger.Services;
 using Nancy.TinyIoc;
-using OmegaGraf.Compose;
 using Swagger.ObjectModel;
 using Swagger.ObjectModel.Builders;
 
-namespace ShopAutomation.API
+namespace OmegaGraf.Compose
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {

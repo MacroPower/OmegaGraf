@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace OmegaGraf.Compose.Config.Grafana
+namespace OmegaGraf.Compose.Models.Grafana
 {
     public class Token
     {

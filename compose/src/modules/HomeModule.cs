@@ -1,6 +1,6 @@
 using Nancy;
 
-namespace OmegaGraf.Compose.MetaData
+namespace OmegaGraf.Compose.Modules
 {
     public class HomeModule : NancyModule
     {

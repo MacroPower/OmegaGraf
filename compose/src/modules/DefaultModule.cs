@@ -5,11 +5,11 @@ using Nancy.Responses.Negotiation;
 using Nancy.Security;
 using Nancy.Swagger;
 using NLog;
-using OmegaGraf.Compose.Config.Prometheus;
-using OmegaGraf.Compose.Config.Telegraf;
+using OmegaGraf.Compose.Models.Prometheus;
+using OmegaGraf.Compose.Models.Telegraf;
 using Swagger.ObjectModel;
 
-namespace OmegaGraf.Compose.MetaData
+namespace OmegaGraf.Compose.Modules
 {
     public class DefaultSettings
     {

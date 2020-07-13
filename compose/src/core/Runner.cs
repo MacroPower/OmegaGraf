@@ -9,7 +9,7 @@ using SharpYaml.Serialization;
 
 using static OmegaGraf.Compose.Unix;
 
-namespace OmegaGraf.Compose.MetaData
+namespace OmegaGraf.Compose
 {
     public class BuildConfiguration
     {
@@ -23,7 +23,7 @@ namespace OmegaGraf.Compose.MetaData
             get => this._binds;
             set => this._binds =
                 value.ToDictionary(
-                    d => Path.Join(SystemData.GetRoot(), d.Key),
+                    d => Path.Join(AppPath.GetRoot(), d.Key),
                     d => d.Value
                 );
         }
@@ -114,7 +114,7 @@ namespace OmegaGraf.Compose.MetaData
             {
                 if (Globals.Config.Environment.IsWindows)
                 {
-                    var path = Path.Join(SystemData.GetRoot(), c.Key);
+                    var path = Path.Join(AppPath.GetRoot(), c.Key);
                     File.WriteAllText(path, c.Value);
                 }
                 else
@@ -124,7 +124,7 @@ namespace OmegaGraf.Compose.MetaData
                     //       This is why you don't have any friends, Microsoft.
                     //       dotnet/runtime/issues/13946
 
-                    var root = SystemData.GetRoot();
+                    var root = AppPath.GetRoot();
                     var path = Path.Join(root, c.Key);
 
                     // Ensure that the root directory maintains the correct permissions

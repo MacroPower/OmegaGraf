@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace OmegaGraf.Compose.MetaData
+namespace OmegaGraf.Compose
 {
     public class Input<T>
     {

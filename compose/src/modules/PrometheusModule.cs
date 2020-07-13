@@ -4,10 +4,10 @@ using Nancy.ModelBinding;
 using Nancy.Responses.Negotiation;
 using Nancy.Security;
 using Nancy.Swagger;
-using OmegaGraf.Compose.Config.Prometheus;
+using OmegaGraf.Compose.Models.Prometheus;
 using Swagger.ObjectModel;
 
-namespace OmegaGraf.Compose.MetaData
+namespace OmegaGraf.Compose.Modules
 {
     public class PrometheusModule : NancyModule
     {

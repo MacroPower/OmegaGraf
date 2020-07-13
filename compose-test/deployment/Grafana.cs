@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 using Flurl.Http;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using OmegaGraf.Compose.Config.Grafana;
-using OmegaGraf.Compose.MetaData;
-
+using OmegaGraf.Compose.Models.Grafana;
 
 namespace OmegaGraf.Compose.Tests.Builder
 {
@@ -63,7 +61,7 @@ namespace OmegaGraf.Compose.Tests.Builder
 
             TestContext.Out.WriteLine("Container: " + uuid);
             TestContext.Out.WriteLine("Port: " + port);
-            TestContext.Out.WriteLine("Mode: " + SystemData.GetMode());
+            TestContext.Out.WriteLine("Mode: " + AppPath.GetMode());
 
             var wait = Is.True.After(30000, 2000);
 

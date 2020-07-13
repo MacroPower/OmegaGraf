@@ -5,7 +5,7 @@ using Nancy.Security;
 using Nancy.Swagger;
 using Swagger.ObjectModel;
 
-namespace OmegaGraf.Compose.MetaData
+namespace OmegaGraf.Compose.Modules
 {
     public class InfoModule : NancyModule
     {
