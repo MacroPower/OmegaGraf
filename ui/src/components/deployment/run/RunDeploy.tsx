@@ -286,7 +286,7 @@ export default function RunDeploy() {
             <Results
               app="Grafana"
               url={'http://' + (window.location.hostname || '+')}
-              path="/d/BZOvRNrZz/welcome?orgId=1"
+              path="/d/BZOvRNrZz/welcome?orgId=1&refresh=5s"
               port={grafanaPort ? grafanaPort.valueOf().toString() : '0'}
               message="Login with admin/admin"
             />
