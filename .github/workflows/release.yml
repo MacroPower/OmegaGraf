@@ -1,0 +1,18 @@
+name: Release
+
+on:
+  release:
+  schedule:
+    - cron: "0 12 * * *"
+
+jobs:
+  test-installer:
+    name: Test release on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
+
+    steps:
+      - name: Run the installer
+        run: bash <(curl -s https://raw.githubusercontent.com/OmegaGraf/OmegaGraf/master/install/debian-amd64.sh)
