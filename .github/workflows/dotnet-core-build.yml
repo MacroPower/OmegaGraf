@@ -1,0 +1,58 @@
+name: .NET Core
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 3.1.101
+
+      - name: Install Dependencies
+        run: |
+          RELEASE_ID=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
+          curl -fsSL "https://download.docker.com/linux/$RELEASE_ID/gpg" | sudo apt-key add -
+          RELEASE_CODE=$(lsb_release -cs)
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$RELEASE_ID $RELEASE_CODE stable"
+          apt-cache policy docker-ce
+          sudo apt-get update
+          sudo apt-get install docker-ce
+
+      - name: Install SonarScanner
+        run: dotnet tool install --global dotnet-sonarscanner
+
+      - name: SonarCloud Scan
+        run: dotnet sonarscanner begin
+          /key:OmegaGraf_compose
+          /d:sonar.host.url="https://sonarcloud.io"
+          /d:sonar.login="$SONAR_TOKEN"
+          /o:omegagraf
+          /n:"OmegaGraf Compose"
+          /d:project.home=.
+          /d:sonar.coverage.exclusions=**/models/*.cs,**/modules/*.cs,**/config/*.cs,**/*Configuration.cs,**/*Module.cs,**/Program.cs,**/Defaults.cs,**/Init.cs,**/Bootstrapper.cs,**/Startup.cs
+          /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
+          /d:sonar.cs.vstest.reportsPaths=**/TestResults/*.trx
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Test
+        run: dotnet test --logger:trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+
+      - name: SonarCloud Scan Finish
+        run: dotnet sonarscanner end
+          /d:sonar.login="$SONAR_TOKEN"
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
