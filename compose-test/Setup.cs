@@ -16,10 +16,7 @@ namespace OmegaGraf.Compose.Tests.Builder
             var tempDirectory = Path.Combine(Path.GetTempPath(), tempName);
             Directory.CreateDirectory(tempDirectory);
 
-            if (!Globals.Config.Environment.IsWindows)
-            {
-                chmod(tempDirectory, P0777);
-            }
+            Chmod(tempDirectory, P0777);
 
             AppPath.SetRoot(tempDirectory);
 

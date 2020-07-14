@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Nett;
 using NLog;
@@ -74,48 +73,19 @@ namespace OmegaGraf.Compose
             return this;
         }
 
-        private void SetPermissionsRecursive(string dir)
-        {
-            chmod(dir, P0777);
-
-            foreach (var file in Directory.GetFiles(dir))
-            {
-                chmod(file, P0666);
-            }
-
-            foreach (var d in Directory.GetDirectories(dir))
-            {
-                this.SetPermissionsRecursive(d);
-            }
-        }
-
         private void WriteConfig()
         {
             foreach (var c in this._configFile)
             {
-                if (Globals.Config.Environment.IsWindows)
-                {
-                    var path = Path.Join(AppPath.GetRoot(), c.Key);
-                    File.WriteAllText(path, c.Value);
-                }
-                else
-                {
-                    // Note: This entire block is a hack that exists due to Microsoft
-                    //       refusing to fix System.IO's consistency for over 5 years.
-                    //       This is why you don't have any friends, Microsoft.
-                    //       dotnet/runtime/issues/13946
+                var root = AppPath.GetRoot();
+                var path = Path.Join(root, c.Key);
 
-                    var root = AppPath.GetRoot();
-                    var path = Path.Join(root, c.Key);
+                // Ensure that the root directory maintains the correct permissions
+                ChmodRecursive(root, P0777, P0666);
 
-                    // Ensure that the root directory maintains the correct permissions
-                    this.SetPermissionsRecursive(root);
-
-                    // Write the file and set its permissions
-                    File.WriteAllText(path, c.Value);
-                    this.SetPermissionsRecursive(root);
-                }
-
+                // Write the file and set its permissions
+                File.WriteAllText(path, c.Value);
+                ChmodRecursive(root, P0777, P0666);
             }
         }
 

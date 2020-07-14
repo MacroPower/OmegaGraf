@@ -1,3 +1,4 @@
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace OmegaGraf.Compose
@@ -5,7 +6,35 @@ namespace OmegaGraf.Compose
     public static class Unix
     {
         [DllImport("libc", SetLastError = true)]
-        public static extern int chmod(string pathname, int mode);
+        private static extern int chmod(string pathname, int mode);
+
+        public static void Chmod(string pathname, int mode)
+        {
+            if (!Globals.Config.Environment.IsWindows)
+            {
+                _=chmod(pathname, mode);
+            }
+        }
+
+        public static void ChmodRecursive(string dir, int directoryMode, int? fileMode = null)
+        {
+            if (!Globals.Config.Environment.IsWindows)
+            {
+                fileMode ??= directoryMode;
+
+                Chmod(dir, directoryMode);
+
+                foreach (var file in Directory.GetFiles(dir))
+                {
+                    Chmod(file, (int)fileMode);
+                }
+
+                foreach (var d in Directory.GetDirectories(dir))
+                {
+                    ChmodRecursive(d, directoryMode, fileMode);
+                }
+            }
+        }
 
         public const int OwnerR = 0x100;
         public const int OwnerW = 0x80;
