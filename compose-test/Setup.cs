@@ -20,6 +20,8 @@ namespace OmegaGraf.Compose.Tests.Builder
 
             AppPath.SetRoot(tempDirectory);
 
+            Globals.Config.Overwrite = true;
+
             var docker = new Docker();
 
             var network = docker.CreateNetwork().Result;

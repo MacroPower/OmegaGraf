@@ -177,8 +177,9 @@ namespace OmegaGraf.Compose
             {
                 if (ex.StatusCode.ToString() == "Conflict")
                 {
-                    logger.Error(ex, "It looks like you already have a deployment! " +
-                                     "If you want to redeploy OmegaGraf, please start the application with --reset");
+                    logger.Error(ex, "It looks like you already have a deployment!"
+                                   + " If you want to redeploy OmegaGraf, please"
+                                   + " start the application with --overwrite or --reset");
                 }
                 else
                 {
@@ -226,6 +227,22 @@ namespace OmegaGraf.Compose
                         Force         = false
                     }
                 );
+
+        public async Task RemoveContainers(string name)
+        {
+            var containers = await this.ListContainers();
+
+            foreach (var container in containers)
+            {
+                if (container.Names.Contains('/' + name))
+                {
+                    logger.Info("Removing " + name + ", " + container.ID);
+
+                    await this.StopContainer(container.ID);
+                    await this.RemoveContainer(container.ID);
+                }
+            }
+        }
 
         public Task RemoveAllContainers()
         {

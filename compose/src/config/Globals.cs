@@ -26,8 +26,9 @@ namespace OmegaGraf.Compose
     {
         public string Hostname { get; set; } = System.Net.Dns.GetHostName();
         public Runtime Environment { get; set; } = new Runtime();
-        public string Version { get; set; }
-        public bool Development { get; set; }
+        public string Version { get; set; } = "Unknown";
+        public bool Development { get; set; } = false;
+        public bool Overwrite { get; set; } = false;
     }
 
     public static class Globals
@@ -39,7 +40,8 @@ namespace OmegaGraf.Compose
             Hostname    = Config.Hostname,
             Environment = Config.Environment,
             Version     = Config.Version,
-            Development = Config.Development
+            Development = Config.Development,
+            Overwrite   = Config.Overwrite,
         };
     }
 }

@@ -64,6 +64,11 @@ namespace OmegaGraf.Compose
                     Docker.SetDockerURI(parsed.Socket);
                 }
 
+                if (parsed.Overwrite)
+                {
+                    Globals.Config.Overwrite = true;
+                }
+
                 if (parsed.Dev)
                 {
                     Globals.Config.Development = true;

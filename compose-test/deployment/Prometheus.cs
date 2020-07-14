@@ -10,20 +10,7 @@ namespace OmegaGraf.Compose.Tests.Builder
         private const string Image = "prom/prometheus";
 
         [OneTimeSetUp]
-        public void Cleanup()
-        {
-            var docker = new Docker();
-            var containers = docker.ListContainers().Result;
-
-            foreach (var container in containers)
-            {
-                if (container.Image.Contains(Image))
-                {
-                    docker.StopContainer(container.ID).Wait();
-                    docker.RemoveContainer(container.ID).Wait();
-                }
-            }
-        }
+        public void Cleanup() => new Docker().RemoveContainers("og-prometheus").Wait();
 
         [Test]
         public void Deploy()

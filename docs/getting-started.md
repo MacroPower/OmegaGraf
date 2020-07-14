@@ -6,7 +6,7 @@ OmegaGraf is a portable binary. However, your system will need to have a few pac
 
 OmegaGraf is supported on Windows and Linux. Our testing is done using Xenial, but other distributions should work just fine. We do not currently support MacOS, but if you're up for working with the C# Docker package on MacOS, feel free to give it a try!
 
-**OmegaGraf currently uses the current *working directory* to store container data.** Please keep this in mind. If you want to change this behavior, you can supply the `--path` argument along with an absolute or relative path to store data.
+**OmegaGraf currently uses the current _working directory_ to store container data.** Please keep this in mind. If you want to change this behavior, you can supply the `--path` argument along with an absolute or relative path to store data.
 
 ### Automatic
 
@@ -33,11 +33,11 @@ For a more detailed walkthrough with screenshots, take a look at [our walkthroug
 
 ## Advanced Usage
 
-OmegaGraf has several parameters designed for more advanced users. 
+OmegaGraf has several parameters designed for more advanced users.
 
 ### Reconfigure & Redeploy
 
-To make changes to any container created by OmegaGraf, you can run with the `--reset` switch. This will remove the containers, but will not delete any data (e.g. time series data, custom dashboards/datasources). You may then re-run the deployment process without issue. Note that currently, we cannot configure Grafana if you have changed the default password. A fix for this is coming soon.
+To make changes to any container created by OmegaGraf, you can run with the `--reset` or `--overwrite` switch. `--reset` will remove all OmegaGraf containers at start, `--overwrite` will remove containers as you redeploy them. Neither switch will delete any data (e.g. time series data, custom dashboards/datasources). If you set either one of these switches you should be able to re-run the deployment process without issue. Note that currently, we cannot always reconfigure Grafana depending on your environment, so you may receive an error (this can be safely ignored).
 
 ### Development Mode
 

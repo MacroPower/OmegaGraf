@@ -30,20 +30,7 @@ namespace OmegaGraf.Compose.Tests.Builder
         }
 
         [OneTimeSetUp]
-        public void Cleanup()
-        {
-            var docker = new Docker();
-            var containers = docker.ListContainers().Result;
-
-            foreach (var container in containers)
-            {
-                if (container.Image.Contains(Image))
-                {
-                    docker.StopContainer(container.ID).Wait();
-                    docker.RemoveContainer(container.ID).Wait();
-                }
-            }
-        }
+        public void Cleanup() => new Docker().RemoveContainers("og-grafana").Wait();
 
         [Test, Order(1)]
         public void Deploy()

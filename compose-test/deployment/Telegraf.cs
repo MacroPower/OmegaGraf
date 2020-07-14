@@ -14,22 +14,10 @@ namespace OmegaGraf.Compose.Tests.Builder
         public void DeployVCSim()
         {
             var docker = new Docker();
-            var containers = docker.ListContainers().Result;
 
-            foreach (var container in containers)
-            {
-                if (container.Image == "macropower/vcsim:latest")
-                {
-                    docker.StopContainer(container.ID).Wait();
-                    docker.RemoveContainer(container.ID).Wait();
-                }
-
-                if (container.Image.Contains(Image))
-                {
-                    docker.StopContainer(container.ID).Wait();
-                    docker.RemoveContainer(container.ID).Wait();
-                }
-            }
+            docker.RemoveContainers("og-vcsim").Wait();
+            docker.RemoveContainers("og-vcsim2").Wait();
+            docker.RemoveContainers("og-telegraf").Wait();
 
             var vcConfig = new BuildConfiguration()
             {
