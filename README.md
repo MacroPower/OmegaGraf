@@ -1,8 +1,9 @@
+<!-- markdownlint-disable -->
 <p align="center">
   <a href="#"><img src="docs/branding/logo/dist/logo_name_g_1024.png" width="256px" height="256px" /></a>
 </p>
 
-<h2 align="center">Rapid, UI-driven vCenter Monitoring Deployment</h2>
+<h2 align="center">Fast & Easy vCenter Monitoring Deployment</h2>
 
 <p align="center">
   <a href="https://travis-ci.com/OmegaGraf/OmegaGraf"><img alt="Build Status" src="https://travis-ci.com/OmegaGraf/OmegaGraf.svg?branch=master"></a>
@@ -13,27 +14,34 @@
   <a href="#"><img alt="License" src="https://img.shields.io/github/license/OmegaGraf/OmegaGraf"></a>
 </p>
 
-OmegaGraf is a **vCenter monitoring deployment solution** that is incredibly light, lightning fast, and dead simple. Through a web interface, users may configure and deploy an entirely open-source and containerized software stack.
+_OmegaGraf_ is a fast and simple **vCenter monitoring deployment solution**.
+It automatically composes Telegraf, Prometheus, and Grafana containers
+to your specifications. Once you're done, you can delete _OmegaGraf_ and keep
+your vCenter monitoring running via your management tooling of choice.
 
-## Expo
+When started, _OmegaGraf_ runs a **simple web-interface** that can be used to
+orchistrate deployments. Just run the binary, visit the _OmegaGraf_ homepage,
+and start a deployment. Monitoring can be up and running in under 5 minutes.
+The amount of configuration required on your part can be as little as providing
+a readonly account!
 
-<a href="https://cech.uc.edu/soitexpo.html">
-  <img src="https://cech.uc.edu/soitexpo/expo-agenda/_jcr_content/main/textimage_273720174/image.img.png/1566481041698.png" width="256px">
-</a>
-
-OmegaGraf will be showcased in UC's [IT Expo](https://cech.uc.edu/soitexpo.html), April 14, 2020.
+Alternatively, _OmegaGraf_ can be controlled via its API, so more technical
+users can **store and version configuration**. Simply re-run _OmegaGraf_ and
+supply your old or updated JSON data.
 
 ## Getting Started
 
+<!-- markdownlint-enable -->
+
 - **[Getting Started](docs/getting-started.md)**
-- [Walkthrough](docs/walkthrough.md)
+- [Walkthrough (with Screenshots)](docs/walkthrough.md)
 - [API](docs/api.md)
-- [Design](docs/architecture.md)
+- [Architecture](docs/architecture.md)
 
 ## Features
 
 - Deploys a Telegraf, Prometheus and Grafana stack in just minutes.
-- Simple [React user interface](ui) to manage configuration and deployment.
+- Simple [React Web UI](ui) to manage configuration and deployment.
 - Suite of arguments and options to customize behavior.
 - Deserializes and actions on configuration as JSON data.
 - API documented via the OpenAPI Specification.
@@ -43,23 +51,25 @@ OmegaGraf will be showcased in UC's [IT Expo](https://cech.uc.edu/soitexpo.html)
 
 ## Philosophy
 
-- OmegaGraf should only serve as a way to configure and deploy other products.
-  - OmegaGraf should make no unsupported changes to any products in the stack.
-  - OmegaGraf should support upgrading each individual container at-will, e.g. via Watchtower.
-  - While other solutions fall behind on patches, OmegaGraf's deployments should always be up-to-date.
-- OmegaGraf should run only during the deployment phase, and should take no actions in any other circumstance.
-  - Users should feel free to `rm OmegaGraf` after deploying.
-- While the UI is a core tenant, users should always have the option to deploy with OmegaGraf using code.
+- _OmegaGraf_ should only serve as a way to configure and deploy other products.
+  - _OmegaGraf_ should make no unsupported changes to any products in the stack.
+  - _OmegaGraf_ should support upgrading each individual container at-will, e.g. via Watchtower.
+  - While other solutions fall behind on patches, _OmegaGraf_'s deployments should always be up-to-date.
+- _OmegaGraf_ should run only during the deployment phase, and should take no actions in any other circumstance.
+  - Users should feel free to remove all _OmegaGraf_ binaries after deploying.
+- While the UI is a core tenant, _OmegaGraf_ should always have a feature-complete and documented API.
 
 ## Credits
 
-OmegaGraf uses the following technologies:
+_OmegaGraf_ uses the following technologies:
 
 <p align="left">
   <img src="docs/branding/graphs/dist/tech_1440.png" width="400px">
 </p>
 
-With assets from [Font Awesome](https://fontawesome.com/), [Proxima Nova](https://www.marksimonson.com/fonts/view/proxima-nova), and [Bootstrap](https://getbootstrap.com/) via [React Bootstrap](https://react-bootstrap.github.io/).
+With assets from [Font Awesome](https://fontawesome.com/),
+[Proxima Nova](https://www.marksimonson.com/fonts/view/proxima-nova), and
+[Bootstrap](https://getbootstrap.com/) via [React Bootstrap](https://react-bootstrap.github.io/).
 
 View all our dependencies on [libraries.io](https://libraries.io/github/OmegaGraf/OmegaGraf).
 
@@ -67,7 +77,7 @@ View all our dependencies on [libraries.io](https://libraries.io/github/OmegaGra
 
 Check out the [Contributing Guide](CONTRIBUTING.md).
 
-## Contributors ✨
+## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
@@ -86,4 +96,5 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors)
+specification. Contributions of any kind are welcome!
