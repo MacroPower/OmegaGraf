@@ -41,19 +41,18 @@ script:
     /o:omegagraf 
     /n:"OmegaGraf Compose" 
     /d:project.home=. 
-    /d:sonar.coverage.exclusions=**/*MetaDataModule.cs,**/Bootstrapper.cs,**/HomeModule.cs,**/Startup.cs,**/Program.cs
-    /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml
+    /d:sonar.coverage.exclusions=**/models/*.cs,**/modules/*.cs,**/config/*.cs,**/*Configuration.cs,**/*Module.cs,**/Program.cs,**/Defaults.cs,**/Init.cs,**/Bootstrapper.cs,**/Startup.cs 
+    /d:sonar.cs.opencover.reportsPaths=**/coverage.opencover.xml 
     /d:sonar.cs.vstest.reportsPaths=**/TestResults/*.trx
   - dotnet restore
   - cd ui
-  - npm install
+  - npm ci
   - npm run build
   - cd ..
   - dotnet build
   - netstat -tulnp
   - dotnet test --logger:trx /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+  - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
   - docker ps -a
   - netstat -tulnp
   - for c in $(docker ps -a --format="{{.Names}}"); do docker container logs $c; done
-  - ls -l /tmp
-  - dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
