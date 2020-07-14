@@ -69,23 +69,14 @@ tar -xzf OmegaGraf*.tar.gz
 
 # Create the default OmegaGraf data directory
 mkdir data
-mkdir data/telegraf
-mkdir data/prometheus
-mkdir data/grafana
-chmod g+s data
-setfacl -R -d -m u::rwx data  # Default permissions for owning user
-setfacl -R -d -m g::rwx data  # Default permissions for owning group
-setfacl -R -d -m o::rwx data  # Default permissions for others
+chmod -R 777 data
 
 # Allow execute on binary
 chmod +x OmegaGraf
 
-# Run with default settings
-./OmegaGraf --host $OMEGAGRAF_HOST
-
 echo
-echo "Thanks for using OmegaGraf!"
+echo "OmegaGraf installation script has completed!"
 echo
-echo "To re-run, you can use"
-echo "./OmegaGraf --host $OMEGAGRAF_HOST --reset"
+echo "To run OmegaGraf, you can use:"
+echo "./OmegaGraf --host $OMEGAGRAF_HOST"
 echo

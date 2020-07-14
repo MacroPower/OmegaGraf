@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  release:
+  schedule:
+    - cron: '0 12 * * *'
+
+jobs:
+  test-installer:
+    name: Test release on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-18.04, ubuntu-16.04]
+
+    steps:
+      - name: Update the OS
+        run: sudo apt update && sudo apt upgrade
+
+      - name: Run the installer
+        run: bash <(curl -s https://raw.githubusercontent.com/OmegaGraf/OmegaGraf/master/install/debian-amd64.sh)
+
+      - name: Launch OmegaGraf
+        run: nohup ./OmegaGraf -k 123 &
+
+      - name: Wait
+        run: sleep 15
+
+      - name: Curl app info
+        run: >
+          curl -X GET "http://localhost:5000/info"
+               -H "accept: application/json"
+               -H "Authorization: 123"
+
+      - name: Print log
+        run: cat omega.log
