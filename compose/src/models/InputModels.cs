@@ -22,17 +22,8 @@ namespace OmegaGraf.Compose
         public List<string> Parameters { get; set; }
     }
 
-    public static class TranslateConfig
+    public class GrafanaInput
     {
-        public static BuildConfiguration ToBuildConfiguration(this BuildConfigurationInput input, string image) =>
-            new BuildConfiguration()
-            {
-                Name       = input.Name,
-                Image      = image,
-                Tag        = input.Tag,
-                Ports      = input.Ports,
-                Binds      = input.Binds,
-                Parameters = input.Parameters
-            };
+        public int Port { get; set; }
     }
 }

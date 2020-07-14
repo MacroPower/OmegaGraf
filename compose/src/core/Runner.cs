@@ -11,25 +11,6 @@ using static OmegaGraf.Compose.Unix;
 
 namespace OmegaGraf.Compose
 {
-    public class BuildConfiguration
-    {
-        public string Name { get; set; }
-        public string Image { get; set; }
-        public string Tag { get; set; }
-        public Dictionary<int, int> Ports { get; set; }
-        private Dictionary<string, string> _binds;
-        public Dictionary<string, string> Binds
-        {
-            get => this._binds;
-            set => this._binds =
-                value.ToDictionary(
-                    d => Path.Join(AppPath.GetRoot(), d.Key),
-                    d => d.Value
-                );
-        }
-        public List<string> Parameters { get; set; }
-    }
-
     public class Runner
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();

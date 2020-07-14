@@ -11,11 +11,6 @@ using Swagger.ObjectModel;
 
 namespace OmegaGraf.Compose.Modules
 {
-    public class GrafanaInput
-    {
-        public int Port { get; set; }
-    }
-
     public class GrafanaModule : NancyModule
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
