@@ -12,13 +12,12 @@ jobs:
         with:
           node-version: 10
 
-      - run: sudo apt-get update
-
-      - name: Install build tools
-        run: sudo apt-get install gcc g++ make build-essential
-
       - name: Install dependencies
         run: npm ci
+        working-directory: ui
+
+      - name: Run ESLint
+        run: npm run lint
         working-directory: ui
 
       - name: Run build script
