@@ -13,11 +13,11 @@ import DeployRequest from './DeployRequest';
 import PacmanGhost from '../../../data/Ghost';
 import { Settings } from '../../settings/Settings';
 import Promise from 'thenfail';
-import BigButton from '../../BigButton';
+import BigButton from '../../home/BigButton';
 import Results from './Results';
 import { Col, Row } from 'react-bootstrap';
 
-type stepStatus = 'active' | 'error' | 'finish' | 'done';
+type stepStatus = 'error' | 'finish' | 'process' | 'wait' | undefined;
 
 type step = {
   title: string;
@@ -65,7 +65,12 @@ export default function RunDeploy() {
   };
 
   const startRun = () => (e: any) => {
-    addStep('Initializing Deployment', 'Please wait');
+    addStep('Initializing Deployment', 'Initializing...');
+    setLastStep(
+      'Initializing Deployment',
+      'Initializing...Initialization complete!',
+      'wait',
+    );
 
     const endpoint = globalState.endpoint || '';
     const apiKey = globalState.apiKey || '';
@@ -81,7 +86,7 @@ export default function RunDeploy() {
         .then(() => {
           const stepText = 'Cleaning up our mess...';
           addStep('Finishing up', stepText);
-          setLastStep('Ready!', 'You can start using OmegaGraf.', 'done');
+          setLastStep('Ready!', 'You can start using OmegaGraf.', 'finish');
         }),
     );
   };
@@ -116,7 +121,7 @@ export default function RunDeploy() {
       }
 
       await DeployRequest(endpoint, apiKey, 'telegraf', conf);
-      setLastStep('Deploy Telegraf', stepText + 'Done!', 'finish');
+      setLastStep('Deploy Telegraf', stepText + 'Done!', 'wait');
     } catch (e) {
       setLastStep(
         'Deploy Telegraf',
@@ -136,7 +141,7 @@ export default function RunDeploy() {
       const stepText = 'Asking OmegaGraf to create the container...';
       addStep('Deploy Prometheus', stepText);
       await DeployRequest(endpoint, apiKey, 'prometheus', state.Prometheus);
-      setLastStep('Deploy Prometheus', stepText + 'Done!', 'finish');
+      setLastStep('Deploy Prometheus', stepText + 'Done!', 'wait');
       showPromResults(true);
     } catch (e) {
       setLastStep(
@@ -158,7 +163,7 @@ export default function RunDeploy() {
         const stepText = 'Asking OmegaGraf to create the container...';
         addStep('Deploy Grafana', stepText);
         await DeployRequest(endpoint, apiKey, 'grafana', state.Grafana);
-        setLastStep('Deploy Grafana', stepText + 'Done!', 'finish');
+        setLastStep('Deploy Grafana', stepText + 'Done!', 'wait');
       } catch (e) {
         setLastStep(
           'Deploy Grafana',
@@ -189,7 +194,7 @@ export default function RunDeploy() {
           conf.BuildInput.Name = 'vcsim' + iq;
 
           await DeployRequest(endpoint, apiKey, 'telegraf/sim', conf);
-          setLastStep(stepTitle, stepText + 'Done!', 'finish');
+          setLastStep(stepTitle, stepText + 'Done!', 'wait');
         }
       } catch (e) {
         setLastStep(
@@ -217,7 +222,7 @@ export default function RunDeploy() {
 
         await DeployRequest(endpoint, apiKey, 'grafana/datasource', conf);
         await DeployRequest(endpoint, apiKey, 'grafana/dashboards', conf);
-        setLastStep('Deploy Grafana Config', stepText + 'Done!', 'finish');
+        setLastStep('Deploy Grafana Config', stepText + 'Done!', 'wait');
         showGrafanaResults(true);
       } catch (e) {
         setLastStep(
@@ -253,7 +258,7 @@ export default function RunDeploy() {
                 const isError = step.status === 'error';
 
                 const icon = !isError ? (
-                  step.status === 'done' ? (
+                  step.status === 'finish' ? (
                     <FontAwesomeIcon icon={faCheckCircle} />
                   ) : (
                     <PacmanLoader size={15} color={'#007bff'} loading={true} />

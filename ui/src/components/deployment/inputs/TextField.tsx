@@ -10,28 +10,28 @@ const valid: { input: inputs; regex: RegExp; text: string }[] = [
   {
     input: 'string',
     regex: /.+/,
-    text: 'Please enter a value.'
+    text: 'Please enter a value.',
   },
   {
     input: 'number',
     regex: /[0-9]+/,
-    text: 'Please enter a number.'
+    text: 'Please enter a number.',
   },
   {
     input: 'duration-s',
     regex: /^([5-9]|[1-9][0-9]|[1-2][0-9][0-9]|300)s$/,
-    text: 'Please enter a time duration in range: 5s - 300s'
+    text: 'Please enter a time duration in range: 5s - 300s',
   },
   {
     input: 'duration-d',
     regex: /^([1-9]|[1-9][0-9]|[1-9][0-9][0-9])d$/,
-    text: 'Please enter a time duration in range: 1d - 999d'
+    text: 'Please enter a time duration in range: 1d - 999d',
   },
   {
     input: 'port',
     regex: ports,
-    text: 'Please enter a number in range: 1024 - 65535.'
-  }
+    text: 'Please enter a number in range: 1024 - 65535.',
+  },
 ];
 
 export default function TextField(props: {
@@ -50,7 +50,7 @@ export default function TextField(props: {
   return (
     <>
       {valid
-        .filter(x => x.input === inputType)
+        .filter((x) => x.input === inputType)
         .map((x, i) => {
           const { regex, text } = x;
 
@@ -72,14 +72,14 @@ export default function TextField(props: {
                     if (value <= 99999999) {
                       dispatch({
                         type: type,
-                        value: value
+                        value: value,
                       });
                     }
                   } else {
                     const value: string = e.target.value;
                     dispatch({
                       type: type,
-                      value: value
+                      value: value,
                     });
                   }
                 }}

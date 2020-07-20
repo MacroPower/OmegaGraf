@@ -11,7 +11,7 @@ function IsSession(arg: any): arg is Session {
 
 export const defaultSession: Session = {
   endpoint: undefined,
-  apiKey: undefined
+  apiKey: undefined,
 };
 
 //

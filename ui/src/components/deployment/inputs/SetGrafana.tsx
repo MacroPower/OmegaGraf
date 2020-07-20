@@ -34,7 +34,7 @@ export default function SetGrafana(props: {
               setGrafana(active);
 
               globalGrafanaActions.setGrafana({
-                Active: active
+                Active: active,
               });
             }}
             checked={grafana}

@@ -1,0 +1,63 @@
+{
+  "plugins": ["node", "react", "prettier", "import", "jsx-a11y"],
+  "extends": [
+    "react-app",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:node/recommended-module",
+    "plugin:prettier/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier/@typescript-eslint",
+    "prettier/react",
+    "prettier/standard"
+  ],
+  "root": true,
+  "rules": {
+    "react/prop-types": "off",
+    "import/no-unresolved": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "parser": "typescript",
+        "trailingComma": "all",
+        "jsxSingleQuote": false,
+        "endOfLine": "auto"
+      }
+    ],
+    "node/no-missing-import": [
+      "error",
+      {
+        "tryExtensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    ]
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      // use <root>/path/to/folder/tsconfig.json
+      "typescript": {
+        "directory": "./tsconfig.json"
+      }
+    }
+  }
+}

@@ -1,12 +1,11 @@
-import React from "react";
-import { Session } from "./Session";
+import React from 'react';
+import { Session } from './Session';
 
-type ContextProps = { 
-    session: Session,
-    setKey: any
-  };
+type ContextProps = {
+  session: Session;
+  setKey: any;
+};
 
-const AuthContext = 
-  React.createContext<Partial<ContextProps>>({});
+const AuthContext = React.createContext<Partial<ContextProps>>({});
 
 export default AuthContext;

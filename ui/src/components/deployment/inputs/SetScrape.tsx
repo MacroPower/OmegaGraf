@@ -10,10 +10,10 @@ export default function SetScrape(props: {
 }) {
   const { dispatch, state } = props;
 
-  let rTimeParams = state.Prometheus.BuildInput.Parameters.filter(p =>
-    p.match(/^--storage\.tsdb\.retention\.time=.*$/g)
-  )
-  let rTime = ''
+  let rTimeParams = state.Prometheus.BuildInput.Parameters.filter((p) =>
+    p.match(/^--storage\.tsdb\.retention\.time=.*$/g),
+  );
+  let rTime = '';
 
   if (rTimeParams.length > 0) {
     rTime = rTimeParams[0].replace(/^--storage\.tsdb\.retention\.time=/g, '');

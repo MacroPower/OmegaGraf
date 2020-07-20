@@ -2,14 +2,14 @@ import { setSessionCookie, defaultSession, Session } from '../Session';
 import {
   GlobalSettingsActions,
   GlobalGrafanaActions,
-  GlobalSimActions
+  GlobalSimActions,
 } from '../Global';
 
 export default function setDefaults(
-    globalState: Session,
-    globalSettingsActions: GlobalSettingsActions,
-    globalGrafanaActions: GlobalGrafanaActions,
-    globalSimActions: GlobalSimActions
+  globalState: Session,
+  globalSettingsActions: GlobalSettingsActions,
+  globalGrafanaActions: GlobalGrafanaActions,
+  globalSimActions: GlobalSimActions,
 ) {
   const url = globalState.endpoint + '/default';
   console.log('Get settings from ' + url);
@@ -18,11 +18,11 @@ export default function setDefaults(
     method: 'GET',
     headers: {
       Authorization: '' + globalState.apiKey,
-      Accept: 'application/json'
-    }
+      Accept: 'application/json',
+    },
   })
-    .then(response => response.json())
-    .then(data => globalSettingsActions.setSettings(data))
+    .then((response) => response.json())
+    .then((data) => globalSettingsActions.setSettings(data))
     .then(() => globalGrafanaActions.setGrafana({ Active: true }))
     .then(() => globalSimActions.setSim({ Active: false, Quantity: 0 }))
     .catch((e: Error) => {

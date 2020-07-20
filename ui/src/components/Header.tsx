@@ -64,8 +64,6 @@ export default function HeaderNav(props: {
       </Nav>
     </>
   ) : (
-    <>
-      <Nav className="mr-auto">{login}</Nav>
-    </>
+    <Nav className="mr-auto">{login}</Nav>
   );
 }

@@ -24,17 +24,17 @@ export default function Login() {
     fetch(host + '/auth', {
       method: 'GET',
       headers: {
-        Authorization: key
-      }
+        Authorization: key,
+      },
     })
-      .then(r => {
+      .then((r) => {
         if (r.ok !== true) {
           throw new Error('API returned status ' + r.status.toString());
         }
         return r;
       })
-      .then(r => r.json())
-      .then(r => {
+      .then((r) => r.json())
+      .then((r) => {
         if (r.Authenticated) {
           return r;
         } else {
@@ -44,7 +44,7 @@ export default function Login() {
       .then(() => {
         const session: Session = {
           endpoint: host,
-          apiKey: key
+          apiKey: key,
         };
 
         setSessionCookie(session);

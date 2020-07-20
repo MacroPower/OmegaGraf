@@ -2,7 +2,7 @@ export default async function DeployRequest(
   endpoint: string,
   apiKey: string,
   location: string,
-  body: any
+  body: any,
 ) {
   const url = endpoint + '/' + location;
 
@@ -12,14 +12,14 @@ export default async function DeployRequest(
       body: JSON.stringify(body),
       headers: {
         Authorization: '' + apiKey,
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+      },
+    }).then((r) => {
+      if (r.ok) {
+        return r.json();
       }
-    }).then(r => {
-        if (r.ok) {
-            return r.json()
-        }
 
-        throw new Error('API returned not OK')
+      throw new Error('API returned not OK');
     });
     return console.log(x);
   } catch (e) {

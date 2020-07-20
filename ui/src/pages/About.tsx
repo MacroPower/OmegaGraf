@@ -2,7 +2,7 @@ import React from 'react';
 import {
   UseGlobalSession,
   UseGlobalSettings,
-  UseGlobalSim
+  UseGlobalSim,
 } from '../components/Global';
 
 export default function About() {

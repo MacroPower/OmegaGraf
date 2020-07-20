@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Route, Link } from 'react-router-dom';
-import OptionCard from '../OptionCard';
-import BigButton from '../BigButton';
+import OptionCard from './OptionCard';
+import BigButton from './BigButton';
 import setDefaults from '../settings/SetDefaults';
 import {
   UseGlobalSession,
   UseGlobalSettings,
   UseGlobalGrafana,
-  UseGlobalSim
+  UseGlobalSim,
 } from '../Global';
 
 function RoutedLink(props: { to: string; disabled: boolean }) {
@@ -16,11 +16,12 @@ function RoutedLink(props: { to: string; disabled: boolean }) {
     label: '',
     path: props.to,
     exact: false,
+    // eslint-disable-next-line react/display-name
     children: () => (
       <Link to={props.to} className="text-decoration-none">
         <BigButton disabled={props.disabled}>Get Started</BigButton>
       </Link>
-    )
+    ),
   };
 
   return <Route {...data} />;
@@ -39,13 +40,13 @@ export default function DeployForm() {
       globalState,
       globalSettingsActions,
       globalGrafanaActions,
-      globalSimActions
+      globalSimActions,
     );
   }, [
     globalState,
     globalSettingsActions,
     globalGrafanaActions,
-    globalSimActions
+    globalSimActions,
   ]);
 
   return (

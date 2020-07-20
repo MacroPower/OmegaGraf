@@ -6,23 +6,23 @@ import {
   Switch,
   Redirect,
   // eslint-disable-next-line
-  match
+  match,
 } from 'react-router-dom';
 
 import { UseGlobalSession } from './Global';
 
-import Home from '../views/Home';
-import Four04 from '../views/404';
-import About from '../views/About';
-import Login from '../views/Login';
-import Deploy from '../views/Deploy';
+import Home from '../pages/Home';
+import Four04 from '../pages/Four04';
+import About from '../pages/About';
+import Login from '../pages/Login';
+import Deploy from '../pages/Deploy';
 import SimpleForm from './deployment/forms/SimpleForm';
 import NormalForm from './deployment/forms/NormalForm';
 import AdvancedForm from './deployment/forms/AdvancedForm';
 
 export enum RouteIdentifiers {
   Login,
-  Logout
+  Logout,
 }
 
 export type Routed = {
@@ -44,7 +44,7 @@ const Routes: Routed[] = [
     exact: true,
     hidden: false,
     requiresAuth: optionalAuth,
-    component: Home
+    component: Home,
   },
   {
     path: '/about',
@@ -52,7 +52,7 @@ const Routes: Routed[] = [
     exact: false,
     hidden: false,
     requiresAuth: optionalAuth,
-    component: About
+    component: About,
   },
   {
     path: '/deploy',
@@ -60,7 +60,7 @@ const Routes: Routed[] = [
     exact: false,
     hidden: true,
     requiresAuth: optionalAuth,
-    component: Deploy
+    component: Deploy,
   },
   {
     id: RouteIdentifiers.Login,
@@ -69,7 +69,7 @@ const Routes: Routed[] = [
     exact: false,
     hidden: true,
     requiresAuth: false,
-    component: Login
+    component: Login,
   },
   {
     path: '/form/simple',
@@ -77,7 +77,7 @@ const Routes: Routed[] = [
     exact: false,
     hidden: true,
     requiresAuth: optionalAuth,
-    component: SimpleForm
+    component: SimpleForm,
   },
   {
     path: '/form/normal',
@@ -85,7 +85,7 @@ const Routes: Routed[] = [
     exact: false,
     hidden: true,
     requiresAuth: optionalAuth,
-    component: NormalForm
+    component: NormalForm,
   },
   {
     path: '/form/advanced',
@@ -93,20 +93,20 @@ const Routes: Routed[] = [
     exact: false,
     hidden: true,
     requiresAuth: optionalAuth,
-    component: AdvancedForm
-  }
+    component: AdvancedForm,
+  },
 ];
 
 export function AppliedRoutes() {
   const [globalState] = UseGlobalSession();
 
   const [routes, setRoutes] = useState<Routed[]>(
-    Routes.filter(route => globalState.apiKey || !route.requiresAuth)
+    Routes.filter((route) => globalState.apiKey || !route.requiresAuth),
   );
 
   useEffect(() => {
     setRoutes(
-      Routes.filter(route => globalState.apiKey || !route.requiresAuth)
+      Routes.filter((route) => globalState.apiKey || !route.requiresAuth),
     );
   }, [globalState]);
 
@@ -144,7 +144,7 @@ export class RoutedLink extends Component<{
         >
           {this.props.label}
         </Link>
-      )
+      ),
     };
     return <Route {...data} />;
   }

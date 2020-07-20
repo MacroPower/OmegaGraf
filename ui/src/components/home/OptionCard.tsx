@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
-import SettingsIcon from '../data/SettingsIcon';
+import SettingsIcon from '../../data/SettingsIcon';
 
 const phases: {
   [key: string]: {
@@ -14,20 +14,20 @@ const phases: {
     icon: 'cog',
     color: 'var(--green)',
     title: 'Default',
-    description: 'Use the default configuration.'
+    description: 'Use the default configuration.',
   },
   '2': {
     icon: 'toolbox',
     color: 'var(--blue)',
     title: 'Minor Adjustments',
-    description: 'Make common changes.'
+    description: 'Make common changes.',
   },
   '3': {
     icon: 'tools',
     color: 'var(--red)',
     title: 'Advanced Settings',
-    description: 'Make more intricate changes.'
-  }
+    description: 'Make more intricate changes.',
+  },
 };
 
 export default function OptionCard(props: {

@@ -10,7 +10,7 @@ type GlobalSessionActions = {
 
 const setSession = (
   store: Store<Session, GlobalSessionActions>,
-  value: Session
+  value: Session,
 ) => {
   store.setState({ ...store.state, ...value });
 };
@@ -18,7 +18,7 @@ const setSession = (
 export const UseGlobalSession = globalHook<Session, GlobalSessionActions>(
   React,
   defaultSession,
-  { setSession: setSession }
+  { setSession: setSession },
 );
 
 //
@@ -29,7 +29,7 @@ export type GlobalSettingsActions = {
 
 const setSettings = (
   store: Store<Settings, GlobalSettingsActions>,
-  value: Settings
+  value: Settings,
 ) => {
   store.setState({ ...store.state, ...value });
 };
@@ -37,7 +37,7 @@ const setSettings = (
 export const UseGlobalSettings = globalHook<Settings, GlobalSettingsActions>(
   React,
   defaultSettings,
-  { setSettings: setSettings }
+  { setSettings: setSettings },
 );
 
 //
@@ -58,7 +58,7 @@ const setSim = (store: Store<Sim, GlobalSimActions>, value: Sim) => {
 export const UseGlobalSim = globalHook<Sim, GlobalSimActions>(
   React,
   { Active: false, Quantity: 0 },
-  { setSim: setSim }
+  { setSim: setSim },
 );
 
 //
@@ -71,12 +71,15 @@ export type GlobalGrafanaActions = {
   setGrafana: (value: Grafana) => void;
 };
 
-const setGrafana = (store: Store<Grafana, GlobalGrafanaActions>, value: Grafana) => {
+const setGrafana = (
+  store: Store<Grafana, GlobalGrafanaActions>,
+  value: Grafana,
+) => {
   store.setState({ ...store.state, ...value });
 };
 
 export const UseGlobalGrafana = globalHook<Grafana, GlobalGrafanaActions>(
   React,
   { Active: true },
-  { setGrafana: setGrafana }
+  { setGrafana: setGrafana },
 );

@@ -2,7 +2,7 @@ import React, { useReducer, useEffect } from 'react';
 import { SettingsReducer, ActionTypes } from '../reducers/SettingsReducer';
 import AddSystem from '../inputs/AddSystem';
 import { UseGlobalSettings } from '../../Global';
-import FormView from '../../../views/Form';
+import FormView from '../../../pages/Form';
 import { Row, Col } from 'react-bootstrap';
 import SetScrape from '../inputs/SetScrape';
 
@@ -13,7 +13,7 @@ export default function NormalForm() {
   useEffect(() => {
     dispatch({
       type: ActionTypes.Reset,
-      value: globalSettings
+      value: globalSettings,
     });
   }, [globalSettings]);
 

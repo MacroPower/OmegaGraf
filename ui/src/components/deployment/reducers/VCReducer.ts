@@ -17,19 +17,19 @@ export const newVCenters = (state: Settings, current: any): Settings => {
                   ...state.Telegraf.Config[0].Data.Inputs.VSphere[0],
                   VCenters: current.systems,
                   Username: current.username,
-                  Password: current.password
+                  Password: current.password,
                 },
                 {
                   ...state.Telegraf.Config[0].Data.Inputs.VSphere[1],
                   VCenters: current.systems,
                   Username: current.username,
-                  Password: current.password
-                }
-              ]
-            }
-          }
-        }
-      ]
-    }
+                  Password: current.password,
+                },
+              ],
+            },
+          },
+        },
+      ],
+    },
   };
 };

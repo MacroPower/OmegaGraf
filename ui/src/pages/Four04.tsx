@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 export default class Four04 extends Component {
   render() {
@@ -6,9 +6,7 @@ export default class Four04 extends Component {
       <main role="main" className="container">
         <h2>404 Error</h2>
         <hr />
-        <p>
-          Looks like your content is missing...
-        </p>
+        <p>Looks like your content is missing...</p>
       </main>
     );
   }

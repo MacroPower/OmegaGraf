@@ -170,7 +170,7 @@ body {
   margin-left: 70px;
 }
 
-.rc-steps-item-finish > .rc-steps-item-container > .rc-steps-item-content {
+.rc-steps-item-wait > .rc-steps-item-container > .rc-steps-item-content {
   margin-top: -1px;
 }
 
@@ -184,17 +184,31 @@ body {
   top: 1px !important;
 }
 
-.rc-steps-item-done > .rc-steps-item-container > .rc-steps-item-content {
+.rc-steps-item-finish > .rc-steps-item-container > .rc-steps-item-content {
   margin-top: -1px;
   margin-left: 35px;
 }
 
-.rc-steps-item-done > .rc-steps-item-container > .rc-steps-item-icon {
+.rc-steps-item-finish
+  > .rc-steps-item-container
+  > .rc-steps-item-content
+  > .rc-steps-item-title {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.rc-steps-item-finish
+  > .rc-steps-item-container
+  > .rc-steps-item-content
+  > .rc-steps-item-description {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.rc-steps-item-finish > .rc-steps-item-container > .rc-steps-item-icon {
   width: 27px;
   font-size: 27px;
 }
 
-.rc-steps-item-done .rc-steps-item-icon > .rc-steps-icon {
+.rc-steps-item-finish .rc-steps-item-icon > .rc-steps-icon {
   font-size: 27px !important;
   top: -1px;
   color: var(--blue);

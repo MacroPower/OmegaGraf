@@ -4,14 +4,14 @@ import { newVCenters } from './VCReducer';
 
 export enum ActionTypes {
   Reset,
-  vCenterInputs,
+  VCenterInputs,
   PrometheusConfigDataScrapeIntervalShort,
   PrometheusConfigDataScrapeIntervalLong,
   PrometheusBuildConfigurationTag,
   PrometheusRetentionTime,
   TelegrafBuildConfigurationTag,
   GrafanaBuildConfigurationTag,
-  GrafanaBuildConfigurationPort
+  GrafanaBuildConfigurationPort,
 }
 
 export type Action = {
@@ -21,19 +21,22 @@ export type Action = {
 
 export function SettingsReducer(state: Settings, action: Action): Settings {
   switch (action.type) {
-    case ActionTypes.vCenterInputs:
+    case ActionTypes.VCenterInputs: {
       return newVCenters(state, action.value);
-    case ActionTypes.PrometheusConfigDataScrapeIntervalShort:
+    }
+    case ActionTypes.PrometheusConfigDataScrapeIntervalShort: {
       return newPrometheusScrapeInterval(state, action.value, 'short');
-    case ActionTypes.PrometheusConfigDataScrapeIntervalLong:
+    }
+    case ActionTypes.PrometheusConfigDataScrapeIntervalLong: {
       return newPrometheusScrapeInterval(state, action.value, 'long');
-    case ActionTypes.PrometheusRetentionTime:
+    }
+    case ActionTypes.PrometheusRetentionTime: {
       const parameters = [...state.Prometheus.BuildInput.Parameters];
-      const r = /^--storage\.tsdb\.retention\.time=.*$/g
-      const index = parameters.findIndex(p => p.match(r));
-      const newParameter = "--storage.tsdb.retention.time=" + action.value;
+      const r = /^--storage\.tsdb\.retention\.time=.*$/g;
+      const index = parameters.findIndex((p) => p.match(r));
+      const newParameter = '--storage.tsdb.retention.time=' + action.value;
 
-      if(index === -1) {
+      if (index === -1) {
         parameters.push(newParameter);
       } else {
         parameters[index] = newParameter;
@@ -44,57 +47,64 @@ export function SettingsReducer(state: Settings, action: Action): Settings {
         Prometheus: {
           BuildInput: {
             ...state.Prometheus.BuildInput,
-            Parameters: parameters
+            Parameters: parameters,
           },
-          Config: state.Prometheus.Config
-        }
+          Config: state.Prometheus.Config,
+        },
       };
-    case ActionTypes.GrafanaBuildConfigurationPort:
+    }
+    case ActionTypes.GrafanaBuildConfigurationPort: {
       var port = parseInt(action.value, 10);
       return {
         ...state,
         Grafana: {
           BuildInput: {
             ...state.Grafana.BuildInput,
-            Ports: { 3000: port }
-          }
-        }
+            Ports: { 3000: port },
+          },
+        },
       };
-    case ActionTypes.PrometheusBuildConfigurationTag:
+    }
+    case ActionTypes.PrometheusBuildConfigurationTag: {
       return {
         ...state,
         Prometheus: {
           BuildInput: {
             ...state.Prometheus.BuildInput,
-            Tag: action.value
+            Tag: action.value,
           },
-          Config: state.Prometheus.Config
-        }
+          Config: state.Prometheus.Config,
+        },
       };
-    case ActionTypes.TelegrafBuildConfigurationTag:
+    }
+    case ActionTypes.TelegrafBuildConfigurationTag: {
       return {
         ...state,
         Telegraf: {
           BuildInput: {
             ...state.Telegraf.BuildInput,
-            Tag: action.value
+            Tag: action.value,
           },
-          Config: state.Telegraf.Config
-        }
+          Config: state.Telegraf.Config,
+        },
       };
-    case ActionTypes.GrafanaBuildConfigurationTag:
+    }
+    case ActionTypes.GrafanaBuildConfigurationTag: {
       return {
         ...state,
         Grafana: {
           BuildInput: {
             ...state.Grafana.BuildInput,
-            Tag: action.value
-          }
-        }
+            Tag: action.value,
+          },
+        },
       };
-    case ActionTypes.Reset:
+    }
+    case ActionTypes.Reset: {
       return { ...action.value };
-    default:
+    }
+    default: {
       throw new Error();
+    }
   }
 }

@@ -8,7 +8,7 @@ function Polygon(props: { points: polyPoint; scale?: number }) {
 
   const s = props.points.map((point: number[]) => {
     return point
-      .map(x => {
+      .map((x) => {
         if (scale) {
           return x / scale;
         }
@@ -47,7 +47,7 @@ export default function PacmanGhost() {
               [52, 24],
               [56, 24],
               [56, 48],
-              [0, 48]
+              [0, 48],
             ]}
           />
         </svg>
@@ -68,7 +68,7 @@ export default function PacmanGhost() {
               [4, 16],
               [0, 16],
               [0, 4],
-              [4, 4]
+              [4, 4],
             ]}
           />
         </svg>
@@ -89,7 +89,7 @@ export default function PacmanGhost() {
               [4, 16],
               [0, 16],
               [0, 4],
-              [4, 4]
+              [4, 4],
             ]}
           />
         </svg>

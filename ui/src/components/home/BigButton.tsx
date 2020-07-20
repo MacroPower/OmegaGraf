@@ -10,7 +10,9 @@ export default function BigButton(props: React.PropsWithChildren<State>) {
   return (
     <button className="big-btn" disabled={disabled} onClick={onClick}>
       {children}
-      <div className={disabled ? 'big-btn-s big-btn-s-disabled' : 'big-btn-s'} />
+      <div
+        className={disabled ? 'big-btn-s big-btn-s-disabled' : 'big-btn-s'}
+      />
     </button>
   );
 }

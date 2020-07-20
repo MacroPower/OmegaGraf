@@ -5,8 +5,7 @@ import RunDeploy from '../components/deployment/run/RunDeploy';
 import { Link } from 'react-router-dom';
 
 export default function Deploy() {
-  //eslint-disable-next-line
-  const params = new URLSearchParams(location.search); 
+  const params = new URLSearchParams(window.location.search);
   const ref = params.get('ref');
 
   return (
@@ -16,7 +15,7 @@ export default function Deploy() {
           <Link to="/">Home</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          <Link to={"/form/" + ref}>Form</Link>
+          <Link to={'/form/' + ref}>Form</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item active>Deploy</Breadcrumb.Item>
       </Breadcrumb>

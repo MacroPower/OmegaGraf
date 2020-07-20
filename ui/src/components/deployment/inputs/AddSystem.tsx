@@ -20,12 +20,12 @@ export default function AddSystem(props: {
 
   useEffect(() => {
     dispatch({
-      type: ActionTypes.vCenterInputs,
+      type: ActionTypes.VCenterInputs,
       value: {
         systems: systems,
         username: username,
-        password: password
-      }
+        password: password,
+      },
     });
   }, [dispatch, systems, username, password]);
 
@@ -133,7 +133,7 @@ export default function AddSystem(props: {
                 setSim(active);
                 globalSimActions.setSim({
                   Active: active,
-                  Quantity: 1
+                  Quantity: 1,
                 });
               }}
               checked={sim}
@@ -145,7 +145,7 @@ export default function AddSystem(props: {
                 onChange={(e: any) => {
                   globalSimActions.setSim({
                     Active: true,
-                    Quantity: e.target.value
+                    Quantity: e.target.value,
                   });
                 }}
                 value={globalSim.Quantity.toString()}
