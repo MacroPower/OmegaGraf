@@ -27,9 +27,9 @@ jobs:
         run: sleep 15
 
       - name: Curl app info
-        run: >
-          curl -X GET "http://localhost:5000/info"
-               -H "accept: application/json"
+        run: |
+          curl -X GET "http://localhost:5000/info" \
+               -H "accept: application/json" \
                -H "Authorization: 123"
 
       - name: Print log
