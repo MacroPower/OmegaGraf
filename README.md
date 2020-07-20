@@ -6,7 +6,7 @@
 <h2 align="center">Fast & Easy vCenter Monitoring Deployment</h2>
 
 <p align="center">
-  <a href="https://travis-ci.com/OmegaGraf/OmegaGraf"><img alt="Build Status" src="https://travis-ci.com/OmegaGraf/OmegaGraf.svg?branch=master"></a>
+  <a href="https://github.com/OmegaGraf/OmegaGraf/actions"><img alt="Build Status" src="https://github.com/OmegaGraf/OmegaGraf/workflows/Build/badge.svg"></a>
   <a href="https://github.com/OmegaGraf/OmegaGraf/releases"><img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/OmegaGraf/OmegaGraf"></a>
   <a href="https://github.com/OmegaGraf/OmegaGraf/releases"><img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/OmegaGraf/OmegaGraf/total"></a>
   <a href="https://bestpractices.coreinfrastructure.org/projects/3874"><img src="https://bestpractices.coreinfrastructure.org/projects/3874/badge"></a>

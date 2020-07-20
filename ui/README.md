@@ -1,6 +1,6 @@
 # OmegaGraf UI
 
-[![DeepScan grade](https://deepscan.io/api/teams/7835/projects/9921/branches/132381/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7835&pid=9921&bid=132381)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OmegaGraf_UI&metric=alert_status)](https://sonarcloud.io/dashboard?id=OmegaGraf_UI)
 
 ## Available Scripts
 
