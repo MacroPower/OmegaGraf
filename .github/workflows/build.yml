@@ -1,9 +1,49 @@
-name: .NET Core
+name: Build
 
 on: push
 
 jobs:
-  build:
+  build-npm:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - run: sudo apt-get update
+
+      - name: Install build tools
+        run: sudo apt-get install gcc g++ make build-essential
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ui
+
+      - name: Run build script
+        run: npm run build
+        working-directory: ui
+
+      - name: Run SonarCloud scan
+        run: |
+          export SONAR_SCANNER_VERSION=4.2.0.1873
+          export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+          curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+          unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+          export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+          export SONAR_SCANNER_OPTS="-server"
+          sonar-scanner \
+            -Dsonar.organization=omegagraf \
+            -Dsonar.projectKey=OmegaGraf_UI \
+            -Dsonar.sources=ui \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login="$SONAR_TOKEN"
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build-dotnet:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,7 +54,7 @@ jobs:
         with:
           dotnet-version: 3.1.101
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
           RELEASE_ID=$(lsb_release -is | tr '[:upper:]' '[:lower:]')
           curl -fsSL "https://download.docker.com/linux/$RELEASE_ID/gpg" | sudo apt-key add -
@@ -27,9 +67,9 @@ jobs:
       - name: Install SonarScanner
         run: dotnet tool install --global dotnet-sonarscanner
 
-      - name: SonarCloud Scan
+      - name: Run SonarCloud scan
         run: dotnet sonarscanner begin
-          /key:OmegaGraf_compose
+          /key:OmegaGraf_Compose
           /d:sonar.host.url="https://sonarcloud.io"
           /d:sonar.login="$SONAR_TOKEN"
           /o:omegagraf
