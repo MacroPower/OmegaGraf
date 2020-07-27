@@ -15,7 +15,7 @@
     "@types/use-global-hook": "0.1.2",
     "js-cookie": "2.2.1",
     "node-sass": "4.14.1",
-    "rc-steps": "4.0.1",
+    "rc-steps": "4.1.0",
     "react": "16.13.1",
     "react-bootstrap": "1.2.2",
     "react-dom": "16.13.1",
