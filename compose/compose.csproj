@@ -5,7 +5,7 @@
     <ProjectGuid>{93B317D7-8CAF-4CAD-BD25-D327B77CA6BA}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Docker.DotNet" Version="3.125.2"/>
+    <PackageReference Include="Docker.DotNet" Version="3.125.4"/>
     <PackageReference Include="Docker.DotNet.X509" Version="3.125.2"/>
     <PackageReference Include="Docker.DotNet.BasicAuth" Version="3.125.2"/>
     <PackageReference Include="Figgle" Version="0.3.0"/>
