@@ -43,7 +43,7 @@
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^2.5.1",
     "fibers": "^3.1.1",
-    "prettier": "2.0.5",
+    "prettier": "2.1.0",
     "sass": "^1.26.10"
   },
   "scripts": {
