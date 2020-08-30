@@ -56,7 +56,7 @@
     "import/resolver": {
       // use <root>/path/to/folder/tsconfig.json
       "typescript": {
-        "directory": "./tsconfig.json"
+        "project": "./tsconfig.json"
       }
     }
   }
