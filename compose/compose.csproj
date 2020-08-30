@@ -5,7 +5,7 @@
     <ProjectGuid>{93B317D7-8CAF-4CAD-BD25-D327B77CA6BA}</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Docker.DotNet" Version="3.125.2"/>
+    <PackageReference Include="Docker.DotNet" Version="3.125.4"/>
     <PackageReference Include="Docker.DotNet.X509" Version="3.125.2"/>
     <PackageReference Include="Docker.DotNet.BasicAuth" Version="3.125.2"/>
     <PackageReference Include="Figgle" Version="0.3.0"/>
@@ -28,7 +28,7 @@
     <PackageReference Include="Swagger.ObjectModel" Version="2.2.59-alpha"/>
     <PackageReference Include="Flurl" Version="2.8.2"/>
     <PackageReference Include="Flurl.Http" Version="2.4.2"/>
-    <PackageReference Include="NLog" Version="4.7.2"/>
+    <PackageReference Include="NLog" Version="4.7.4"/>
     <PackageReference Include="PowerArgs" Version="3.6.0"/>
     <PackageReference Include="Nancy.Authentication.Stateless" Version="2.0.0"/>
     <PackageReference Include="Polly" Version="7.2.1"/>
