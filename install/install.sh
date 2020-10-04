@@ -99,7 +99,13 @@ permissions() {
 enable_ssl() {
   announce "Enabling SSL"
 
-  fail "Enabling SSL is currently not supported via this script, sorry :("
+  verify_programs dotnet ||
+    die "Please install dotnet-sdk-3.1"
+
+  progress "Installing SSL certificate"
+  dotnet dev-certs https &&
+    success "Installed SSL certificate" ||
+    die "Could not install SSL certificate"
 }
 
 main() {
@@ -120,7 +126,7 @@ main() {
   permissions
 
   if confirm "Would you like to generate a certificate and enable SSL?"; then
-    OMEGAGRAF_HOST="http://0.0.0.0:5000"
+    OMEGAGRAF_HOST="https://0.0.0.0:5001"
     enable_ssl
   else
     OMEGAGRAF_HOST="http://0.0.0.0:5000"
