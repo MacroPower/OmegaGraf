@@ -41,7 +41,8 @@ prechecks() {
 
   progress "Ensuring system is ready for installation"
 
-  verify_programs awk curl wget cut tr tar gzip date echo find grep head printf sed stat tail uname wc docker
+  verify_programs awk curl wget cut tr tar gzip date echo find grep head printf sed stat tail uname wc docker ||
+    die "Please install missing dependencies to proceed"
 
   is_empty $PACKAGE_MANAGER && die "Could not find a supported package manager"
 
@@ -383,8 +384,12 @@ verify_programs() {
         echo "$list_programs"
         date
       ) >"$verify_cache"
+    else
+      fail "Required dependencies are not available"
+      return 1
     fi
   fi
+  return 0
 }
 
 folder_prep() {
