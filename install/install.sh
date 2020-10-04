@@ -184,14 +184,41 @@ if [[ -n "$(command -v apt-get)" ]]; then
   readonly PACKAGE_MANAGER="apt-get"
 fi
 
+folder_prep() {
+  if [[ -n "$1" ]]; then
+    local folder="$1"
+    local maxdays=365
+    if [[ -n "$2" ]]; then
+      maxdays=$2
+    fi
+    if [ ! -d "$folder" ]; then
+      mkdir "$folder"
+    else
+      find "$folder" -mtime "+$maxdays" -type f -exec rm {} \;
+    fi
+  fi
+}
+#TIP: use «folder_prep» to create a folder if needed and otherwise clean up old files
+#TIP:> folder_prep "$logd" 7 # delete all files olders than 7 days
+
 verbose=0
 quiet=0
 piped=0
 force=0
 help=0
+
 tmpd="$TEMP/$PROGNAME"
-logd="./log"
+if [[ -n "$tmpd" ]]; then
+  folder_prep "$tmpd" 1
+  # you can use this teporary file in your program
+  # it will be deleted automatically if the program ends without problems
+fi
 tmpfile=$(mktemp "$tmpd/$TODAY.XXXXXX")
+
+logd="./log"
+if [[ -n "$logd" ]]; then
+  folder_prep "$logd" 7
+fi
 logfile=$logd/$PROGNAME.$TODAY.log
 
 [[ $# -gt 0 ]] && [[ $1 == "-v" ]] && verbose=1
@@ -396,41 +423,8 @@ verify_programs() {
   return 0
 }
 
-folder_prep() {
-  if [[ -n "$1" ]]; then
-    local folder="$1"
-    local maxdays=365
-    if [[ -n "$2" ]]; then
-      maxdays=$2
-    fi
-    if [ ! -d "$folder" ]; then
-      mkdir "$folder"
-    else
-      log "Cleanup: [$folder] - delete files older than $maxdays day(s)"
-      find "$folder" -mtime "+$maxdays" -type f -exec rm {} \;
-    fi
-  fi
-}
-#TIP: use «folder_prep» to create a folder if needed and otherwise clean up old files
-#TIP:> folder_prep "$logd" 7 # delete all files olders than 7 days
-
-prep_log_and_temp_dir() {
-  if [[ -n "$logd" ]]; then
-    folder_prep "$logd" 7
-    log "Logfile: $logfile"
-  fi
-  if [[ -n "$tmpd" ]]; then
-    folder_prep "$tmpd" 1
-    log "Tmpfile: $tmpfile"
-    # you can use this teporary file in your program
-    # it will be deleted automatically if the program ends without problems
-  fi
-}
 [[ $runasroot == 1 ]] && [[ $UID -ne 0 ]] && die "MUST be root to run this script"
 [[ $runasroot == -1 ]] && [[ $UID -eq 0 ]] && die "CANNOT be root to run this script"
-
-# this must run
-prep_log_and_temp_dir
 
 # this will show up even if your main() has errors
 log "-------- STARTING (main) $PROGIDEN"
