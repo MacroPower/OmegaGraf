@@ -1,0 +1,31 @@
+---
+---
+
+@import '{{ site.theme }}';
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Raleway&display=swap');
+
+$alt: #c81d8a;
+
+h1 {
+  font-family: 'Raleway', Arial, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+p {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 200;
+}
+
+.page-header {
+  color: #fff;
+  text-align: center;
+}
+
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
+  color: $alt;
+}
