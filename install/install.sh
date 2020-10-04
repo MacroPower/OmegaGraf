@@ -105,8 +105,6 @@ enable_ssl() {
 main() {
   announce "Starting the OmegaGraf installation helper"
 
-  prep_log_and_temp_dir
-
   log "Program: $PROGFNAME $PROGVERS ($PROGUUID)"
   log "Updated: $PROGDATE"
   log "Run as : $USER@$HOSTNAME"
@@ -400,7 +398,6 @@ folder_prep() {
       maxdays=$2
     fi
     if [ ! -d "$folder" ]; then
-      log "Create folder [$folder]"
       mkdir "$folder"
     else
       log "Cleanup: [$folder] - delete files older than $maxdays day(s)"
@@ -412,19 +409,22 @@ folder_prep() {
 #TIP:> folder_prep "$logd" 7 # delete all files olders than 7 days
 
 prep_log_and_temp_dir() {
+  if [[ -n "$logd" ]]; then
+    folder_prep "$logd" 7
+    log "Logfile: $logfile"
+  fi
   if [[ -n "$tmpd" ]]; then
     folder_prep "$tmpd" 1
     log "Tmpfile: $tmpfile"
     # you can use this teporary file in your program
     # it will be deleted automatically if the program ends without problems
   fi
-  if [[ -n "$logd" ]]; then
-    folder_prep "$logd" 7
-    log "Logfile: $logfile"
-  fi
 }
 [[ $runasroot == 1 ]] && [[ $UID -ne 0 ]] && die "MUST be root to run this script"
 [[ $runasroot == -1 ]] && [[ $UID -eq 0 ]] && die "CANNOT be root to run this script"
+
+# this must run
+prep_log_and_temp_dir
 
 # this will show up even if your main() has errors
 log "-------- STARTING (main) $PROGIDEN"
