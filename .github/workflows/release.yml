@@ -18,7 +18,7 @@ jobs:
         run: sudo apt update && sudo apt upgrade
 
       - name: Run the installer
-        run: bash <(curl -s https://raw.githubusercontent.com/OmegaGraf/OmegaGraf/master/install/debian-amd64.sh)
+        run: bash <(curl -s https://raw.githubusercontent.com/MacroPower/OmegaGraf/master/install/install.sh)
 
       - name: Launch OmegaGraf
         run: nohup ./OmegaGraf -k 123 &
