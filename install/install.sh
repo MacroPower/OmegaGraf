@@ -18,7 +18,7 @@ download() {
   announce "Setting up OmegaGraf"
 
   progress "Downloading OmegaGraf"
-  curl -s "https://api.github.com/repos/OmegaGraf/OmegaGraf/releases/latest" |
+  curl -s "https://api.github.com/repos/MacroPower/OmegaGraf/releases/latest" |
     grep "OmegaGraf.*tar.gz" |
     cut -d : -f 2,3 |
     tr -d \" |
