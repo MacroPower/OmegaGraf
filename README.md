@@ -6,12 +6,12 @@
 <h2 align="center">Fast & Easy vCenter Monitoring Deployment</h2>
 
 <p align="center">
-  <a href="https://github.com/OmegaGraf/OmegaGraf/actions"><img alt="Build Status" src="https://github.com/OmegaGraf/OmegaGraf/workflows/Build/badge.svg"></a>
-  <a href="https://github.com/OmegaGraf/OmegaGraf/releases"><img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/OmegaGraf/OmegaGraf"></a>
-  <a href="https://github.com/OmegaGraf/OmegaGraf/releases"><img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/OmegaGraf/OmegaGraf/total"></a>
+  <a href="https://github.com/MacroPower/OmegaGraf/actions"><img alt="Build Status" src="https://github.com/MacroPower/OmegaGraf/workflows/Build/badge.svg"></a>
+  <a href="https://github.com/MacroPower/OmegaGraf/releases"><img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/MacroPower/OmegaGraf"></a>
+  <a href="https://github.com/MacroPower/OmegaGraf/releases"><img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/MacroPower/OmegaGraf/total"></a>
   <a href="https://bestpractices.coreinfrastructure.org/projects/3874"><img src="https://bestpractices.coreinfrastructure.org/projects/3874/badge"></a>
   <a href="#contributors-"><img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-3-blue.svg"></a>
-  <a href="#"><img alt="License" src="https://img.shields.io/github/license/OmegaGraf/OmegaGraf"></a>
+  <a href="#"><img alt="License" src="https://img.shields.io/github/license/MacroPower/OmegaGraf"></a>
 </p>
 
 _OmegaGraf_ is a fast and simple **vCenter monitoring deployment solution**.
@@ -71,7 +71,7 @@ With assets from [Font Awesome](https://fontawesome.com/),
 [Proxima Nova](https://www.marksimonson.com/fonts/view/proxima-nova), and
 [Bootstrap](https://getbootstrap.com/) via [React Bootstrap](https://react-bootstrap.github.io/).
 
-View all our dependencies on [libraries.io](https://libraries.io/github/OmegaGraf/OmegaGraf).
+View all our dependencies on [libraries.io](https://libraries.io/github/MacroPower/OmegaGraf).
 
 ## Contributing
 
@@ -86,9 +86,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/MacroPower"><img src="https://avatars1.githubusercontent.com/u/5648814?v=4" width="100px;" alt=""/><br /><sub><b>Jacob Colvin</b></sub></a><br /><a href="https://github.com/OmegaGraf/OmegaGraf/commits?author=MacroPower" title="Code">💻</a> <a href="#infra-MacroPower" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-MacroPower" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/MacroPower"><img src="https://avatars1.githubusercontent.com/u/5648814?v=4" width="100px;" alt=""/><br /><sub><b>Jacob Colvin</b></sub></a><br /><a href="https://github.com/MacroPower/OmegaGraf/commits?author=MacroPower" title="Code">💻</a> <a href="#infra-MacroPower" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-MacroPower" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://github.com/curriemw"><img src="https://avatars2.githubusercontent.com/u/2603635?v=4" width="100px;" alt=""/><br /><sub><b>Matt Currie</b></sub></a><br /><a href="#projectManagement-curriemw" title="Project Management">📆</a> <a href="#design-curriemw" title="Design">🎨</a></td>
-    <td align="center"><a href="https://github.com/xvDylan"><img src="https://avatars0.githubusercontent.com/u/55466545?v=4" width="100px;" alt=""/><br /><sub><b>xvDylan</b></sub></a><br /><a href="#security-xvDylan" title="Security">🛡️</a> <a href="https://github.com/OmegaGraf/OmegaGraf/commits?author=xvDylan" title="Tests">⚠️</a></td>
+    <td align="center"><a href="https://github.com/xvDylan"><img src="https://avatars0.githubusercontent.com/u/55466545?v=4" width="100px;" alt=""/><br /><sub><b>xvDylan</b></sub></a><br /><a href="#security-xvDylan" title="Security">🛡️</a> <a href="https://github.com/MacroPower/OmegaGraf/commits?author=xvDylan" title="Tests">⚠️</a></td>
   </tr>
 </table>
 
