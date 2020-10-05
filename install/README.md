@@ -18,7 +18,7 @@ Click for instructions:
 [CentOS](https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos), or
 [Fedora](https://docs.microsoft.com/en-us/dotnet/core/install/linux-fedora).
 
-## Installation
+## Installation (Linux)
 
 The `install.sh` script should work on all major distributions.
 
@@ -36,3 +36,7 @@ Alternatively:
   `curl https://raw.githubusercontent.com/MacroPower/OmegaGraf/master/install/install.sh --output install.sh`
 - `chmod +x install.sh`
 - `./install.sh`
+
+## Installation (Windows)
+
+Expect an `install.ps1` script in the near future.
