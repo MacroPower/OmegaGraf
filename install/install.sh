@@ -84,16 +84,6 @@ permissions() {
   sudo usermod -aG docker $USER &&
     success "[$USER] has been added to the docker group" ||
     die "Could not add [$USER] to the docker group"
-
-  progress "Creating the data directory"
-  mkdir -p data &&
-    success "Created the data directory" ||
-    die "Could not create the data directory"
-
-  progress "Setting permissions on the data directory"
-  chmod -R 777 data &&
-    success "Set permissions on the data directory" ||
-    die "Could not set permissions on the data directory"
 }
 
 enable_ssl() {
