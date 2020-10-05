@@ -7,8 +7,8 @@ github:
   is_project_page: true
   repository_url: https://github.com/MacroPower/OmegaGraf
   repository_raw: https://raw.githubusercontent.com/MacroPower/OmegaGraf/master
-  zip_url: https://github.com/MacroPower/OmegaGraf/releases/download/v1.0.0/OmegaGraf-win-x64-v1.0.0.zip
-  tar_url: https://github.com/MacroPower/OmegaGraf/releases/download/v1.0.0/OmegaGraf-linux-x64-v1.0.0.tar.gz
+  zip_url: https://github.com/MacroPower/OmegaGraf/releases/download/v1.1.0/OmegaGraf-win-x64-v1.1.0.zip
+  tar_url: https://github.com/MacroPower/OmegaGraf/releases/download/v1.1.0/OmegaGraf-linux-x64-v1.1.0.tar.gz
 github_pages:
   url: https://macropower.github.io/OmegaGraf
   name: OmegaGraf
