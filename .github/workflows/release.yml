@@ -17,8 +17,14 @@ jobs:
       - name: Update the OS
         run: sudo apt update && sudo apt upgrade
 
+      - name: Download the installer
+        run: curl https://raw.githubusercontent.com/MacroPower/OmegaGraf/master/install/install.sh --output install.sh
+
+      - name: Grant execute on the installer
+        run: chmod +x install.sh
+
       - name: Run the installer
-        run: bash <(curl -s https://raw.githubusercontent.com/MacroPower/OmegaGraf/master/install/install.sh)
+        run: ./install.sh
 
       - name: Launch OmegaGraf
         run: nohup ./OmegaGraf -k 123 &
