@@ -2,7 +2,7 @@
 
 ## Compatibility
 
-**OmegaGraf is supported on Windows and all major Linux distributions.** Our testing is done using Ubuntu, so using that will probably result in the best / most bug-free experience.
+**OmegaGraf is supported on all major Linux distributions, as well as Windows.** Our testing is done using Ubuntu, so using that will probably result in the best / most bug-free experience.
 
 \* _We do not currently support MacOS, but if you're up for working with the C# Docker package on MacOS, feel free to give it a try!_
 
@@ -30,7 +30,21 @@ Alternatively, you can do the following:
   - Run `dotnet dev-certs https`.
   - When you run OmegaGraf, use an `https` listening address.
 - Download an OmegaGraf binary from [releases](https://github.com/MacroPower/OmegaGraf/releases).
+- Extract the binary, e.g. `tar -xzf OmegaGraf.tar.gz`.
 - Ensure you have execute permissions on the binary.
+- See [Using OmegaGraf](#using-omegagraf) for next steps.
+
+To run OmegaGraf on Windows:
+
+- Install [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows).
+- Share the directory you will be using for OmegaGraf data under `Resources -> File Sharing`.
+- Download an OmegaGraf binary from [releases](https://github.com/MacroPower/OmegaGraf/releases).
+- Unzip the OmegaGraf binary.
+- Open a shell and target the directory containing the binary.
+- If you are using WSL rather than a native shell:
+  - Use WSL 2 or expose docker over tcp.
+  - Use the `--socket` parameter as needed.
+  - Be aware that you may run into issues, especially with WSL 2.
 - See [Using OmegaGraf](#using-omegagraf) for next steps.
 
 ## Using OmegaGraf

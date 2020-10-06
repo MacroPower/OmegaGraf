@@ -2,7 +2,9 @@
 
 Scripts to assist with installing OmegaGraf.
 
-## Prerequisites
+## Linux Installation
+
+### Linux Prerequisites
 
 You will need to install `docker-ce`.
 Click for instructions:
@@ -18,7 +20,7 @@ Click for instructions:
 [CentOS](https://docs.microsoft.com/en-us/dotnet/core/install/linux-centos), or
 [Fedora](https://docs.microsoft.com/en-us/dotnet/core/install/linux-fedora).
 
-## Installation (Linux)
+### Running the Linux Installer
 
 The `install.sh` script should work on all major distributions.
 
@@ -37,6 +39,16 @@ Alternatively:
 - `chmod +x install.sh`
 - `./install.sh`
 
-## Installation (Windows)
+Don't want to use the installer? You can find manual instructions under [Getting Started](getting-started.md).
 
-Expect an `install.ps1` script in the near future.
+## Windows Installation
+
+### Windows Prerequisites
+
+You will need to install [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows).
+
+Your OmegaGraf data directory must be shared under `Resources -> File Sharing`.
+
+### Running the Windows Installer
+
+Expect an `install.ps1` script in the near future. Until then, you can find manual instructions under [Getting Started](getting-started.md).
