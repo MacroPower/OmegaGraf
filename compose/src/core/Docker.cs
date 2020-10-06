@@ -167,6 +167,12 @@ namespace OmegaGraf.Compose
                 parameters.Cmd = cmd;
             }
 
+            if (Globals.Config.Overwrite)
+            {
+                logger.Warn("Overwriting container " + hostname);
+                await this.RemoveContainers(hostname);
+            }
+
             try
             {
                 var response = await this.DockerClient.Containers.CreateContainerAsync(parameters);

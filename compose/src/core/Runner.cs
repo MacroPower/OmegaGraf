@@ -96,11 +96,6 @@ namespace OmegaGraf.Compose
                 var docker = new Docker();
                 await docker.PullImage(config.Image, config.Tag);
 
-                if (Globals.Config.Overwrite)
-                {
-                    await docker.RemoveContainers(config.Name);
-                }
-
                 var id = await docker.CreateContainer(
                     image: config.Image,
                     ports: config.Ports,

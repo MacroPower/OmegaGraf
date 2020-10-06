@@ -41,9 +41,24 @@ namespace OmegaGraf.Compose
                     Environment.Exit(0);
                 }
 
+                if (!string.IsNullOrWhiteSpace(parsed.Socket))
+                {
+                    Docker.SetDockerURI(parsed.Socket);
+                }
+
                 if (parsed.Reset)
                 {
                     new Docker().RemoveAllContainers().Wait();
+                }
+
+                if (parsed.Overwrite)
+                {
+                    Globals.Config.Overwrite = true;
+                }
+
+                if (parsed.Dev)
+                {
+                    Globals.Config.Development = true;
                 }
 
                 AppPath.SetRoot(parsed.Path);
@@ -57,21 +72,6 @@ namespace OmegaGraf.Compose
                 else
                 {
                     KeyDatabase.CreateKey(parsed.Key);
-                }
-
-                if (!string.IsNullOrWhiteSpace(parsed.Socket))
-                {
-                    Docker.SetDockerURI(parsed.Socket);
-                }
-
-                if (parsed.Overwrite)
-                {
-                    Globals.Config.Overwrite = true;
-                }
-
-                if (parsed.Dev)
-                {
-                    Globals.Config.Development = true;
                 }
 
                 var urls =
