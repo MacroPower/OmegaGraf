@@ -8,10 +8,10 @@ import GitHubButton from 'react-github-btn';
 
 export default function Footer() {
   const git = 'https://github.com/';
-  const repo = 'OmegaGraf/OmegaGraf';
+  const repo = 'MacroPower/OmegaGraf';
   const dev = 'MacroPower';
   const shields = 'https://img.shields.io/github';
-  const web = 'https://OmegaGraf.github.io';
+  const web = 'https://macropower.github.io/OmegaGraf';
 
   return (
     <div className="footer d-flex flex-column lh-1">
