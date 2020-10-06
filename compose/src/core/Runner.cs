@@ -83,6 +83,10 @@ namespace OmegaGraf.Compose
                 // Ensure that the root directory maintains the correct permissions
                 ChmodRecursive(root, P0777, P0666);
 
+                // Create directories as needed
+                Directory.CreateDirectory(
+                    Path.GetDirectoryName(path));
+
                 // Write the file and set its permissions
                 File.WriteAllText(path, c.Value);
                 ChmodRecursive(root, P0777, P0666);
