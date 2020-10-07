@@ -39,7 +39,7 @@ Alternatively:
 - `chmod +x install.sh`
 - `./install.sh`
 
-Don't want to use the installer? You can find manual instructions under [Getting Started](getting-started.md).
+Don't want to use the installer? You can find manual instructions under [Getting Started](../docs/getting-started.md).
 
 ## Windows Installation
 
@@ -51,4 +51,4 @@ Your OmegaGraf data directory must be shared under `Resources -> File Sharing`.
 
 ### Running the Windows Installer
 
-Expect an `install.ps1` script in the near future. Until then, you can find manual instructions under [Getting Started](getting-started.md).
+Expect an `install.ps1` script in the near future. Until then, you can find manual instructions under [Getting Started](../docs/getting-started.md).
