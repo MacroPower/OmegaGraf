@@ -6,32 +6,32 @@ Thank you for considering contributing to OmegaGraf.
 
 No contribution is too small. Please help with:
 
-* Reporting bugs
-* Suggesting features
-* Writing or improving documentation
-* Fixing typos
-* Cleaning whitespace
-* Refactoring code
-* Adding tests
-* Improvements to the [website](https://github.com/OmegaGraf/omegagraf.github.io)
-* Improvements to our [sim](https://github.com/OmegaGraf/docker-vcsim)
-* Adding Dashboards
-* Closing issues
+- Reporting bugs
+- Suggesting features
+- Writing or improving documentation
+- Fixing typos
+- Cleaning whitespace
+- Refactoring code
+- Adding tests
+- Improvements to the [website](https://github.com/MacroPower/OmegaGraf/tree/master/docs)
+- Improvements to our [sim](https://github.com/MacroPower/docker-vcsim)
+- Adding Dashboards
+- Closing issues
 
 ## Ground Rules
 
-* Ensure cross-platform compatibility for every change that's accepted. Windows, Debian & Ubuntu Linux.
-* Create issues for any major changes and enhancements that you wish to make. Discuss things transparently and get community feedback.
-* Keep feature versions as small as possible, preferably one new feature per version.
-* Be welcoming to newcomers and encourage diverse new contributors from all backgrounds.
+- Ensure cross-platform compatibility for every change that's accepted. Windows, Debian & Ubuntu Linux.
+- Create issues for any major changes and enhancements that you wish to make. Discuss things transparently and get community feedback.
+- Keep feature versions as small as possible, preferably one new feature per version.
+- Be welcoming to newcomers and encourage diverse new contributors from all backgrounds.
 
 ## Your First Contribution
 
 Unsure where to begin contributing? You can start by looking through these beginner and help-wanted issues:
 
-* Beginner issues - issues which should only require a few lines of code, and a test or two.
-* Help wanted issues - issues which should be a bit more involved than beginner issues.
-* Both issue lists are sorted by total number of comments. While not perfect, number of comments is a reasonable proxy for impact a given change will have.
+- Beginner issues - issues which should only require a few lines of code, and a test or two.
+- Help wanted issues - issues which should be a bit more involved than beginner issues.
+- Both issue lists are sorted by total number of comments. While not perfect, number of comments is a reasonable proxy for impact a given change will have.
 
 ## Getting started
 
@@ -40,8 +40,8 @@ For something that is bigger than a one or two line fix:
 1. Create your own fork of the code.
 2. Do the changes in your fork.
 3. If you like the change and think the project could use it:
-    * Be sure you have followed the code style for the project.
-    * Send a pull request.
+   - Be sure you have followed the code style for the project.
+   - Send a pull request.
 
 ---
 
@@ -63,17 +63,14 @@ Please consider using one of the following prefixes:
 2. UI - Edits to the UI project.
 3. /Tests - Edits to the tests.
 4. Docs - Edits to any docs (e.g. readme).
-5. Branding - Edits to any branding (e.g. logo).
-6. Git - Edits to git config (e.g. gitignore).
-7. Travis/Azure/Sonar - Edits to any build pipelines.
-8. VS - VSCode config edits.
-9. Meta - General edits (e.g. moving files, edits to tooling).
+5. Install - Edits to any installation scripts.
+6. Meta - General edits (e.g. moving files, edits to tooling).
 
 ### Examples
 
-* `Compose: Fix spelling on 'path' parameter help`
-* `Compose/Tests: Add a test to ensure login fails for incorrect credentials`
-* `Meta: Add cleanup parameter to build script`
+- `Compose: Fix spelling on 'path' parameter help`
+- `Compose/Tests: Add a test to ensure login fails for incorrect credentials`
+- `Meta: Add cleanup parameter to build script`
 
 ---
 
@@ -95,11 +92,11 @@ Done well, the commits (and their attached messages) contained within tell a sto
 
 A good quality PR will have the following characteristics:
 
-* It will be a complete piece of work that adds value in some way.
-* It will have a title that reflects the work within, and a summary that helps to understand the context of the change.
-* There will be well written commit messages, with well crafted commits that tell the story of the development of this work.
-* Ideally it will be small and easy to understand. Single commit PRs are usually easy to submit, review, and merge.
-* The code contained within will meet the best practises set by the team wherever possible.
+- It will be a complete piece of work that adds value in some way.
+- It will have a title that reflects the work within, and a summary that helps to understand the context of the change.
+- There will be well written commit messages, with well crafted commits that tell the story of the development of this work.
+- Ideally it will be small and easy to understand. Single commit PRs are usually easy to submit, review, and merge.
+- The code contained within will meet the best practices set by the team wherever possible.
 
 A PR does not end at submission though. A code change is not made until it is merged and used in production.
 
@@ -125,8 +122,8 @@ Use `git rebase -i master # or other reference, eg HEAD~5`
 
 For example:
 
-* Merge 'oops, fix typo/bug' into their parent commit. There is no reason to create and solve bugs within a PR, **unless there is educational value in highlighting them**.
-* Reword your commit messages for clarity. Once a PR is submitted, any rewording of commits will involve a rebase, which can then mess up the conversation in the PR.
+- Merge 'oops, fix typo/bug' into their parent commit. There is no reason to create and solve bugs within a PR, **unless there is educational value in highlighting them**.
+- Reword your commit messages for clarity. Once a PR is submitted, any rewording of commits will involve a rebase, which can then mess up the conversation in the PR.
 
 ### Aim for one succinct commit
 
@@ -158,10 +155,10 @@ If you can rebase up a large PR into multiple smaller PRs, then do so.
 
 It's a reviewers responsibility to ensure:
 
-* Commit history is excellent
-* Good changes are propagated quickly
-* Code review is performed
-* They understand what is being changed, from the perspective of someone examining the code in the future.
+- Commit history is excellent
+- Good changes are propagated quickly
+- Code review is performed
+- They understand what is being changed, from the perspective of someone examining the code in the future.
 
 ### Reviewers are the guardians of the commit history
 
@@ -169,7 +166,7 @@ The importance of ensuring a quality commit history cannot be stressed enough. I
 
 Without a decent commit history, we may as well be storing all our code in files ending yyyy-mm-dd. The commit history of a code base is what allows people to understand **why** a change was made - the when, what, and where are automatically evident.
 
-When looking at a commit message, ask yourself the question - from the perspective of someone looking at this change without any knowledge of the codebase - 'do I understand *why* this change was made?'
+When looking at a commit message, ask yourself the question - from the perspective of someone looking at this change without any knowledge of the codebase - 'do I understand _why_ this change was made?'
 
 **If any commit within the PR does not meet this standard, the PR should be rebased until it does. We cannot fix a commit history once it is in place, unlike our ability to refactor crappy code or fix bugs.**
 
@@ -199,7 +196,7 @@ If you do this, you are no longer the reviewer of the PR. You are a collaborator
 
 It is of course possible to find a new reviewer, but generally change will be speedier if you require the original submitter to fix the code themselves. Alternatively, if the original PR is 'good enough', raise the changes you'd like to see as separate stories/issues, and rework in your own PR.
 
-### It is not the reviewers responsibility to test the code
+### It is not the reviewer's responsibility to test the code
 
 We are all busy people, and in the case of many PRs against our codebase we are not able or time-permitted to test the new code.
 
