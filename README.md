@@ -8,6 +8,7 @@
 <p align="center">
   <a href="https://github.com/MacroPower/OmegaGraf/actions"><img alt="Build Status" src="https://github.com/MacroPower/OmegaGraf/workflows/Build/badge.svg"></a>
   <a href="https://github.com/MacroPower/OmegaGraf/releases"><img alt="GitHub tag (latest by date)" src="https://img.shields.io/github/v/tag/MacroPower/OmegaGraf"></a>
+<a href="https://app.fossa.com/projects/git%2Bgithub.com%2FMacroPower%2FOmegaGraf?ref=badge_shield" alt="FOSSA Status"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FMacroPower%2FOmegaGraf.svg?type=shield"/></a>
   <a href="https://github.com/MacroPower/OmegaGraf/releases"><img alt="GitHub All Releases" src="https://img.shields.io/github/downloads/MacroPower/OmegaGraf/total"></a>
   <a href="https://bestpractices.coreinfrastructure.org/projects/3874"><img src="https://bestpractices.coreinfrastructure.org/projects/3874/badge"></a>
   <a href="#contributors-"><img alt="All Contributors" src="https://img.shields.io/badge/all_contributors-3-blue.svg"></a>
@@ -28,6 +29,9 @@ a readonly account!
 Alternatively, _OmegaGraf_ can be controlled via its API, so more technical
 users can **store and version configuration**. Simply re-run _OmegaGraf_ and
 supply your old or updated JSON data.
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FMacroPower%2FOmegaGraf.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FMacroPower%2FOmegaGraf?ref=badge_large)
 
 ## Getting Started
 
